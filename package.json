@@ -19,10 +19,15 @@
     "add-ip-mongodb-whitelist": "./mongodb/scripts/whitelist/updateWhiteListing.sh"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^15.17.1",
+    "@contentful/rich-text-types": "^16.2.1",
     "clsx": "^2.1.0",
     "next": "14.1.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "@contentful/rich-text-react-renderer": "^15.17.1",
+    "@contentful/rich-text-types": "^16.2.1",
+    "contentful-import": "^9.0.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
@@ -34,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "autoprefixer": "^10.0.1",
+    "contentful-import": "^9.0.4",
     "eslint": "^8",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
