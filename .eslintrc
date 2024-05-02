@@ -16,6 +16,7 @@
     "next.config.mjs",
     "mongodb/*",
     "migrations/*",
-    "__mocks__/*"
+    "__mocks__/*",
+    "node-scripts/*"
   ]
 }

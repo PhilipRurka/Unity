@@ -36,7 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Database
-mongodb/dump/local/*
-mongodb/dump/production/*
-mongodump-config.yaml
+# contentful
+TemporaryContentModelStructure.json
