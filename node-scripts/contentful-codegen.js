@@ -44,7 +44,7 @@ const runCommands = async () => {
 		command: './node_modules/.bin/cf-content-types-generator',
 		args: [
 			'lib/TemporaryContentModelStructure.json',
-			'-o', '@type/contentful'
+			'-o', '@type/contentful-codegen'
 		]
 	}
 
@@ -56,7 +56,7 @@ const runCommands = async () => {
 		await execCommand(exportGeneratedTypes.command, exportGeneratedTypes.args);
 		spinner.stop(true);
 		console.log('');
-		console.log('Step 2: The types have successfully been generated and are stored in the following directory "@types/contentful"');
+		console.log('Step 2: The types have successfully been generated and are stored in the following directory "@types/contentful-codegen"');
 
 		await unlink('lib/TemporaryContentModelStructure.json')
 		console.log('');

@@ -61,7 +61,7 @@
       "build": "Lint and build",
       "test": "Run tests",
       "test:watch": "Re-run tests when a file is changed",
-      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful"
+      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen"
     }
   }
 }
