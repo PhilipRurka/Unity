@@ -43,6 +43,9 @@
       "@/ServerUtils/*": [
         "./utils/*"
       ],
+      "@/Lib/*": [
+        "./lib/*"
+      ],
       "@/Models/*": [
         "./models/*"
       ]
