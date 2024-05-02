@@ -79,33 +79,4 @@ chmod +x .husky/pre-commit .husky/pre-push && \
 chmod +x .git/hooks/pre-commit .git/hooks/pre-push
 ```
 
-### Mongodb
-
-#### Chmod
-
-There are a few shell scripts that help automate dumping db, restoring db and white listing relating goods. To enable the execution of these scripts, run the following.
-
-```shell
-chmod +x mongodb/scripts/dump/dump_local.sh && \
-chmod +x mongodb/scripts/dump/dump_prod.sh && \
-chmod +x mongodb/scripts/restore/sync_local_to_local.sh && \
-chmod +x mongodb/scripts/restore/sync_prod_to_local.sh && \
-chmod +x mongodb/scripts/restore/sync_prod_to_prod.sh && \
-chmod +x mongodb/scripts/whitelist/deleteWhitelistEntries.sh && \
-chmod +x mongodb/scripts/whitelist/updateWhiteListing.sh
-```
-
-#### migrate-mongo
-
-migrate-mongo is a library used to help automate mongodb migrations. You will need to install it globally via
-
-```shell
-npm i -g migrate-mongo
-```
-
-## Handling Migrations
-
-The following commands can be utilised.
-
-- `migrate-mongo up`: Run the migrations scripts in sequential order.
-- `migrate-mongo status`: Display the status of each migration.
+<br />
