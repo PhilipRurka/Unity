@@ -9,19 +9,13 @@
     "format-prettier": "prettier --write .",
     "debug-prettier": "npx prettier --debug-check .",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "dump-local-db": "./mongodb/scripts/dump/dump_local.sh",
-    "dump-production-db": "./mongodb/scripts/dump/dump_prod.sh",
-    "restore_local-dump_into_local-db": "./mongodb/scripts/restore/sync_local_to_local.sh",
-    "restore_production-dump_into_local-db": "./mongodb/scripts/restore/sync_prod_to_local.sh",
-    "restore_production-dump_into_production-db": "./mongodb/scripts/restore/sync_prod_to_prod.sh",
-    "delete-mongodb-whitelist": "./mongodb/scripts/whitelist/deleteWhitelistEntries.sh",
-    "add-ip-mongodb-whitelist": "./mongodb/scripts/whitelist/updateWhiteListing.sh"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",
     "@contentful/rich-text-types": "^16.2.1",
     "clsx": "^2.1.0",
+    "contentful": "^10.9.2",
     "contentful-import": "^9.0.4",
     "next": "14.1.0",
     "react": "^18",
@@ -37,7 +31,6 @@
     "@typescript-eslint/eslint-plugin": "^6.20.0",
     "@typescript-eslint/parser": "^6.20.0",
     "autoprefixer": "^10.0.1",
-    "contentful-import": "^9.0.4",
     "eslint": "^8",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.1.0",
@@ -51,7 +44,7 @@
     "prettier": "^2.0.2",
     "prettier-plugin-tailwindcss": "^0.4.0",
     "tailwindcss": "^3.3.0",
-    "typescript": "^5.3.0"
+    "typescript": "5.3.3"
   },
   "type": "module",
   "engines": {
