@@ -17,7 +17,6 @@
     "mongodb/*",
     "migrations/*",
     "__mocks__/*",
-    "node-scripts/*",
     "@types/contentful-codegen/*"
   ]
 }
