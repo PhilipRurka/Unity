@@ -1,4 +1,3 @@
-// import client from '@/Lib/createClient';
 import client from '@/Lib/createClient';
 
 type SuccessGet = [{ data: any }, { status: number }];
@@ -13,7 +12,6 @@ type CatchError = {
 const getByContentModel: GetByContentModel = async (reqData) => {
   try {
     const { contentModel } = reqData;
-    console.log(contentModel);
 
     client().getContentType(contentModel);
 

@@ -6,7 +6,8 @@ const execCommand = async (command, args) => new Promise((resolve, reject) => {
 	const process = spawn(command, args);
 
 	process.stdout.on('data', (data) => {
-			console.log(data.toString());
+		const output = data.toString().replace(/\[\d{2}:\d{2}:\d{2}\]\s/g, '');
+		console.log(output);
 	});
 
 	process.stderr.on('data', (data) => {
