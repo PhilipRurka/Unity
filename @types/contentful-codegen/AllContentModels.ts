@@ -1,0 +1,1 @@
+export type AllContentModels = 'article' | 'contentSection' | 'hierarchyLayout' | 'hierarchyLink' | 'infobox' | 'infoboxBlock' | 'infoboxItem' | 'link';
