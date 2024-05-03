@@ -8,6 +8,7 @@
   "editor.formatOnSave": true,
   "files.exclude": {
     ".git": true,
+    ".husky": true,
     ".next": true,
     ".vercel": true,
     "node_modules": true,
