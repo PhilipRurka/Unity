@@ -8,8 +8,6 @@ const envVariables = () => {
   const envPath = path.resolve(__dirname, '../.env.local');
   
   dotenv.config({ path: envPath });
-
-  debugger
   
   const { CONTENTFUL_SPACE_ID, CONTENTFUL_CMA_TOKEN } = process.env;
 
