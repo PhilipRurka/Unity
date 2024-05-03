@@ -44,7 +44,7 @@ const runCommands = async () => {
 		command: './node_modules/.bin/cf-content-types-generator',
 		args: [
 			'lib/TemporaryContentModelStructure.json',
-			'-o', '@type/contentful-codegen'
+			'-o', '@types/contentful-codegen'
 		]
 	}
 

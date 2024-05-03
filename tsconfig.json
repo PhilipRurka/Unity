@@ -38,7 +38,7 @@
         "./app/api/*"
       ],
       "@/Types/*": [
-        "./types/*"
+        "./@types/*"
       ],
       "@/ServerUtils/*": [
         "./utils/*"
@@ -62,6 +62,6 @@
   ],
   "exclude": [
     "node_modules",
-    "@type/contentful-codegen/**/*"
+    "@types/contentful-codegen/**/*"
   ]
 }
