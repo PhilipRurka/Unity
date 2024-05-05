@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import '@/Styles/globals.css';
+import { TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from '@/Types/contentful-codegen/TypeHierarchyLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,10 +16,19 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const [entries] = (await getByContentModel(
+    'hierarchyLayout'
+  )) as TypeHierarchyLayoutWithoutUnresolvableLinksResponse[];
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header>
+          <pre>{JSON.stringify(entries, null, 2)}</pre>
+        </header>
+        <div>{children}</div>
+      </body>
     </html>
   );
 }
