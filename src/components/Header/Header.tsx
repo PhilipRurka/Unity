@@ -5,7 +5,6 @@ import { useContext } from 'react';
 
 import { HierarchyIcon, SearchIcon } from '@/Components/Icons';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
-import { HierarchyNavContext } from '../../providers/contexts/HierarchyNavContextProvider';
 
 const Header = () => {
   const { isOpen: isHierarchyNavOpen, handleShouldBeOpen: shouldHierarchyBeOpen } = useContext(HierarchyNavContext);
@@ -15,7 +14,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="cHeader shadow-black-500/10 flex justify-between bg-white shadow-lg">
+    <nav className="cHeader shadow-black-500/10 absolute left-0 top-0 z-50 flex w-screen justify-between bg-white shadow-lg">
       <div className="p-4">
         <Image src="/unity-logo.png" width={32} height={32} alt="Unity Logo" />
       </div>
