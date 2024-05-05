@@ -25,11 +25,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body className={clsx('relative h-screen bg-slate-50', inter.className)}>
+      <body className={clsx('relative h-screen w-screen overflow-hidden bg-slate-50', inter.className)}>
         <HierarchyNavContextProvider>
           <Header />
           <HierarchyNav hierarchyLayout={hierarchyLayout} />
-          <div>{children}</div>
+          <main className="pt-16">{children}</main>
         </HierarchyNavContextProvider>
       </body>
     </html>

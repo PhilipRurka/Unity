@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
+import RecursiveHierarchy from '../RecursiveHierarchy';
+
 type HierarchyNavProps = {
   hierarchyLayout: HierarchyLayoutType;
 };
@@ -20,7 +22,9 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
           isOpen ? 'translate-x-0' : 'translate-x-72'
         )}
       >
-        <div className="p-8">{hierarchyLayout.fields.entryTitle}</div>
+        <div className="p-8">
+          <RecursiveHierarchy data={hierarchyLayout} />
+        </div>
       </div>
     </>
   );
