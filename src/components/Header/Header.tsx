@@ -1,15 +1,16 @@
 'use client';
 
+import { useContext } from 'react';
+
 import { HierarchyIcon, SearchIcon } from '@/Components/Icons';
-import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
-type HeaderProps = {
-  hierarchyLayout: HierarchyLayoutType;
-};
+import { HierarchyNavContext } from '../../providers/contexts/HierarchyNavContextProvider';
 
-const Header = ({ hierarchyLayout }: HeaderProps) => {
+const Header = () => {
+  const { isOpen: isHierarchyNavOpen, handleShouldBeOpen: shouldHierarchyBeOpen } = useContext(HierarchyNavContext);
+
   const shouldOpenHierarchyNav = () => {
-    console.log(hierarchyLayout);
+    shouldHierarchyBeOpen(!isHierarchyNavOpen);
   };
 
   return (
