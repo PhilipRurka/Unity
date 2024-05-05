@@ -6,6 +6,7 @@ import Header from '@/Components/Header';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import '@/Styles/globals.css';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
+import HierarchyNavContextProvider from '../src/providers/contexts/HierarchyNavContextProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -24,8 +25,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={clsx('h-screen bg-slate-50', inter.className)}>
-        <Header hierarchyLayout={hierarchyLayout} />
+        <HierarchyNavContextProvider>
         <div>{children}</div>
+        </HierarchyNavContextProvider>
       </body>
     </html>
   );
