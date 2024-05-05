@@ -1,11 +1,11 @@
 import { createClient } from 'contentful';
 
-import { AllContentModels } from '@/Types/contentful-codegen/AllContentModels';
+import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 type SuccessGet = [{ entries: unknown[] }, { status: number }];
 type ErrorGet = [{ data: { message: string } }, { status: number }];
 
-type GetByContentModel = (contentModel: AllContentModels) => Promise<SuccessGet | ErrorGet>;
+type GetByContentModel = (contentModel: AllContentModelTypes) => Promise<SuccessGet | ErrorGet>;
 
 type CatchError = {
   message: string;

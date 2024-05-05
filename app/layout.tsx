@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import '@/Styles/globals.css';
-import { TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from '@/Types/contentful-codegen/TypeHierarchyLayout';
+import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,9 +17,7 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [entries] = (await getByContentModel(
-    'hierarchyLayout'
-  )) as TypeHierarchyLayoutWithoutUnresolvableLinksResponse[];
+  const [entries] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
 
   return (
     <html lang="en">

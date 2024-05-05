@@ -1,7 +1,7 @@
-import { TypeArticleWithAllLocalesAndWithoutUnresolvableLinksResponse } from '@/Types/contentful-codegen/TypeArticle';
+import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 import { FetchError } from '@/Types/fetcher';
 
-type GetBySlug = (slug: string) => Promise<TypeArticleWithAllLocalesAndWithoutUnresolvableLinksResponse>;
+type GetBySlug = (slug: string) => Promise<ArticleType>;
 
 const getBySlug: GetBySlug = async (slug) => {
   const response = await fetch(`${process.env.NEXT_BASE_URL}api/contentful/getBySlug/${slug}`, {

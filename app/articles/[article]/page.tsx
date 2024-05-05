@@ -1,9 +1,9 @@
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
-import { TypeArticleWithoutUnresolvableLinksResponse } from '@/Types/contentful-codegen/TypeArticle';
+import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 export async function generateStaticParams() {
-  const entries = (await getByContentModel('article')) as TypeArticleWithoutUnresolvableLinksResponse[];
+  const entries = (await getByContentModel('article')) as ArticleType[];
 
   return entries.map((entry) => ({
     slug: entry.fields.slug,

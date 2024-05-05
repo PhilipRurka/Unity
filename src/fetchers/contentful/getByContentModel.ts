@@ -1,7 +1,7 @@
-import { AllContentModels } from '@/Types/contentful-codegen/AllContentModels';
+import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 import { FetchError } from '@/Types/fetcher';
 
-type GetByContentModel = (contentModel: AllContentModels) => Promise<unknown>;
+type GetByContentModel = (contentModel: AllContentModelTypes) => Promise<unknown>;
 
 const getByContentModel: GetByContentModel = async (contentModel) => {
   const response = await fetch(`${process.env.NEXT_BASE_URL}api/contentful/getByContentModel/${contentModel}`, {
