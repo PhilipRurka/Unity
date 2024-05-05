@@ -1,9 +1,20 @@
-import type { Entry, EntryFields } from "contentful";
-import type { TypeInfoboxItemFields } from "./TypeInfoboxItem";
+import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeInfoboxItemSkeleton } from "./TypeInfoboxItem";
 
 export interface TypeInfoboxBlockFields {
-    title: EntryFields.Symbol;
-    items: Entry<TypeInfoboxItemFields>[];
+    title: EntryFieldTypes.Symbol;
+    items: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeInfoboxItemSkeleton>>;
 }
 
-export type TypeInfoboxBlock = Entry<TypeInfoboxBlockFields>;
+export type TypeInfoboxBlockSkeleton = EntrySkeletonType<TypeInfoboxBlockFields, "infoboxBlock">;
+export type TypeInfoboxBlock<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeInfoboxBlockSkeleton, Modifiers, Locales>;
+
+export function isTypeInfoboxBlock<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeInfoboxBlock<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'infoboxBlock'
+}
+
+export type TypeInfoboxBlockWithoutLinkResolutionResponse = TypeInfoboxBlock<"WITHOUT_LINK_RESOLUTION">;
+export type TypeInfoboxBlockWithoutUnresolvableLinksResponse = TypeInfoboxBlock<"WITHOUT_UNRESOLVABLE_LINKS">;
+export type TypeInfoboxBlockWithAllLocalesResponse<Locales extends LocaleCode = LocaleCode> = TypeInfoboxBlock<"WITH_ALL_LOCALES", Locales>;
+export type TypeInfoboxBlockWithAllLocalesAndWithoutLinkResolutionResponse<Locales extends LocaleCode = LocaleCode> = TypeInfoboxBlock<"WITHOUT_LINK_RESOLUTION" | "WITH_ALL_LOCALES", Locales>;
+export type TypeInfoboxBlockWithAllLocalesAndWithoutUnresolvableLinksResponse<Locales extends LocaleCode = LocaleCode> = TypeInfoboxBlock<"WITHOUT_UNRESOLVABLE_LINKS" | "WITH_ALL_LOCALES", Locales>;

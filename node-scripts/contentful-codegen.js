@@ -51,7 +51,7 @@ const runCommands = async () => {
 
   const exportGeneratedTypes = {
     command: './node_modules/.bin/cf-content-types-generator',
-    args: ['lib/TemporaryContentModelStructure.json', '-o', '@types/contentful-codegen'],
+    args: ['lib/TemporaryContentModelStructure.json', '-o', '@types/contentful-codegen', '-X', '-g', '-r'],
   };
 
   try {
