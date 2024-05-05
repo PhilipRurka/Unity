@@ -10,7 +10,8 @@
     "debug-prettier": "npx prettier --debug-check .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "contentful-codegen": "node node-scripts/contentful-codegen.js"
+    "contentful-codegen": "node node-scripts/contentful-codegen.js",
+    "create-component-template": "node node-scripts/create-component-template"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",
@@ -61,7 +62,8 @@
       "build": "Lint and build",
       "test": "Run tests",
       "test:watch": "Re-run tests when a file is changed",
-      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen"
+      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
+      "create-component-template": "Generates a new component using correct pattern"
     }
   }
 }
