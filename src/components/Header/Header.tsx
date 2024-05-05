@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useContext } from 'react';
 
 import { HierarchyIcon, SearchIcon } from '@/Components/Icons';
@@ -15,8 +16,8 @@ const Header = () => {
 
   return (
     <nav className="cHeader shadow-black-500/10 flex justify-between bg-white shadow-lg">
-      <div>
-        <span>logo</span>
+      <div className="p-4">
+        <Image src="/unity-logo.png" width={32} height={32} alt="Unity Logo" />
       </div>
       <div className="flex">
         <button className="p-4">
