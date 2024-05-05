@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useContext } from 'react';
 
 import { HierarchyIcon, SearchIcon } from '@/Components/Icons';
-
+import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 import { HierarchyNavContext } from '../../providers/contexts/HierarchyNavContextProvider';
 
 const Header = () => {

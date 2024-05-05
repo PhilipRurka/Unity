@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 
 import Header from '@/Components/Header';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
+import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 

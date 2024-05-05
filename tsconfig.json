@@ -34,6 +34,9 @@
       "@/Hooks/*": [
         "./src/hooks/*"
       ],
+      "@/Providers/*": [
+        "./src/providers/*"
+      ],
       "@/Api/*": [
         "./app/api/*"
       ],
