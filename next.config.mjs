@@ -5,11 +5,6 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
-  images: {
-    loader: "custom",
-    formats: ["image/avif", "image/webp"],
-  },
 };
-
 
 export default nextConfig;
