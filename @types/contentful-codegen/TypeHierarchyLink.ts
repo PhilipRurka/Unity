@@ -4,7 +4,7 @@ import type { TypeLinkSkeleton } from "./TypeLink";
 export interface TypeHierarchyLinkFields {
     entryTitle?: EntryFieldTypes.Symbol;
     link: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
-    childrenLinks?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton | TypeLinkSkeleton>>;
+    childrenLinks?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton>>;
 }
 
 export type TypeHierarchyLinkSkeleton = EntrySkeletonType<TypeHierarchyLinkFields, "hierarchyLink">;
