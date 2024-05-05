@@ -17,13 +17,13 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [entries] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
+  const [hierarchyLayout] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <header>
-          <pre>{JSON.stringify(entries, null, 2)}</pre>
+          <pre>{JSON.stringify(hierarchyLayout, null, 2)}</pre>
         </header>
         <div>{children}</div>
       </body>
