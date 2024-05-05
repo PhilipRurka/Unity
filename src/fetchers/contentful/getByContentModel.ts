@@ -1,9 +1,10 @@
+import { AllContentModels } from '@/Types/contentful-codegen/AllContentModels';
 import { FetchError } from '@/Types/fetcher';
 
-type GetByContentModel = (contentModel: string) => Promise<unknown>;
+type GetByContentModel = (contentModel: AllContentModels) => Promise<unknown>;
 
 const getByContentModel: GetByContentModel = async (contentModel) => {
-  const response = await fetch(`/api/contentful/getByContentModel/${contentModel}`, {
+  const response = await fetch(`${process.env.NEXT_BASE_URL}api/contentful/getByContentModel/${contentModel}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -11,14 +12,14 @@ const getByContentModel: GetByContentModel = async (contentModel) => {
   });
 
   if (!response.ok) {
-    const error: FetchError = new Error('An error occurred while fetching the getTodos data');
-    error.info = await response.json;
+    const error: FetchError = new Error('An error occurred while fetching the getByContentModel data');
+    error.info = await response.json();
     error.status = response.status;
     throw error;
   }
 
   const data = await response.json();
-  return data;
+  return data.entries;
 };
 
 export default getByContentModel;
