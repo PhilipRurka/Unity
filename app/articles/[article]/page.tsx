@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
 import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
@@ -19,7 +21,11 @@ type ArticleProps = {
 const Article = async ({ params: { article: slug } }: ArticleProps) => {
   const entry = await getBySlug(slug);
 
-  return <pre>{JSON.stringify(entry, null, 2)}</pre>;
+  if (!entry) {
+    notFound();
+  }
+
+  return <pre>{/* {JSON.stringify(entry, null, 2)} */}</pre>;
 };
 
 export default Article;
