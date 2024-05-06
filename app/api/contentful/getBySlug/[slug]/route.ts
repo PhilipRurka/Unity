@@ -10,7 +10,6 @@ type Context = {
 };
 
 export const GET = async (_req: NextRequest, context: Context) => {
-  console.log(_req, context);
   const { slug } = context.params;
 
   const [data, status] = await getBySlug(slug);
