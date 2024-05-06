@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import Link from 'next/link';
 import { useContext } from 'react';
 
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
@@ -13,7 +14,8 @@ type HierarchyNavProps = {
 };
 
 const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
-  const { isOpen } = useContext(HierarchyNavContext);
+  const { isOpen, randomSlug } = useContext(HierarchyNavContext);
+
   return (
     <>
       <div
@@ -23,6 +25,9 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
         )}
       >
         <div className="p-8">
+          <Link className="mb-4" href={`/articles/${randomSlug}`}>
+            Go To Random Page
+          </Link>
           <RecursiveHierarchy data={hierarchyLayout} />
         </div>
       </div>
