@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
+import Markdown from '@/Lib/markdown';
 import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 export async function generateStaticParams() {
@@ -21,11 +22,20 @@ type ArticleProps = {
 const Article = async ({ params: { article: slug } }: ArticleProps) => {
   const entry = await getBySlug(slug);
 
-  if (!entry) {
-    notFound();
-  }
+  if (!entry) notFound();
 
-  return <pre>{/* {JSON.stringify(entry, null, 2)} */}</pre>;
+  const { title, content } = entry.fields;
+
+  return (
+    <div className="cArticle">
+      <h1>{title}</h1>
+      {content.map((section, i) => (
+        <div key={`Article-${i}`}>
+          <Markdown content={section?.fields.content} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Article;
