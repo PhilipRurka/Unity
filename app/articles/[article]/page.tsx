@@ -27,12 +27,10 @@ const Article = async ({ params: { article: slug } }: ArticleProps) => {
   const { title, content } = entry.fields;
 
   return (
-    <div className="cArticle">
-      <h1>{title}</h1>
+    <div className="mx-auto max-w-4xl p-12" data-component="cArticle">
+      <h1 className="mb-4 text-5xl">{title}</h1>
       {content.map((section, i) => (
-        <div key={`Article-${i}`}>
-          <Markdown content={section?.fields.content} />
-        </div>
+        <Markdown key={`Article-${i}`} content={section?.fields.content} />
       ))}
     </div>
   );
