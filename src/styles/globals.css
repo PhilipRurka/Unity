@@ -30,7 +30,3 @@ a, span {
     text-wrap: balance;
   }
 }
-
-[data-component="cMarkdown"] p:empty:not(:last-child) {
-  padding-top: 1em;
-}

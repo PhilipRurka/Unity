@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: [
@@ -23,7 +24,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addComponents }) => {
+      addComponents({
+        '[data-component="cMarkdown"] p:empty:not(:last-child)': {
+          paddingTop: '1rem',
+        },
+        '[data-component="cMarkdown"]:not(:last-child)': {
+          marginBottom: '4rem',
+        },
+        '[data-component="cMarkdown"] h2 + h3, [data-component="cMarkdown"] h3 + h4': {
+          marginTop: '2rem',
+        },
+      });
+    }),
+  ],
   safelist: [
     /** widths */
     'w-4',
