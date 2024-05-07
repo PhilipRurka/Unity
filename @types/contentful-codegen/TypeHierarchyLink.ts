@@ -2,7 +2,7 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 import type { TypeLinkSkeleton } from "./TypeLink";
 
 export interface TypeHierarchyLinkFields {
-    entryTitle?: EntryFieldTypes.Symbol;
+    entryTitle: EntryFieldTypes.Symbol;
     link: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
     childrenLinks?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton>>;
 }

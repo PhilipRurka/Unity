@@ -1,7 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 
 export interface TypeContentSectionFields {
-    entryTitle?: EntryFieldTypes.Symbol;
+    entryTitle: EntryFieldTypes.Symbol;
     content: EntryFieldTypes.RichText;
 }
 

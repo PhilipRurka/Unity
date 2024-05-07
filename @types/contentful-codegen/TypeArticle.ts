@@ -10,7 +10,7 @@ export interface TypeArticleFields {
     content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeContentSectionSkeleton>>;
     nextRecommendedPath?: EntryFieldTypes.Symbol;
     previousRecommendedPath?: EntryFieldTypes.Symbol;
-    tags: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
 }
 
 export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;

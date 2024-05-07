@@ -1,10 +1,9 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeHierarchyLinkSkeleton } from "./TypeHierarchyLink";
-import type { TypeLinkSkeleton } from "./TypeLink";
 
 export interface TypeHierarchyLayoutFields {
-    entryTitle?: EntryFieldTypes.Symbol;
-    links: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton | TypeLinkSkeleton>>;
+    entryTitle: EntryFieldTypes.Symbol;
+    links: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton>>;
 }
 
 export type TypeHierarchyLayoutSkeleton = EntrySkeletonType<TypeHierarchyLayoutFields, "hierarchyLayout">;
