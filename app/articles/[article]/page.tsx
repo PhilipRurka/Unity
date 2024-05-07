@@ -27,8 +27,11 @@ const Article = async ({ params: { article: slug } }: ArticleProps) => {
   const { title, content } = entry.fields;
 
   return (
-    <div className="mx-auto max-w-4xl p-12" data-component="cArticle">
-      <h1 className="mb-4 text-5xl">{title}</h1>
+    <div
+      className="mx-auto mt-16 min-h-screen max-w-4xl bg-article-background px-16 py-20 shadow-article"
+      data-component="cArticle"
+    >
+      <h1 className="mb-4 text-6xl">{title}</h1>
       {content.map((section, i) => (
         <Markdown key={`Article-${i}`} content={section?.fields.content} />
       ))}
