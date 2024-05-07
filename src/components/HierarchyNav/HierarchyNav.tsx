@@ -14,7 +14,7 @@ type HierarchyNavProps = {
 };
 
 const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
-  const { isOpen, randomSlug } = useContext(HierarchyNavContext);
+  const { isOpen, slugsList } = useContext(HierarchyNavContext);
 
   return (
     <>
@@ -25,7 +25,7 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
         )}
       >
         <div className="p-8">
-          <Link className="mb-4" href={`/articles/${randomSlug}`}>
+          <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
             Go To Random Page
           </Link>
           <RecursiveHierarchy data={hierarchyLayout} />

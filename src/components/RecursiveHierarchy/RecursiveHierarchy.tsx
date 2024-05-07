@@ -9,11 +9,11 @@ type RecursiveHierarchyProps = {
 };
 
 const RecursiveHierarchy = ({ data }: RecursiveHierarchyProps) => {
-  const { handleUpdateSlugsList } = useContext(HierarchyNavContext);
+  const { handleSlugListRandomization } = useContext(HierarchyNavContext);
   const pagesOptionRef = useRef<string[]>([]);
 
   useEffect(() => {
-    handleUpdateSlugsList(pagesOptionRef.current);
+    handleSlugListRandomization(pagesOptionRef.current);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
