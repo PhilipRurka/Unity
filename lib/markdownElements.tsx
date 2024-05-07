@@ -33,7 +33,7 @@ export const OrderedList = ({ children }: MarkdownElementProps) => (
 export const ListItem = ({ children }: MarkdownElementProps) => <li className="mb-2">{children}</li>;
 
 export const Hyperlink = ({ children, node }: MarkdownElementProps) => (
-  <Link className="inline" href={node?.data.uri}>
+  <Link className="inline text-blue-500 hover:text-blue-900" href={node?.data.uri}>
     {children}
   </Link>
 );
