@@ -1,8 +1,6 @@
-const getRandomElement = <T>(array: T[]): T | undefined => {
-  if (array.length === 0) return undefined;
-
+const getRandomElement = <T>(array: T[]): { element: T; randomIndex: number } => {
   const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
+  return { element: array[randomIndex], randomIndex };
 };
 
 export default getRandomElement;
