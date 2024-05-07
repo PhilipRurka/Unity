@@ -11,13 +11,15 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'article-background': 'url("/article-background.jpg")',
       },
       width: {
         150: '37.5rem',
         200: '50rem',
         250: '62.5rem',
+      },
+      boxShadow: {
+        article: '0 0 30px 3px rgba(0,0,0,0.5)',
       },
     },
   },
@@ -50,3 +52,5 @@ const config: Config = {
   ],
 };
 export default config;
+
+// Background b8b8b8
