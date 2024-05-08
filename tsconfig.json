@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "lib": [
       "dom",
       "dom.iterable",
@@ -16,6 +17,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "target": "es2021",
     "plugins": [
       {
         "name": "next"
@@ -53,7 +55,6 @@
         "./models/*"
       ]
     },
-    "target": "es2021"
   },
   "include": [
     "next-env.d.ts",

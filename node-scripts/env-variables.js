@@ -10,9 +10,7 @@ const envVariables = () => {
 
   dotenv.config({ path: envPath });
 
-  const { CONTENTFUL_SPACE_ID, CONTENTFUL_CMA_TOKEN } = process.env;
-
-  return { CONTENTFUL_SPACE_ID, CONTENTFUL_CMA_TOKEN };
+  return { ...process.env };
 };
 
 export default envVariables;

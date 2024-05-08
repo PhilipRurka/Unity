@@ -28,7 +28,7 @@ const execCommand = async (command, args) =>
   });
 
 const runCommands = async () => {
-  const { CONTENTFUL_SPACE_ID, CONTENTFUL_CMA_TOKEN } = (await import('./envVariables.js')).default();
+  const { CONTENTFUL_SPACE_ID, CONTENTFUL_CMA_TOKEN } = (await import('./env-variables.js')).default();
 
   const spinner = new Spinner('Please hold.. %s');
   spinner.setSpinnerString('|/-\\');
