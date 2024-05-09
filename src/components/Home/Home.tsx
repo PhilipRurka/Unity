@@ -1,3 +1,5 @@
-const Home = () => <h1>Hello World</h1>;
+'use client';
+
+const Home = () => <div data-component="cHome"></div>;
 
 export default Home;
