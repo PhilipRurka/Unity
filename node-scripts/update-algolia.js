@@ -5,8 +5,10 @@ import algoliasearch from 'algoliasearch';
 import { Spinner } from 'cli-spinner';
 import contentful from 'contentful';
 
-const getAlgoliaIndex = async (ALGOLIA_DASHBOARD_KEY, ALGOLIA_WRITE_KEY) => {
-  const client = algoliasearch(ALGOLIA_DASHBOARD_KEY, ALGOLIA_WRITE_KEY);
+import algoliaCodegen from './algolia-codegen.js';
+
+const getAlgoliaIndex = async (NEXT_PUBLIC_ALGOLIA_DASHBOARD, ALGOLIA_WRITE_KEY) => {
+  const client = algoliasearch(NEXT_PUBLIC_ALGOLIA_DASHBOARD, ALGOLIA_WRITE_KEY);
   return client.initIndex('articles');
 };
 
@@ -60,29 +62,67 @@ const createAlgoliaRecords = (articles) => {
   return algoliaEntries;
 };
 
-const uploadArticlesOnAlgolia = (index, algoliaRecords) => {
-  index.saveObjects(algoliaRecords, { autoGenerateObjectIDIfNotExist: true });
+const uploadArticlesOnAlgolia = async (index, algoliaRecords) => {
+  await index.saveObjects(algoliaRecords, { autoGenerateObjectIDIfNotExist: true });
+  return undefined;
 };
 
-const runCommands = async () => {
+const executeStep = async (stepDescription, action) => {
   const spinner = new Spinner('Please hold.. %s');
   spinner.setSpinnerString('|/-\\');
 
-  spinner.start();
+  let value;
+
+  console.log('');
+
+  try {
+    spinner.start();
+    value = await action();
+    spinner.stop(true);
+    console.log(stepDescription);
+  } catch (error) {
+    spinner.stop(true);
+    console.error('Critical error occurred:', error.message);
+    process.exit(1);
+  }
+
+  return value;
+};
+
+const runCommands = async () => {
   const {
-    ALGOLIA_DASHBOARD_KEY = '',
+    NEXT_PUBLIC_ALGOLIA_DASHBOARD = '',
     ALGOLIA_WRITE_KEY = '',
     CONTENTFUL_SPACE_ID = '',
     CONTENTFUL_ACCESS_TOKEN = '',
   } = (await import('./env-variables.js')).default();
-  const index = await getAlgoliaIndex(ALGOLIA_DASHBOARD_KEY, ALGOLIA_WRITE_KEY);
-  const articles = await getByContentModel(CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN);
-  const algoliaRecords = createAlgoliaRecords(articles);
-  uploadArticlesOnAlgolia(index, algoliaRecords);
-  spinner.stop(true);
+
+  const spinner = new Spinner('Please hold.. %s');
+  spinner.setSpinnerString('|/-\\');
 
   console.log('');
-  console.log('Complete, Algolia has been updated!!!');
+
+  const algoliaIndex = await executeStep('Step 1: Get Algolia Index', () =>
+    getAlgoliaIndex(NEXT_PUBLIC_ALGOLIA_DASHBOARD, ALGOLIA_WRITE_KEY)
+  );
+  const articles = await executeStep('Step 2: Get all entries from Contentful with content model type "articles"', () =>
+    getByContentModel(CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN)
+  );
+
+  const algoliaRecords = await executeStep('Step 3: Locally create Algolia records so they can be updated', () =>
+    createAlgoliaRecords(articles)
+  );
+
+  await executeStep('Step 4: Update Algolia using local Algolia records', () =>
+    uploadArticlesOnAlgolia(algoliaIndex, algoliaRecords)
+  );
+
+  await executeStep('Step 5: Delete & Create "@types/algolia-codegen/ArticlesSearchType.ts"', () =>
+    algoliaCodegen(algoliaRecords[0])
+  );
+
+  console.log('');
+  console.log('Complete!!!');
   console.log('');
 };
 
