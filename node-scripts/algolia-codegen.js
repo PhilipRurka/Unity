@@ -1,19 +1,7 @@
 /* eslint-disable no-console */
-import { exec } from 'child_process';
 import { unlink, writeFile } from 'fs/promises';
 
-const runPrettier = (filePath) =>
-  new Promise((resolve, reject) => {
-    exec(`npx prettier --write "${filePath}"`, (error, stdout, stderr) => {
-      if (error) {
-        console.error('Error running Prettier:', stderr);
-        reject(stderr);
-      } else {
-        console.log('Prettier has formatted the file:', stdout);
-        resolve(stdout);
-      }
-    });
-  });
+import runPrettier from './runPrettier.js';
 
 const algoliaCodegen = async (algoliaObject) => {
   const keys = Object.keys(algoliaObject);
@@ -31,9 +19,8 @@ const algoliaCodegen = async (algoliaObject) => {
       `,
       ''
     )
-    .trim(); // Trimming here for good measure
+    .trim();
 
-  // Construct base results, ensure no leading spaces
   const baseResults = keys
     .reduce(
       (result, key) => `${result}
@@ -42,7 +29,6 @@ const algoliaCodegen = async (algoliaObject) => {
     )
     .trim();
 
-  // Ensure the final object aligns all brackets and braces correctly
   const finalObject = `
   ${baseResults}
   objectID: string,
@@ -52,16 +38,14 @@ const algoliaCodegen = async (algoliaObject) => {
   __position: number
 `;
 
-  // Construct the final type definition with correct overall indentation
   const finalOutput = `export type ArticleSearchType = {
     ${finalObject}
 };`;
 
   try {
     await unlink('@types/algolia-codegen/ArticlesSearchType.ts');
-  } catch (e) {
-    // Log if needed
-  }
+    // eslint-disable-next-line no-empty
+  } catch (_) {}
 
   try {
     const filePath = '@types/algolia-codegen/ArticlesSearchType.ts';

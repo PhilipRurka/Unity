@@ -2,10 +2,10 @@
 
 /* eslint-disable no-console */
 import algoliasearch from 'algoliasearch';
-import { Spinner } from 'cli-spinner';
 import contentful from 'contentful';
 
 import algoliaCodegen from './algolia-codegen.js';
+import executeStep from './executeStep.js';
 
 const getAlgoliaIndex = async (NEXT_PUBLIC_ALGOLIA_DASHBOARD, ALGOLIA_WRITE_KEY) => {
   const client = algoliasearch(NEXT_PUBLIC_ALGOLIA_DASHBOARD, ALGOLIA_WRITE_KEY);
@@ -67,28 +67,6 @@ const uploadArticlesOnAlgolia = async (index, algoliaRecords) => {
   return undefined;
 };
 
-const executeStep = async (stepDescription, action) => {
-  const spinner = new Spinner('Please hold.. %s');
-  spinner.setSpinnerString('|/-\\');
-
-  let value;
-
-  console.log('');
-
-  try {
-    spinner.start();
-    value = await action();
-    spinner.stop(true);
-    console.log(stepDescription);
-  } catch (error) {
-    spinner.stop(true);
-    console.error('Critical error occurred:', error.message);
-    process.exit(1);
-  }
-
-  return value;
-};
-
 const runCommands = async () => {
   const {
     NEXT_PUBLIC_ALGOLIA_DASHBOARD = '',
@@ -96,9 +74,6 @@ const runCommands = async () => {
     CONTENTFUL_SPACE_ID = '',
     CONTENTFUL_ACCESS_TOKEN = '',
   } = (await import('./env-variables.js')).default();
-
-  const spinner = new Spinner('Please hold.. %s');
-  spinner.setSpinnerString('|/-\\');
 
   console.log('');
 
