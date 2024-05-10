@@ -43,12 +43,12 @@ const algoliaCodegen = async (algoliaObject) => {
 };`;
 
   try {
-    await unlink('@types/algolia-codegen/ArticlesSearchType.ts');
+    await unlink('@types/algolia-codegen/ArticleSearchType.ts');
     // eslint-disable-next-line no-empty
   } catch (_) {}
 
   try {
-    const filePath = '@types/algolia-codegen/ArticlesSearchType.ts';
+    const filePath = '@types/algolia-codegen/ArticleSearchType.ts';
     await writeFile(filePath, finalOutput);
     await runPrettier(filePath);
   } catch (error) {

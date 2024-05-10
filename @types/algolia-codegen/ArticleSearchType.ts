@@ -1,6 +1,7 @@
 export type ArticleSearchType = {
   slug: string;
   title: string;
+  contentTitle: string;
   content: string;
   objectID: string;
   _highlightResult: {
@@ -12,6 +13,13 @@ export type ArticleSearchType = {
     };
 
     title: {
+      value: string;
+      matchLevel: 'none' | 'full';
+      fullyHighlighted?: boolean;
+      matchedWords: string[];
+    };
+
+    contentTitle: {
       value: string;
       matchLevel: 'none' | 'full';
       fullyHighlighted?: boolean;

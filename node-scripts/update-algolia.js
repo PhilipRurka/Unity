@@ -36,12 +36,19 @@ const createAlgoliaRecords = (articles) => {
       let sectionText = '';
 
       section.fields.content.content.forEach((node) => {
-        if (node.nodeType === 'paragraph' || node.nodeType === 'heading-2') {
+        if (node.nodeType === 'paragraph') {
           node.content.forEach((textNode) => {
             if (textNode.nodeType === 'text') {
-              sectionText += `${textNode.value} `;
+              const isTextNodeValueFirstComma = textNode.value.charAt(0) === ',';
+              const isTextNodeValueLastSpace = textNode.value.charAt(textNode.value.length - 1) === ' ';
+
+              if (isTextNodeValueFirstComma) {
+                sectionText = sectionText.slice(0, -1);
+              }
+
+              sectionText += `${textNode.value}${isTextNodeValueLastSpace ? '' : ' '}`;
             } else if (textNode.nodeType === 'hyperlink') {
-              sectionText += `${textNode.content.map((linkNode) => linkNode.value).join('')}, `;
+              sectionText += `${textNode.content.map((linkNode) => linkNode.value).join('')}`;
             }
           });
 
@@ -53,6 +60,7 @@ const createAlgoliaRecords = (articles) => {
         algoliaEntries.push({
           slug,
           title,
+          contentTitle: section.fields.title,
           content: sectionText,
         });
       }
@@ -63,7 +71,7 @@ const createAlgoliaRecords = (articles) => {
 };
 
 const uploadArticlesOnAlgolia = async (index, algoliaRecords) => {
-  await index.saveObjects(algoliaRecords, { autoGenerateObjectIDIfNotExist: true });
+  await index.replaceAllObjects(algoliaRecords, { autoGenerateObjectIDIfNotExist: true });
   return undefined;
 };
 
@@ -92,7 +100,7 @@ const runCommands = async () => {
     uploadArticlesOnAlgolia(algoliaIndex, algoliaRecords)
   );
 
-  await executeStep('Step 5: Delete & Create "@types/algolia-codegen/ArticlesSearchType.ts"', () =>
+  await executeStep('Step 5: Delete & Create "@types/algolia-codegen/ArticleSearchType.ts"', () =>
     algoliaCodegen(algoliaRecords[0])
   );
 
