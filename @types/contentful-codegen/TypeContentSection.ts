@@ -2,6 +2,7 @@ import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleC
 
 export interface TypeContentSectionFields {
     entryTitle: EntryFieldTypes.Symbol;
+    title?: EntryFieldTypes.Symbol;
     content: EntryFieldTypes.RichText;
 }
 
