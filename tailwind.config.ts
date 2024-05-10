@@ -14,16 +14,15 @@ const config: Config = {
       backgroundImage: {
         'article-background': 'url("/article-background.jpg")',
       },
-      width: {
-        150: '37.5rem',
-        200: '50rem',
-        250: '62.5rem',
-      },
       boxShadow: {
         article: '0 0 30px 3px rgba(0,0,0,0.5)',
+        'search-results': '0 0 10px 3px rgba(0,0,0,0.5)',
       },
       maxHeight: {
-        modal: 'calc(100vh - (6rem * 2))',
+        modal: 'calc(100vh - (4rem * 2))',
+      },
+      maxWidth: {
+        modal: 'calc(100vw - (8rem * 2))',
       },
     },
   },
@@ -44,6 +43,7 @@ const config: Config = {
   ],
   safelist: [
     /** widths */
+    'w-full',
     'w-4',
     'w-6',
     'w-8',
@@ -53,9 +53,6 @@ const config: Config = {
     'w-16',
     'w-18',
     'w-20',
-    'w-150',
-    'w-200',
-    'w-250',
 
     /** heights */
     'h-4',
