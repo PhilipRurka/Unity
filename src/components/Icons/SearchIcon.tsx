@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 import { Icon } from '@/Types/icons';
 
-const CloseIcon = ({ className, size }: Icon) => {
+const SearchIcon = ({ className, size }: Icon) => {
   const width = `w-${size}`;
   const height = `h-${size}`;
 
@@ -19,4 +19,4 @@ const CloseIcon = ({ className, size }: Icon) => {
   );
 };
 
-export default CloseIcon;
+export default SearchIcon;
