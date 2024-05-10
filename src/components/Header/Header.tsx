@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <>
       {isSearchModalOpen && <SearchModal handleCloseSearchModal={openSearchModal} />}
-      <nav className="cHeader shadow-black-500/10 absolute left-0 top-0 z-50 flex w-screen justify-between bg-white shadow-lg">
+      <nav className="cHeader shadow-black-500/10 absolute left-0 top-0 z-40 flex w-screen justify-between bg-white shadow-lg">
         <div className="p-4">
           <Link href="/">
             <Image src="/unity-logo.png" width={32} height={32} alt="Unity Logo" />
