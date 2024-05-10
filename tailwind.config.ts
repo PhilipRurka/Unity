@@ -30,11 +30,11 @@ const config: Config = {
         '[data-component="cMarkdown"] p:empty:not(:last-child)': {
           paddingTop: '1rem',
         },
-        '[data-component="cMarkdown"]:not(:last-child)': {
-          marginBottom: '4rem',
-        },
         '[data-component="cMarkdown"] h2 + h3, [data-component="cMarkdown"] h3 + h4': {
           marginTop: '2rem',
+        },
+        '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span': {
+          display: 'inline',
         },
       });
     }),

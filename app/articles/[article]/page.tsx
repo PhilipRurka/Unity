@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { notFound } from 'next/navigation';
 
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
@@ -33,7 +34,19 @@ const Article = async ({ params: { article: slug } }: ArticleProps) => {
     >
       <h1 className="mb-4 text-6xl">{title}</h1>
       {content.map((section, i) => (
-        <Markdown key={`Article-${i}`} content={section?.fields.content} />
+        <div key={`Article-${i}`} className="mb-16">
+          {section?.fields.title && (
+            <h2
+              className={clsx(
+                'relative mb-4 text-4xl',
+                'before:content[""] before:absolute before:left-0 before:top-full before:h-px before:w-full before:bg-black'
+              )}
+            >
+              {section?.fields.title}
+            </h2>
+          )}
+          <Markdown content={section?.fields.content} />
+        </div>
       ))}
     </div>
   );

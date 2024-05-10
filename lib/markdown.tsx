@@ -1,7 +1,7 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
-import { Heading2, Heading3, Heading4, Hyperlink, ListItem, OrderedList, UnorderedList } from './markdownElements';
+import { Heading3, Heading4, Hyperlink, ListItem, OrderedList, UnorderedList } from './markdownElements';
 
 type MarkdownType = { content: any };
 
@@ -10,7 +10,6 @@ const Markdown = ({ content }: MarkdownType) => (
     {documentToReactComponents(content, {
       renderNode: {
         [INLINES.HYPERLINK]: (node, children) => <Hyperlink node={node}>{children}</Hyperlink>,
-        [BLOCKS.HEADING_2]: (_node, children) => <Heading2>{children}</Heading2>,
         [BLOCKS.HEADING_3]: (_node, children) => <Heading3>{children}</Heading3>,
         [BLOCKS.HEADING_4]: (_node, children) => <Heading4>{children}</Heading4>,
         [BLOCKS.UL_LIST]: (_node, children) => <UnorderedList>{children}</UnorderedList>,
