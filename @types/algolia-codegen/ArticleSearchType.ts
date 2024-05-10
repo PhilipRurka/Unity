@@ -33,5 +33,11 @@ export type ArticleSearchType = {
       matchedWords: string[];
     };
   };
+  _snippetResult?: {
+    content: {
+      mathLevel: 'none' | 'full';
+      value: string;
+    };
+  };
   __position: number;
 };

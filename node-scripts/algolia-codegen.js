@@ -11,30 +11,40 @@ const algoliaCodegen = async (algoliaObject) => {
     .reduce(
       (result, key) => `${result}
         ${key}: {
-          value: string,
-          matchLevel: "none" | 'full',
-          fullyHighlighted?: boolean,
-          matchedWords: string[]
+          value: string;
+          matchLevel: "none" | 'full';
+          fullyHighlighted?: boolean;
+          matchedWords: string[];
         },
       `,
       ''
     )
     .trim();
 
+  const snippetResult = `
+    content: {
+      mathLevel:  "none" | 'full',
+      value: string;
+    }
+  `;
+
   const baseResults = keys
     .reduce(
       (result, key) => `${result}
-    ${key}: string,`,
+    ${key}: string;`,
       ''
     )
     .trim();
 
   const finalObject = `
   ${baseResults}
-  objectID: string,
+  objectID: string;
   _highlightResult: {
     ${highlightResult}
   },
+  _snippetResult?: {
+    ${snippetResult}
+  }
   __position: number
 `;
 

@@ -36,17 +36,33 @@ const createAlgoliaRecords = (articles) => {
       let sectionText = '';
 
       section.fields.content.content.forEach((node) => {
-        if (node.nodeType === 'paragraph') {
+        const isHeading =
+          node.nodeType === 'heading-3' ||
+          node.nodeType === 'heading-4' ||
+          node.nodeType === 'heading-5' ||
+          node.nodeType === 'heading-6';
+
+        if (node.nodeType === 'paragraph' || isHeading) {
           node.content.forEach((textNode) => {
             if (textNode.nodeType === 'text') {
-              const isTextNodeValueFirstComma = textNode.value.charAt(0) === ',';
-              const isTextNodeValueLastSpace = textNode.value.charAt(textNode.value.length - 1) === ' ';
+              let textNodeValue = textNode.value;
+              const isTextNodeValueFirstComma = textNodeValue.charAt(0) === ',';
+              const isTextNodeValueLastSpace = textNodeValue.charAt(textNodeValue.length - 1) === ' ';
+              const isSectionTextValueLastSpace = sectionText.charAt(textNodeValue.length - 1) === ' ';
+
+              if (!isSectionTextValueLastSpace) {
+                sectionText += ' ';
+              }
 
               if (isTextNodeValueFirstComma) {
                 sectionText = sectionText.slice(0, -1);
               }
 
-              sectionText += `${textNode.value}${isTextNodeValueLastSpace ? '' : ' '}`;
+              if (isHeading) {
+                textNodeValue = textNodeValue.toUpperCase();
+              }
+
+              sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}${isHeading ? '- ' : ''}`;
             } else if (textNode.nodeType === 'hyperlink') {
               sectionText += `${textNode.content.map((linkNode) => linkNode.value).join('')}`;
             }
