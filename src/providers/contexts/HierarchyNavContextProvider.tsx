@@ -40,24 +40,27 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
     slugsListRef.current = shuffledArray;
   };
 
-  const handleCurrentSlugRemoval = () => {
-    const targetSlug = pathname.replace('/articles/', '');
-    if (slugsList.includes(targetSlug)) {
-      const newSlugsList = slugsList.filter((item) => item !== targetSlug);
+  useEffect(() => {
+    const handleCurrentSlugRemoval = () => {
+      const targetSlug = pathname.replace('/articles/', '');
+      if (slugsList.includes(targetSlug)) {
+        const newSlugsList = slugsList.filter((item) => item !== targetSlug);
 
-      if (newSlugsList.length === 0) {
-        handleSlugListRandomization(slugsListRef.current || []);
-        return;
+        if (newSlugsList.length === 0) {
+          handleSlugListRandomization(slugsListRef.current || []);
+          return;
+        }
+
+        setSlugsList(newSlugsList);
       }
+    };
 
-      setSlugsList(newSlugsList);
-    }
-  };
+    handleCurrentSlugRemoval();
+  }, [pathname, slugsList]);
 
   useEffect(() => {
-    handleCurrentSlugRemoval();
     handleShouldBeOpen(false);
-  }, [pathname, slugsList]);
+  }, [pathname]);
 
   return (
     <HierarchyNavContext.Provider value={{ isOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList }}>
