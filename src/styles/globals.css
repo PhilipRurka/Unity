@@ -30,3 +30,11 @@ a, span {
     text-wrap: balance;
   }
 }
+
+.ais-Hits-item {
+  margin-bottom: 1.5rem;
+}
+
+.ais-Hits-item:last-child {
+  margin-bottom: 0;
+}
