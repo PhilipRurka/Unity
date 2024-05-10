@@ -27,7 +27,7 @@ const Modal = ({ children, width, handleCloseModal }: ModalProps) => {
       <div className="absolute inset-0 bg-black opacity-80" onClick={handleTriggerClose} />
       <div
         className={clsx(
-          'absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 transform',
+          'absolute left-1/2 top-24 max-h-modal -translate-x-1/2 transform overflow-hidden',
           'max-w-2xl rounded-xl bg-white p-8',
           size
         )}

@@ -22,6 +22,9 @@ const config: Config = {
       boxShadow: {
         article: '0 0 30px 3px rgba(0,0,0,0.5)',
       },
+      maxHeight: {
+        modal: 'calc(100vh - (6rem * 2))',
+      },
     },
   },
   plugins: [
