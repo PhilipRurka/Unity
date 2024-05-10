@@ -15,10 +15,12 @@ const Header = () => {
 
   const openHierarchyNav = () => {
     hierarchyBeOpen(!isHierarchyNavOpen);
+    setIsSearchModalOpen(false);
   };
 
   const openSearchModal = (shouldOpen: boolean) => {
     setIsSearchModalOpen(shouldOpen);
+    hierarchyBeOpen(false);
   };
 
   return (
@@ -31,7 +33,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex">
-          <button className="p-4" onClick={() => openSearchModal(true)}>
+          <button className="p-4" onClick={() => openSearchModal(!isSearchModalOpen)}>
             <SearchIcon size="8" />
           </button>
           <button className="p-4" onClick={openHierarchyNav}>
