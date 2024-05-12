@@ -1,8 +1,10 @@
 import clsx from 'clsx';
-import { notFound } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+import { notFound, redirect } from 'next/navigation';
 
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
+import authOptions from '@/Lib/authOptions';
 import Markdown from '@/Lib/markdown';
 import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
@@ -21,6 +23,10 @@ type ArticleProps = {
 };
 
 const Article = async ({ params: { article: slug } }: ArticleProps) => {
+  const session = await getServerSession(authOptions);
+
+  if (!session) redirect('/');
+
   const entry = await getBySlug(slug);
 
   if (!entry) notFound();

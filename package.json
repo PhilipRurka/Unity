@@ -12,25 +12,35 @@
     "test:watch": "jest --watch",
     "create-component-template": "node node-scripts/create-component-template",
     "contentful-codegen": "node node-scripts/contentful-codegen",
-    "update-algolia": "node node-scripts/update-algolia"
+    "update-algolia": "node node-scripts/update-algolia",
+    "registerUser": "node node-scripts/registerUser"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",
     "@contentful/rich-text-types": "^16.2.1",
+    "@hookform/resolvers": "^3.3.4",
     "algoliasearch": "^4.23.3",
+    "bcrypt": "^5.1.1",
     "clsx": "^2.1.0",
     "contentful": "^10.9.2",
     "contentful-import": "^9.0.4",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
     "next": "14.1.0",
+    "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.4",
     "react-instantsearch": "^7.8.0",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.4",
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/mongodb": "^4.0.7",
     "@types/node": "^20.11.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -40,6 +50,7 @@
     "autoprefixer": "^10.0.1",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -68,7 +79,8 @@
       "test:watch": "Re-run tests when a file is changed",
       "create-component-template": "Generates a new component using correct pattern",
       "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
-      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts"
+      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
+      "registerUser": "Create a new account for a user to use"
     }
   }
 }

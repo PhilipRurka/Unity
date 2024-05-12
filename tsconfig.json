@@ -45,9 +45,6 @@
       "@/Types/*": [
         "./@types/*"
       ],
-      "@/ServerUtils/*": [
-        "./utils/*"
-      ],
       "@/Lib/*": [
         "./lib/*"
       ],
