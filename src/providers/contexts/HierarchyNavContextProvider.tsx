@@ -6,14 +6,14 @@ import { createContext, useEffect, useRef, useState } from 'react';
 import shuffleArray from '../../utils/shuffleArray';
 
 type Context = {
-  isOpen: boolean;
+  isHierarchyNavOpen: boolean;
   handleShouldBeOpen: (shouldBeOpen: boolean) => void;
   handleSlugListRandomization: (slugsList: string[]) => void;
   slugsList: string[];
 };
 
 export const HierarchyNavContext = createContext<Context>({
-  isOpen: false,
+  isHierarchyNavOpen: false,
   handleShouldBeOpen: () => {},
   handleSlugListRandomization: () => {},
   slugsList: [],
@@ -27,7 +27,7 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
   const pathname = usePathname();
   const slugsListRef = useRef<string[]>();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHierarchyNavOpen, setIsOpen] = useState(false);
   const [slugsList, setSlugsList] = useState<string[]>([]);
 
   const handleShouldBeOpen = (shouldBeOpen: boolean) => {
@@ -62,8 +62,19 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
     handleShouldBeOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const body = document.getElementsByTagName('body');
+    if (isHierarchyNavOpen && !body[0].classList.contains('overflow-y-hidden')) {
+      body[0].classList.add('overflow-y-hidden');
+    } else if (!isHierarchyNavOpen && body[0].classList.contains('overflow-y-hidden')) {
+      body[0].classList.remove('overflow-y-hidden');
+    }
+  }, [isHierarchyNavOpen]);
+
   return (
-    <HierarchyNavContext.Provider value={{ isOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList }}>
+    <HierarchyNavContext.Provider
+      value={{ isHierarchyNavOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList }}
+    >
       {children}
     </HierarchyNavContext.Provider>
   );

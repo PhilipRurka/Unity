@@ -14,14 +14,14 @@ type HierarchyNavProps = {
 };
 
 const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
-  const { isOpen, slugsList } = useContext(HierarchyNavContext);
+  const { isHierarchyNavOpen, slugsList } = useContext(HierarchyNavContext);
 
   return (
     <>
       <div
         className={clsx(
           'absolute bottom-0 right-0 top-16 w-72 bg-white transition-transform',
-          isOpen ? 'translate-x-0' : 'translate-x-72'
+          isHierarchyNavOpen ? 'translate-x-0' : 'translate-x-72'
         )}
       >
         <div className="p-8">

@@ -24,6 +24,9 @@ const config: Config = {
       maxWidth: {
         modal: 'calc(100vw - (8rem * 2))',
       },
+      height: {
+        'search-results': 'calc(100% - 49px)',
+      },
     },
   },
   plugins: [
@@ -42,6 +45,8 @@ const config: Config = {
     }),
   ],
   safelist: [
+    'overflow-y-hidden',
+
     /** widths */
     'w-full',
     'w-4',

@@ -38,3 +38,21 @@ a, span {
 .ais-Hits-item:last-child {
   margin-bottom: 0;
 }
+
+.ais-SearchBox-form {
+  margin: 0.25rem 0 1.25rem;
+}
+
+.ais-SearchBox-input {
+  outline-offset: initial;
+  width: 15rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid darkgray;
+}
+
+[data-component="cSearchModel"] span.ais-SearchBox-loadingIndicator,
+.ais-SearchBox-reset,
+.ais-SearchBox-submit {
+  display: none;
+}

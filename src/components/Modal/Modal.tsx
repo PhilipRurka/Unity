@@ -5,10 +5,11 @@ import { CloseIcon } from '@/Components/Icons';
 
 type ModalProps = {
   children: ReactNode;
+  title: string;
   handleCloseModal: () => void;
 };
 
-const Modal = ({ children, handleCloseModal }: ModalProps) => {
+const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
   const handleTriggerClose = () => {
     handleCloseModal();
   };
@@ -19,13 +20,18 @@ const Modal = ({ children, handleCloseModal }: ModalProps) => {
       <div
         className={clsx(
           'absolute left-1/2 top-16 z-50 -translate-x-1/2 transform',
-          'max-h-modal w-full max-w-modal overflow-hidden rounded-xl bg-white p-8'
+          'h-full max-h-modal w-full max-w-modal rounded-xl bg-white py-8'
         )}
       >
-        <button onClick={handleTriggerClose}>
-          <CloseIcon size="8" />
-        </button>
-        <div>{children}</div>
+        <div className="relative mb-3">
+          <span className="ml-8 text-3xl">{title}</span>
+          <button className="absolute right-8 top-0" onClick={handleTriggerClose}>
+            <CloseIcon size="10" />
+          </button>
+        </div>
+        <div className="relative h-search-results overflow-y-hidden">
+          <div className="h-full overflow-y-scroll px-8">{children}</div>
+        </div>
       </div>
     </div>
   );
