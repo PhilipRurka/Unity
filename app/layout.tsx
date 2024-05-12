@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import Header from '@/Components/Header';
 import HierarchyNav from '@/Components/HierarchyNav';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
+import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
 import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
@@ -25,16 +26,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body
-        className={clsx(
-          'relative h-full min-h-screen w-screen overflow-x-hidden overflow-y-scroll bg-slate-50',
-          inter.className
-        )}
-      >
+      <body className={clsx('relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50', inter.className)}>
         <HierarchyNavContextProvider>
-          <Header />
-          <HierarchyNav hierarchyLayout={hierarchyLayout} />
-          <main className="py-16">{children}</main>
+          <HeaderContextProvider>
+            <Header />
+            <HierarchyNav hierarchyLayout={hierarchyLayout} />
+            <main className="py-16">{children}</main>
+          </HeaderContextProvider>
         </HierarchyNavContextProvider>
       </body>
     </html>
