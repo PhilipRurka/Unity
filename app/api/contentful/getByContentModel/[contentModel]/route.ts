@@ -1,9 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
+import getByContentModel from '@/Methods/getByContentModel/methods/GET';
 import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
-
-import getByContentModel from './methods/GET';
 
 type Context = {
   params: {

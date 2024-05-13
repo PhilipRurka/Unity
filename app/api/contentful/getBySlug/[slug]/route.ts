@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import getBySlug from './methods/GET';
+import getBySlug from '@/Methods/getBySlug/methods/GET';
 
 type Context = {
   params: {

@@ -50,6 +50,9 @@
       ],
       "@/Models/*": [
         "./models/*"
+      ],
+      "@/Methods/*": [
+        "./apiMethods/*"
       ]
     },
   },
