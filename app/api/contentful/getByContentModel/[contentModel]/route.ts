@@ -11,9 +11,11 @@ type Context = {
 };
 
 export const GET = async (_req: NextRequest, context: Context) => {
+  console.log('hit');
   const { contentModel } = context.params;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [data, status] = await getByContentModel(contentModel);
 
-  return NextResponse.json(data, status);
+  return NextResponse.json({ message: 'hey you!' });
 };
