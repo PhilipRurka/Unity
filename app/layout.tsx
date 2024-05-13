@@ -1,16 +1,6 @@
-import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
-import Header from '@/Components/Header';
-import HierarchyNav from '@/Components/HierarchyNav';
-import getByContentModel from '@/Fetchers/contentful/getByContentModel';
-import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
-import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
-import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,18 +12,10 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [hierarchyLayout] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
-
   return (
     <html lang="en">
-      <body className={clsx('relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50', inter.className)}>
-        <HierarchyNavContextProvider>
-          <HeaderContextProvider>
-            <Header />
-            <HierarchyNav hierarchyLayout={hierarchyLayout} />
-            <main className="py-16">{children}</main>
-          </HeaderContextProvider>
-        </HierarchyNavContextProvider>
+      <body>
+        <main>{children}</main>
       </body>
     </html>
   );
