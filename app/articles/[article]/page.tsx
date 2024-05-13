@@ -2,19 +2,20 @@ import clsx from 'clsx';
 import { getServerSession } from 'next-auth';
 import { notFound, redirect } from 'next/navigation';
 
-import getByContentModel from '@/Fetchers/contentful/getByContentModel';
+// import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
 import authOptions from '@/Lib/authOptions';
 import Markdown from '@/Lib/markdown';
-import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
-export async function generateStaticParams() {
-  const entries = (await getByContentModel('article')) as ArticleType[];
+// import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
-  return entries.map((entry) => ({
-    slug: entry.fields.slug,
-  }));
-}
+// export async function generateStaticParams() {
+//   const entries = (await getByContentModel('article')) as ArticleType[];
+
+//   return entries.map((entry) => ({
+//     slug: entry.fields.slug,
+//   }));
+// }
 
 type ArticleProps = {
   params: {
