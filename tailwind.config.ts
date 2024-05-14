@@ -35,9 +35,15 @@ const config: Config = {
         '[data-component="cMarkdown"] p:empty:not(:last-child)': {
           paddingTop: '1rem',
         },
+
         '[data-component="cMarkdown"] h2 + h3, [data-component="cMarkdown"] h3 + h4': {
           marginTop: '2rem',
         },
+
+        '[data-component="cMarkdown"] p:not(:empty) + p:not(:empty)': {
+          marginTop: '0.5rem',
+        },
+
         '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span': {
           display: 'inline',
         },

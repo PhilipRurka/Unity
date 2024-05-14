@@ -18,7 +18,7 @@ export const OrderedList = ({ children }: MarkdownElementProps) => (
   <ol className="mt-2 list-decimal pl-5">{children}</ol>
 );
 
-export const ListItem = ({ children }: MarkdownElementProps) => <li className="mb-2">{children}</li>;
+export const ListItem = ({ children }: MarkdownElementProps) => <li className="mb-1">{children}</li>;
 
 export const Hyperlink = ({ children, node }: MarkdownElementProps) => (
   <Link className="inline text-blue-500 hover:text-blue-900" href={node?.data.uri}>

@@ -16,6 +16,10 @@ const Markdown = ({ content }: MarkdownType) => (
         [BLOCKS.OL_LIST]: (_node, children) => <OrderedList>{children}</OrderedList>,
         [BLOCKS.LIST_ITEM]: (_node, children) => <ListItem>{children}</ListItem>,
       },
+      renderText: (text) =>
+        text
+          .split('\n')
+          .reduce<React.ReactNode[]>((acc, piece, index) => [...acc, index > 0 && <br key={index} />, piece], []),
     })}
   </div>
 );
