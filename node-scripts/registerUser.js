@@ -1,4 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 /* eslint-disable no-console */
+import sgMail from '@sendgrid/mail';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import { MongoClient } from 'mongodb';
@@ -14,7 +17,7 @@ function generatePassword() {
 }
 
 async function registerUser(email) {
-  const { MONGODB_URI } = (await import('./env-variables.js')).default();
+  const { MONGODB_URI, SENDGRID_API_KEY } = (await import('./env-variables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
 
@@ -29,10 +32,29 @@ async function registerUser(email) {
     await users.insertOne({ email, password: hashedPassword });
 
     console.log(`Password: ${password}`);
-  } catch (err) {
-    console.error('Failed to create account:', err);
+  } catch (error) {
+    console.error(error);
   } finally {
     await client.close();
+  }
+
+  sgMail.setApiKey(SENDGRID_API_KEY);
+  const msg = {
+    to: email,
+    from: 'hey@philiprurka.com',
+    subject: 'Welcome to the Unity Compendium',
+    text: 'and easy to do anywhere, even with Node.js',
+    html: `<strong>and easy to do anywhere, even with Node.js</strong>`,
+  };
+
+  try {
+    await sgMail.send(msg);
+    console.log('Email sent');
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      console.error(error.response.body);
+    }
   }
 }
 
