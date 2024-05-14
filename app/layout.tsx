@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Lexend, Montserrat } from 'next/font/google';
 
 import Header from '@/Components/Header';
 import HierarchyNav from '@/Components/HierarchyNav';
@@ -10,7 +10,21 @@ import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContex
 import '@/Styles/globals.css';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
-const inter = Inter({ subsets: ['latin'] });
+const lexend = Lexend({
+  weight: ['300', '700'],
+  style: 'normal',
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-lexend',
+});
+
+const montserrat = Montserrat({
+  weight: ['400'],
+  style: 'normal',
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -27,7 +41,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="en">
-      <body className={clsx('relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50', inter.className)}>
+      <body
+        className={clsx(
+          'relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50',
+          lexend.variable,
+          montserrat.variable
+        )}
+      >
         <HierarchyNavContextProvider>
           <HeaderContextProvider>
             <Header />
