@@ -6,14 +6,13 @@ import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 import AlgoliaHit from '../AlgoliaHit';
 
-type OnStateChange = (props: {
-  uiState: {
-    articles: {
-      query: string | undefined;
-    };
+type UiState = {
+  articles: {
+    query: string | undefined;
   };
-  setUiState: (uiState: any) => void;
-}) => void;
+};
+
+type OnStateChange = (props: { uiState: UiState; setUiState: (uiState: UiState) => void }) => void;
 
 const AlgoliaSearch = () => {
   const { lastUiState, handleUpdateLastUiState } = useContext(HeaderContext);
@@ -28,6 +27,15 @@ const AlgoliaSearch = () => {
     if (queryLength && queryLength >= 3) {
       setUiState(uiState);
       handleUpdateLastUiState(uiState);
+      return;
+    }
+
+    if (queryLength && queryLength <= 2) {
+      setUiState({
+        articles: {
+          query: '',
+        },
+      });
     }
   };
 

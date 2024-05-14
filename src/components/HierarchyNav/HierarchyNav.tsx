@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
@@ -19,6 +19,20 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
   const handleTriggerClose = () => {
     handleShouldBeOpen(false);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' || event.code === 'Escape') {
+        handleShouldBeOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   return (
     <>

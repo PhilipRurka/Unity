@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ReactNode, useContext } from 'react';
+import { ReactNode, useContext, useEffect } from 'react';
 
 import { CloseIcon } from '@/Components/Icons';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
@@ -11,17 +11,31 @@ type ModalProps = {
 };
 
 const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
-  const { isSearchModalOpen } = useContext(HeaderContext);
+  const { isSearchModalOpen, handleIsSearchModalOpen } = useContext(HeaderContext);
 
   const handleTriggerClose = () => {
     handleCloseModal();
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' || event.code === 'Escape') {
+        handleIsSearchModalOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    <div className="pointer-events-none fixed inset-0 z-50">
+    <div className="pointer-events-none fixed inset-0">
       <div
         className={clsx(
-          'absolute inset-0 z-40 bg-black opacity-80 transition-opacity',
+          'absolute inset-0 z-40 bg-black transition-opacity',
           isSearchModalOpen ? 'pointer-events-auto opacity-80' : 'pointer-events-none opacity-0'
         )}
         onClick={handleTriggerClose}
