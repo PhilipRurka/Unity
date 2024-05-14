@@ -8,11 +8,9 @@ import Modal from '../Modal';
 const SearchModal = () => {
   const { handleIsSearchModalOpen } = useContext(HeaderContext);
   return (
-    <div className="relative z-50" data-component="cSearchModel">
-      <Modal title="Search Through Articles" handleCloseModal={() => handleIsSearchModalOpen(false)}>
-        <AlgoliaSearch />
-      </Modal>
-    </div>
+    <Modal title="Search Through Articles" handleCloseModal={() => handleIsSearchModalOpen(false)}>
+      <AlgoliaSearch />
+    </Modal>
   );
 };
 

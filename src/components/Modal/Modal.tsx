@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 
 import { CloseIcon } from '@/Components/Icons';
+import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 type ModalProps = {
   children: ReactNode;
@@ -10,17 +11,26 @@ type ModalProps = {
 };
 
 const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
+  const { isSearchModalOpen } = useContext(HeaderContext);
+
   const handleTriggerClose = () => {
     handleCloseModal();
   };
 
   return (
-    <div className="fixed inset-0 z-10">
-      <div className="absolute inset-0 z-40 bg-black opacity-80" onClick={handleTriggerClose} />
+    <div className="pointer-events-none fixed inset-0 z-50">
+      <div
+        className={clsx(
+          'absolute inset-0 z-40 bg-black opacity-80 transition-opacity',
+          isSearchModalOpen ? 'pointer-events-auto opacity-80' : 'pointer-events-none opacity-0'
+        )}
+        onClick={handleTriggerClose}
+      />
       <div
         className={clsx(
           'absolute left-1/2 top-16 z-50 -translate-x-1/2 transform',
-          'h-full max-h-modal w-full max-w-modal rounded-xl bg-white py-8'
+          'h-full max-h-modal w-full max-w-modal rounded-xl bg-white py-8 transition-opacity',
+          isSearchModalOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         )}
       >
         <div className="relative mb-3">
