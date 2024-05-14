@@ -41,7 +41,7 @@ const config: Config = {
         },
 
         '[data-component="cMarkdown"] p:not(:empty) + p:not(:empty)': {
-          marginTop: '0.5rem',
+          marginTop: '1rem',
         },
 
         '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span': {
