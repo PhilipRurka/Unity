@@ -8,7 +8,7 @@ const Infobox = ({ infobox }: InfoboxProps) => {
   const { blocks } = infobox.fields;
 
   return (
-    <div className="float-right ml-8 w-64 rounded-lg bg-white bg-opacity-30 p-5" data-component="cInfobox">
+    <div className="float-right ml-8 w-64 rounded-lg bg-white bg-opacity-80 p-5" data-component="cInfobox">
       {blocks.map((block) => (
         <div key={`infobox-block-${block?.fields.title}`}>
           <span className="mb-2 font-lexend text-2xl font-medium">{block?.fields.title}</span>
