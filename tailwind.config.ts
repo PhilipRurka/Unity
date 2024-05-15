@@ -13,6 +13,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'article-background': 'url("/article-background.jpg")',
+        layout: 'url("/layout-background.jpg")',
       },
       boxShadow: {
         article: '0 0 30px 3px rgba(0,0,0,0.5)',
