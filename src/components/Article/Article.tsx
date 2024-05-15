@@ -29,7 +29,10 @@ const Article = ({ slug }: ArticleProps) => {
 
   return (
     <div
-      className="mx-auto mt-16 min-h-screen max-w-4xl bg-article-background px-16 py-20 shadow-article"
+      className={clsx(
+        'mx-auto mt-16 min-h-screen max-w-4xl bg-article-background px-16 py-20 shadow-article transition-opacity',
+        article ? 'opacity-100' : 'opacity-0'
+      )}
       data-component="cArticle"
     >
       {article && (
