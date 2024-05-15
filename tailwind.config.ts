@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'article-background': 'url("/article-background.jpg")',
+        'search-modal': 'url("/search-modal-background.jpg")',
         layout: 'url("/layout-background.jpg")',
       },
       boxShadow: {

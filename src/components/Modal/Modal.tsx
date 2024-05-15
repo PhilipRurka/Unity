@@ -6,11 +6,12 @@ import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 type ModalProps = {
   children: ReactNode;
+  backgroundStyle?: string;
   title: string;
   handleCloseModal: () => void;
 };
 
-const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
+const Modal = ({ children, title, backgroundStyle = '', handleCloseModal }: ModalProps) => {
   const { isSearchModalOpen, handleIsSearchModalOpen } = useContext(HeaderContext);
 
   const handleTriggerClose = () => {
@@ -47,18 +48,22 @@ const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
       <div
         className={clsx(
           'absolute left-1/2 top-16 z-50 -translate-x-1/2 transform',
-          'h-full max-h-modal w-full max-w-modal rounded-xl bg-white py-8 transition-opacity',
-          isSearchModalOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+          'h-full max-h-modal w-full max-w-modal rounded-xl transition-opacity',
+          isSearchModalOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
+          backgroundStyle,
+          backgroundStyle && 'bg-cover'
         )}
       >
-        <div className="relative mb-3">
-          <span className="ml-8 text-3xl">{title}</span>
-          <button className="absolute right-8 top-0" onClick={handleTriggerClose}>
-            <CloseIcon size="10" />
-          </button>
-        </div>
-        <div className="relative h-search-results overflow-y-hidden">
-          <div className="h-full overflow-y-scroll px-8">{children}</div>
+        <div className={clsx('h-full max-h-modal rounded-xl', backgroundStyle && 'bg-white bg-opacity-90 py-8')}>
+          <div className="relative mb-3">
+            <span className="ml-8 text-3xl">{title}</span>
+            <button className="absolute right-8 top-0" onClick={handleTriggerClose}>
+              <CloseIcon size="10" />
+            </button>
+          </div>
+          <div className="relative h-search-results overflow-y-hidden">
+            <div className="h-full overflow-y-scroll px-8">{children}</div>
+          </div>
         </div>
       </div>
     </div>

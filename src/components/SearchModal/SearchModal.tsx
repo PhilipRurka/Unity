@@ -10,7 +10,11 @@ const SearchModal = () => {
 
   return (
     <div className="relative z-50" data-component="cSearchModel">
-      <Modal title="Search Through Articles" handleCloseModal={() => handleIsSearchModalOpen(false)}>
+      <Modal
+        title="Search Through Articles"
+        backgroundStyle="bg-search-modal"
+        handleCloseModal={() => handleIsSearchModalOpen(false)}
+      >
         <AlgoliaSearch />
       </Modal>
     </div>

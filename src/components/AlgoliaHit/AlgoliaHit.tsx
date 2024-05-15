@@ -26,7 +26,7 @@ const AlgoliaHit = ({ hit }: AlgoliaHitProps) => {
   return (
     <article
       className={clsx(
-        'relative mb-6 transform rounded-lg bg-red-300 bg-article-background p-6 transition last:mb-0',
+        'relative mb-6  transform rounded-lg bg-white bg-opacity-80 p-6 transition last:mb-0',
         isSelected ? 'shadow-search-results' : 'shadow-none'
       )}
     >
