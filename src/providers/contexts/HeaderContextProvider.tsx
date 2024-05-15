@@ -54,10 +54,21 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
   }, [pathname]);
 
   useEffect(() => {
+    const html = document.getElementsByTagName('html');
     const body = document.getElementsByTagName('body');
-    if (isSearchModalOpen && !body[0].classList.contains('overflow-y-hidden')) {
+    if (
+      isSearchModalOpen &&
+      !html[0].classList.contains('overflow-y-hidden') &&
+      !body[0].classList.contains('overflow-y-hidden')
+    ) {
+      html[0].classList.add('overflow-y-hidden');
       body[0].classList.add('overflow-y-hidden');
-    } else if (!isSearchModalOpen && body[0].classList.contains('overflow-y-hidden')) {
+    } else if (
+      !isSearchModalOpen &&
+      html[0].classList.contains('overflow-y-hidden') &&
+      body[0].classList.contains('overflow-y-hidden')
+    ) {
+      html[0].classList.remove('overflow-y-hidden');
       body[0].classList.remove('overflow-y-hidden');
     }
   }, [isSearchModalOpen]);

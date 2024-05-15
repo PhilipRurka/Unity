@@ -38,7 +38,7 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
   }, [isHierarchyNavOpen]);
 
   return (
-    <div data-component="cHierarchyNav">
+    <>
       <div
         className={clsx(
           'absolute bottom-0 left-0  top-16 z-30 bg-black transition-all',
@@ -59,7 +59,7 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
           <RecursiveHierarchy data={hierarchyLayout} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -16,6 +16,10 @@
   }
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-lexend);
   font-weight: 300;

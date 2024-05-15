@@ -63,10 +63,21 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
   }, [pathname]);
 
   useEffect(() => {
+    const html = document.getElementsByTagName('html');
     const body = document.getElementsByTagName('body');
-    if (isHierarchyNavOpen && !body[0].classList.contains('overflow-y-hidden')) {
+    if (
+      isHierarchyNavOpen &&
+      !html[0].classList.contains('overflow-y-hidden') &&
+      !body[0].classList.contains('overflow-y-hidden')
+    ) {
+      html[0].classList.add('overflow-y-hidden');
       body[0].classList.add('overflow-y-hidden');
-    } else if (!isHierarchyNavOpen && body[0].classList.contains('overflow-y-hidden')) {
+    } else if (
+      !isHierarchyNavOpen &&
+      html[0].classList.contains('overflow-y-hidden') &&
+      body[0].classList.contains('overflow-y-hidden')
+    ) {
+      html[0].classList.remove('overflow-y-hidden');
       body[0].classList.remove('overflow-y-hidden');
     }
   }, [isHierarchyNavOpen]);
