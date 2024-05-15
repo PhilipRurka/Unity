@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <HeaderContextProvider>
             {session && <Header />}
             <HierarchyNav hierarchyLayout={hierarchyLayout} />
-            <main className="py-16">{children}</main>
+            <main className="sm:px-6 sm:py-16">{children}</main>
           </HeaderContextProvider>
         </HierarchyNavContextProvider>
       </body>

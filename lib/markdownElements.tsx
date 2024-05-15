@@ -6,9 +6,13 @@ type MarkdownElementProps = {
   node?: Block | Inline;
 };
 
-export const Heading3 = ({ children }: MarkdownElementProps) => <h3 className="mb-4 mt-12 text-3xl">{children}</h3>;
+export const Heading3 = ({ children }: MarkdownElementProps) => (
+  <h3 className="mb-2 mt-8 text-2xl lg:mt-12 lg:text-3xl">{children}</h3>
+);
 
-export const Heading4 = ({ children }: MarkdownElementProps) => <h4 className="mb-4 mt-12 text-2xl">{children}</h4>;
+export const Heading4 = ({ children }: MarkdownElementProps) => (
+  <h4 className="mb-2 mt-8 text-xl lg:mt-12 lg:text-2xl">{children}</h4>
+);
 
 export const UnorderedList = ({ children }: MarkdownElementProps) => (
   <ul className="mt-2 list-disc pl-5">{children}</ul>
