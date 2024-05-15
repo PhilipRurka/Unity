@@ -24,12 +24,16 @@ const Modal = ({ children, title, handleCloseModal }: ModalProps) => {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    if (isSearchModalOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      if (isSearchModalOpen) {
+        document.removeEventListener('keydown', handleKeyDown);
+      }
     };
-  }, []);
+  }, [isSearchModalOpen]);
 
   return (
     <div className="pointer-events-none fixed inset-0">

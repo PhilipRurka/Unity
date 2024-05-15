@@ -4,7 +4,7 @@ import { FetchError } from '@/Types/fetcher';
 type GetBySlug = (slug: string) => Promise<ArticleType>;
 
 const getBySlug: GetBySlug = async (slug) => {
-  const response = await fetch(`${process.env.NEXT_BASE_URL}/api/contentful/getBySlug/${slug}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contentful/getBySlug/${slug}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

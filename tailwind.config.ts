@@ -27,6 +27,12 @@ const config: Config = {
       height: {
         'search-results': 'calc(100% - 49px)',
       },
+      colors: {
+        'ocean-blue': '#003052',
+      },
+      fontFamily: {
+        lexend: 'var(--font-lexend)',
+      },
     },
   },
   plugins: [

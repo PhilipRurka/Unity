@@ -15,7 +15,7 @@ type UiState = {
 type OnStateChange = (props: { uiState: UiState; setUiState: (uiState: UiState) => void }) => void;
 
 const AlgoliaSearch = () => {
-  const { lastUiState, handleUpdateLastUiState } = useContext(HeaderContext);
+  const { isSearchModalOpen, lastUiState, handleUpdateLastUiState } = useContext(HeaderContext);
 
   const searchClient = algoliasearch(
     process.env.NEXT_PUBLIC_ALGOLIA_DASHBOARD || '',
@@ -40,16 +40,23 @@ const AlgoliaSearch = () => {
   };
 
   return (
-    <InstantSearch
-      indexName="articles"
-      searchClient={searchClient}
-      onStateChange={onStateChange}
-      initialUiState={lastUiState}
-    >
-      <Configure attributesToSnippet={['content:50']} />
-      <SearchBox />
-      <Hits hitComponent={AlgoliaHit} />
-    </InstantSearch>
+    <>
+      {isSearchModalOpen && (
+        <InstantSearch
+          indexName="articles"
+          searchClient={searchClient}
+          onStateChange={onStateChange}
+          initialUiState={lastUiState}
+          future={{
+            preserveSharedStateOnUnmount: false,
+          }}
+        >
+          <Configure attributesToSnippet={['content:50']} />
+          <SearchBox />
+          <Hits hitComponent={AlgoliaHit} />
+        </InstantSearch>
+      )}
+    </>
   );
 };
 

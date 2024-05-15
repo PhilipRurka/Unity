@@ -4,10 +4,9 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 
+import RecursiveHierarchy from '@/Components/RecursiveHierarchy';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
-
-import RecursiveHierarchy from '../RecursiveHierarchy';
 
 type HierarchyNavProps = {
   hierarchyLayout: HierarchyLayoutType;
@@ -27,12 +26,16 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    if (isHierarchyNavOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+    }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      if (isHierarchyNavOpen) {
+        document.removeEventListener('keydown', handleKeyDown);
+      }
     };
-  }, []);
+  }, [isHierarchyNavOpen]);
 
   return (
     <>

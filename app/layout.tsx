@@ -11,15 +11,15 @@ import '@/Styles/globals.css';
 import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 const lexend = Lexend({
-  weight: ['300', '700'],
+  weight: ['300', '500'],
   style: 'normal',
   display: 'swap',
   subsets: ['latin'],
   variable: '--font-lexend',
 });
 
-const montserrat = Montserrat({
-  weight: ['400'],
+export const montserrat = Montserrat({
+  weight: ['400', '500'],
   style: 'normal',
   display: 'swap',
   subsets: ['latin'],
@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body
         className={clsx(
-          'relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50',
+          'relative h-full min-h-screen w-screen overflow-x-hidden bg-slate-50 text-ocean-blue',
           lexend.variable,
           montserrat.variable
         )}
