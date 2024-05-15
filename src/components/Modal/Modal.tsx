@@ -47,7 +47,7 @@ const Modal = ({ children, title, backgroundStyle = '', handleCloseModal }: Moda
       />
       <div
         className={clsx(
-          'absolute left-1/2 top-16 z-50 -translate-x-1/2 transform',
+          'sm:right-initial absolute left-0 right-0 top-16 z-50 sm:left-1/2 sm:-translate-x-1/2 sm:transform',
           'h-full max-h-modal w-full max-w-modal rounded-xl transition-opacity',
           isSearchModalOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
           backgroundStyle,
@@ -56,7 +56,7 @@ const Modal = ({ children, title, backgroundStyle = '', handleCloseModal }: Moda
       >
         <div className={clsx('h-full max-h-modal rounded-xl', backgroundStyle && 'bg-white bg-opacity-90 py-8')}>
           <div className="relative mb-3">
-            <span className="ml-8 text-3xl">{title}</span>
+            <span className="ml-8 text-2xl md:text-3xl">{title}</span>
             <button className="absolute right-8 top-0" onClick={handleTriggerClose}>
               <CloseIcon size="10" />
             </button>
