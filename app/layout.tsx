@@ -17,7 +17,7 @@ const lexend = Lexend({
   variable: '--font-lexend',
 });
 
-export const montserrat = Montserrat({
+const montserrat = Montserrat({
   weight: ['400', '500'],
   style: 'normal',
   display: 'swap',
