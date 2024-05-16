@@ -1,12 +1,9 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { getServerSession } from 'next-auth';
 import { Lexend, Montserrat } from 'next/font/google';
 
-import Header from '@/Components/Header';
 import HierarchyNav from '@/Components/HierarchyNav';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
-import authOptions from '@/Lib/authOptions';
 import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
 import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
@@ -38,8 +35,6 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const session = await getServerSession(authOptions);
-
   const [hierarchyLayout] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
 
   return (
@@ -53,9 +48,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       >
         <HierarchyNavContextProvider>
           <HeaderContextProvider>
-            {session && <Header />}
             <HierarchyNav hierarchyLayout={hierarchyLayout} />
-            <main className="sm:px-6 sm:py-16">{children}</main>
+            <div className="sm:px-6 sm:py-16">{children}</div>
           </HeaderContextProvider>
         </HierarchyNavContextProvider>
       </body>

@@ -4,7 +4,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function middleware(req: NextRequest) {
+export default async function middleware(req: NextRequest) {
   try {
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');
@@ -12,12 +12,24 @@ export async function middleware(req: NextRequest) {
     const token = await getToken({ req, secret });
 
     if (token) {
+      if (req.nextUrl.pathname === '/') {
+        return NextResponse.redirect(new URL('/articles/unity-race', req.url));
+      }
+
       return NextResponse.next();
     }
 
-    return new NextResponse('Unauthorized', { status: 401 });
+    if (req.nextUrl.pathname !== '/') {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
+
+    return NextResponse.next();
   } catch (error) {
     console.error('Middleware error:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
+
+export const config = {
+  matcher: ['/', '/articles/:path*'],
+};
