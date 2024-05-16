@@ -50,7 +50,7 @@ const LoginForm = () => {
   });
 
   return (
-    <div className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:p-8 lg:max-w-xl dark:bg-gray-800">
+    <div className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8 dark:bg-gray-800">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Sign in</h2>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Field>
