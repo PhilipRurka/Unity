@@ -21,6 +21,7 @@ const executeStep = async (stepDescription, action, options = {}) => {
   } catch (error) {
     if (!disableSpinner) spinner.stop(true);
     console.error('Critical error occurred:', error.message);
+    console.log('');
     process.exit(1);
   }
 

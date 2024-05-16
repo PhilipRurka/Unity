@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 import { unlink, writeFile } from 'fs/promises';
 
-import runPrettier from './runPrettier.js';
+import runPrettier from '../utils/runPrettier.js';
 
-const algoliaCodegen = async (algoliaObject) => {
+export const algoliaCodegen = async (algoliaObject) => {
   const keys = Object.keys(algoliaObject);
 
-  // Create highlight results with correct indentation
   const highlightResult = keys
     .reduce(
       (result, key) => `${result}

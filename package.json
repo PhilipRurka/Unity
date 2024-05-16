@@ -10,10 +10,10 @@
     "debug-prettier": "npx prettier --debug-check .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "create-component-template": "node node-scripts/create-component-template",
-    "contentful-codegen": "node node-scripts/contentful-codegen",
-    "update-algolia": "node node-scripts/update-algolia",
-    "registerUser": "node node-scripts/registerUser"
+    "create-component-template": "node node-scripts/createComponentTemplate/create-component-template",
+    "contentful-codegen": "node node-scripts/contentfulCodegen/contentful-codegen",
+    "update-algolia": "node node-scripts/updateAlgolia/update-algolia",
+    "registerUser": "node node-scripts/registerUser/register-user"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",

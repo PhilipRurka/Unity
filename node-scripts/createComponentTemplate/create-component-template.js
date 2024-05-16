@@ -13,7 +13,7 @@ const rl = readline.createInterface({
 });
 
 rl.question('Enter the component name: ', (value) => {
-  const dirPath = path.join(dirname, '..', 'src', 'components', value);
+  const dirPath = path.join(dirname, '../../src/components', value);
   const indexPath = path.join(dirPath, 'index.ts');
   const componentPath = path.join(dirPath, `${value}.tsx`);
 
