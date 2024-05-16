@@ -1,5 +1,5 @@
 import algoliasearch from 'algoliasearch/lite';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Configure, Hits, InstantSearch, SearchBox } from 'react-instantsearch';
 
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
@@ -38,6 +38,20 @@ const AlgoliaSearch = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const searchInputInterval: NodeJS.Timeout = setInterval(() => {
+      const searchElement: HTMLInputElement | null = document.querySelector('.ais-SearchBox-input');
+      if (searchElement) {
+        searchElement.focus();
+        clearInterval(searchInputInterval);
+      }
+    }, 50);
+
+    return () => {
+      clearInterval(searchInputInterval);
+    };
+  }, [isSearchModalOpen]);
 
   return (
     <>
