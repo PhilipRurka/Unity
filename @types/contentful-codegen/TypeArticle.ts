@@ -1,6 +1,7 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeContentSectionSkeleton } from "./TypeContentSection";
 import type { TypeInfoboxSkeleton } from "./TypeInfobox";
+import type { TypeLinkSkeleton } from "./TypeLink";
 
 export interface TypeArticleFields {
     slug: EntryFieldTypes.Symbol;
@@ -8,9 +9,9 @@ export interface TypeArticleFields {
     articleType: EntryFieldTypes.Symbol<"Character" | "Generic">;
     infobox?: EntryFieldTypes.EntryLink<TypeInfoboxSkeleton>;
     content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeContentSectionSkeleton>>;
-    nextRecommendedPath?: EntryFieldTypes.Symbol;
-    previousRecommendedPath?: EntryFieldTypes.Symbol;
     tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    previousRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
+    nextRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
 }
 
 export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;
