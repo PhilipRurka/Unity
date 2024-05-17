@@ -13,7 +13,8 @@
     "create-component-template": "node node-scripts/createComponentTemplate/create-component-template",
     "contentful-codegen": "node node-scripts/contentfulCodegen/contentful-codegen",
     "update-algolia": "node node-scripts/updateAlgolia/update-algolia",
-    "registerUser": "node node-scripts/registerUser/register-user"
+    "register-user": "node node-scripts/registerUser/register-user",
+    "update-keyword-helper-check": "node node-scripts/contentArticleLinkCheck/content-article-link-check"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.17.1",
@@ -51,6 +52,7 @@
     "autoprefixer": "^10.0.1",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",
+    "contentful-management": "^11.25.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "eslint": "^8",
@@ -81,7 +83,8 @@
       "create-component-template": "Generates a new component using correct pattern",
       "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
       "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
-      "registerUser": "Create a new account for a user to use"
+      "register-user": "Create a new account for a user to use",
+      "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful"
     }
   }
 }
