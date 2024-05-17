@@ -20,9 +20,9 @@ const createUserWithCredentials = async (email, password) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await users.insertOne({ email: email.toLowercase(), password: hashedPassword });
+    await users.insertOne({ email: email.toLowerCase(), password: hashedPassword });
   } catch (error) {
-    throw Error('User not created in the database', error);
+    throw Error('User not created in the database', error.message);
   } finally {
     await client.close();
   }
