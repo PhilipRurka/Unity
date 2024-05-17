@@ -11,6 +11,7 @@ const runCommands = async () => {
   console.log('');
 
   const algoliaIndex = await executeStep('Step 1: Get Algolia Index', () => getAlgoliaIndex());
+
   const articles = await executeStep('Step 2: Get all entries from Contentful with content model type "articles"', () =>
     getByContentModel('article')
   );

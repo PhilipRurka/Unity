@@ -25,7 +25,7 @@ const LoginForm = () => {
   const handleFormSubmit = async ({ email, password }: UserReq) => {
     try {
       const res = await signIn('credentials', {
-        email,
+        email: email.toLocaleLowerCase(),
         password,
         redirect: false,
       });
