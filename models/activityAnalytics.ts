@@ -1,8 +1,8 @@
 import mongoose, { Schema, models } from 'mongoose';
 
-import { ActivityAnalytictsReq } from '@/Types/activityAnalytics';
+import { ActivityAnalyticts } from '@/Types/activityAnalytics';
 
-const activityAnalyticsSchema = new Schema<ActivityAnalytictsReq>(
+const activityAnalyticsSchema = new Schema<ActivityAnalyticts>(
   {
     email: {
       type: String,

@@ -5,6 +5,7 @@ import { Lexend, Montserrat } from 'next/font/google';
 import HierarchyNav from '@/Components/HierarchyNav';
 import SearchModal from '@/Components/SearchModal';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
+import AuthProvider from '@/Providers/SessionProvider';
 import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
 import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
@@ -49,9 +50,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       >
         <HierarchyNavContextProvider>
           <HeaderContextProvider>
-            <SearchModal />
-            <HierarchyNav hierarchyLayout={hierarchyLayout} />
-            <div className="sm:px-6 sm:py-16">{children}</div>
+            <AuthProvider>
+              <SearchModal />
+              <HierarchyNav hierarchyLayout={hierarchyLayout} />
+              <div className="sm:px-6 sm:py-16">{children}</div>
+            </AuthProvider>
           </HeaderContextProvider>
         </HierarchyNavContextProvider>
       </body>

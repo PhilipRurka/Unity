@@ -1,15 +1,13 @@
 import getUtcDateTime from '@/Lib/getUtcDateTime';
 import mongoConnect from '@/Lib/mongoConnect';
 import ActivityAnalyticsModel from '@/Models/activityAnalytics';
+import { ActivityReq } from '@/Types/activityAnalytics';
 
 type CatchError = {
   message: string;
 };
 
-type ActivityPut = (reqData: {
-  email: string;
-  slug: string;
-}) => Promise<[{ data: { message: string } }, { status: number }]>;
+type ActivityPut = (reqData: ActivityReq) => Promise<[{ data: { message: string } }, { status: number }]>;
 
 const activityPut: ActivityPut = async ({ email, slug }) => {
   try {

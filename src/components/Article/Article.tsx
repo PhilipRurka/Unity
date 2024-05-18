@@ -1,10 +1,12 @@
 'use client';
 
 import clsx from 'clsx';
+import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import Infobox from '@/Components/Infobox';
+import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
 import Markdown from '@/Lib/markdown';
 import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
@@ -17,17 +19,36 @@ type ArticleProps = {
 
 const Article = ({ slug }: ArticleProps) => {
   const [article, setArticle] = useState<ArticleType>();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const getArticle = async () => {
       const entry = await getBySlug(slug);
       if (!entry) notFound();
-
       setArticle(entry);
     };
 
     getArticle();
   }, [slug]);
+
+  useEffect(() => {
+    const run = async () => {
+      if (!article || !session) return;
+
+      const lastVisitedUrl = sessionStorage.getItem('lastVisitedUrl');
+
+      if (lastVisitedUrl === slug) return;
+
+      await addActivitiesAnalytics({
+        email: session?.user?.email as string,
+        slug,
+      });
+
+      sessionStorage.setItem('lastVisitedUrl', slug);
+    };
+
+    run();
+  }, [article, session, slug]);
 
   return (
     <>

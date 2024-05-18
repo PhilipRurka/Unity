@@ -1,7 +1,7 @@
-import { Activity } from '@/Types/activityAnalytics';
+import { ActivityReq } from '@/Types/activityAnalytics';
 import { FetchError } from '@/Types/fetcher';
 
-type AddActivitiesAnalytics = (activity: Activity) => void;
+type AddActivitiesAnalytics = (activity: ActivityReq) => void;
 
 const addActivitiesAnalytics: AddActivitiesAnalytics = async (activity) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activitiesAnalytics`, {
