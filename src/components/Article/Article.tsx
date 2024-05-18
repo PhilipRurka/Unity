@@ -37,18 +37,18 @@ const Article = ({ slug }: ArticleProps) => {
 
       const lastVisitedUrl = sessionStorage.getItem('lastVisitedUrl');
 
-      if (lastVisitedUrl === slug) return;
+      if (lastVisitedUrl === article.fields.slug) return;
 
       await addActivitiesAnalytics({
         email: session?.user?.email as string,
-        slug,
+        slug: article.fields.slug,
       });
 
-      sessionStorage.setItem('lastVisitedUrl', slug);
+      sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
     };
 
     run();
-  }, [article, session, slug]);
+  }, [article, session]);
 
   return (
     <>
