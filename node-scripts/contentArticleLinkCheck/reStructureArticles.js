@@ -2,7 +2,7 @@ const reStructureArticles = (articles) => {
   const finalArray = [];
 
   articles.forEach((article) => {
-    const { slug } = article.fields;
+    const { slug, keywordLinks } = article.fields;
     const { id } = article.sys;
     const items = [];
 
@@ -46,6 +46,7 @@ const reStructureArticles = (articles) => {
     finalArray.push({
       id,
       slug,
+      keywordLinks,
       sections: items,
     });
   });

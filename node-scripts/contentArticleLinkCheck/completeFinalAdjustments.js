@@ -1,83 +1,4 @@
-const listOfKeyWords = [
-  {
-    slug: 'silencers',
-    keywords: ['silencers'],
-  },
-  {
-    slug: 'unity-race',
-    keywords: ['unity'],
-  },
-  {
-    slug: 'citizenship',
-    keywords: ['sônha', 'paiiram', 'amuwegs'],
-  },
-  {
-    slug: 'luruntan',
-    keywords: ['luruntan'],
-  },
-  {
-    slug: 'learning-institutions',
-    keywords: [],
-  },
-  {
-    slug: 'trade-work',
-    keywords: [],
-  },
-  {
-    slug: 'purooth',
-    keywords: ['purooth'],
-  },
-  {
-    slug: 'kitnapana',
-    keywords: ['kitnapana'],
-  },
-  {
-    slug: 'felthairam',
-    keywords: ['felthairam'],
-  },
-  {
-    slug: 'hierarchies-wisdom',
-    keywords: ['inig', 'segrins', 'aissan'],
-  },
-  {
-    slug: 'purrta',
-    keywords: ['purrta'],
-  },
-  {
-    slug: 'erhall',
-    keywords: ['erhall'],
-  },
-  {
-    slug: 'traditions-of-transition',
-    keywords: [],
-  },
-  {
-    slug: 'alath-trr',
-    keywords: ['alath-trr'],
-  },
-  {
-    slug: 'hiros-gwanos-hemp',
-    keywords: ['hiros', 'gwanos hemp'],
-  },
-  {
-    slug: 'humul-tress',
-    keywords: ['humul tress'],
-  },
-  {
-    slug: 'luntha-nos',
-    keywords: ['luntha nôs'],
-  },
-  {
-    slug: 'amro-hom',
-    keywords: ['amro hom'],
-  },
-  {
-    slug: 'endlesin-glen',
-    keywords: ['endlesin glen'],
-  },
-];
-
-const completeFinalAdjustments = (articles) => {
+const completeFinalAdjustments = (articles, listOfKeywordLinks) => {
   const articlesKeywordsCheck = [];
 
   articles.forEach(({ id, slug: articleSlug, sections }) => {
@@ -88,11 +9,11 @@ const completeFinalAdjustments = (articles) => {
     for (let i = 0; i < sections.length; i += 1) {
       const { entryTitle, content } = sections[i];
 
-      listOfKeyWords.forEach(({ slug, keywords }) => {
+      listOfKeywordLinks.forEach(({ slug, keywords }) => {
         keywords.forEach((keyword) => {
           if (articleSlug === slug) return;
 
-          const wrappedRegex = new RegExp(`<>${keyword}</>`, 'g');
+          const wrappedRegex = new RegExp(`<>${keyword}`, 'g');
           const keywordRegex = new RegExp(keyword, 'g');
 
           const wrappedMatches = [...content.matchAll(wrappedRegex)];
@@ -107,7 +28,6 @@ const completeFinalAdjustments = (articles) => {
               const isWrappedKeywordFirst = firstKeywordMatches.index - 2 === firstWrappedMatches.index;
 
               if (isWrappedKeywordFirst) {
-                /** The <>keyword</> is the first keyword in content */
                 if (!listOfTrackedKeywords.includes(keyword)) {
                   listOfTrackedKeywords.push(keyword);
                 } else {

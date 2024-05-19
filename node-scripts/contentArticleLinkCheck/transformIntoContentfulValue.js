@@ -70,10 +70,13 @@ const createParagraph = (text) => ({
 const transformIntoContentfulValue = (keywordMatchChecks) => {
   const transformedData = [];
 
-  keywordMatchChecks.forEach(async (data) => {
-    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) return;
-
+  keywordMatchChecks.forEach((data) => {
     const { id } = data;
+
+    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) {
+      transformedData.push({ id });
+      return;
+    }
 
     const content = [];
     const entryTitles = [
