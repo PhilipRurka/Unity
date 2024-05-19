@@ -71,6 +71,7 @@ const emailTemplate = (email, password) => ({
           <p>Please note that this compendium is a work in progress. Much of the content is being transferred and rewritten from another platform, and I am diligently working to bring everything here. If you find yourself eager to dive deeper and some information isn't available yet, feel free to reach out to me. I'll either prioritize updating that section or share the details directly with you.</p>
           <p>I kindly ask that you keep these documents confidential. They are meant for you and a select few. The compendium will be made public at a later date.</p>
           <div class="password-container">
+            <p>An account has already been created for you with this email address.</p>
             <p class="password-label">This is your password to log in:</p>
             <p class="password">${password}</p>
           </div>
