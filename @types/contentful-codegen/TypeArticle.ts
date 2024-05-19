@@ -9,9 +9,11 @@ export interface TypeArticleFields {
     articleType: EntryFieldTypes.Symbol<"Character" | "Generic">;
     infobox?: EntryFieldTypes.EntryLink<TypeInfoboxSkeleton>;
     content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeContentSectionSkeleton>>;
+    keywordLinks?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     previousRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
     nextRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
+    keywordsHelperCheck?: EntryFieldTypes.RichText;
 }
 
 export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;
