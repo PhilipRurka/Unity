@@ -27,8 +27,6 @@ const runCommands = async () => {
     transformIntoContentfulValue(keywordMatchChecks)
   );
 
-  debugger;
-
   await executeStep('Step 6: Upload keyword checks onto Contentful', () => updateContentfulEntries(transformedData));
 };
 
