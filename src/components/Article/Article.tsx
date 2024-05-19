@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Infobox from '@/Components/Infobox';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
@@ -18,6 +18,7 @@ type ArticleProps = {
 };
 
 const Article = ({ slug }: ArticleProps) => {
+  const lastVisitedUrlRef = useRef<string | null>();
   const [article, setArticle] = useState<ArticleType>();
   const { data: session } = useSession();
 
@@ -28,6 +29,7 @@ const Article = ({ slug }: ArticleProps) => {
       setArticle(entry);
     };
 
+    lastVisitedUrlRef.current = sessionStorage.getItem('lastVisitedUrl');
     getArticle();
   }, [slug]);
 
@@ -35,16 +37,15 @@ const Article = ({ slug }: ArticleProps) => {
     const run = async () => {
       if (!article || !session) return;
 
-      const lastVisitedUrl = sessionStorage.getItem('lastVisitedUrl');
+      if (typeof lastVisitedUrlRef.current === 'undefined' || lastVisitedUrlRef.current === article.fields.slug) return;
 
-      if (lastVisitedUrl === article.fields.slug) return;
+      lastVisitedUrlRef.current = article.fields.slug;
+      sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
 
       await addActivitiesAnalytics({
         email: session?.user?.email as string,
         slug: article.fields.slug,
       });
-
-      sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
     };
 
     run();
