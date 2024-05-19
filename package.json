@@ -14,6 +14,7 @@
     "contentful-codegen": "node node-scripts/contentfulCodegen/contentful-codegen",
     "update-algolia": "node node-scripts/updateAlgolia/update-algolia",
     "register-user": "node node-scripts/registerUser/register-user",
+    "delete-user": "node node-scripts/deleteUser/delete-user",
     "update-keyword-helper-check": "node node-scripts/contentArticleLinkCheck/content-article-link-check",
     "migrate-up": "npx migrate-mongo up",
     "pull-production-env": "vercel env pull --environment=production .env.local "
@@ -87,6 +88,7 @@
       "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
       "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
       "register-user": "Create a new account for a user to use",
+      "delete-user": "Delete an account by email",
       "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful",
       "migrate-up": "run migrate-mongo up",
       "pull-production-env": "Pull vercel's production environment"
