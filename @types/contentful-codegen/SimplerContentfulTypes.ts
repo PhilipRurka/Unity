@@ -1,4 +1,5 @@
 import { TypeArticleWithoutUnresolvableLinksResponse } from './TypeArticle';
+import { TypeCaptainsLogWithoutUnresolvableLinksResponse } from './TypeCaptainsLog';
 import { TypeContentSectionWithoutUnresolvableLinksResponse } from './TypeContentSection';
 import { TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from './TypeHierarchyLayout';
 import { TypeHierarchyLinkWithoutUnresolvableLinksResponse } from './TypeHierarchyLink';
@@ -9,6 +10,7 @@ import { TypeLinkWithoutUnresolvableLinksResponse } from './TypeLink';
 
 export type AllContentModelTypes =
   | 'article'
+  | 'captainsLog'
   | 'contentSection'
   | 'hierarchyLayout'
   | 'hierarchyLink'
@@ -18,6 +20,7 @@ export type AllContentModelTypes =
   | 'link';
 
 export type ArticleType = TypeArticleWithoutUnresolvableLinksResponse;
+export type CaptainsLogType = TypeCaptainsLogWithoutUnresolvableLinksResponse;
 export type ContentSectionType = TypeContentSectionWithoutUnresolvableLinksResponse;
 export type HierarchyLayoutType = TypeHierarchyLayoutWithoutUnresolvableLinksResponse;
 export type HierarchyLinkType = TypeHierarchyLinkWithoutUnresolvableLinksResponse;

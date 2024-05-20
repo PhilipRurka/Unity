@@ -1,5 +1,7 @@
 export { isTypeArticle } from "./TypeArticle";
 export type { TypeArticle, TypeArticleFields, TypeArticleSkeleton, TypeArticleWithAllLocalesAndWithoutLinkResolutionResponse, TypeArticleWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeArticleWithAllLocalesResponse, TypeArticleWithoutLinkResolutionResponse, TypeArticleWithoutUnresolvableLinksResponse } from "./TypeArticle";
+export { isTypeCaptainsLog } from "./TypeCaptainsLog";
+export type { TypeCaptainsLog, TypeCaptainsLogFields, TypeCaptainsLogSkeleton, TypeCaptainsLogWithAllLocalesAndWithoutLinkResolutionResponse, TypeCaptainsLogWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeCaptainsLogWithAllLocalesResponse, TypeCaptainsLogWithoutLinkResolutionResponse, TypeCaptainsLogWithoutUnresolvableLinksResponse } from "./TypeCaptainsLog";
 export { isTypeContentSection } from "./TypeContentSection";
 export type { TypeContentSection, TypeContentSectionFields, TypeContentSectionSkeleton, TypeContentSectionWithAllLocalesAndWithoutLinkResolutionResponse, TypeContentSectionWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeContentSectionWithAllLocalesResponse, TypeContentSectionWithoutLinkResolutionResponse, TypeContentSectionWithoutUnresolvableLinksResponse } from "./TypeContentSection";
 export { isTypeHierarchyLayout } from "./TypeHierarchyLayout";
