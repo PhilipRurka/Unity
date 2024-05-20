@@ -6,7 +6,7 @@ import reStructureArticles from './reStructureArticles.js';
 import transformIntoArticleValue from './transformIntoArticleValue.js';
 import transformIntoCaptainsLogValue from './transformIntoCaptainsLogValue.js';
 import updateArticleEntries from './updateArticleEntries.js';
-import updateCaptainsLogEntries from './updateCaptainsLogEntries.js';
+import updateCaptainsLogEntry from './updateCaptainsLogEntry.js';
 
 const runCommands = async () => {
   const articles = await executeStep('Step 1: Get all entries from Contentful with content model type "articles"', () =>
@@ -40,8 +40,10 @@ const runCommands = async () => {
   );
 
   await await executeStep("Step 8: Upload keyword checks onto Contentful's Captain's Log entry", () =>
-    updateCaptainsLogEntries(transformedCaptainsLogData)
+    updateCaptainsLogEntry(transformedCaptainsLogData)
   );
 };
 
 runCommands();
+
+export default runCommands;

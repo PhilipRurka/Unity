@@ -16,6 +16,8 @@ const createTable = (rows) => {
   const sortedRows = rows.sort((a, b) => a.slug.localeCompare(b.slug));
 
   sortedRows.forEach((row) => {
+    if (row.listOfMissPlacedLinks.length === 0 && row.missingLinks.length === 0) return;
+
     tableContent.push({
       nodeType: 'table-row',
       data: {},

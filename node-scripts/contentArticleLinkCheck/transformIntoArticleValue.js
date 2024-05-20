@@ -31,10 +31,20 @@ const transformIntoArticleValue = (keywordMatchChecks) => {
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;
-
-    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) return;
-
     const content = [];
+
+    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) {
+      transformedData.push({
+        id,
+        transformedData: {
+          nodeType: 'document',
+          data: {},
+          content: [],
+        },
+      });
+      return;
+    }
+
     const entryTitles = [
       ...new Set(
         data.missingLinks

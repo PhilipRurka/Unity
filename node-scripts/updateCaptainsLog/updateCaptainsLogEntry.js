@@ -6,7 +6,7 @@ import { diff } from 'deep-object-diff';
 
 import getByContentModel from '../utils/getByContentModel.js';
 
-const updateArticleEntries = async (newValue) => {
+const updateCaptainsLogEntry = async (newValue) => {
   const { CONTENTFUL_SPACE_ID = '', CONTENTFUL_CMA_TOKEN = '' } = (await import('../utils/env-variables.js')).default();
 
   const managementClient = contentfulManagement.createClient({
@@ -22,11 +22,11 @@ const updateArticleEntries = async (newValue) => {
 
       const entry = await environment.getEntry(captainsLog.sys.id);
 
-      const differences = diff(entry.fields.keywordLinksCheckOverview?.['en-US'], newValue);
+      const differences = diff(entry.fields.incompleteUnderlinedItems?.['en-US'], newValue);
       const isNothingChanged = Object.keys(differences).length === 0;
 
       if (!isNothingChanged) {
-        entry.fields.keywordLinksCheckOverview = {
+        entry.fields.incompleteUnderlinedItems = {
           'en-US': newValue,
         };
 
@@ -40,4 +40,4 @@ const updateArticleEntries = async (newValue) => {
   }
 };
 
-export default updateArticleEntries;
+export default updateCaptainsLogEntry;
