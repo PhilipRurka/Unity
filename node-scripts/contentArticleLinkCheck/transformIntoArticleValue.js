@@ -1,21 +1,4 @@
-const createTableCell = (text, isHeader = false) => ({
-  nodeType: isHeader ? 'table-header-cell' : 'table-cell',
-  data: {},
-  content: [
-    {
-      nodeType: 'paragraph',
-      data: {},
-      content: [
-        {
-          nodeType: 'text',
-          value: text,
-          marks: [],
-          data: {},
-        },
-      ],
-    },
-  ],
-});
+import { createHeading, createParagraph, createTableCell } from '../utils/richTextNodeCreation.js';
 
 const createTable = (rows) => {
   const sortedRows = rows.sort((a, b) => a.keyword.localeCompare(b.keyword));
@@ -43,42 +26,13 @@ const createTable = (rows) => {
   };
 };
 
-const createHeading = (level, text) => ({
-  nodeType: `heading-${level}`,
-  data: {},
-  content: [
-    {
-      nodeType: 'text',
-      value: text,
-      marks: [],
-      data: {},
-    },
-  ],
-});
-
-const createParagraph = (text) => ({
-  nodeType: 'paragraph',
-  data: {},
-  content: [
-    {
-      nodeType: 'text',
-      value: text,
-      marks: [],
-      data: {},
-    },
-  ],
-});
-
-const transformIntoContentfulValue = (keywordMatchChecks) => {
+const transformIntoArticleValue = (keywordMatchChecks) => {
   const transformedData = [];
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;
 
-    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) {
-      transformedData.push({ id });
-      return;
-    }
+    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) return;
 
     const content = [];
     const entryTitles = [
@@ -104,7 +58,7 @@ const transformIntoContentfulValue = (keywordMatchChecks) => {
         content.push(createTable(missPlacedLinks));
       }
 
-      content.push(createParagraph('')); // Add an empty paragraph for spacing
+      content.push(createParagraph(''));
     });
 
     transformedData.push({
@@ -120,4 +74,4 @@ const transformIntoContentfulValue = (keywordMatchChecks) => {
   return transformedData;
 };
 
-export default transformIntoContentfulValue;
+export default transformIntoArticleValue;

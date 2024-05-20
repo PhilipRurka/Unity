@@ -4,7 +4,7 @@
 import contentfulManagement from 'contentful-management';
 import { diff } from 'deep-object-diff';
 
-const updateContentfulEntries = async (items) => {
+const updateArticleEntries = async (items) => {
   const { CONTENTFUL_SPACE_ID = '', CONTENTFUL_CMA_TOKEN = '' } = (await import('../utils/env-variables.js')).default();
 
   const managementClient = contentfulManagement.createClient({
@@ -40,4 +40,4 @@ const updateContentfulEntries = async (items) => {
   }
 };
 
-export default updateContentfulEntries;
+export default updateArticleEntries;

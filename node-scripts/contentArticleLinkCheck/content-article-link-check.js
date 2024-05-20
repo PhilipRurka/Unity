@@ -3,8 +3,10 @@ import getByContentModel from '../utils/getByContentModel.js';
 import completeFinalAdjustments from './completeFinalAdjustments.js';
 import formatKeywordLinks from './formatKeywordLinks.js';
 import reStructureArticles from './reStructureArticles.js';
-import transformIntoContentfulValue from './transformIntoContentfulValue.js';
-import updateContentfulEntries from './updateContentfulEntries.js';
+import transformIntoArticleValue from './transformIntoArticleValue.js';
+import transformIntoCaptainsLogValue from './transformIntoCaptainsLogValue.js';
+import updateArticleEntries from './updateArticleEntries.js';
+import updateCaptainsLogEntries from './updateCaptainsLogEntries.js';
 
 const runCommands = async () => {
   const articles = await executeStep('Step 1: Get all entries from Contentful with content model type "articles"', () =>
@@ -23,11 +25,23 @@ const runCommands = async () => {
     completeFinalAdjustments(concattedContentArray, listOfKeywordLinks)
   );
 
-  const transformedData = await executeStep('Step 5: Transform concatted values into uploadable values', () =>
-    transformIntoContentfulValue(keywordMatchChecks)
+  const transformedArticleData = await executeStep(
+    'Step 5: Transform concatted values into Article uploadable values',
+    () => transformIntoArticleValue(keywordMatchChecks)
   );
 
-  await executeStep('Step 6: Upload keyword checks onto Contentful', () => updateContentfulEntries(transformedData));
+  await executeStep("Step 6: Upload keyword checks onto the Contentful's Article entry", () =>
+    updateArticleEntries(transformedArticleData)
+  );
+
+  const transformedCaptainsLogData = await executeStep(
+    "Step 7: Transform concatted values into Captain's log uploadable values",
+    () => transformIntoCaptainsLogValue(keywordMatchChecks)
+  );
+
+  await await executeStep("Step 8: Upload keyword checks onto Contentful's Captain's Log entry", () =>
+    updateCaptainsLogEntries(transformedCaptainsLogData)
+  );
 };
 
 runCommands();
