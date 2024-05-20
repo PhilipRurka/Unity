@@ -18,6 +18,8 @@ const createTableCell = (text, isHeader = false) => ({
 });
 
 const createTable = (rows) => {
+  const sortedRows = rows.sort((a, b) => a.keyword.localeCompare(b.keyword));
+
   const tableContent = [
     {
       nodeType: 'table-row',
@@ -26,7 +28,7 @@ const createTable = (rows) => {
     },
   ];
 
-  rows.forEach((row) => {
+  sortedRows.forEach((row) => {
     tableContent.push({
       nodeType: 'table-row',
       data: {},

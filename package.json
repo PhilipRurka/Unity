@@ -57,6 +57,7 @@
     "cli-spinner": "^0.2.10",
     "contentful-management": "^11.25.5",
     "crypto": "^1.0.1",
+    "deep-object-diff": "^1.1.9",
     "dotenv": "^16.4.5",
     "eslint": "^8",
     "eslint-config-airbnb-base": "^15.0.0",
