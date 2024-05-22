@@ -37,7 +37,9 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [hierarchyLayout] = (await getByContentModel('hierarchyLayout')) as HierarchyLayoutType[];
+  const [hierarchyLayout] = (await getByContentModel('hierarchyLayout', {
+    cache: 'no-store',
+  })) as HierarchyLayoutType[];
 
   return (
     <html lang="en">
