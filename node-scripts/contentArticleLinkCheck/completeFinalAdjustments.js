@@ -13,8 +13,12 @@ const completeFinalAdjustments = (articles, listOfKeywordLinks) => {
         keywords.forEach((keyword) => {
           if (articleSlug === slug) return;
 
+          const isMultiWord = keyword.includes(' ');
+
           const wrappedRegex = new RegExp(`<>${keyword}`, 'g');
-          const keywordRegex = new RegExp(keyword, 'g');
+          const keywordRegex = isMultiWord
+            ? new RegExp(`${keyword}(s|es)?`, 'g')
+            : new RegExp(`\\b${keyword}(s|es)?\\b`, 'g');
 
           const wrappedMatches = [...content.matchAll(wrappedRegex)];
           const keywordMatches = [...content.matchAll(keywordRegex)];
