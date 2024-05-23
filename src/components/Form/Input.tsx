@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { HTMLProps, forwardRef } from 'react';
 
 type InputProps = HTMLProps<HTMLInputElement> & {
-  showErrorStyles: boolean;
+  showErrorStyles?: boolean;
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({ showErrorStyles, ...rest }, ref) => (

@@ -54,6 +54,11 @@ const config: Config = {
         '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span': {
           display: 'inline',
         },
+
+        '[data-component="AlgoliaHit"] em': {
+          'background-color': 'yellow',
+          'font-style': 'normal',
+        },
       });
     }),
   ],

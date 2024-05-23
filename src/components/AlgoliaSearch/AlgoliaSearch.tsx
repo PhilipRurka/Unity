@@ -1,76 +1,55 @@
-import algoliasearch from 'algoliasearch/lite';
-import { useContext, useEffect } from 'react';
-import { Configure, Hits, InstantSearch, SearchBox } from 'react-instantsearch';
+import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 
+import AlgoliaHit from '@/Components/AlgoliaHit';
+import { Input } from '@/Components/Form';
+import getAlgoliaResults from '@/Fetchers/algolia/getAlgoliaResults';
+import useDebounce from '@/Hooks/debounce';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
-
-import AlgoliaHit from '../AlgoliaHit';
-
-type UiState = {
-  articles: {
-    query: string | undefined;
-  };
-};
-
-type OnStateChange = (props: { uiState: UiState; setUiState: (uiState: UiState) => void }) => void;
+import { ArticleSearchType } from '@/Types/algolia-codegen/ArticleSearchType';
 
 const AlgoliaSearch = () => {
-  const { isSearchModalOpen, lastUiState, handleUpdateLastUiState } = useContext(HeaderContext);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { isSearchModalOpen, lastQuery, handleUpdateLastQuery } = useContext(HeaderContext);
+  const [hits, setHits] = useState<ArticleSearchType[]>([]);
+  const [query, setQuery] = useState<string>(lastQuery);
 
-  const searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_DASHBOARD || '',
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH || ''
-  );
-
-  const onStateChange: OnStateChange = ({ uiState, setUiState }) => {
-    const queryLength = uiState.articles.query?.length;
-    if (queryLength && queryLength >= 3) {
-      setUiState(uiState);
-      handleUpdateLastUiState(uiState);
-      return;
-    }
-
-    if (queryLength && queryLength <= 2) {
-      setUiState({
-        articles: {
-          query: '',
-        },
-      });
-    }
-  };
+  const debouncedQuery = useDebounce<string>(query, 100);
 
   useEffect(() => {
-    const searchInputInterval: NodeJS.Timeout = setInterval(() => {
-      const searchElement: HTMLInputElement | null = document.querySelector('.ais-SearchBox-input');
-      if (searchElement) {
-        searchElement.focus();
-        clearInterval(searchInputInterval);
-      }
-    }, 50);
+    const fetchResults = async () => {
+      if (debouncedQuery && debouncedQuery.length >= 3) {
+        const results = await getAlgoliaResults(debouncedQuery);
+        setHits(results);
+        handleUpdateLastQuery(debouncedQuery);
 
-    return () => {
-      clearInterval(searchInputInterval);
+        return;
+      }
+
+      setHits([]);
+      handleUpdateLastQuery('');
     };
+
+    if (debouncedQuery) {
+      fetchResults();
+    }
+  }, [debouncedQuery, handleUpdateLastQuery]);
+
+  useEffect(() => {
+    if (!isSearchModalOpen) return;
+    inputRef.current?.focus();
   }, [isSearchModalOpen]);
 
   return (
-    <>
-      {isSearchModalOpen && (
-        <InstantSearch
-          indexName="articles"
-          searchClient={searchClient}
-          onStateChange={onStateChange}
-          initialUiState={lastUiState}
-          future={{
-            preserveSharedStateOnUnmount: false,
-          }}
-        >
-          <Configure attributesToSnippet={['content:50']} />
-          <SearchBox />
-          <Hits hitComponent={AlgoliaHit} />
-        </InstantSearch>
-      )}
-    </>
+    <div data-component="AlgoliaSearch">
+      <Input
+        ref={inputRef}
+        defaultValue={lastQuery}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+      />
+      {hits.map((hit) => (
+        <AlgoliaHit key={`algoliaSearch-${hit.content}`} hit={hit} />
+      ))}
+    </div>
   );
 };
 

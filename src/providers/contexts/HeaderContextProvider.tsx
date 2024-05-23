@@ -3,28 +3,18 @@
 import { usePathname } from 'next/navigation';
 import { createContext, useEffect, useState } from 'react';
 
-type UiState = {
-  articles: {
-    query: string | undefined;
-  };
-};
-
 type Context = {
   isSearchModalOpen: boolean;
   handleIsSearchModalOpen: (shouldBeOpen: boolean) => void;
-  lastUiState: UiState;
-  handleUpdateLastUiState: (uiState: UiState) => void;
+  lastQuery: string;
+  handleUpdateLastQuery: (query: string) => void;
 };
 
 export const HeaderContext = createContext<Context>({
   isSearchModalOpen: false,
   handleIsSearchModalOpen: () => {},
-  lastUiState: {
-    articles: {
-      query: '',
-    },
-  },
-  handleUpdateLastUiState: () => {},
+  lastQuery: '',
+  handleUpdateLastQuery: () => {},
 });
 
 type HeaderContextProps = {
@@ -35,14 +25,10 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
   const pathname = usePathname();
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [lastUiState, setLastUiState] = useState<UiState>({
-    articles: {
-      query: '',
-    },
-  });
+  const [lastQuery, setLastQuery] = useState<string>('');
 
-  const handleUpdateLastUiState = (uiState: UiState) => {
-    setLastUiState(uiState);
+  const handleUpdateLastQuery = (query: string) => {
+    setLastQuery(query);
   };
 
   const handleIsSearchModalOpen = (shouldBeOpen: boolean) => {
@@ -74,9 +60,7 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
   }, [isSearchModalOpen]);
 
   return (
-    <HeaderContext.Provider
-      value={{ isSearchModalOpen, handleIsSearchModalOpen, lastUiState, handleUpdateLastUiState }}
-    >
+    <HeaderContext.Provider value={{ isSearchModalOpen, handleIsSearchModalOpen, lastQuery, handleUpdateLastQuery }}>
       {children}
     </HeaderContext.Provider>
   );
