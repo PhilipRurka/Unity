@@ -1,13 +1,14 @@
 import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 import { FetchError } from '@/Types/fetcher';
 
-type GetByContentModel = (contentModel: AllContentModelTypes, options?: any) => Promise<unknown>;
+type GetByContentModel = (contentModel: AllContentModelTypes, headers?: any, options?: any) => Promise<unknown>;
 
-const getByContentModel: GetByContentModel = async (contentModel, options) => {
+const getByContentModel: GetByContentModel = async (contentModel, headers = {}, options = {}) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contentful/getByContentModel/${contentModel}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
+      ...headers,
     },
     ...options,
   });
