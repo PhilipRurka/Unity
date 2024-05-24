@@ -45,5 +45,3 @@ const runCommands = async () => {
 };
 
 runCommands();
-
-export default runCommands;

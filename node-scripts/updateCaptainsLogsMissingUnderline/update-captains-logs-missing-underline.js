@@ -1,4 +1,3 @@
-import runContentArticleLinkCheckCommands from '../contentArticleLinkCheck/content-article-link-check.js';
 import executeStep from '../utils/executeStep.js';
 import getByContentModel from '../utils/getByContentModel.js';
 import reStructureArticles from './reStructureArticles.js';
@@ -22,8 +21,6 @@ const runCommands = async () => {
   await executeStep("Step 4: Update Captain's Log with Incomplete underlined items", () =>
     updateCaptainsLogEntry(transformedValue)
   );
-
-  await runContentArticleLinkCheckCommands();
 };
 
 runCommands();
