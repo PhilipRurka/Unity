@@ -41,7 +41,7 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
     <>
       <div
         className={clsx(
-          'absolute bottom-0 left-0  top-16 z-30 bg-black transition-all',
+          'absolute bottom-0 left-0 top-16 z-30 bg-black transition-all',
           isHierarchyNavOpen ? 'right-72 opacity-80' : 'pointer-events-none right-0 opacity-0'
         )}
         onClick={handleTriggerClose}
@@ -52,11 +52,13 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
           isHierarchyNavOpen ? 'translate-x-0' : 'translate-x-72'
         )}
       >
-        <div className="p-8">
-          <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
-            Go To Random Page
-          </Link>
-          <RecursiveHierarchy data={hierarchyLayout} />
+        <div className="h-full overflow-y-scroll">
+          <div className="p-8">
+            <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
+              Go To Random Page
+            </Link>
+            <RecursiveHierarchy data={hierarchyLayout} />
+          </div>
         </div>
       </div>
     </>
