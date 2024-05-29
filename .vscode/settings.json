@@ -12,7 +12,7 @@
   },
   "settings.cycle": [
     {
-      "id": "level_1_file_exclusion",
+      "id": "zMode",
       "overrideWorkspaceSettings": false,
       "values": [
         {
@@ -43,6 +43,18 @@
           "files.exclude": {}
         }
       ]
+    },
+    {
+      "id": "colorTheme",
+      "overrideWorkspaceSettings": false,
+      "values": [
+        {
+          "workbench.colorTheme": "Atom One Light"
+        },
+        {
+          "workbench.colorTheme": "Atom One Dark"
+        }
+      ]
     }
-  ]  
+  ]
 }
