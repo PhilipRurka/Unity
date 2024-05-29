@@ -4,7 +4,7 @@
     "lint": {
       "dependsOn": [],
       "outputs": [],
-      "cache": false
+      "cache": true
     },
     "build": {
       "dependsOn": ["^build"],
