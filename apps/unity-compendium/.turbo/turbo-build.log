@@ -1,37 +1,0 @@
-[36munity-compendium:build[0m: cache hit, replaying output [2mee651d3542598bba[0m
-[36munity-compendium:build: [0m$ next build
-[36munity-compendium:build: [0m   ▲ Next.js 14.1.0
-[36munity-compendium:build: [0m   - Environments: .env.local
-[36munity-compendium:build: [0m
-[36munity-compendium:build: [0m   Creating an optimized production build ...
-[36munity-compendium:build: [0m ✓ Compiled successfully
-[36munity-compendium:build: [0m   Linting and checking validity of types ...
-[36munity-compendium:build: [0m ⨯ ESLint: Failed to load config "@unity/nextjs" to extend from. Referenced from: /Users/philiprurka/Documents/Code/Unity/apps/unity-compendium/.eslintrc
-[36munity-compendium:build: [0m   Collecting page data ...
-[36munity-compendium:build: [0m   Generating static pages (0/5) ...
-[36munity-compendium:build: [0m   Generating static pages (1/5) 
-[36munity-compendium:build: [0m   Generating static pages (2/5) 
-[36munity-compendium:build: [0m   Generating static pages (3/5) 
-[36munity-compendium:build: [0m ✓ Generating static pages (5/5) 
-[36munity-compendium:build: [0m   Finalizing page optimization ...
-[36munity-compendium:build: [0m   Collecting build traces ...
-[36munity-compendium:build: [0m
-[36munity-compendium:build: [0mRoute (app)                                           Size     First Load JS
-[36munity-compendium:build: [0m┌ λ /                                                 23.4 kB         118 kB
-[36munity-compendium:build: [0m├ λ /_not-found                                       0 B                0 B
-[36munity-compendium:build: [0m├ λ /api/activitiesAnalytics                          0 B                0 B
-[36munity-compendium:build: [0m├ λ /api/algolia/[query]                              0 B                0 B
-[36munity-compendium:build: [0m├ λ /api/auth/[...nextauth]                           0 B                0 B
-[36munity-compendium:build: [0m├ λ /api/contentful/getByContentModel/[contentModel]  0 B                0 B
-[36munity-compendium:build: [0m├ λ /api/contentful/getBySlug/[slug]                  0 B                0 B
-[36munity-compendium:build: [0m└ λ /articles/[article]                               11.5 kB         113 kB
-[36munity-compendium:build: [0m+ First Load JS shared by all                         84.3 kB
-[36munity-compendium:build: [0m  ├ chunks/1dd3208c-eb37f7fc0827d56a.js               53.4 kB
-[36munity-compendium:build: [0m  ├ chunks/997-1ffe312147955e4a.js                    29 kB
-[36munity-compendium:build: [0m  └ other shared chunks (total)                       1.95 kB
-[36munity-compendium:build: [0m
-[36munity-compendium:build: [0m
-[36munity-compendium:build: [0mƒ Middleware                                          72.5 kB
-[36munity-compendium:build: [0m
-[36munity-compendium:build: [0mλ  (Dynamic)  server-rendered on demand using Node.js
-[36munity-compendium:build: [0m
