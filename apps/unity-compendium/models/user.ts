@@ -1,6 +1,6 @@
 import mongoose, { Schema, models } from 'mongoose';
 
-import { UserReq } from '@/Types/user';
+import type { UserReq } from '@unity/types';
 
 const userSchema = new Schema<UserReq>(
   {

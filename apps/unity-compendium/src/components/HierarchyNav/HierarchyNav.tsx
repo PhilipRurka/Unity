@@ -4,9 +4,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 
+import type { HierarchyLayoutType } from '@unity/types';
+
 import RecursiveHierarchy from '@/Components/RecursiveHierarchy';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
-import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 type HierarchyNavProps = {
   hierarchyLayout: HierarchyLayoutType;

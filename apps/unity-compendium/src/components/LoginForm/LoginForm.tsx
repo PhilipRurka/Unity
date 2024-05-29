@@ -7,8 +7,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import type { UserReq } from '@unity/types';
+
 import { ErrorSpan, Field, Form, Input, Label } from '@/Components/Form';
-import { UserReq } from '@/Types/user';
 
 const FormSchema = z.object({
   email: z.string().email(),

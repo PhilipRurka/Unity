@@ -1,6 +1,6 @@
 import { createClient } from 'contentful';
 
-import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
+import type { AllContentModelTypes } from '@unity/types';
 
 type SuccessGet = [{ entries: unknown[] }, { status: number }];
 type ErrorGet = [{ data: { message: string } }, { status: number }];

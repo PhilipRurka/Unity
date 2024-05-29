@@ -2,9 +2,10 @@ import bcrypt from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import type { UserReq } from '@unity/types';
+
 import mongoConnect from '@/Lib/mongoConnect';
 import UserModel from '@/Models/user';
-import { UserReq } from '@/Types/user';
 
 const authOptions: NextAuthOptions = {
   providers: [

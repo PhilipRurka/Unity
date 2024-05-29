@@ -1,6 +1,6 @@
 import mongoose, { Schema, models } from 'mongoose';
 
-import { ActivityAnalyticts } from '@/Types/activityAnalytics';
+import type { ActivityAnalyticts } from '@unity/types';
 
 const activityAnalyticsSchema = new Schema<ActivityAnalyticts>(
   {

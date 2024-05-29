@@ -1,4 +1,4 @@
-import { InfoboxType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
+import type { InfoboxType } from '@unity/types';
 
 type InfoboxProps = {
   infobox: InfoboxType;

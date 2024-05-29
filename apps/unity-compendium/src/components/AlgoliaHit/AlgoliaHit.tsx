@@ -3,9 +3,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 
+import type { ArticleSearchType } from '@unity/types';
+
 import { RightArrow } from '@/Components/Icons';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
-import type { ArticleSearchType } from '@/Types/algolia-codegen/ArticleSearchType';
 
 type AlgoliaHitProps = {
   hit: ArticleSearchType;

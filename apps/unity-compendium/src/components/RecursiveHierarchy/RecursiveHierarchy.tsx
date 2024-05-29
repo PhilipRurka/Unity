@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useContext, useEffect, useRef } from 'react';
 
+import type { HierarchyLayoutType, HierarchyLinkType } from '@unity/types';
+
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
-import { HierarchyLayoutType, HierarchyLinkType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 type RecursiveHierarchyProps = {
   data: HierarchyLayoutType;

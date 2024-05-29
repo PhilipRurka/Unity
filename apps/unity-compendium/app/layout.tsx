@@ -2,6 +2,8 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Lexend, Montserrat } from 'next/font/google';
 
+import type { HierarchyLayoutType } from '@unity/types';
+
 import HierarchyNav from '@/Components/HierarchyNav';
 import SearchModal from '@/Components/SearchModal';
 import getByContentModel from '@/Fetchers/contentful/getByContentModel';
@@ -9,7 +11,6 @@ import AuthProvider from '@/Providers/SessionProvider';
 import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
 import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
 import '@/Styles/globals.css';
-import { HierarchyLayoutType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 const lexend = Lexend({
   weight: ['300', '500'],

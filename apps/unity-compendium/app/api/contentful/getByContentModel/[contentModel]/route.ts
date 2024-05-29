@@ -2,9 +2,10 @@
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
+import type { AllContentModelTypes } from '@unity/types';
+
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
 import getByContentModel from '@/Methods/getByContentModel/methods/GET';
-import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 type Context = {
   params: {

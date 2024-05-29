@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { Icon } from '@/Types/icons';
+import type { Icon } from '@unity/types';
 
 const SearchIcon = ({ className, size }: Icon) => {
   const width = `w-${size}`;

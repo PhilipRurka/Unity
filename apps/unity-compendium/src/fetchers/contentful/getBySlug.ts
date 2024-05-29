@@ -1,5 +1,4 @@
-import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
-import { FetchError } from '@/Types/fetcher';
+import type { ArticleType, FetchError } from '@unity/types';
 
 type GetBySlug = (slug: string) => Promise<ArticleType>;
 

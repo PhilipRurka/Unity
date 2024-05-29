@@ -1,5 +1,4 @@
-import { AllContentModelTypes } from '@/Types/contentful-codegen/SimplerContentfulTypes';
-import { FetchError } from '@/Types/fetcher';
+import type { AllContentModelTypes, FetchError } from '@unity/types';
 
 type GetByContentModel = (contentModel: AllContentModelTypes, headers?: any, options?: any) => Promise<unknown>;
 

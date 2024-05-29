@@ -1,5 +1,4 @@
-import { ActivityReq } from '@/Types/activityAnalytics';
-import { FetchError } from '@/Types/fetcher';
+import type { ActivityReq, FetchError } from '@unity/types';
 
 type AddActivitiesAnalytics = (activity: ActivityReq) => void;
 

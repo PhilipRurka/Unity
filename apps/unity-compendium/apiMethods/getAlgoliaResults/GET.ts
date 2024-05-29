@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch/lite';
 
-import { ArticleSearchType } from '@/Types/algolia-codegen/ArticleSearchType';
+import type { ArticleSearchType } from '@unity/types';
 
 type SuccessGet = [{ results: ArticleSearchType[] }, { status: number }];
 type ErrorGet = [{ data: { message: string } }, { status: number }];

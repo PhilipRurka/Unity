@@ -5,11 +5,12 @@ import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
+import type { ArticleType } from '@unity/types';
+
 import Infobox from '@/Components/Infobox';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
 import Markdown from '@/Lib/markdown';
-import { ArticleType } from '@/Types/contentful-codegen/SimplerContentfulTypes';
 
 import Header from '../Header';
 

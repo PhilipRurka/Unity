@@ -1,7 +1,8 @@
+import type { ActivityReq } from '@unity/types';
+
 import getUtcDateTime from '@/Lib/getUtcDateTime';
 import mongoConnect from '@/Lib/mongoConnect';
 import ActivityAnalyticsModel from '@/Models/activityAnalytics';
-import { ActivityReq } from '@/Types/activityAnalytics';
 
 type CatchError = {
   message: string;

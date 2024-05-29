@@ -1,5 +1,4 @@
-import type { ArticleSearchType } from '@/Types/algolia-codegen/ArticleSearchType';
-import { FetchError } from '@/Types/fetcher';
+import type { ArticleSearchType, FetchError } from '@unity/types';
 
 type GetAlgoliaResults = (query: string) => Promise<ArticleSearchType[]>;
 
