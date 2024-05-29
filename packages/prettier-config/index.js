@@ -1,5 +1,5 @@
-const pluginSortImports = require('@trivago/prettier-plugin-sort-imports');
-const pluginTailwindcss = require('prettier-plugin-tailwindcss');
+const pluginSortImports = require("@trivago/prettier-plugin-sort-imports");
+const pluginTailwindcss = require("prettier-plugin-tailwindcss");
 
 /** @type {import("prettier").Parser}  */
 const myParser = {
@@ -15,13 +15,13 @@ const myPlugin = {
 };
 
 module.exports = {
+  plugins: [myPlugin],
   tabWidth: 2,
   printWidth: 120,
   singleQuote: true,
-  trailingComma: 'es5',
-  tailwindFunctions: ['clsx'],
-  importOrder: ['^@/(.*)', '^[./]'],
+  trailingComma: "es5",
+  formatOnSave: true,
+  importOrder: ["^@unity/(.*)", "^@/(.*)", "^[./]"],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,
-  plugins: [myPlugin],
 };

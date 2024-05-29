@@ -1,7 +1,7 @@
-import type { Config } from 'tailwindcss';
-import plugin from 'tailwindcss/plugin';
+const plugin = require('tailwindcss/plugin');
 
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './lib/**/*.{js,ts,jsx,tsx,mdx}',
@@ -89,6 +89,3 @@ const config: Config = {
     'h-20',
   ],
 };
-export default config;
-
-// Background b8b8b8

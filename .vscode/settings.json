@@ -12,9 +12,13 @@
   "files.exclude": {
     ".git": true,
     ".husky": true,
-    ".next": true,
     ".vercel": true,
-    "node_modules": true,
-    "yarn.lock": true
+    "**/.prettierignore": true,
+    "**/.gitignore": true,
+    "**/.nvmrc": true,
+    "**/next-env.d.ts": true,
+    "**/.next": true,
+    // "**/node_modules": true,
+    "**/yarn.lock": true
   }
 }

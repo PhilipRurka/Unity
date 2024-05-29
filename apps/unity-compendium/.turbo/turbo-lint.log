@@ -1,0 +1,6 @@
+unity-compendium:lint: cache hit, replaying output eabb85725e46b176
+unity-compendium:lint: $ next lint
+unity-compendium:lint: Failed to load config "@unity/nextjs" to extend from.
+unity-compendium:lint: Referenced from: /Users/philiprurka/Documents/Code/Unity/apps/unity-compendium/.eslintrc
+unity-compendium:lint: error Command failed with exit code 1.
+unity-compendium:lint: info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

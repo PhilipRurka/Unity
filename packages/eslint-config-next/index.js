@@ -1,0 +1,26 @@
+module.exports = {
+  extends: ["next/core-web-vitals", "airbnb-base", "airbnb-typescript/base", "prettier"],
+  rules: {
+    "import/extensions": "off",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+  },
+  ignorePatterns: [
+    "node_modules",
+    ".next",
+    "public",
+    "postcss.config.cjs",
+    "prettier.config.cjs",
+    "migrate-mongo-config.js",
+    "next.config.mjs",
+    "mongodb/*",
+    "migrations/*",
+    "__mocks__/*",
+    "@types/contentful-codegen/*",
+    // ".eslintrc",
+    // "*.config.[jt]s",
+    // "node_modules",
+    // ".next",
+    // "public",
+  ],
+};

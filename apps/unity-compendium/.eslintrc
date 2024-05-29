@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "extends": ["@unity/next"],
+  "parserOptions": {
+    "project": "**/tsconfig.json"
+  },
+  "ignorePatterns": ["next-env.d.ts"]
+}
