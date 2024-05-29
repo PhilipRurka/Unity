@@ -50,6 +50,7 @@
     "@unity/eslint-config-next": "*",
     "@unity/prettier-config": "*",
     "@unity/tsconfig": "*",
+    "@unity/types": "*",
     "autoprefixer": "^10.0.1",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",

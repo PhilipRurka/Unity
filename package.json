@@ -11,7 +11,8 @@
   "workspaces": {
     "packages": [
       "apps/*",
-      "packages/*"
+      "packages/*",
+      "sdk/*"
     ]
   },
   "devDependencies": {

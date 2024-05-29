@@ -1,0 +1,11 @@
+{
+  "name": "@unity/types",
+  "version": "8.0.0",
+  "types": "src/index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@unity/eslint-config-node": "*",
+    "@unity/prettier-config": "*",
+    "@unity/tsconfig": "*"
+  }
+}
