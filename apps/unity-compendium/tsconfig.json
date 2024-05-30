@@ -50,6 +50,5 @@
   ],
   "exclude": [
     "node_modules",
-    "@types/contentful-codegen/**/*"
   ]
 }
