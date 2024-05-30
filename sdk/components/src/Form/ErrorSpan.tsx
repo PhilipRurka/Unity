@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode } from 'react';
+import React, { HTMLProps, ReactNode } from 'react';
 
 type ErrorSpanProps = HTMLProps<HTMLSpanElement> & {
   children: ReactNode;

@@ -2,10 +2,11 @@
 
 import { useContext } from 'react';
 
+import { Modal } from '@unity/components';
+
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 import AlgoliaSearch from '../AlgoliaSearch';
-import Modal from '../Modal';
 
 const SearchModal = () => {
   const { handleIsSearchModalOpen } = useContext(HeaderContext);

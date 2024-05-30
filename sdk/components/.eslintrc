@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["@unity/eslint-config-next"],
+  "extends": [ "@unity/eslint-config-next" ],
   "parserOptions": {
     "project": "**/tsconfig.json"
   },

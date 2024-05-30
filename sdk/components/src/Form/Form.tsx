@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode } from 'react';
+import React, { HTMLProps, ReactNode } from 'react';
 
 type FormProps = HTMLProps<HTMLFormElement> & {
   children: ReactNode;

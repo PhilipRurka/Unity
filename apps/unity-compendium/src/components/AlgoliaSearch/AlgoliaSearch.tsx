@@ -1,9 +1,9 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 
+import { Input } from '@unity/components';
 import type { ArticleSearchType } from '@unity/types';
 
 import AlgoliaHit from '@/Components/AlgoliaHit';
-import { Input } from '@/Components/Form';
 import getAlgoliaResults from '@/Fetchers/algolia/getAlgoliaResults';
 import useDebounce from '@/Hooks/debounce';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';

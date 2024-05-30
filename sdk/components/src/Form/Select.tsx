@@ -1,4 +1,4 @@
-import { HTMLProps, forwardRef } from 'react';
+import React, { HTMLProps, forwardRef } from 'react';
 
 type SelectProps = HTMLProps<HTMLSelectElement> & {
   options: string[];

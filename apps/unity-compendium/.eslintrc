@@ -1,8 +1,18 @@
 {
   "root": true,
-  "extends": ["@unity/next"],
+  "extends": ["@unity/eslint-config-next"],
   "parserOptions": {
     "project": "**/tsconfig.json"
   },
-  "ignorePatterns": ["next-env.d.ts"]
+  "ignorePatterns": ["next-env.d.ts"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "node_modules",
+          "../../node_modules"
+        ]
+      }
+    }
+  }
 }

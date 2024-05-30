@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 
+import { RightArrow } from '@unity/components';
 import type { ArticleSearchType } from '@unity/types';
 
-import { RightArrow } from '@/Components/Icons';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 type AlgoliaHitProps = {

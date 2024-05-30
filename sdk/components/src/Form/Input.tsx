@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { HTMLProps, forwardRef } from 'react';
+import React, { HTMLProps, forwardRef } from 'react';
 
 type InputProps = HTMLProps<HTMLInputElement> & {
   showErrorStyles?: boolean;

@@ -1,5 +1,5 @@
 {
-  "extends": "@unity/tsconfig/base.json",
+  "extends": "@unity/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist"
