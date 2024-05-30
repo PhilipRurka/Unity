@@ -20,10 +20,12 @@ export default {
     {
       format: 'cjs',
       file: pkg.main,
+      sourcemap: true,
     },
     {
       format: 'es',
       file: pkg.module,
+      sourcemap: true,
     },
   ],
   plugins: [
@@ -32,8 +34,9 @@ export default {
     }),
     esbuild({
       sourceMap: true,
-      minify: true,
-      target: 'es2017',
+      minify: process.env.NODE_ENV === 'production',
+      include: /\.[jt]sx?$/,
+      tsconfig: './tsconfig.json',
     }),
     bundleSize(),
   ],
