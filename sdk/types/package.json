@@ -11,6 +11,7 @@
   "devDependencies": {
     "@unity/eslint-config-node": "*",
     "@unity/prettier-config": "*",
+    "@unity/rollup-config": "*",
     "@unity/tsconfig": "*"
   }
 }

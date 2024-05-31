@@ -22,6 +22,7 @@
     "@unity/eslint-config-node": "*",
     "@unity/frontend-dev-dependencies": "*",
     "@unity/prettier-config": "*",
+    "@unity/rollup-config": "*",
     "@unity/tsconfig": "*"
   }
 }
