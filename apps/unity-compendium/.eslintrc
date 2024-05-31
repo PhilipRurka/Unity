@@ -4,7 +4,7 @@
   "parserOptions": {
     "project": "**/tsconfig.json"
   },
-  "ignorePatterns": ["next-env.d.ts"],
+  "ignorePatterns": ["next-env.d.ts, *config.*"],
   "settings": {
     "import/resolver": {
       "node": {
