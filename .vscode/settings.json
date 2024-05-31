@@ -37,6 +37,7 @@
           "**/node_modules": true,
           "**/yarn.lock": true,
           "**/.turbo": true,
+          "**/dist/**": true
           }
         },
         {
