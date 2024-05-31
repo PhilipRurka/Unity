@@ -1,7 +1,7 @@
-const plugin = require("tailwindcss/plugin");
+import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const tailwindConfig = {
   content: ["../../apps/**/*.{js,ts,jsx,tsx,mdx}", "../../sdk/components/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
@@ -83,3 +83,5 @@ module.exports = {
     "h-20",
   ],
 };
+
+export default tailwindConfig;

@@ -4,10 +4,6 @@ type ErrorSpanProps = HTMLProps<HTMLSpanElement> & {
   children: ReactNode;
 };
 
-const ErrorSpan = ({ children, ...rest }: ErrorSpanProps) => (
-  <span className="" {...rest}>
-    {children}
-  </span>
-);
+const ErrorSpan = ({ children, ...rest }: ErrorSpanProps) => <span {...rest}>{children}</span>;
 
 export default ErrorSpan;

@@ -47,8 +47,9 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "node-scripts/**/*.js"
-  ],
+, "prettier.config.cjs"  ],
   "exclude": [
     "node_modules",
+    "*.json"
   ]
 }

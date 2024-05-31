@@ -80,3 +80,5 @@ chmod +x .git/hooks/pre-commit .git/hooks/pre-push
 ```
 
 <br />
+
+To disable eslint on the build comment out `ignoreDuringBuilds: true,` in next.config.mjs

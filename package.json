@@ -17,6 +17,8 @@
       "packages/frontend/*",
       "packages/prettier-config",
       "packages/tsconfig",
+      "packages/tailwind-config",
+      "packages/postcss-config",
       "packages/rollup-config",
       "sdk/*"
     ]
@@ -29,5 +31,6 @@
   "packageManager": "yarn@1.22.22",
   "engines": {
     "node": "20"
-  }
+  },
+  "type": "module"
 }

@@ -1,5 +1,7 @@
-const sharedConfig = require('../../packages/tailwind-config');
+import sharedConfig from '@unity/tailwind'
 
-module.exports = {
+const tailwindConfig = {
   ...sharedConfig,
 };
+
+export default tailwindConfig

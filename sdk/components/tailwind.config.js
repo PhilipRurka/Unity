@@ -1,5 +1,7 @@
-const sharedConfig = require('../../packages/tailwind-config');
+import sharedConfig from '../../packages/tailwind-config' 
 
-module.exports = {
+const tailwindConfig = {
   ...sharedConfig,
 };
+
+export default tailwindConfig

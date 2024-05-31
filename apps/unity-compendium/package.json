@@ -32,7 +32,6 @@
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.4",
     "@types/react-instantsearch": "^6.10.4",
-    "@unity/eslint-config-next": "*",
     "@unity/frontend-dev-dependencies": "*",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",
@@ -47,6 +46,7 @@
   "engines": {
     "node": "20"
   },
+  "type": "module",
   "ntl": {
     "runner": "yarn",
     "descriptions": {
