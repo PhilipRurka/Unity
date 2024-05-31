@@ -4,5 +4,5 @@
   "parserOptions": {
     "project": "**/tsconfig.json"
   },
-  "ignorePatterns": ["rollup.config.js"]
+  "ignorePatterns": ["*.config.js"]
 }
