@@ -6,7 +6,7 @@ const nextConfig = {
     pagesBufferLength: 2,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    // ignoreDuringBuilds: true,
   },
 };
 
