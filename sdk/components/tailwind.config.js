@@ -1,7 +1,7 @@
-import sharedConfig from '../../packages/tailwind-config' 
+import sharedConfig from '../../packages/tailwind-config';
 
 const tailwindConfig = {
   ...sharedConfig,
 };
 
-export default tailwindConfig
+export default tailwindConfig;
