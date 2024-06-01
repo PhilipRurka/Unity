@@ -5,16 +5,15 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "src/index.ts",
-  "files": [
-    "./dist/*"
-  ],
   "type": "module",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch"
   },
+  "dependencies": {
+    "@unity/frontend-dependencies": "*"
+  },
   "devDependencies": {
-    "@unity/frontend-dependencies": "*",
     "@unity/eslint-config-node": "*",
     "@unity/frontend-dev-dependencies": "*",
     "@unity/prettier-config": "*",

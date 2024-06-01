@@ -72,20 +72,8 @@ var __spreadValues$4 = (a, b) => {
     }
   return a;
 };
-var __objRest$3 = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp$4.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols$4)
-    for (var prop of __getOwnPropSymbols$4(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum$4.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
-const Field = (_a) => {
-  var _b = _a, { children } = _b, rest = __objRest$3(_b, ["children"]);
+var Field = function(_a) {
+  var children = _a.children, rest = __rest(_a, ["children"]);
   return /* @__PURE__ */ React.createElement("div", __spreadValues$4({
     className: "mb-4 flex flex-col"
   }, rest), children);
@@ -107,20 +95,8 @@ var __spreadValues$3 = (a, b) => {
     }
   return a;
 };
-var __objRest$2 = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp$3.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols$3)
-    for (var prop of __getOwnPropSymbols$3(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum$3.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
-const Label = (_a) => {
-  var _b = _a, { children } = _b, rest = __objRest$2(_b, ["children"]);
+var Label = function(_a) {
+  var children = _a.children, rest = __rest(_a, ["children"]);
   return /* @__PURE__ */ React.createElement("label", __spreadValues$3({
     className: "mb-2 block text-sm font-medium text-gray-900 dark:text-white"
   }, rest), children);
@@ -145,20 +121,8 @@ var __spreadValues$2 = (a, b) => {
   return a;
 };
 var __spreadProps$1 = (a, b) => __defProps$1(a, __getOwnPropDescs$1(b));
-var __objRest$1 = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp$2.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols$2)
-    for (var prop of __getOwnPropSymbols$2(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum$2.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
-const Input = forwardRef((_a, ref) => {
-  var _b = _a, { showErrorStyles } = _b, rest = __objRest$1(_b, ["showErrorStyles"]);
+var Input = forwardRef(function(_a, ref) {
+  var showErrorStyles = _a.showErrorStyles, rest = __rest(_a, ["showErrorStyles"]);
   return /* @__PURE__ */ React.createElement("input", __spreadProps$1(__spreadValues$2({
     className: clsx("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500", showErrorStyles ? "border-red-500" : "border-black")
   }, rest), {
@@ -186,28 +150,18 @@ var __spreadValues$1 = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var __objRest = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp$1.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols$1)
-    for (var prop of __getOwnPropSymbols$1(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum$1.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
-const Select = forwardRef((_a, ref) => {
-  var _b = _a, { options } = _b, rest = __objRest(_b, ["options"]);
+var Select = forwardRef(function(_a, ref) {
+  var options = _a.options, rest = __rest(_a, ["options"]);
   return /* @__PURE__ */ React.createElement("select", __spreadProps(__spreadValues$1({
     id: "priority"
   }, rest), {
     ref
-  }), options.map((option) => /* @__PURE__ */ React.createElement("option", {
-    key: `form-${option}`,
-    value: option
-  }, option)));
+  }), options.map(function(option) {
+    return /* @__PURE__ */ React.createElement("option", {
+      key: "form-".concat(option),
+      value: option
+    }, option);
+  }));
 });
 Select.displayName = "Select";
 
@@ -232,9 +186,10 @@ var ErrorSpan = function(_a) {
   return /* @__PURE__ */ React.createElement("span", __spreadValues({}, rest), children);
 };
 
-const CloseIcon$1 = ({ className, size }) => {
-  const width = `w-${size}`;
-  const height = `h-${size}`;
+var CloseIcon$1 = function(_a) {
+  var className = _a.className, size = _a.size;
+  var width = "w-".concat(size);
+  var height = "h-".concat(size);
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     clipRule: "evenodd",
@@ -249,9 +204,10 @@ const CloseIcon$1 = ({ className, size }) => {
   }));
 };
 
-const SearchIcon = ({ className, size }) => {
-  const width = `w-${size}`;
-  const height = `h-${size}`;
+var SearchIcon = function(_a) {
+  var className = _a.className, size = _a.size;
+  var width = "w-".concat(size);
+  var height = "h-".concat(size);
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     xmlns: "http://www.w3.org/2000/svg",
@@ -263,9 +219,10 @@ const SearchIcon = ({ className, size }) => {
   }));
 };
 
-const CloseIcon = ({ className, size }) => {
-  const width = `w-${size}`;
-  const height = `h-${size}`;
+var CloseIcon = function(_a) {
+  var className = _a.className, size = _a.size;
+  var width = "w-".concat(size);
+  var height = "h-".concat(size);
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     xmlns: "http://www.w3.org/2000/svg",
@@ -277,9 +234,10 @@ const CloseIcon = ({ className, size }) => {
   }));
 };
 
-const RightArrow = ({ className, size }) => {
-  const width = `w-${size}`;
-  const height = `h-${size}`;
+var RightArrow = function(_a) {
+  var className = _a.className, size = _a.size;
+  var width = "w-".concat(size);
+  var height = "h-".concat(size);
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     clipRule: "evenodd",
@@ -294,7 +252,8 @@ const RightArrow = ({ className, size }) => {
   }));
 };
 
-const Modal = ({ children }) => {
+var Modal = function(_a) {
+  var children = _a.children;
   console.log("");
   return /* @__PURE__ */ React.createElement("div", {
     className: "pointer-events-none fixed inset-0"

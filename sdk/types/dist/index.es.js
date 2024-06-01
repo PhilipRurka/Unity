@@ -1,1 +1,38 @@
-function t(n){return n.sys.contentType.sys.id==="article"}function e(n){return n.sys.contentType.sys.id==="captainsLog"}function s(n){return n.sys.contentType.sys.id==="contentSection"}function i(n){return n.sys.contentType.sys.id==="hierarchyLayout"}function y(n){return n.sys.contentType.sys.id==="hierarchyLink"}function o(n){return n.sys.contentType.sys.id==="infobox"}function c(n){return n.sys.contentType.sys.id==="infoboxBlock"}function r(n){return n.sys.contentType.sys.id==="infoboxItem"}function p(n){return n.sys.contentType.sys.id==="link"}export{t as isTypeArticle,e as isTypeCaptainsLog,s as isTypeContentSection,i as isTypeHierarchyLayout,y as isTypeHierarchyLink,o as isTypeInfobox,c as isTypeInfoboxBlock,r as isTypeInfoboxItem,p as isTypeLink};
+function isTypeArticle(entry) {
+  return entry.sys.contentType.sys.id === "article";
+}
+
+function isTypeCaptainsLog(entry) {
+  return entry.sys.contentType.sys.id === "captainsLog";
+}
+
+function isTypeContentSection(entry) {
+  return entry.sys.contentType.sys.id === "contentSection";
+}
+
+function isTypeHierarchyLayout(entry) {
+  return entry.sys.contentType.sys.id === "hierarchyLayout";
+}
+
+function isTypeHierarchyLink(entry) {
+  return entry.sys.contentType.sys.id === "hierarchyLink";
+}
+
+function isTypeInfobox(entry) {
+  return entry.sys.contentType.sys.id === "infobox";
+}
+
+function isTypeInfoboxBlock(entry) {
+  return entry.sys.contentType.sys.id === "infoboxBlock";
+}
+
+function isTypeInfoboxItem(entry) {
+  return entry.sys.contentType.sys.id === "infoboxItem";
+}
+
+function isTypeLink(entry) {
+  return entry.sys.contentType.sys.id === "link";
+}
+
+export { isTypeArticle, isTypeCaptainsLog, isTypeContentSection, isTypeHierarchyLayout, isTypeHierarchyLink, isTypeInfobox, isTypeInfoboxBlock, isTypeInfoboxItem, isTypeLink };
+//# sourceMappingURL=index.es.js.map
