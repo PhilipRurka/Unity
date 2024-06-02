@@ -1,38 +1,6 @@
 import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-
-function __rest(s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-}
-
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-    var e = new Error(message);
-    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-};
-
 var __defProp$5 = Object.defineProperty;
 var __getOwnPropSymbols$5 = Object.getOwnPropertySymbols;
 var __hasOwnProp$5 = Object.prototype.hasOwnProperty;
@@ -49,8 +17,20 @@ var __spreadValues$5 = (a, b) => {
     }
   return a;
 };
-var Form = function(_a) {
-  var children = _a.children, rest = __rest(_a, ["children"]);
+var __objRest$5 = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp$5.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols$5)
+    for (var prop of __getOwnPropSymbols$5(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum$5.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const Form = (_a) => {
+  var _b = _a, { children } = _b, rest = __objRest$5(_b, ["children"]);
   return /* @__PURE__ */ React.createElement("form", __spreadValues$5({
     className: "mt-8 space-y-6"
   }, rest), children);
@@ -72,8 +52,20 @@ var __spreadValues$4 = (a, b) => {
     }
   return a;
 };
-var Field = function(_a) {
-  var children = _a.children, rest = __rest(_a, ["children"]);
+var __objRest$4 = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp$4.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols$4)
+    for (var prop of __getOwnPropSymbols$4(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum$4.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const Field = (_a) => {
+  var _b = _a, { children } = _b, rest = __objRest$4(_b, ["children"]);
   return /* @__PURE__ */ React.createElement("div", __spreadValues$4({
     className: "mb-4 flex flex-col"
   }, rest), children);
@@ -95,8 +87,20 @@ var __spreadValues$3 = (a, b) => {
     }
   return a;
 };
-var Label = function(_a) {
-  var children = _a.children, rest = __rest(_a, ["children"]);
+var __objRest$3 = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp$3.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols$3)
+    for (var prop of __getOwnPropSymbols$3(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum$3.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const Label = (_a) => {
+  var _b = _a, { children } = _b, rest = __objRest$3(_b, ["children"]);
   return /* @__PURE__ */ React.createElement("label", __spreadValues$3({
     className: "mb-2 block text-sm font-medium text-gray-900 dark:text-white"
   }, rest), children);
@@ -121,8 +125,20 @@ var __spreadValues$2 = (a, b) => {
   return a;
 };
 var __spreadProps$1 = (a, b) => __defProps$1(a, __getOwnPropDescs$1(b));
-var Input = forwardRef(function(_a, ref) {
-  var showErrorStyles = _a.showErrorStyles, rest = __rest(_a, ["showErrorStyles"]);
+var __objRest$2 = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp$2.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols$2)
+    for (var prop of __getOwnPropSymbols$2(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum$2.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const Input = forwardRef((_a, ref) => {
+  var _b = _a, { showErrorStyles } = _b, rest = __objRest$2(_b, ["showErrorStyles"]);
   return /* @__PURE__ */ React.createElement("input", __spreadProps$1(__spreadValues$2({
     className: clsx("block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500", showErrorStyles ? "border-red-500" : "border-black")
   }, rest), {
@@ -150,18 +166,28 @@ var __spreadValues$1 = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
-var Select = forwardRef(function(_a, ref) {
-  var options = _a.options, rest = __rest(_a, ["options"]);
+var __objRest$1 = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp$1.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols$1)
+    for (var prop of __getOwnPropSymbols$1(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum$1.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const Select = forwardRef((_a, ref) => {
+  var _b = _a, { options } = _b, rest = __objRest$1(_b, ["options"]);
   return /* @__PURE__ */ React.createElement("select", __spreadProps(__spreadValues$1({
     id: "priority"
   }, rest), {
     ref
-  }), options.map(function(option) {
-    return /* @__PURE__ */ React.createElement("option", {
-      key: "form-".concat(option),
-      value: option
-    }, option);
-  }));
+  }), options.map((option) => /* @__PURE__ */ React.createElement("option", {
+    key: `form-${option}`,
+    value: option
+  }, option)));
 });
 Select.displayName = "Select";
 
@@ -181,15 +207,26 @@ var __spreadValues = (a, b) => {
     }
   return a;
 };
-var ErrorSpan = function(_a) {
-  var children = _a.children, rest = __rest(_a, ["children"]);
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+const ErrorSpan = (_a) => {
+  var _b = _a, { children } = _b, rest = __objRest(_b, ["children"]);
   return /* @__PURE__ */ React.createElement("span", __spreadValues({}, rest), children);
 };
 
-var CloseIcon$1 = function(_a) {
-  var className = _a.className, size = _a.size;
-  var width = "w-".concat(size);
-  var height = "h-".concat(size);
+const CloseIcon$1 = ({ className, size }) => {
+  const width = `w-${size}`;
+  const height = `h-${size}`;
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     clipRule: "evenodd",
@@ -204,10 +241,9 @@ var CloseIcon$1 = function(_a) {
   }));
 };
 
-var SearchIcon = function(_a) {
-  var className = _a.className, size = _a.size;
-  var width = "w-".concat(size);
-  var height = "h-".concat(size);
+const SearchIcon = ({ className, size }) => {
+  const width = `w-${size}`;
+  const height = `h-${size}`;
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     xmlns: "http://www.w3.org/2000/svg",
@@ -219,10 +255,9 @@ var SearchIcon = function(_a) {
   }));
 };
 
-var CloseIcon = function(_a) {
-  var className = _a.className, size = _a.size;
-  var width = "w-".concat(size);
-  var height = "h-".concat(size);
+const CloseIcon = ({ className, size }) => {
+  const width = `w-${size}`;
+  const height = `h-${size}`;
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     xmlns: "http://www.w3.org/2000/svg",
@@ -234,10 +269,9 @@ var CloseIcon = function(_a) {
   }));
 };
 
-var RightArrow = function(_a) {
-  var className = _a.className, size = _a.size;
-  var width = "w-".concat(size);
-  var height = "h-".concat(size);
+const RightArrow = ({ className, size }) => {
+  const width = `w-${size}`;
+  const height = `h-${size}`;
   return /* @__PURE__ */ React.createElement("svg", {
     className: clsx(className, width, height),
     clipRule: "evenodd",
@@ -252,8 +286,7 @@ var RightArrow = function(_a) {
   }));
 };
 
-var Modal = function(_a) {
-  var children = _a.children;
+const Modal = ({ children }) => {
   console.log("");
   return /* @__PURE__ */ React.createElement("div", {
     className: "pointer-events-none fixed inset-0"

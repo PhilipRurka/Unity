@@ -46,11 +46,11 @@
     "**/*.js",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "node-scripts/**/*.js"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "*.json"
+    ".next",
+    "out"
   ]
 }

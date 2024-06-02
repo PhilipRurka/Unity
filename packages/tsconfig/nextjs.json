@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "_version": "2.0.0",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -13,6 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{"name": "next"}]
   },
   "exclude": ["node_modules", ".next", "out"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]

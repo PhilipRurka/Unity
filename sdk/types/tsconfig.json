@@ -4,5 +4,8 @@
     "rootDir": "./src",
     "outDir": "./dist"
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "next-env.d.ts"],
+  "exclude": [
+    "node_modules", ".next", "out"
+  ]
 }

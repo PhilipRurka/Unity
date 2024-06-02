@@ -6,16 +6,15 @@
     "outDir": "./dist"
   },
   "include": [
-    "**/*.js",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "next-env.d.ts"
   ],
   "exclude": [
     "dist",
     "node_modules",
-    "prettier.config.js",
-    "rollup.config.js",
-    "tailwind.config.cjs",
-    "*.json"
+    ".next",
+    "out",
+    "tailwind.config.js"
   ]
 }

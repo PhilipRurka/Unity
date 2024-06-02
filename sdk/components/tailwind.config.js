@@ -1,4 +1,4 @@
-import sharedConfig from '../../packages/tailwind-config';
+import sharedConfig from '@unity/tailwind';
 
 const tailwindConfig = {
   ...sharedConfig,

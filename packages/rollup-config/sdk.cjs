@@ -2,14 +2,12 @@ const commonjs = require("@rollup/plugin-commonjs");
 const bundleSize = require("rollup-plugin-bundle-size");
 const cleaner = require("rollup-plugin-cleaner");
 const esbuild = require("rollup-plugin-esbuild").default;
-const typescript = require("@rollup/plugin-typescript");
 
 function sharedPlugins({ shouldAddCommonJs } = {}) {
   const plugins = [
     cleaner({
       targets: ["./dist/"],
     }),
-    typescript({ tsconfig: "./tsconfig.json" }),
   ];
 
   if (shouldAddCommonJs) {
@@ -21,7 +19,7 @@ function sharedPlugins({ shouldAddCommonJs } = {}) {
       sourceMap: true,
       minify: process.env.NODE_ENV === "production",
       include: /\.[jt]sx?$/,
-      tsconfig: "./tsconfig.json",
+      tsconfig: "@unity/tsconfig/nextjs.json",
     }),
     bundleSize()
   );
@@ -39,6 +37,7 @@ module.exports = ({ dependencies }) => [
       exports: "auto",
       sourcemap: true,
     },
+    cache: false, // Eventually remove this line
     plugins: sharedPlugins({ shouldAddCommonJs: true }),
   },
   {
