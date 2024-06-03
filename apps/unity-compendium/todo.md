@@ -1,4 +1,3 @@
-ActivityPut should be a generic and should live in types
-Restaure the algoliasearch modal
-Create a package for Lib, Hook
+Create a package for Lib
+Create a fetcher package
 Turn all node-scripts into their own package and enable typescript

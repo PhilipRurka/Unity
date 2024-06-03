@@ -1,0 +1,23 @@
+{
+  "name": "@unity/hooks",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "dependencies": {
+    "@unity/frontend-dependencies": "*"
+  },
+  "devDependencies": {
+    "@unity/eslint-config-node": "*",
+    "@unity/frontend-dev-dependencies": "*",
+    "@unity/prettier-config": "*",
+    "@unity/rollup-config": "*",
+    "@unity/tsconfig": "*"
+  }
+}

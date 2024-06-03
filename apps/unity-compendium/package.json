@@ -14,7 +14,10 @@
     "pull-production-env": "vercel env pull --environment=production .env.local"
   },
   "dependencies": {
+    "@unity/components": "*",
     "@unity/frontend-dependencies": "*",
+    "@unity/hooks": "*",
+    "@unity/models": "*",
     "contentful-import": "^9.0.4",
     "react-instantsearch": "^7.8.0"
   },

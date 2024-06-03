@@ -1,11 +1,11 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 
 import { Input } from '@unity/components';
+import { useDebounce } from '@unity/hooks';
 import type { ArticleSearchType } from '@unity/types';
 
 import AlgoliaHit from '@/Components/AlgoliaHit';
 import getAlgoliaResults from '@/Fetchers/algolia/getAlgoliaResults';
-import useDebounce from '@/Hooks/debounce';
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 const AlgoliaSearch = () => {
