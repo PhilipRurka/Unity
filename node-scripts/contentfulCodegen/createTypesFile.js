@@ -2,14 +2,15 @@ import runPrettier from "../utils/runPrettier.js";
 import { readdir, unlink, writeFile } from "fs/promises";
 
 const createTypesFile = async () => {
-  const filePath = "../../sdk/types/src/contentful-codegen/SimplerContentfulTypes.ts";
+  const contentfulCodegenDir = "./sdk/types/src/contentful-codegen";
+  const filePath = `${contentfulCodegenDir}/SimplerContentfulTypes.ts`;
 
   try {
     await unlink(filePath);
     // eslint-disable-next-line no-empty
   } catch (_) {}
 
-  const files = await readdir("@types/contentful-codegen");
+  const files = await readdir(contentfulCodegenDir);
   const imports = [];
   const types = [];
   files.forEach((file) => {

@@ -16,8 +16,8 @@ const runCommands = async () => {
       CONTENTFUL_SPACE_ID,
       "--management-token",
       CONTENTFUL_CMA_TOKEN,
-      // "--export-dir",
-      // ".",
+      "--export-dir",
+      "./node-scripts",
       "--content-file",
       "TemporaryContentModelStructure.json",
     ],
@@ -25,7 +25,7 @@ const runCommands = async () => {
 
   const exportGeneratedTypes = {
     command: "./node_modules/.bin/cf-content-types-generator",
-    args: ["./TemporaryContentModelStructure.json", "-o", "@types/contentful-codegen", "-X", "-g", "-r"],
+    args: ["./TemporaryContentModelStructure.json", "-o", "./node-scripts", "-X", "-g", "-r"],
   };
 
   await executeStep(
@@ -40,7 +40,7 @@ const runCommands = async () => {
   );
 
   await executeStep("Step 3: TemporaryContentModelStructure.json has been deleted", () =>
-    unlink("./TemporaryContentModelStructure.json")
+    unlink("./node-scripts/TemporaryContentModelStructure.json")
   );
 
   await executeStep("Step 4: SimplerContentfulTypes.ts has been deleted and re-created", () => createTypesFile());
