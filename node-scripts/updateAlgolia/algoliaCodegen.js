@@ -50,7 +50,7 @@ export const algoliaCodegen = async (algoliaObject) => {
     ${finalObject}
   };`;
 
-  const filePath = "../../sdk/types/src/algolia-codegen/ArticleSearchType.ts";
+  const filePath = "./sdk/types/src/algolia-codegen/ArticleSearchType.ts";
 
   try {
     await unlink(filePath);
