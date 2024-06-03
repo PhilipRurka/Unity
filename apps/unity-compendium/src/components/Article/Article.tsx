@@ -7,12 +7,11 @@ import { useEffect, useRef, useState } from 'react';
 
 import type { ArticleType } from '@unity/types';
 
+import Header from '@/Components/Header';
 import Infobox from '@/Components/Infobox';
+import Markdown from '@/Components/Markdown';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
 import getBySlug from '@/Fetchers/contentful/getBySlug';
-import Markdown from '@/Lib/markdown';
-
-import Header from '../Header';
 
 type ArticleProps = {
   slug: string;

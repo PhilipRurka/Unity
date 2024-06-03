@@ -1,7 +1,14 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 
-import { Heading3, Heading4, Hyperlink, ListItem, OrderedList, UnorderedList } from './markdownElements';
+import {
+  Heading3,
+  Heading4,
+  Hyperlink,
+  ListItem,
+  OrderedList,
+  UnorderedList,
+} from '../MarkdownElements/MarkdownElements';
 
 type MarkdownType = { content: any };
 
