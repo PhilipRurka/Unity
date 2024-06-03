@@ -25,7 +25,7 @@ export const GET = async (req: NextRequest, context: Context) => {
     if (!isUserAuthenticated) return NextResponse.json({}, {});
   }
 
-  const [data, status] = await getByContentModel(contentModel);
+  const [result, status] = await getByContentModel(contentModel);
 
-  return NextResponse.json(data, status);
+  return NextResponse.json(result, status);
 };

@@ -19,8 +19,8 @@ const getByContentModel: GetByContentModel = async (contentModel, headers = {}, 
     throw error;
   }
 
-  const data = await response.json();
-  return data;
+  const result = await response.json();
+  return result.entries;
 };
 
 export default getByContentModel;
