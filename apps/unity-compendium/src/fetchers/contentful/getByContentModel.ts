@@ -20,7 +20,7 @@ const getByContentModel: GetByContentModel = async (contentModel, headers = {}, 
   }
 
   const data = await response.json();
-  return data.entries;
+  return data;
 };
 
 export default getByContentModel;
