@@ -1,5 +1,5 @@
 import { activityAnalyticsModel } from '@unity/models';
-import type { ActivityReq } from '@unity/types';
+import type { ActivityReqType } from '@unity/types';
 
 import getUtcDateTime from '@/Lib/getUtcDateTime';
 import mongoConnect from '@/Lib/mongoConnect';
@@ -8,7 +8,7 @@ type CatchError = {
   message: string;
 };
 
-type ActivityPut = (reqData: ActivityReq) => Promise<[{ data: { message: string } }, { status: number }]>;
+type ActivityPut = (reqData: ActivityReqType) => Promise<[{ data: { message: string } }, { status: number }]>;
 
 const activityPut: ActivityPut = async ({ email, slug }) => {
   try {

@@ -3,7 +3,7 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { userModel } from '@unity/models';
-import type { UserReq } from '@unity/types';
+import type { UserReqType } from '@unity/types';
 
 import mongoConnect from '@/Lib/mongoConnect';
 
@@ -14,7 +14,7 @@ const authOptions: NextAuthOptions = {
       credentials: {},
 
       async authorize(credentials: Record<never, string> | undefined) {
-        const { email, password } = credentials as UserReq;
+        const { email, password } = credentials as UserReqType;
 
         try {
           await mongoConnect();

@@ -1,4 +1,4 @@
-import type { ArticleType, FetchError } from '@unity/types';
+import type { ArticleType, FetchErrorType } from '@unity/types';
 
 type GetBySlug = (slug: string) => Promise<ArticleType>;
 
@@ -11,7 +11,7 @@ const getBySlug: GetBySlug = async (slug) => {
   });
 
   if (!response.ok) {
-    const error: FetchError = new Error('An error occurred while fetching the getBySlug data');
+    const error: FetchErrorType = new Error('An error occurred while fetching the getBySlug data');
     error.info = await response.json();
     error.status = response.status;
     throw error;

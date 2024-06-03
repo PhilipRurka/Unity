@@ -1,14 +1,14 @@
-export type ActivityReq = {
+export type ActivityReqType = {
   email: string;
   slug: string;
 };
 
-export type Activity = {
+export type ActivityType = {
   date: Date;
   slug: string;
 };
 
-export type ActivityAnalyticts = {
+export type ActivityAnalytictsType = {
   email: string;
-  activities: Activity[];
+  activities: ActivityType[];
 };

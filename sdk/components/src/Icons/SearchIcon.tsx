@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import React from 'react';
 
-import type { Icon } from '@unity/types';
+import type { IconType } from '@unity/types';
 
-const SearchIcon = ({ className, size }: Icon) => {
+const SearchIcon = ({ className, size }: IconType) => {
   const width = `w-${size}`;
   const height = `h-${size}`;
 

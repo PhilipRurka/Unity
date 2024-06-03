@@ -1,4 +1,4 @@
-import type { AllContentModelTypes, FetchError } from '@unity/types';
+import type { AllContentModelTypes, FetchErrorType } from '@unity/types';
 
 type GetByContentModel = (contentModel: AllContentModelTypes, headers?: any, options?: any) => Promise<unknown>;
 
@@ -13,7 +13,7 @@ const getByContentModel: GetByContentModel = async (contentModel, headers = {}, 
   });
 
   if (!response.ok) {
-    const error: FetchError = new Error('An error occurred while fetching the getByContentModel data');
+    const error: FetchErrorType = new Error('An error occurred while fetching the getByContentModel data');
     error.info = await response.json();
     error.status = response.status;
     throw error;

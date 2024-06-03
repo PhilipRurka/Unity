@@ -1,4 +1,4 @@
-import type { ArticleSearchType, FetchError } from '@unity/types';
+import type { ArticleSearchType, FetchErrorType } from '@unity/types';
 
 type GetAlgoliaResults = (query: string) => Promise<ArticleSearchType[]>;
 
@@ -11,7 +11,7 @@ const getAlgoliaResults: GetAlgoliaResults = async (query) => {
   });
 
   if (!response.ok) {
-    const error: FetchError = new Error('An error occurred while fetching the getAlgoliaResults data');
+    const error: FetchErrorType = new Error('An error occurred while fetching the getAlgoliaResults data');
     error.info = await response.json();
     error.status = response.status;
     throw error;

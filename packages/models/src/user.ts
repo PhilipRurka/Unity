@@ -1,8 +1,8 @@
 import mongoose, { Schema, models } from 'mongoose';
 
-import type { UserReq } from '@unity/types';
+import type { UserReqType } from '@unity/types';
 
-const userSchema = new Schema<UserReq>(
+const userSchema = new Schema<UserReqType>(
   {
     email: {
       type: String,
