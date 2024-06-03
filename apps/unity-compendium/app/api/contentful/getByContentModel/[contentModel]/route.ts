@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { AllContentModelTypes } from '@unity/types';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getByContentModel from '@/Methods/getByContentModel/methods/GET';
+import getByContentModel from '@/Methods/contentful/GET.getByContentModel';
 
 type Context = {
   params: {

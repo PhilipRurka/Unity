@@ -1,5 +1,5 @@
 import { activityAnalyticsModel } from '@unity/models';
-import type { ActivityReqType } from '@unity/types';
+import type { ActivityReqType, ApiMethodResponseType } from '@unity/types';
 
 import getUtcDateTime from '@/Lib/getUtcDateTime';
 import mongoConnect from '@/Lib/mongoConnect';
@@ -8,13 +8,13 @@ type CatchError = {
   message: string;
 };
 
-type ActivityPut = (reqData: ActivityReqType) => Promise<[{ data: { message: string } }, { status: number }]>;
+type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
 
 const activityPut: ActivityPut = async ({ email, slug }) => {
   try {
     await mongoConnect();
   } catch (error) {
-    return [{ data: { message: 'Something went wrong with MongoConnection!' } }, { status: 500 }];
+    return [{ error: { message: 'Something went wrong with MongoConnection!' } }, { status: 500 }];
   }
 
   try {
@@ -32,14 +32,14 @@ const activityPut: ActivityPut = async ({ email, slug }) => {
     );
 
     if (!result) {
-      return [{ data: { message: 'Failed to update activities!' } }, { status: 503 }];
+      return [{ error: { message: 'Failed to update activities!' } }, { status: 503 }];
     }
 
-    return [{ data: { message: 'Success!' } }, { status: 200 }];
+    return [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
-    return [{ data: { message: error.message } }, { status: 503 }];
+    return [{ error: { message: error.message } }, { status: 503 }];
   }
 };
 

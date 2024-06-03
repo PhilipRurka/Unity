@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getBySlug from '@/Methods/getBySlug/methods/GET';
+import getBySlug from '@/Methods/contentful/GET.getBySlug';
 
 type Context = {
   params: {

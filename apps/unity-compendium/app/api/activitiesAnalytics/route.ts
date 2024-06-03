@@ -2,8 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-
-import activityPut from './methods/PUT';
+import activityPut from '@/Methods/activitiesAnalytics/PUT.addActivity';
 
 export const PUT = async (req: NextRequest) => {
   const isUserAuthenticated = checkIfUserAuthenticated(req);

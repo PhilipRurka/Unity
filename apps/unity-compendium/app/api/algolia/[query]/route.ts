@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getAlgoliaResults from '@/Methods/getAlgoliaResults/GET';
+import getAlgoliaResults from '@/Methods/algolia/GET.AlgoliaResults';
 
 type Context = {
   params: {
