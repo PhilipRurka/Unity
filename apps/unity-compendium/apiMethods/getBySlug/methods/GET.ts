@@ -1,9 +1,8 @@
 import { createClient } from 'contentful';
 
-type SuccessGet = [{ entry: unknown }, { status: number }];
-type ErrorGet = [{ data: { message: string } }, { status: number }];
+import { ApiMethodResponseType } from '@unity/types';
 
-type GetByContentModel = (slug: string) => Promise<SuccessGet | ErrorGet>;
+type GetByContentModel = (slug: string) => ApiMethodResponseType<unknown>;
 
 type CatchError = {
   message: string;
@@ -31,10 +30,10 @@ const getBySlug: GetByContentModel = async (slug) => {
 
     console.error(error.message);
 
-    return [{ data: { message: error.message } }, { status: 503 }];
+    return [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  return [{ entry: entries[0] }, { status: 200 }];
+  return [{ result: entries[0] }, { status: 200 }];
 };
 
 export default getBySlug;
