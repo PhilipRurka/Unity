@@ -21,7 +21,8 @@
   "dependencies": {
     "algoliasearch": "^4.23.3",
     "bcrypt": "^5.1.1",
-    "contentful": "^10.9.2"
+    "contentful": "^10.9.2",
+    "mongoose": "^8.3.4"
   },
   "devDependencies": {
     "@sendgrid/mail": "^8.1.3",

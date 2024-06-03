@@ -1,8 +1,8 @@
+import { activityAnalyticsModel } from '@unity/models';
 import type { ActivityReq } from '@unity/types';
 
 import getUtcDateTime from '@/Lib/getUtcDateTime';
 import mongoConnect from '@/Lib/mongoConnect';
-import ActivityAnalyticsModel from '@/Models/activityAnalytics';
 
 type CatchError = {
   message: string;
@@ -18,7 +18,7 @@ const activityPut: ActivityPut = async ({ email, slug }) => {
   }
 
   try {
-    const result = await ActivityAnalyticsModel.findOneAndUpdate(
+    const result = await activityAnalyticsModel.findOneAndUpdate(
       { email },
       {
         $push: {

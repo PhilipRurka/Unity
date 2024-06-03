@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { userModel } from '@unity/models';
 import type { UserReq } from '@unity/types';
 
 import mongoConnect from '@/Lib/mongoConnect';
-import UserModel from '@/Models/user';
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -18,7 +18,7 @@ const authOptions: NextAuthOptions = {
 
         try {
           await mongoConnect();
-          const user = await UserModel.findOne({ email });
+          const user = await userModel.findOne({ email });
 
           if (!user) return null;
 

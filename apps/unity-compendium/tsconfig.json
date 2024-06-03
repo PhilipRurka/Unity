@@ -26,14 +26,8 @@
       "@/Api/*": [
         "./app/api/*"
       ],
-      "@/Types/*": [
-        "./@types/*"
-      ],
       "@/Lib/*": [
         "./lib/*"
-      ],
-      "@/Models/*": [
-        "./models/*"
       ],
       "@/Methods/*": [
         "./apiMethods/*"

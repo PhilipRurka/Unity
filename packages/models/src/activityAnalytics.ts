@@ -19,7 +19,7 @@ const activityAnalyticsSchema = new Schema<ActivityAnalyticts>(
   { timestamps: true }
 );
 
-const ActivityAnalyticsModel =
+const activityAnalyticsModel =
   models.activities_analytics || mongoose.model('activities_analytics', activityAnalyticsSchema);
 
-export default ActivityAnalyticsModel;
+export default activityAnalyticsModel;
