@@ -16,7 +16,7 @@
     "update-algolia": "node node-scripts/updateAlgolia",
     "register-user": "node node-scripts/registerUser",
     "delete-user": "node node-scripts/deleteUser",
-    "migrate-up": "npx migrate-mongo up"
+    "migrate-up": "cd ./migrations npx migrate-mongo up && cd -"
   },
   "dependencies": {
     "algoliasearch": "^4.23.3",
