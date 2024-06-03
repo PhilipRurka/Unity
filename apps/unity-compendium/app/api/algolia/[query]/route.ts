@@ -16,7 +16,7 @@ export const GET = async (req: NextRequest, context: Context) => {
 
   const { query } = context.params;
 
-  const [data, status] = await getAlgoliaResults(query);
+  const [result, status] = await getAlgoliaResults(query);
 
-  return NextResponse.json(data, status);
+  return NextResponse.json(result, status);
 };

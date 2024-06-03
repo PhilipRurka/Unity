@@ -10,7 +10,6 @@ type CatchError = {
 
 const getByContentModel: GetByContentModel = async (contentModel) => {
   let client;
-  let result;
 
   try {
     client = createClient({
@@ -23,7 +22,7 @@ const getByContentModel: GetByContentModel = async (contentModel) => {
       include: 10,
     });
 
-    result = items;
+    return [{ result: items }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
@@ -31,8 +30,6 @@ const getByContentModel: GetByContentModel = async (contentModel) => {
 
     return [{ error: { message: error.message } }, { status: 503 }];
   }
-
-  return [{ result }, { status: 200 }];
 };
 
 export default getByContentModel;

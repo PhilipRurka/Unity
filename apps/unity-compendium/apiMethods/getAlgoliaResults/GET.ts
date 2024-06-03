@@ -1,15 +1,12 @@
 import algoliasearch from 'algoliasearch/lite';
 
-import type { ArticleSearchType } from '@unity/types';
-
-type SuccessGet = [{ results: ArticleSearchType[] }, { status: number }];
-type ErrorGet = [{ data: { message: string } }, { status: number }];
+import type { ApiMethodResponseType, ArticleSearchType } from '@unity/types';
 
 type CatchError = {
   message: string;
 };
 
-type GetAlgoliaResults = (query: string) => Promise<SuccessGet | ErrorGet>;
+type GetAlgoliaResults = (query: string) => ApiMethodResponseType<ArticleSearchType[]>;
 
 const searchClient = algoliasearch(process.env.ALGOLIA_DASHBOARD || '', process.env.ALGOLIA_SEARCH || '');
 
@@ -21,13 +18,13 @@ const getAlgoliaResults: GetAlgoliaResults = async (query) => {
       attributesToSnippet: ['content:50'],
     });
 
-    const results = res.hits as ArticleSearchType[];
+    const result = res.hits as ArticleSearchType[];
 
-    return [{ results }, { status: 200 }];
+    return [{ result }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
-    return [{ data: { message: error.message } }, { status: 503 }];
+    return [{ error: { message: error.message } }, { status: 503 }];
   }
 };
 

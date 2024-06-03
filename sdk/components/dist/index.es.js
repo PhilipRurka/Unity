@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useEffect } from 'react';
 import clsx from 'clsx';
 
 var __defProp$5 = Object.defineProperty;
@@ -286,11 +286,45 @@ const RightArrow = ({ className, size }) => {
   }));
 };
 
-const Modal = ({ children }) => {
-  console.log("");
+const Modal = ({ children, title, backgroundStyle = "", isModalOpen, handleCloseModal }) => {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape" || event.code === "Escape") {
+        handleCloseModal();
+      }
+    };
+    if (isModalOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      if (isModalOpen) {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, [isModalOpen]);
   return /* @__PURE__ */ React.createElement("div", {
     className: "pointer-events-none fixed inset-0"
-  }, children);
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: clsx("absolute inset-0 z-40 bg-black transition-opacity", isModalOpen ? "pointer-events-auto opacity-80" : "pointer-events-none opacity-0"),
+    onClick: handleCloseModal
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: clsx("sm:right-initial absolute inset-0 z-50 sm:left-1/2 sm:top-16 sm:-translate-x-1/2 sm:transform", "h-full w-full transition-opacity sm:max-h-modal sm:max-w-modal sm:rounded-xl", isModalOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0", backgroundStyle, backgroundStyle && "bg-cover")
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: clsx("h-full sm:max-h-modal sm:rounded-xl", backgroundStyle && "bg-white bg-opacity-90 py-8")
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "relative mb-3"
+  }, /* @__PURE__ */ React.createElement("span", {
+    className: "ml-8 text-2xl md:text-3xl"
+  }, title), /* @__PURE__ */ React.createElement("button", {
+    className: "absolute right-8 top-0",
+    onClick: handleCloseModal
+  }, /* @__PURE__ */ React.createElement(CloseIcon$1, {
+    size: "10"
+  }))), /* @__PURE__ */ React.createElement("div", {
+    className: "relative h-search-results overflow-y-hidden"
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "h-full overflow-y-scroll px-8"
+  }, children)))));
 };
 
 export { CloseIcon$1 as CloseIcon, ErrorSpan, Field, Form, CloseIcon as HierarchyIcon, Input, Label, Modal, RightArrow, SearchIcon, Select };

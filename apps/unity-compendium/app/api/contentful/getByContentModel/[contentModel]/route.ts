@@ -22,6 +22,7 @@ export const GET = async (req: NextRequest, context: Context) => {
     if (adminKey !== process.env.ADMIN_KEY) return NextResponse.json({}, {});
   } else {
     const isUserAuthenticated = await checkIfUserAuthenticated(req);
+
     if (!isUserAuthenticated) return NextResponse.json({}, {});
   }
 

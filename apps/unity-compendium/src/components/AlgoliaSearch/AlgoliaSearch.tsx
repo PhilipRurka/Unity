@@ -41,7 +41,7 @@ const AlgoliaSearch = () => {
   }, [isSearchModalOpen]);
 
   return (
-    <div data-component="AlgoliaSearch">
+    <div data-component="cAlgoliaSearch">
       <Input
         ref={inputRef}
         defaultValue={lastQuery}
