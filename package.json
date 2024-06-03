@@ -7,7 +7,16 @@
     "lint": "turbo run lint",
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;"
+    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
+    "env-pull": "turbo run env-pull && vercel env pull .env.local",
+    "create-component-template": "node node-scripts/createComponentTemplate/create-component-template",
+    "contentful-codegen": "node node-scripts/contentfulCodegen/contentful-codegen",
+    "update-keyword-helper-check": "node node-scripts/contentArticleLinkCheck/content-article-link-check",
+    "update-captains-logs-missing-underline": "node node-scripts/updateCaptainsLogsMissingUnderline/update-captains-logs-missing-underline",
+    "update-algolia": "node node-scripts/updateAlgolia/update-algolia",
+    "register-user": "node node-scripts/registerUser/register-user",
+    "delete-user": "node node-scripts/deleteUser/delete-user",
+    "migrate-up": "npx migrate-mongo up"
   },
   "dependencies": {
     "algoliasearch": "^4.23.3",
@@ -40,5 +49,23 @@
       "packages/**/*",
       "sdk/*"
     ]
+  },
+  "ntl": {
+    "runner": "yarn",
+    "descriptions": {
+      "dev": "Start localhost:3000",
+      "build": "Lint and build on all workspaces",
+      "lint": "Run eslint",
+      "reset": "Find and delete all node modules",
+      "env-pull": "pull env for multiple workspaces",
+      "create-component-template": "Generates a new component using correct pattern",
+      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
+      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
+      "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful",
+      "update-captains-logs-missing-underline": "Update the Captain's log",
+      "register-user": "Create a new account for a user to use",
+      "delete-user": "Delete an account by email",
+      "migrate-up": "run migrate-mongo up"
+    }
   }
 }

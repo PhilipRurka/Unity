@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const envVariables = () => {
   const filename = fileURLToPath(import.meta.url);
   const dirname = path.dirname(filename);
-  const envPath = path.resolve(dirname, '../../.env.local');
+  const envPath = path.resolve(dirname, "../../.env");
 
   dotenv.config({ path: envPath });
 

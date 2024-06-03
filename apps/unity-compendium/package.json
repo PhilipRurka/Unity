@@ -6,18 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
+    "env-pull": "vercel env pull .env.local",
     "format-prettier": "prettier --write .",
     "debug-prettier": "npx prettier --debug-check .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "create-component-template": "node node-scripts/createComponentTemplate/create-component-template",
-    "contentful-codegen": "node node-scripts/contentfulCodegen/contentful-codegen",
-    "update-keyword-helper-check": "node node-scripts/contentArticleLinkCheck/content-article-link-check",
-    "update-captains-logs-missing-underline": "node node-scripts/updateCaptainsLogsMissingUnderline/update-captains-logs-missing-underline",
-    "update-algolia": "node node-scripts/updateAlgolia/update-algolia",
-    "register-user": "node node-scripts/registerUser/register-user",
-    "delete-user": "node node-scripts/deleteUser/delete-user",
-    "migrate-up": "npx migrate-mongo up",
     "pull-production-env": "vercel env pull --environment=production .env.local"
   },
   "dependencies": {
@@ -43,18 +36,8 @@
   "ntl": {
     "runner": "yarn",
     "descriptions": {
-      "dev": "Start localhost:3000",
-      "build": "Lint and build",
       "test": "Run tests",
       "test:watch": "Re-run tests when a file is changed",
-      "create-component-template": "Generates a new component using correct pattern",
-      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
-      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
-      "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful",
-      "update-captains-logs-missing-underline": "Update the Captain's log",
-      "register-user": "Create a new account for a user to use",
-      "delete-user": "Delete an account by email",
-      "migrate-up": "run migrate-mongo up",
       "pull-production-env": "Pull vercel's production environment"
     }
   }

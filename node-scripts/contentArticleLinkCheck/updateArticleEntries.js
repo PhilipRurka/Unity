@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 
 /* eslint-disable import/no-extraneous-dependencies */
-import contentfulManagement from 'contentful-management';
-import { diff } from 'deep-object-diff';
+import contentfulManagement from "contentful-management";
+import { diff } from "deep-object-diff";
 
 const updateArticleEntries = async (items) => {
-  const { CONTENTFUL_SPACE_ID = '', CONTENTFUL_CMA_TOKEN = '' } = (await import('../utils/env-variables.js')).default();
+  const { CONTENTFUL_SPACE_ID = "", CONTENTFUL_CMA_TOKEN = "" } = (await import("../utils/envVariables.js")).default();
 
   const managementClient = contentfulManagement.createClient({
     accessToken: CONTENTFUL_CMA_TOKEN,
@@ -13,18 +13,18 @@ const updateArticleEntries = async (items) => {
 
   try {
     const space = await managementClient.getSpace(CONTENTFUL_SPACE_ID);
-    const environment = await space.getEnvironment('master');
+    const environment = await space.getEnvironment("master");
 
     const promises = items.map(async ({ id, transformedData }) => {
       try {
         const entry = await environment.getEntry(id);
 
-        const differences = diff(entry.fields.keywordsHelperCheck?.['en-US'], transformedData);
+        const differences = diff(entry.fields.keywordsHelperCheck?.["en-US"], transformedData);
         const isNothingChanged = Object.keys(differences).length === 0;
 
         if (entry && !isNothingChanged) {
           entry.fields.keywordsHelperCheck = {
-            'en-US': transformedData,
+            "en-US": transformedData,
           };
 
           await entry.update();
@@ -36,7 +36,7 @@ const updateArticleEntries = async (items) => {
 
     await Promise.all(promises);
   } catch (error) {
-    console.error('Error updating the entry:', error);
+    console.error("Error updating the entry:", error);
   }
 };
 

@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
-import { unlink, writeFile } from 'fs/promises';
-
-import runPrettier from '../utils/runPrettier.js';
+import runPrettier from "../utils/runPrettier.js";
+import { unlink, writeFile } from "fs/promises";
 
 export const algoliaCodegen = async (algoliaObject) => {
   const keys = Object.keys(algoliaObject);
@@ -16,7 +15,7 @@ export const algoliaCodegen = async (algoliaObject) => {
           matchedWords: string[];
         },
       `,
-      ''
+      ""
     )
     .trim();
 
@@ -31,7 +30,7 @@ export const algoliaCodegen = async (algoliaObject) => {
     .reduce(
       (result, key) => `${result}
     ${key}: string;`,
-      ''
+      ""
     )
     .trim();
 
@@ -49,19 +48,20 @@ export const algoliaCodegen = async (algoliaObject) => {
 
   const finalOutput = `export type ArticleSearchType = {
     ${finalObject}
-};`;
+  };`;
+
+  const filePath = "../../sdk/types/src/algolia-codegen/ArticleSearchType.ts";
 
   try {
-    await unlink('@types/algolia-codegen/ArticleSearchType.ts');
+    await unlink(filePath);
     // eslint-disable-next-line no-empty
   } catch (_) {}
 
   try {
-    const filePath = '@types/algolia-codegen/ArticleSearchType.ts';
     await writeFile(filePath, finalOutput);
     await runPrettier(filePath);
   } catch (error) {
-    console.error('Error occurred:', error.message);
+    console.error("Error occurred:", error.message);
   }
 };
 
