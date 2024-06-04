@@ -1,4 +1,4 @@
-export const createHeading = (level, text) => ({
+export const createHeading = (level: number, text: string) => ({
   nodeType: `heading-${level}`,
   data: {},
   content: [
@@ -11,7 +11,7 @@ export const createHeading = (level, text) => ({
   ],
 });
 
-export const createTableCell = (text, isHeader = false) => ({
+export const createTableCell = (text: string, isHeader = false) => ({
   nodeType: isHeader ? 'table-header-cell' : 'table-cell',
   data: {},
   content: [
@@ -30,7 +30,7 @@ export const createTableCell = (text, isHeader = false) => ({
   ],
 });
 
-export const createParagraph = (text) => ({
+export const createParagraph = (text: string) => ({
   nodeType: 'paragraph',
   data: {},
   content: [

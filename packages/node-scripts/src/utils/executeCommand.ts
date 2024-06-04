@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { spawn } from 'child_process';
 
-const executeCommand = async (command, args) =>
+const executeCommand = async (command: string, args: string[]) =>
   new Promise((resolve, reject) => {
     const process = spawn(command, args);
 

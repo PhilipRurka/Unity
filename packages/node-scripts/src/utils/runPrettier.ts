@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { exec } from 'child_process';
 
-const runPrettier = (filePath) =>
+const runPrettier = (filePath: string) =>
   new Promise((resolve, reject) => {
     exec(`npx prettier --write "${filePath}"`, (error, stdout, stderr) => {
       if (error) {

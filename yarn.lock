@@ -1253,6 +1253,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cli-spinner@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@types/cli-spinner/-/cli-spinner-0.2.3.tgz#5bc57d561a7a6a01690a72c324764136b26a562d"
+  integrity sha512-TMO6mWltW0lCu1de8DMRq9+59OP/tEjghS+rs8ZEQ2EgYP5yV3bGw0tS14TMyJGqFaoVChNvhkVzv9RC1UgX+w==
+  dependencies:
+    "@types/node" "*"
+
 "@types/dom-speech-recognition@^0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@types/dom-speech-recognition/-/dom-speech-recognition-0.0.1.tgz#e326761a04b4a49c0eec2ac7948afc1c6aa12baa"

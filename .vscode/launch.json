@@ -6,6 +6,15 @@
       "type": "node-terminal",
       "request": "launch",
       "command": "npm run dev"
+    },
+    {
+      "name": "Run Node Script",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/packages/node-scripts",
+      "console": "integratedTerminal"
     }
   ]
 }

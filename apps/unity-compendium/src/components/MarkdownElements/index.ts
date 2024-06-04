@@ -1,3 +1,1 @@
-import MarkdownElements from './MarkdownElements';
-
-export default MarkdownElements;
+export * from './MarkdownElement';

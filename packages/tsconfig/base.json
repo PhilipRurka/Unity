@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
+    "module": "esnext",
     "moduleResolution": "Node",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
