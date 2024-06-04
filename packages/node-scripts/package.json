@@ -18,6 +18,8 @@
     "@types/cli-spinner": "^0.2.3",
     "@unity/eslint-config-node": "*",
     "@unity/prettier-config": "*",
-    "@unity/tsconfig": "*"
+    "@unity/tsconfig": "*",
+    "cf-content-types-generator": "^2.15.1",
+    "contentful-cli": "^3.3.1"
   }
 }

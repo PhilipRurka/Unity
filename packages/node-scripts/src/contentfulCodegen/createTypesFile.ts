@@ -3,7 +3,7 @@ import { readdir, unlink, writeFile } from 'fs/promises';
 import runPrettier from '../utils/runPrettier.js';
 
 const createTypesFile = async () => {
-  const contentfulCodegenDir = './sdk/types/src/contentful-codegen';
+  const contentfulCodegenDir = '../../sdk/types/src/contentful-codegen';
   const filePath = `${contentfulCodegenDir}/SimplerContentfulTypes.ts`;
 
   try {
