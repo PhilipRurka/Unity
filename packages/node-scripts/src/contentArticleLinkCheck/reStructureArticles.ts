@@ -1,13 +1,17 @@
-const reStructureArticles = (articles) => {
-  const finalArray = [];
+import { ArticleType, FinalArray, FinalItems } from '@unity/types';
+
+const reStructureArticles = (articles: ArticleType[]) => {
+  const finalArray: FinalArray = [];
 
   articles.forEach((article) => {
     const { slug, keywordLinks } = article.fields;
     const { id } = article.sys;
-    const items = [];
+    const items: FinalItems = [];
 
     article.fields.content.forEach((section) => {
       let sectionText = '';
+
+      if (!section) return;
 
       section.fields.content.content.forEach((node) => {
         if (node.nodeType === 'paragraph') {
@@ -28,7 +32,12 @@ const reStructureArticles = (articles) => {
 
               sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}`;
             } else if (textNode.nodeType === 'hyperlink') {
-              const value = textNode.content.map((linkNode) => linkNode.value).join('');
+              const value = textNode.content
+                .map((linkNode) => {
+                  if (linkNode.nodeType !== 'text') return undefined;
+                  return linkNode.value;
+                })
+                .join('');
               sectionText += `<>${value}</>`;
             }
           });

@@ -3,7 +3,11 @@
 /* eslint-disable no-console */
 import { Spinner } from 'cli-spinner';
 
-type ExecuteStep = (stepDescription: string, action: () => unknown, options?: { disableSpinner: boolean }) => unknown;
+type ExecuteStep = <T>(
+  stepDescription: string,
+  action: () => Promise<T> | T,
+  options?: { disableSpinner: boolean }
+) => Promise<T>;
 
 const executeStep: ExecuteStep = async (stepDescription, action, options) => {
   const spinner = new Spinner('Please hold.. %s');

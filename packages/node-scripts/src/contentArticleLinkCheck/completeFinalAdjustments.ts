@@ -1,10 +1,12 @@
-const completeFinalAdjustments = (articles, listOfKeywordLinks) => {
-  const articlesKeywordsCheck = [];
+import { ArticlesKeywordsCheck, FinalArray, ListOfKeywordLinks, TrackedKeyword } from '@unity/types';
+
+const completeFinalAdjustments = (articles: FinalArray, listOfKeywordLinks: ListOfKeywordLinks) => {
+  const articlesKeywordsCheck: ArticlesKeywordsCheck[] = [];
 
   articles.forEach(({ id, slug: articleSlug, sections }) => {
-    const listOfTrackedKeywords = [];
-    const listOfMissPlacedLinks = [];
-    const missingLinks = [];
+    const listOfTrackedKeywords: string[] = [];
+    const listOfMissPlacedLinks: TrackedKeyword[] = [];
+    const missingLinks: TrackedKeyword[] = [];
 
     for (let i = 0; i < sections.length; i += 1) {
       const { entryTitle, content } = sections[i];

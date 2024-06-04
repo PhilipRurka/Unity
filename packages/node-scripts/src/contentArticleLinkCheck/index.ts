@@ -1,3 +1,5 @@
+import { ArticleType } from '@unity/types';
+
 import executeStep from '../utils/executeStep.js';
 import getByContentModel from '../utils/getByContentModel.js';
 import completeFinalAdjustments from './completeFinalAdjustments.js';
@@ -9,9 +11,10 @@ import updateArticleEntries from './updateArticleEntries.js';
 import updateCaptainsLogEntry from './updateCaptainsLogEntry.js';
 
 const runCommands = async () => {
-  const articles = await executeStep('Step 1: Get all entries from Contentful with content model type "articles"', () =>
-    getByContentModel('article')
-  );
+  const articles = (await executeStep(
+    'Step 1: Get all entries from Contentful with content model type "articles"',
+    () => getByContentModel('article')
+  )) as ArticleType[];
 
   const concattedContentArray = await executeStep('Step 2: Concat content text within sections', () =>
     reStructureArticles(articles)
@@ -39,7 +42,7 @@ const runCommands = async () => {
     () => transformIntoCaptainsLogValue(keywordMatchChecks)
   );
 
-  await await executeStep("Step 8: Upload keyword checks onto Contentful's Captain's Log entry", () =>
+  await executeStep("Step 8: Upload keyword checks onto Contentful's Captain's Log entry", () =>
     updateCaptainsLogEntry(transformedCaptainsLogData)
   );
 };
