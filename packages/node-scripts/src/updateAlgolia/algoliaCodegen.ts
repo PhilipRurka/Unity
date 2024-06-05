@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
-import runPrettier from "../utils/runPrettier.js";
-import { unlink, writeFile } from "fs/promises";
+import { unlink, writeFile } from 'fs/promises';
 
-export const algoliaCodegen = async (algoliaObject) => {
+import { AlgoliaEntrie } from '@unity/types';
+
+import runPrettier from '../utils/runPrettier.js';
+
+const algoliaCodegen = async (algoliaObject: AlgoliaEntrie) => {
   const keys = Object.keys(algoliaObject);
 
   const highlightResult = keys
@@ -15,7 +18,7 @@ export const algoliaCodegen = async (algoliaObject) => {
           matchedWords: string[];
         },
       `,
-      ""
+      ''
     )
     .trim();
 
@@ -30,7 +33,7 @@ export const algoliaCodegen = async (algoliaObject) => {
     .reduce(
       (result, key) => `${result}
     ${key}: string;`,
-      ""
+      ''
     )
     .trim();
 
@@ -50,7 +53,7 @@ export const algoliaCodegen = async (algoliaObject) => {
     ${finalObject}
   };`;
 
-  const filePath = "./sdk/types/src/algolia-codegen/ArticleSearchType.ts";
+  const filePath = '../../sdk/types/src/algolia-codegen/ArticleSearchType.ts';
 
   try {
     await unlink(filePath);
@@ -61,7 +64,12 @@ export const algoliaCodegen = async (algoliaObject) => {
     await writeFile(filePath, finalOutput);
     await runPrettier(filePath);
   } catch (error) {
-    console.error("Error occurred:", error.message);
+    if (error instanceof Error) {
+      throw new Error(`Error occurred: ${error.message}`);
+      return;
+    }
+
+    throw new Error(`Error occurred`);
   }
 };
 

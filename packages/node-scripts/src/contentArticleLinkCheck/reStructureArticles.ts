@@ -34,7 +34,7 @@ const reStructureArticles = (articles: ArticleType[]) => {
             } else if (textNode.nodeType === 'hyperlink') {
               const value = textNode.content
                 .map((linkNode) => {
-                  if (linkNode.nodeType !== 'text') return undefined;
+                  if (linkNode.nodeType !== 'text') return '';
                   return linkNode.value;
                 })
                 .join('');

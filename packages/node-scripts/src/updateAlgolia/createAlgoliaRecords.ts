@@ -1,5 +1,7 @@
-const createAlgoliaRecords = (articles) => {
-  const algoliaEntries = [];
+import { AlgoliaEntrie, ArticleType } from '@unity/types';
+
+const createAlgoliaRecords = (articles: ArticleType[]) => {
+  const algoliaEntries: AlgoliaEntrie[] = [];
 
   articles.forEach((article) => {
     const { slug, title } = article.fields;
@@ -7,7 +9,7 @@ const createAlgoliaRecords = (articles) => {
     article.fields.content.forEach((section) => {
       let sectionText = '';
 
-      section.fields.content.content.forEach((node) => {
+      section?.fields.content.content.forEach((node) => {
         const isHeading =
           node.nodeType === 'heading-3' ||
           node.nodeType === 'heading-4' ||
@@ -36,7 +38,12 @@ const createAlgoliaRecords = (articles) => {
 
               sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}${isHeading ? '- ' : ''}`;
             } else if (textNode.nodeType === 'hyperlink') {
-              sectionText += `${textNode.content.map((linkNode) => linkNode.value).join('')}`;
+              sectionText += `${textNode.content
+                .map((linkNode) => {
+                  if (linkNode.nodeType !== 'text') return '';
+                  return linkNode.value;
+                })
+                .join('')}`;
             }
           });
 
@@ -48,7 +55,7 @@ const createAlgoliaRecords = (articles) => {
         algoliaEntries.push({
           slug,
           title,
-          contentTitle: section.fields.title,
+          contentTitle: section?.fields.title,
           content: sectionText,
         });
       }

@@ -35,3 +35,10 @@ export type TransformedToRichTextData = Array<{
   id: string;
   transformedData: Document;
 }>;
+
+export type AlgoliaEntrie = {
+  slug: string;
+  title: string;
+  contentTitle: string | undefined;
+  content: string;
+};

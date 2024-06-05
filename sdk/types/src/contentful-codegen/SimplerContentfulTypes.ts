@@ -41,4 +41,4 @@ type ContentModelMapping = {
   link: LinkType;
 };
 
-export type GetByContentModel<T extends AllContentModelTypes> = Promise<ContentModelMapping[T]>;
+export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T]>;

@@ -14,13 +14,16 @@ const createTypesFile = async () => {
   const files = await readdir(contentfulCodegenDir);
   const imports: string[] = [];
   const types: string[] = [];
+  const mappings: string[] = [];
   files.forEach((file) => {
     if (file.endsWith('.ts') && file !== 'index.ts') {
       const typeName = file.replace('Type', '').replace('.ts', '');
       const importPath = `./${file.replace('.ts', '')}`;
       const typeWithoutLinks = `Type${typeName}WithoutUnresolvableLinksResponse`;
+      const camelCaseName = typeName.charAt(0).toLowerCase() + typeName.slice(1);
       imports.push(`import { ${typeWithoutLinks} } from "${importPath}";`);
-      types.push(`export type ${typeName}Type = ${typeWithoutLinks}`);
+      types.push(`export type ${typeName}Type = ${typeWithoutLinks};`);
+      mappings.push(`${camelCaseName}: ${typeName}Type;`);
     }
   });
 
@@ -29,7 +32,16 @@ const createTypesFile = async () => {
     .map((file) => file.replace('Type', '').replace('.ts', ''))
     .map((name) => `'${name.charAt(0).toLowerCase() + name.slice(1)}'`);
   const typeUnion = `export type AllContentModelTypes = ${typeNames.join(' | ')};`;
-  const content = [...imports, '', typeUnion, '', ...types].join('\n');
+
+  const contentModelMapping = `type ContentModelMapping = {
+  ${mappings.join('\n  ')}
+};`;
+
+  const getByContentModel = `
+  export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T]>;`;
+
+  const content = [...imports, '', typeUnion, '', ...types, '', contentModelMapping, '', getByContentModel].join('\n');
+
   await writeFile(filePath, content);
   await runPrettier(filePath);
 };
