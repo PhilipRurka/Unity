@@ -1,6 +1,11 @@
-import { ArticlesKeywordsCheck, FinalArray, ListOfKeywordLinks, TrackedKeyword } from '@unity/types';
+import {
+  ArticlesKeywordsCheck,
+  ListOfKeywordLinks,
+  ReStructureForArticleLinkCheck,
+  TrackedKeyword,
+} from '@unity/types';
 
-const completeFinalAdjustments = (articles: FinalArray, listOfKeywordLinks: ListOfKeywordLinks) => {
+const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, listOfKeywordLinks: ListOfKeywordLinks) => {
   const articlesKeywordsCheck: ArticlesKeywordsCheck[] = [];
 
   articles.forEach(({ id, slug: articleSlug, sections }) => {

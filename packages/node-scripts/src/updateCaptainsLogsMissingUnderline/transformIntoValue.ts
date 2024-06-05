@@ -1,6 +1,8 @@
+import { ReStructureForCaptainsLogLinkCheck } from '@unity/types';
+
 import { createHeading, createParagraph, createTableCell } from '../utils/richTextNodeCreation.js';
 
-const createTable = (rows) => {
+const createTable = (rows: ReStructureForCaptainsLogLinkCheck[]) => {
   const tableContent = [
     {
       nodeType: 'table-row',
@@ -26,7 +28,7 @@ const createTable = (rows) => {
   };
 };
 
-const transformIntoValue = (concattedContentArray) => {
+const transformIntoValue = (concattedContentArray: ReStructureForCaptainsLogLinkCheck[]) => {
   const content = [];
 
   content.push(createHeading(2, 'Overview of Incomplete Underlined Items'));

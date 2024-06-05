@@ -1,7 +1,7 @@
-import { ArticleType, FinalArray, FinalItems } from '@unity/types';
+import { ArticleType, FinalItems, ReStructureForArticleLinkCheck } from '@unity/types';
 
 const reStructureArticles = (articles: ArticleType[]) => {
-  const finalArray: FinalArray = [];
+  const finalArray: ReStructureForArticleLinkCheck = [];
 
   articles.forEach((article) => {
     const { slug, keywordLinks } = article.fields;

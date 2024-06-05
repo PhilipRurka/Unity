@@ -1,5 +1,7 @@
-const reStructureArticles = (articles) => {
-  const finalArray = [];
+import { ArticleType, ReStructureForCaptainsLogLinkCheck } from '@unity/types';
+
+const reStructureArticles = (articles: ArticleType[]) => {
+  const finalArray: ReStructureForCaptainsLogLinkCheck[] = [];
 
   articles.forEach((article) => {
     const {
@@ -10,7 +12,7 @@ const reStructureArticles = (articles) => {
     let markUnderlineCount = 0;
 
     article.fields.content.forEach((section) => {
-      section.fields.content.content.forEach((node) => {
+      section?.fields.content.content.forEach((node) => {
         if (node.nodeType === 'paragraph') {
           node.content.forEach((textNode) => {
             if (textNode.nodeType === 'text') {

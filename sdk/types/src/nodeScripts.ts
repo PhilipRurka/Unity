@@ -5,7 +5,7 @@ export type FinalItems = Array<{
   content: string;
 }>;
 
-export type FinalArray = Array<{
+export type ReStructureForArticleLinkCheck = Array<{
   id: string;
   slug: string;
   keywordLinks: string[] | undefined;
@@ -41,4 +41,10 @@ export type AlgoliaEntrie = {
   title: string;
   contentTitle: string | undefined;
   content: string;
+};
+
+export type ReStructureForCaptainsLogLinkCheck = {
+  id: string;
+  slug: string;
+  markUnderlineCount: number;
 };
