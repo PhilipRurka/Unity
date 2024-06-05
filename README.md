@@ -6,7 +6,7 @@ This projects stack is the following.
   <tr>
     <td>
       <div>
-        <a href='https://vercel.com/home' color='black'>
+        <a href='https://vercel.com/home' color='#000000'>
           <img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
           Vercel
         </a>
