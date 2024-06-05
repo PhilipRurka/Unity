@@ -5,10 +5,12 @@ This projects stack is the following.
 <table>
   <tr>
     <td>
-      <a href='https://vercel.com/home' style='color: black; text-decoration: none;'>
-        <img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
-        Vercel
-      </a>
+      <div style='color: black'>
+        <a href='https://vercel.com/home' style='color: black; text-decoration: none;'>
+          <img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
+          Vercel
+        </a>
+      </div>
     </td>
     <td>
       <a href='' style='color: black; text-decoration: none;'>
