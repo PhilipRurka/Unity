@@ -6,116 +6,116 @@ This projects stack is the following.
   <tr>
     <td>
       <div>
-        <a href='https://vercel.com/home' color='#000000'>
+        <a href='https://vercel.com/home'>
           <img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
-          Vercel
         </a>
+        <div>Vercel</div>
       </div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://skillicons.dev/icons?i=nextjs" width="48" height="48" alt="Next.js" />
-        Nextjs
       </a>
+      <div>Nextjs</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" />
-        Typescript
       </a>
+      <div>Typescript</div>
     </td>
   </tr>
   <tr>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="Mongodb" />
-        Mongodb
       </a>
+      <div>Mongodb</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/mongoose.png?raw=true" width="48" height="48" alt="Mongoose" />
-        Mongoose
       </a>
+      <div>Mongoose</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/migrate-mongo.png?raw=true" width="48" height="48" alt="Migrate Mongo" />
-        Mongo
       </a>
+      <div>Mongo</div>
     </td>
   </tr>
   <tr>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
-        Tailwind
       </a>
+      <div>Tailwind</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/swr.png?raw=true" width="48" height="48" alt="SWR" />
-        SWR
       </a>
+      <div>SWR</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/next-auth.png?raw=true" width="48" height="48" alt="NextAuth" />
-        NextAuth
       </a>
+      <div>NextAuth</div>
     </td>
   </tr>
   <tr>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/prettier.png?raw=true" width="48" height="48" alt="TypeScript" />
-        Prettier
       </a>
+      <div>Prettier</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/eslint.png?raw=true" width="48" height="48" alt="TypeScript" />
-        ESLint
       </a>
+      <div>ESLint</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/husky.png?raw=true" width="48" height="48" alt="TypeScript" />
-        Husky
       </a>
+      <div>Husky</div>
     </td>
   </tr>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/react-hook-form.png?raw=true" width="48" height="48" alt="React Hood Form" />
-        Form
       </a>
+      <div>Form</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/zod.png?raw=true" width="48" height="48" alt="Zod" />
-        Zod
       </a>
+      <div>Zod</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/contentful.png?raw=true" width="48" height="48" alt="Contentful" />
-        Contentful
       </a>
+      <div>Contentful</div>
     </td>
   </tr>
   </tr>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/turbo.svg?raw=true" width="48" height="48" alt="Turbo" />
-        Turbo
       </a>
+      <div>Turbo</div>
     </td>
     <td>
-      <a href='' style='color: black; text-decoration: none;'>
+      <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/rollup.svg?raw=true" width="48" height="48" alt="Rollup" />
-        Rollup
       </a>
+      <div>Rollup</div>
     </td>
     <td></td>
   </tr>
