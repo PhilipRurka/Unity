@@ -4,3 +4,5 @@ node_modules
 .env*.local
 .vercel
 packages/node-scripts/dist
+dist/
+.DS_Store
