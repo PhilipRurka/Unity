@@ -1,4 +1,4 @@
-const emailTemplate = (email, password) => ({
+const emailTemplate = (email: string, password: string) => ({
   to: email,
   from: 'hey@philiprurka.com',
   subject: 'Welcome to the Unity Compendium',
@@ -79,7 +79,6 @@ const emailTemplate = (email, password) => ({
         </div>
       </body>
       </html>
-
     `,
 });
 

@@ -11,7 +11,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-async function registerUser(email) {
+async function registerUser(email: string) {
   const password = crypto.randomBytes(8).toString('hex');
 
   await executeStep('Step 1: Create new user in database', () => createUserWithCredentials(email, password));
