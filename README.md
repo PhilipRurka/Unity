@@ -2,7 +2,7 @@
 
 This projects stack is the following.
 
-<table class='project-stack-table'>
+<table>
   <tr>
     <td>
       <a href='https://vercel.com/home' style='color: black; text-decoration: none;'>
@@ -117,8 +117,6 @@ This projects stack is the following.
     </td>
     <td></td>
     <td></td>
-  <tr>
-
   </tr>
 </table>
 
