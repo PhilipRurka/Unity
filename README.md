@@ -116,7 +116,6 @@ This projects stack is the following.
       </a>
     </td>
     <td></td>
-    <td></td>
   </tr>
 </table>
 
