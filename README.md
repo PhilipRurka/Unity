@@ -3,17 +3,6 @@
 This projects stack is the following.
 
 <table class='project-stack-table'>
-<style>
-  .project-stack-table a {
-    color: black;
-    text-decoration: none;
-  }
-
-.project-stack-table td {
-
-}
-</style>
-
   <tr>
     <td>
       <a href='https://vercel.com/home' style='color: black; text-decoration: none;'>
