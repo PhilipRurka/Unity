@@ -1,0 +1,11 @@
+{
+  "extends": "@unity/tsconfig/base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": ["**/*.ts", "next-env.d.ts"],
+  "exclude": [
+    "node_modules", ".next", "out"
+  ]
+}

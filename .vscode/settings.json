@@ -1,4 +1,6 @@
+
 {
+  "editor.formatOnSave": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -8,13 +10,52 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
-  "files.exclude": {
-    ".git": true,
-    ".husky": true,
-    ".next": true,
-    ".vercel": true,
-    "node_modules": true,
-    "yarn.lock": true
-  }
+  "settings.cycle": [
+    {
+      "id": "zMode",
+      "overrideWorkspaceSettings": false,
+      "values": [
+        {
+          "files.exclude": {
+            /** Level 2 */
+          "packages": true,
+          "**/*config*": true,
+          "**/package.json": true,
+          "**/.eslintrc": true,
+          "**/turbo.json": true,
+          "**/*.setup.*": true,
+
+          /** Level 3 */
+          ".git": true,
+          ".husky": true,
+          ".vercel": true,
+          "**/.prettierignore": true,
+          "**/.gitignore": true,
+          "**/.nvmrc": true,
+          "**/next-env.d.ts": true,
+          "**/.next": true,
+          "**/node_modules": true,
+          "**/yarn.lock": true,
+          "**/.turbo": true,
+          "**/dist/**": true
+          }
+        },
+        {
+          "files.exclude": {}
+        }
+      ]
+    },
+    {
+      "id": "colorTheme",
+      "overrideWorkspaceSettings": false,
+      "values": [
+        {
+          "workbench.colorTheme": "Atom One Light"
+        },
+        {
+          "workbench.colorTheme": "Atom One Dark"
+        }
+      ]
+    }
+  ]
 }
