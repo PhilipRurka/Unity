@@ -35,15 +35,19 @@ This projects stack is the following.
     <td>
       <br/>
       <span>
-        <img width='20' />
+        <img width='15' />
       </span>
       <span>
-        <a href=''>
-          <img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="Mongodb" />
-        </a>
-        <div>Mongodb</div>
+        <div>
+          <a href=''>
+            <img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="Mongodb" />
+          </a>
+          <div>Mongodb</div>
+        </div>
       </span>
-      <span></span>
+      <span>
+        <img width='15' />
+      </span>
       <br/>
     </td>
     <td>
