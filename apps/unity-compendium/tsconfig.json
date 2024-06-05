@@ -1,0 +1,51 @@
+{
+  "extends": "@unity/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/Components/*": [
+        "./src/components/*"
+      ],
+      "@/Fetchers/*": [
+        "./src/fetchers/*"
+      ],
+      "@/Styles/*": [
+        "./src/styles/*"
+      ],
+      "@/Hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@/Providers/*": [
+        "./src/providers/*"
+      ],
+      "@/Api/*": [
+        "./app/api/*"
+      ],
+      "@/Lib/*": [
+        "./lib/*"
+      ],
+      "@/Methods/*": [
+        "./apiMethods/*"
+      ]
+    },
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "tsconfig.json"
+  ]
+}

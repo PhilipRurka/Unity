@@ -1,0 +1,20 @@
+{
+  "name": "@unity/types",
+  "version": "1.0.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "src/index.ts",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "devDependencies": {
+    "@contentful/rich-text-types": "^16.2.1",
+    "@unity/eslint-config-node": "*",
+    "@unity/prettier-config": "*",
+    "@unity/rollup-config": "*",
+    "@unity/tsconfig": "*"
+  }
+}

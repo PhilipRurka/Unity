@@ -1,0 +1,16 @@
+{
+  "name": "@unity/rollup-config",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.12.28",
+    "rollup": "^2.63.0",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-bundle-size": "^1.0.3",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@unity/tsconfig": "*"
+  }
+}

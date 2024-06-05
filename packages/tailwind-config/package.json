@@ -1,0 +1,7 @@
+{
+  "name": "@unity/tailwind",
+  "version": "1.0.0",
+  "private": true,
+  "module": "./index.js",
+  "type": "module"
+}

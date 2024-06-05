@@ -1,0 +1,25 @@
+{
+  "name": "@unity/node-scripts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "create-component-template": "node dist/createComponentTemplate",
+    "contentful-codegen": "node dist/contentfulCodegen",
+    "update-keyword-helper-check": "node dist/contentArticleLinkCheck",
+    "update-captains-logs-missing-underline": "node dist/updateCaptainsLogsMissingUnderline",
+    "update-algolia": "node dist/updateAlgolia",
+    "register-user": "node dist/registerUser",
+    "delete-user": "node dist/deleteUser"
+  },
+  "devDependencies": {
+    "@types/cli-spinner": "^0.2.3",
+    "@unity/eslint-config-node": "*",
+    "@unity/prettier-config": "*",
+    "@unity/tsconfig": "*",
+    "cf-content-types-generator": "^2.15.1",
+    "contentful-cli": "^3.3.1"
+  }
+}

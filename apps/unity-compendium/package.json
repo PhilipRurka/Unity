@@ -1,0 +1,47 @@
+{
+  "name": "unity-compendium",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "next lint",
+    "env-pull": "vercel env pull .env.local",
+    "format-prettier": "prettier --write .",
+    "debug-prettier": "npx prettier --debug-check .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "pull-production-env": "vercel env pull --environment=production .env.local"
+  },
+  "dependencies": {
+    "@unity/components": "*",
+    "@unity/frontend-dependencies": "*",
+    "@unity/hooks": "*",
+    "@unity/models": "*",
+    "contentful-import": "^9.0.4",
+    "react-instantsearch": "^7.8.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.4",
+    "@types/react-instantsearch": "^6.10.4",
+    "@unity/frontend-dev-dependencies": "*",
+    "cli-spinner": "^0.2.10",
+    "contentful-management": "^11.25.5",
+    "crypto": "^1.0.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "engines": {
+    "node": "20"
+  },
+  "type": "module",
+  "ntl": {
+    "runner": "yarn",
+    "descriptions": {
+      "test": "Run tests",
+      "test:watch": "Re-run tests when a file is changed",
+      "pull-production-env": "Pull vercel's production environment"
+    }
+  }
+}
