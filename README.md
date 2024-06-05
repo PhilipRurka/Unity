@@ -24,8 +24,6 @@ This projects stack is the following.
       </a>
       <div>Typescript</div>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href=''>
         <img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="Mongodb" />
@@ -38,14 +36,14 @@ This projects stack is the following.
       </a>
       <div>Mongoose</div>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/migrate-mongo.png?raw=true" width="48" height="48" alt="Migrate Mongo" />
       </a>
       <div>Mongo</div>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href=''>
         <img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind" />
@@ -64,14 +62,14 @@ This projects stack is the following.
       </a>
       <div>NextAuth</div>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/prettier.png?raw=true" width="48" height="48" alt="TypeScript" />
       </a>
       <div>Prettier</div>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/eslint.png?raw=true" width="48" height="48" alt="TypeScript" />
@@ -84,7 +82,6 @@ This projects stack is the following.
       </a>
       <div>Husky</div>
     </td>
-  </tr>
     <td>
       <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/react-hook-form.png?raw=true" width="48" height="48" alt="React Hood Form" />
@@ -104,7 +101,7 @@ This projects stack is the following.
       <div>Contentful</div>
     </td>
   </tr>
-  </tr>
+  <tr>
     <td>
       <a href=''>
         <img src="https://github.com/PhilipRurka/unity/blob/main/readme-assets/turbo.svg?raw=true" width="48" height="48" alt="Turbo" />
@@ -117,6 +114,8 @@ This projects stack is the following.
       </a>
       <div>Rollup</div>
     </td>
+    <td></td>
+    <td></td>
     <td></td>
   </tr>
 </table>
