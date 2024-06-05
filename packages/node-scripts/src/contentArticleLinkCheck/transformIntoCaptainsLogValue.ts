@@ -1,16 +1,18 @@
-import { ArticlesKeywordsCheck, Block, Document, TopLevelBlock } from '@unity/types';
+import { BLOCKS, Document, TopLevelBlock } from '@contentful/rich-text-types';
+
+import { ArticlesKeywordsCheck } from '@unity/types';
 
 import { createHeading, createParagraph, createTableCell } from '../utils/richTextNodeCreation.js';
 
-const createTable = (rows: ArticlesKeywordsCheck[]) => {
-  const tableContent: Block[] = [
+const createTable = (rows: ArticlesKeywordsCheck[]): TopLevelBlock => {
+  const tableContent = [
     {
-      nodeType: 'table-row',
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
       content: [
-        createTableCell('Slug', true) as Block,
-        createTableCell('Miss Placed Links', true) as Block,
-        createTableCell('Missing Links', true) as Block,
+        createTableCell('Slug', true),
+        createTableCell('Miss Placed Links', true),
+        createTableCell('Missing Links', true),
       ],
     },
   ];
@@ -21,32 +23,32 @@ const createTable = (rows: ArticlesKeywordsCheck[]) => {
     if (row.listOfMissPlacedLinks.length === 0 && row.missingLinks.length === 0) return;
 
     tableContent.push({
-      nodeType: 'table-row',
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
       content: [
-        createTableCell(row.slug) as Block,
-        createTableCell(String(row.listOfMissPlacedLinks.length)) as Block,
-        createTableCell(String(row.missingLinks.length)) as Block,
+        createTableCell(row.slug),
+        createTableCell(String(row.listOfMissPlacedLinks.length)),
+        createTableCell(String(row.missingLinks.length)),
       ],
     });
   });
 
   return {
-    nodeType: 'table',
+    nodeType: BLOCKS.TABLE,
     data: {},
     content: tableContent,
   };
 };
 
 const transformIntoCaptainsLogValue = (keywordMatchChecks: ArticlesKeywordsCheck[]): Document => {
-  const content = [];
+  const content: Document['content'] = [];
 
-  content.push(createHeading(2, 'Overview of Keyword Links Check') as TopLevelBlock);
-  content.push(createTable(keywordMatchChecks) as TopLevelBlock);
-  content.push(createParagraph('') as TopLevelBlock);
+  content.push(createHeading(BLOCKS.HEADING_2, 'Overview of Keyword Links Check'));
+  content.push(createTable(keywordMatchChecks));
+  content.push(createParagraph(''));
 
   return {
-    nodeType: 'document',
+    nodeType: BLOCKS.DOCUMENT,
     data: {},
     content,
   };

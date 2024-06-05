@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
+import { Document } from '@contentful/rich-text-types';
 import contentfulManagement from 'contentful-management';
 import { diff } from 'deep-object-diff';
-
-import { Document } from '@unity/types';
 
 import getByContentModel from '../utils/getByContentModel.js';
 

@@ -1,35 +1,30 @@
-import {
-  ArticlesKeywordsCheck,
-  Block,
-  Blocks,
-  TopLevelBlock,
-  TrackedKeyword,
-  TransformedToRichTextData,
-} from '@unity/types';
+import { BLOCKS, Document, TopLevelBlock } from '@contentful/rich-text-types';
+
+import { ArticlesKeywordsCheck, TrackedKeyword, TransformedToRichTextData } from '@unity/types';
 
 import { createHeading, createParagraph, createTableCell } from '../utils/richTextNodeCreation.js';
 
-const createTable = (rows: TrackedKeyword[]) => {
+const createTable = (rows: TrackedKeyword[]): TopLevelBlock => {
   const sortedRows = rows.sort((a, b) => a.keyword.localeCompare(b.keyword));
 
-  const tableContent: Block[] = [
+  const tableContent = [
     {
-      nodeType: 'table-row' as Blocks,
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
-      content: [createTableCell('Keyword', true) as Block, createTableCell('Slug', true) as Block],
+      content: [createTableCell('Keyword', true), createTableCell('Slug', true)],
     },
   ];
 
   sortedRows.forEach((row) => {
     tableContent.push({
-      nodeType: 'table-row' as Blocks,
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
-      content: [createTableCell(row.keyword) as Block, createTableCell(row.slug) as Block],
+      content: [createTableCell(row.keyword), createTableCell(row.slug)],
     });
   });
 
   return {
-    nodeType: 'table' as Blocks,
+    nodeType: BLOCKS.TABLE,
     data: {},
     content: tableContent,
   };
@@ -40,13 +35,13 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;
-    const content: TopLevelBlock[] = [];
+    const content: Document['content'] = [];
 
     if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) {
       transformedData.push({
         id,
         transformedData: {
-          nodeType: 'document',
+          nodeType: BLOCKS.DOCUMENT,
           data: {},
           content: [],
         },
@@ -63,27 +58,27 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
     ];
 
     entryTitles.forEach((entryTitle) => {
-      content.push(createHeading(2, entryTitle) as TopLevelBlock);
+      content.push(createHeading(BLOCKS.HEADING_2, entryTitle));
 
       const missingLinks = data.missingLinks.filter((link) => link.entryTitle === entryTitle);
       if (missingLinks.length > 0) {
-        content.push(createHeading(3, 'Missing Links') as TopLevelBlock);
-        content.push(createTable(missingLinks) as TopLevelBlock);
+        content.push(createHeading(BLOCKS.HEADING_3, 'Missing Links'));
+        content.push(createTable(missingLinks));
       }
 
       const missPlacedLinks = data.listOfMissPlacedLinks.filter((link) => link.entryTitle === entryTitle);
       if (missPlacedLinks.length > 0) {
-        content.push(createHeading(3, 'Miss Placed Links') as TopLevelBlock);
-        content.push(createTable(missPlacedLinks) as TopLevelBlock);
+        content.push(createHeading(BLOCKS.HEADING_3, 'Miss Placed Links'));
+        content.push(createTable(missPlacedLinks));
       }
 
-      content.push(createParagraph('') as TopLevelBlock);
+      content.push(createParagraph(''));
     });
 
     transformedData.push({
       id,
       transformedData: {
-        nodeType: 'document',
+        nodeType: BLOCKS.DOCUMENT,
         data: {},
         content,
       },

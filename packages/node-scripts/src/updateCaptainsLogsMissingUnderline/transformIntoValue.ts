@@ -1,11 +1,13 @@
+import { BLOCKS, Document, TopLevelBlock } from '@contentful/rich-text-types';
+
 import { ReStructureForCaptainsLogLinkCheck } from '@unity/types';
 
 import { createHeading, createParagraph, createTableCell } from '../utils/richTextNodeCreation.js';
 
-const createTable = (rows: ReStructureForCaptainsLogLinkCheck[]) => {
+const createTable = (rows: ReStructureForCaptainsLogLinkCheck[]): TopLevelBlock => {
   const tableContent = [
     {
-      nodeType: 'table-row',
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
       content: [createTableCell('Slug', true), createTableCell('Underline Count', true)],
     },
@@ -15,28 +17,28 @@ const createTable = (rows: ReStructureForCaptainsLogLinkCheck[]) => {
 
   sortedRows.forEach((row) => {
     tableContent.push({
-      nodeType: 'table-row',
+      nodeType: BLOCKS.TABLE_ROW,
       data: {},
       content: [createTableCell(row.slug), createTableCell(String(row.markUnderlineCount))],
     });
   });
 
   return {
-    nodeType: 'table',
+    nodeType: BLOCKS.TABLE,
     data: {},
     content: tableContent,
   };
 };
 
-const transformIntoValue = (concattedContentArray: ReStructureForCaptainsLogLinkCheck[]) => {
-  const content = [];
+const transformIntoValue = (concattedContentArray: ReStructureForCaptainsLogLinkCheck[]): Document => {
+  const content: Document['content'] = [];
 
-  content.push(createHeading(2, 'Overview of Incomplete Underlined Items'));
+  content.push(createHeading(BLOCKS.HEADING_2, 'Overview of Incomplete Underlined Items'));
   content.push(createTable(concattedContentArray));
   content.push(createParagraph(''));
 
   return {
-    nodeType: 'document',
+    nodeType: BLOCKS.DOCUMENT,
     data: {},
     content,
   };
