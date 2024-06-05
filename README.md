@@ -5,8 +5,8 @@ This projects stack is the following.
 <table>
   <tr>
     <td>
-      <div color='black'>
-        <a href='https://vercel.com/home' style='color: black; text-decoration: none;'>
+      <div>
+        <a href='https://vercel.com/home' color='black'>
           <img src="https://skillicons.dev/icons?i=vercel" width="48" height="48" alt="Vercel" />
           Vercel
         </a>
