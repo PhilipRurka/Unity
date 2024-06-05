@@ -2,18 +2,18 @@
 
 This projects stack is the following.
 
+<table class='project-stack-table'>
 <style>
   .project-stack-table a {
     color: black;
     text-decoration: none;
   }
 
-  .project-stack-table td {
-    
-  }
+.project-stack-table td {
+
+}
 </style>
 
-<table class='project-stack-table'>
   <tr>
     <td>
       <a href='https://vercel.com/home'>
