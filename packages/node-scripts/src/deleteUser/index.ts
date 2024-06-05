@@ -1,4 +1,3 @@
-import crypto from 'crypto';
 import readline from 'readline';
 
 import executeStep from '../utils/executeStep.js';
@@ -10,10 +9,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-async function registerUser(email) {
-  const password = crypto.randomBytes(8).toString('hex');
-
-  await executeStep('Step 1: Delete user in database', () => deleteUserByEmail(email, password));
+async function registerUser(email: string) {
+  await executeStep('Step 1: Delete user in database', () => deleteUserByEmail(email));
 
   await executeStep('Step 2: Delete activitiesAnalytics using email', () => deleteUserActivitiesAnalytics(email));
 }
