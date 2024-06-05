@@ -28,3 +28,17 @@ export type InfoboxType = TypeInfoboxWithoutUnresolvableLinksResponse;
 export type InfoboxBlockType = TypeInfoboxBlockWithoutUnresolvableLinksResponse;
 export type InfoboxItemType = TypeInfoboxItemWithoutUnresolvableLinksResponse;
 export type LinkType = TypeLinkWithoutUnresolvableLinksResponse;
+
+type ContentModelMapping = {
+  article: ArticleType;
+  captainsLog: CaptainsLogType;
+  contentSection: ContentSectionType;
+  hierarchyLayout: HierarchyLayoutType;
+  hierarchyLink: HierarchyLinkType;
+  infobox: InfoboxType;
+  infoboxBlock: InfoboxBlockType;
+  infoboxItem: InfoboxItemType;
+  link: LinkType;
+};
+
+export type GetByContentModel<T extends AllContentModelTypes> = Promise<ContentModelMapping[T]>;
