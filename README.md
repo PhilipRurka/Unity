@@ -34,20 +34,20 @@ This projects stack is the following.
   <tr>
     <td>
       <br/>
-      <span>
-        <img width='15' />
-      </span>
-      <span>
-        <div>
+      <div>
+        <span>
+          <img width='15' />
+        </span>
+        <span>
           <a href=''>
             <img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="Mongodb" />
           </a>
           <div>Mongodb</div>
-        </div>
-      </span>
-      <span>
-        <img width='15' />
-      </span>
+        </span>
+        <span>
+          <img width='15' />
+        </span>
+      </div>
       <br/>
     </td>
     <td>
