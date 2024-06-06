@@ -4,20 +4,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "ntl": "npx ntl -o",
+    "cd-node-scripts": "(cd packages/node-scripts && yarn ntl)",
+    "cd-mongodb": "(cd packages/mongodb && yarn ntl)",
     "lint": "turbo run lint",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
     "env-pull": "turbo run env-pull && vercel env pull .env.local",
     "migrate-up": "cd ./migrations npx migrate-mongo up && cd -",
-    "watch-node-scripts": "yarn workspace @unity/node-scripts watch",
-    "create-component-template": "yarn workspace @unity/node-scripts create-component-template",
-    "contentful-codegen": "yarn workspace @unity/node-scripts contentful-codegen",
-    "update-keyword-helper-check": "yarn workspace @unity/node-scripts update-keyword-helper-check",
-    "update-captains-logs-missing-underline": "yarn workspace @unity/node-scripts update-captains-logs-missing-underline",
-    "update-algolia": "yarn workspace @unity/node-scripts update-algolia",
-    "register-user": "yarn workspace @unity/node-scripts register-userr",
-    "delete-user": "yarn workspace @unity/node-scripts delete-user"
+    "watch": "turbo run watch"
   },
   "dependencies": {
     "algoliasearch": "^4.23.3",
@@ -35,6 +31,7 @@
     "husky": "^8.0.3",
     "migrate-mongo": "^11.0.0",
     "mongodb": "^6.6.1",
+    "ntl": "^5.1.0",
     "turbo": "1.4.7",
     "typescript": "^5.3.3"
   },
@@ -54,19 +51,14 @@
   "ntl": {
     "runner": "yarn",
     "descriptions": {
+      "cd-node-scripts": "cd into packages/node-scripts",
+      "cd-mongodb": "cd into packages/mongodb",
       "dev": "Start localhost:3000",
       "build": "Lint and build on all workspaces",
       "lint": "Run eslint",
       "reset": "Find and delete all node modules",
       "env-pull": "pull env for multiple workspaces",
-      "watch-node-scripts": "Watches for changes done in node-scripts and compiles to js from ts when a change has occured",
-      "create-component-template": "Generates a new component using correct pattern",
-      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
-      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
-      "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful",
-      "update-captains-logs-missing-underline": "Update the Captain's log",
-      "register-user": "Create a new account for a user to use",
-      "delete-user": "Delete an account by email",
+      "watch": "Watches for changes done in packages or sdk typescript files",
       "migrate-up": "run migrate-mongo up"
     }
   }

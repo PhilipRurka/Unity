@@ -4,8 +4,11 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "ntl": "npx ntl -o",
+    "cd-root": "(cd ../.. && yarn ntl)",
     "build": "tsc",
     "watch": "tsc --watch",
+    "pull-production-env": "vercel env pull --environment=production .env.local",
     "create-component-template": "node dist/createComponentTemplate",
     "contentful-codegen": "node dist/contentfulCodegen",
     "update-keyword-helper-check": "node dist/contentArticleLinkCheck",
@@ -21,5 +24,20 @@
     "@unity/tsconfig": "*",
     "cf-content-types-generator": "^2.15.1",
     "contentful-cli": "^3.3.1"
+  },
+  "ntl": {
+    "runner": "yarn",
+    "descriptions": {
+      "watch-node-scripts": "Watches for changes done in node-scripts and compiles to js from ts when a change has occured",
+      "create-component-template": "Generates a new component using correct pattern",
+      "contentful-codegen": "Build out Contentful Types and store them in @type/contentful-codegen",
+      "update-algolia": "Build out Algolia's articles index output types and store them in @types/algolia-codegen/ArticlesSearchType.ts",
+      "update-keyword-helper-check": "Update the keywordsHelperCheck on Contentful",
+      "update-captains-logs-missing-underline": "Update the Captain's log",
+      "register-user": "Create a new account for a user to use",
+      "delete-user": "Delete an account by email",
+      "cd-root": "cd into root",
+      "pull-production-env": "Pull env variables from Vercel into .env.local - Use with caution"
+    }
   }
 }

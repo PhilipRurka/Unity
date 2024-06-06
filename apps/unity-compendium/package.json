@@ -42,7 +42,7 @@
     "descriptions": {
       "test": "Run tests",
       "test:watch": "Re-run tests when a file is changed",
-      "pull-production-env": "Pull vercel's production environment"
+      "pull-production-env": "Pull env variables from Vercel into .env.local"
     }
   }
 }

@@ -17,6 +17,10 @@
     "env-pull": {
       "dependsOn": ["^env-pull"],
       "cache": false
+    },
+    "watch": {
+      "dependsOn": ["^watch"],
+      "cache": false
     }
   }
 }
