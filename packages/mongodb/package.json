@@ -1,0 +1,31 @@
+{
+  "name": "@unity/mongodb",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "ntl": "npx ntl -o",
+    "cd-root": "(cd ../.. && yarn ntl)",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dump-local": "node dist/dumpLocal.js",
+    "dump-production": "node dist/dumpProd.js",
+    "pull-production-env": "vercel env pull --environment=production .env.local"
+  },
+  "devDependencies": {
+    "@types/cli-spinner": "^0.2.3",
+    "@unity/eslint-config-node": "*",
+    "@unity/prettier-config": "*",
+    "@unity/tsconfig": "*",
+    "@unity/node-scripts": "*"
+  },
+  "ntl": {
+    "runner": "yarn",
+    "descriptions": {
+      "cd-root": "cd into root",
+      "dump-local": "Dump local DB into dump/local",
+      "dump-production": "Dump production DB into dump/production",
+      "pull-production-env": "Pull env variables from Vercel into .env.local - Use with caution"
+    }
+  }
+}
