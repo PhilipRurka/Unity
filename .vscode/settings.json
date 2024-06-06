@@ -18,12 +18,19 @@
         {
           "files.exclude": {
             /** Level 2 */
-          "packages": true,
+          "packages/eslint*": true,
+          "packages/frontend": true,
+          "packages/next-config": true,
+          "packages/postcss-config": true,
+          "packages/prettier-config": true,
+          "packages/rollup-config": true,
+          "packages/tsconfig": true,
           "**/*config*": true,
           "**/package.json": true,
           "**/.eslintrc": true,
           "**/turbo.json": true,
           "**/*.setup.*": true,
+          "**/dist/**": true,
 
           /** Level 3 */
           ".git": true,
@@ -37,7 +44,6 @@
           "**/node_modules": true,
           "**/yarn.lock": true,
           "**/.turbo": true,
-          "**/dist/**": true
           }
         },
         {
