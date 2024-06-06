@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 const dumpFunc = async (answer: string) => {
   if (answer === 'y' || answer === 'Y') {
     const command = 'mongodump';
-    const args = ['--uri=mongodb://localhost:27017', '--out=../../dump/local'];
+    const args = ['--uri=mongodb://localhost:27017', '--out=dump/local'];
 
     const mongodumpProcess = spawn(command, args);
 

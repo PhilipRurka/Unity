@@ -8,16 +8,22 @@
     "cd-root": "(cd ../.. && yarn ntl)",
     "build": "tsc",
     "watch": "tsc --watch",
-    "dump-local": "node dist/dumpLocal.js",
-    "dump-production": "node dist/dumpProd.js",
+    "dump-local": "node dist/dump/dumpLocal.js",
+    "dump-production": "node dist/dump/dumpProd.js",
+    "restore-local-with-local": "node dist/restore/localWithLocal.js",
+    "restore-local-with-Production": "node dist/restore/localWithProduction.js",
+    "restore-production-with-production": "node dist/restore/prodWithProd.js",
     "pull-production-env": "vercel env pull --environment=production .env.local"
   },
   "devDependencies": {
     "@types/cli-spinner": "^0.2.3",
+    "@types/inquirer": "^9.0.7",
     "@unity/eslint-config-node": "*",
+    "@unity/node-scripts": "*",
     "@unity/prettier-config": "*",
     "@unity/tsconfig": "*",
-    "@unity/node-scripts": "*"
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.23"
   },
   "ntl": {
     "runner": "yarn",
@@ -25,6 +31,9 @@
       "cd-root": "cd into root",
       "dump-local": "Dump local DB into dump/local",
       "dump-production": "Dump production DB into dump/production",
+      "restore-local-with-local": "Restore the local DB with the local dump",
+      "restore-local-with-Production": "Restore the local DB with the production dump",
+      "restore-production-with-production": "Restore the Production DB with the production dump",
       "pull-production-env": "Pull env variables from Vercel into .env.local - Use with caution"
     }
   }
