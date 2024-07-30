@@ -17,6 +17,7 @@ const authOptions: NextAuthOptions = {
         const { email, password } = credentials as UserReqType;
 
         try {
+          if (email !== 'hey@philiprurka.com') throw new Error('');
           await mongoConnect();
           const user = await userModel.findOne({ email });
 
