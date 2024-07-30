@@ -1,6 +1,6 @@
 'use client';
 
-import LoginForm from '../LoginForm';
+import LoginForm from '@/Components/LoginForm';
 
 const Home = () => (
   <div data-component="cHome" className="px-4 sm:px-8">
