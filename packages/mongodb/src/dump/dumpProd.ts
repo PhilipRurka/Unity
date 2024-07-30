@@ -71,7 +71,6 @@ const rl = readline.createInterface({
 const question = (query: string): Promise<string> =>
   new Promise((resolve) => {
     rl.question(query, (answer: string) => {
-      rl.close();
       resolve(answer);
     });
   });
