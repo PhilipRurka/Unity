@@ -14,7 +14,7 @@ const rl = readline.createInterface({
 
 const paths = {
   1: path.join(dirname, '../../../../apps/unity-compendium/src/components'),
-  2: path.join(dirname, ''),
+  2: path.join(dirname, '../../../../apps/unity-admin/src/components'),
   3: path.join(dirname, '../../../../sdk/components/src'),
 } as const;
 
