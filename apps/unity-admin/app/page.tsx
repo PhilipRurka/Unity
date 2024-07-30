@@ -1,5 +1,5 @@
+import Home from '@/Components/Home';
 
-
-const HomePage = async () => <>Hello World</>;
+const HomePage = async () => <Home />;
 
 export default HomePage;

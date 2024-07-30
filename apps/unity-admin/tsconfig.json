@@ -14,9 +14,6 @@
       "@/Fetchers/*": [
         "./src/fetchers/*"
       ],
-      "@/Styles/*": [
-        "./src/styles/*"
-      ],
       "@/Hooks/*": [
         "./src/hooks/*"
       ],
