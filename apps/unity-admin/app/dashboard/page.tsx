@@ -1,5 +1,3 @@
+const Dashboard = async () => <>Dashboard</>;
 
-
-const HomePage = async () => <></>;
-
-export default HomePage;
+export default Dashboard;
