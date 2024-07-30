@@ -23,7 +23,8 @@
     "@unity/prettier-config": "*",
     "@unity/tsconfig": "*",
     "cf-content-types-generator": "^2.15.1",
-    "contentful-cli": "^3.3.1"
+    "contentful-cli": "^3.3.1",
+    "crypto": "^1.0.1"
   },
   "ntl": {
     "runner": "yarn",
