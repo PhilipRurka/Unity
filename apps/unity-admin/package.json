@@ -1,10 +1,10 @@
 {
-  "name": "unity-compendium",
+  "name": "unity-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "start": "next start",
+    "dev": "PORT=3001 next dev",
+    "start": "PORT=3001 next start",
     "build": "next build",
     "lint": "next lint",
     "env-pull": "vercel env pull .env.local",
@@ -29,6 +29,7 @@
     "@types/react-instantsearch": "^6.10.4",
     "@unity/frontend-dev-dependencies": "*",
     "contentful-management": "^11.25.5",
+    "crypto": "^1.0.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0"
   },

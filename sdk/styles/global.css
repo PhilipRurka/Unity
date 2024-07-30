@@ -36,7 +36,8 @@ h6 {
   font-family: var(--font-montserrat);
 }
 
-a, span {
+a,
+span {
   display: block;
 }
 
