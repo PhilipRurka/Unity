@@ -35,7 +35,7 @@ const LoginForm = () => {
         return;
       }
 
-      router.replace('articles/unity-race');
+      router.replace('dashboard');
     } catch (err) {
       console.log(err);
     }

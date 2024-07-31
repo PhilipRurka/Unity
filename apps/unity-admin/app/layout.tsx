@@ -4,7 +4,10 @@ import { Lexend, Montserrat } from 'next/font/google';
 
 import '@unity/styles/global.css';
 
+import Header from '@/Components/Header';
+import Sidebar from '@/Components/Sidebar';
 import AuthProvider from '@/Providers/SessionProvider';
+import SidebarProvider from '@/Providers/contexts/SidebarProvider';
 
 const lexend = Lexend({
   weight: ['300', '500'],
@@ -40,9 +43,13 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         montserrat.variable
       )}
     >
-      <AuthProvider>
-        <div className="sm:px-6 sm:py-16">{children}</div>
-      </AuthProvider>
+      <SidebarProvider>
+        <AuthProvider>
+          <Header />
+          <Sidebar />
+          <div className="sm:px-6 sm:py-16">{children}</div>
+        </AuthProvider>
+      </SidebarProvider>
     </body>
   </html>
 );
