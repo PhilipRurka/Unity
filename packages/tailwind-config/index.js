@@ -2,7 +2,10 @@ import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 const tailwindConfig = {
-  content: ["../../apps/**/*.{js,ts,jsx,tsx,mdx}", "../../sdk/components/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "../../apps/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../sdk/components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
       backgroundImage: {
@@ -37,21 +40,32 @@ const tailwindConfig = {
           paddingTop: "1rem",
         },
 
-        '[data-component="cMarkdown"] h2 + h3, [data-component="cMarkdown"] h3 + h4': {
-          marginTop: "2rem",
-        },
+        '[data-component="cMarkdown"] h2 + h3, [data-component="cMarkdown"] h3 + h4':
+          {
+            marginTop: "2rem",
+          },
 
         '[data-component="cMarkdown"] p:not(:empty) + p:not(:empty)': {
           marginTop: "1rem",
         },
 
-        '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span': {
-          display: "inline",
-        },
+        '[data-component="cSearchModel"] mark, [data-component="cSearchModel"] span':
+          {
+            display: "inline",
+          },
 
         '[data-component="AlgoliaHit"] em': {
           "background-color": "yellow",
           "font-style": "normal",
+        },
+        ".sidebar-height": {
+          height: "calc(100vh - var(--header-height))",
+        },
+        ".hide-scrollbar": {
+          "-ms-overflow-style": "none" /* IE and Edge */,
+        },
+        ".hide-scrollbar::-webkit-scrollbar": {
+          display: "none" /* Chrome, Safari, and Opera */,
         },
       });
     }),

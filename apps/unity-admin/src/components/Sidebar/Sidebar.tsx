@@ -57,7 +57,7 @@ const Sidebar = () => {
           isSidebarOpen ? 'translate-x-0' : 'translate-x-72'
         )}
       >
-        <div className="h-full overflow-y-scroll">
+        <div className="sidebar-height hide-scrollbar overflow-y-scroll">
           <div className="p-8">
             {listOfPages.map(({ title, pathname }) => (
               <Link key={`Sidebar-listOfPages-${title}`} href={{ pathname }}>

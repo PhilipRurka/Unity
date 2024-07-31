@@ -50,7 +50,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     <html lang="en">
       <body
         className={clsx(
-          'relative h-full min-h-screen w-screen overflow-x-hidden bg-layout bg-cover bg-fixed bg-bottom bg-no-repeat text-ocean-blue',
+          'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden bg-layout bg-cover bg-fixed bg-bottom bg-no-repeat text-ocean-blue',
           lexend.variable,
           montserrat.variable
         )}
