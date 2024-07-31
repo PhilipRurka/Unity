@@ -1,3 +1,7 @@
-const Users = async () => <>Users</>;
+import UserTable from '@/Components/UserTable';
 
-export default Users;
+const userList: any = [];
+
+const UsersPage = async () => <UserTable userList={userList} />;
+
+export default UsersPage;
