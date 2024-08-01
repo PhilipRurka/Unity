@@ -4,10 +4,11 @@ import type { ActivityAnalytictsType } from '@unity/types';
 
 const activityAnalyticsSchema = new Schema<ActivityAnalytictsType>(
   {
-    email: {
-      type: String,
+    user_id: {
+      type: Schema.Types.ObjectId,
       required: true,
       unique: true,
+      ref: 'User',
     },
     activities: [
       {

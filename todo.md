@@ -1,7 +1,3 @@
-Add user_id to the users table
-Change activities_analytics name to sessions_analytics
-Replace email in activities_analytics
-
 Create new table: `user_details`
 -- created_at
 -- last_active

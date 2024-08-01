@@ -23,6 +23,7 @@
     "@unity/prettier-config": "*",
     "@unity/tsconfig": "*",
     "chalk": "^5.3.0",
+    "cli-spinner": "^0.2.10",
     "inquirer": "^9.2.23"
   },
   "ntl": {

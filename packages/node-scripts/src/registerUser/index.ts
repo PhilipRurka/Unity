@@ -14,11 +14,15 @@ const rl = readline.createInterface({
 async function registerUser(email: string) {
   const password = crypto.randomBytes(8).toString('hex');
 
-  await executeStep('Step 1: Create new user in database', () => createUserWithCredentials(email, password));
+  const objectId = await executeStep('Step 1: Create new user in database', () =>
+    createUserWithCredentials(email, password)
+  );
 
-  await executeStep('Step 2: Create new ActivitiesAnalytics using email', () => createActivitiesAnalytics(email));
+  await executeStep('Step 2: Create new ActivitiesAnalytics with id', () => createActivitiesAnalytics(objectId));
 
-  await executeStep('Step 3: Create and send invitation email', () => sendgridInvitationEmail(email, password));
+  await executeStep('Step 3: Create new UserDetails with id', () => createActivitiesAnalytics(objectId));
+
+  await executeStep('Step 4: Create and send invitation email', () => sendgridInvitationEmail(email, password));
 }
 
 rl.question('Enter email: ', (email) => {
