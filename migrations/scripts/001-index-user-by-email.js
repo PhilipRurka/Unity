@@ -1,7 +1,10 @@
-import { green, red } from '../../node-scripts/utils/colorCodedLogs.js';
+import {
+  green,
+  red,
+} from "../../packages/node-scripts/dist/utils/colorCodedLogs.js";
 
 export const up = async (db) => {
-  const User = db.collection('users');
+  const User = db.collection("users");
 
   try {
     await User.createIndex({ email: 1 }, { unique: true });

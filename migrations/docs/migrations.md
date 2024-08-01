@@ -41,3 +41,17 @@
 <!-- - **Implementation Details**: -->
 
 <br/>
+
+## 004 Apply user_id
+
+**Script**: `004-apply-user_id.js`  
+**Author**: Philip Rurka  
+**Date**: 31/07/2024  
+**Schema Targets**: activities_analytics, users  
+**Model Targets**: activityAnalytics, Users  
+**Purpose**:
+
+- Create and add user_id
+<!-- - **Implementation Details**: -->
+
+<br/>

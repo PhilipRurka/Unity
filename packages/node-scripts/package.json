@@ -15,7 +15,8 @@
     "update-captains-logs-missing-underline": "node dist/updateCaptainsLogsMissingUnderline",
     "update-algolia": "node dist/updateAlgolia",
     "register-user": "node dist/registerUser",
-    "delete-user": "node dist/deleteUser"
+    "delete-user": "node dist/deleteUser",
+    "test-migration-script": "node dist/testMigrationScript"
   },
   "devDependencies": {
     "@types/cli-spinner": "^0.2.3",
@@ -37,6 +38,7 @@
       "update-captains-logs-missing-underline": "Update the Captain's log",
       "register-user": "Create a new account for a user to use",
       "delete-user": "Delete an account by email",
+      "test-migration-script": "Test out migration script before implementing it in migration",
       "cd-root": "cd into root",
       "pull-production-env": "Pull env variables from Vercel into .env.local - Use with caution"
     }

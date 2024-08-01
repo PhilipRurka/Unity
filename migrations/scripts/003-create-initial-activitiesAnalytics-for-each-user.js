@@ -1,9 +1,12 @@
-import { green, red } from '../../node-scripts/utils/colorCodedLogs.js';
+import {
+  green,
+  red,
+} from "../../packages/node-scripts/dist/utils/colorCodedLogs.js";
 
 export const up = async (db) => {
   try {
-    const usersCollection = db.collection('users');
-    const activitiesAnalyticsCollection = db.collection('activities_analytics');
+    const usersCollection = db.collection("users");
+    const activitiesAnalyticsCollection = db.collection("activities_analytics");
 
     const users = await usersCollection.find({}).toArray();
 
@@ -17,10 +20,17 @@ export const up = async (db) => {
 
     if (bulkOps.length > 0) {
       await activitiesAnalyticsCollection.bulkWrite(bulkOps);
-      console.log(green, `003-create-initial-activitiesAnalytics-for-each-user --> Migration successful`);
+      console.log(
+        green,
+        `003-create-initial-activitiesAnalytics-for-each-user --> Migration successful`
+      );
     }
   } catch (error) {
-    console.error(red, '003-create-initial-activitiesAnalytics-for-each-user --> Migration failed:', error);
+    console.error(
+      red,
+      "003-create-initial-activitiesAnalytics-for-each-user --> Migration failed:",
+      error
+    );
     throw error;
   }
 };

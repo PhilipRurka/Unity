@@ -14,7 +14,7 @@
     "dev-admin": "(cd apps/unity-admin && yarn dev)",
     "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
     "env-pull": "turbo run env-pull && vercel env pull .env.local",
-    "migrate-up": "cd ./migrations npx migrate-mongo up && cd -",
+    "migrate-up": "(cd ./migrations && npx migrate-mongo up && cd -)",
     "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\""
   },
   "dependencies": {
