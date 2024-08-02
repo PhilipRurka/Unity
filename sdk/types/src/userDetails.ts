@@ -23,6 +23,7 @@ export type StatusChangeType = {
 export type LogType = ActiveSessionType | StatusChangeType | InviteSentType;
 
 export type UserDetailsType = {
+  email: string;
   created_at: Date;
   last_active: Date | null;
   status: UserStatus;
