@@ -1,3 +1,3 @@
-import UserTable from './UserTable';
+import UsersTable from './UsersTable';
 
-export default UserTable;
+export default UsersTable;
