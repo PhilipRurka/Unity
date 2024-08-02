@@ -42,8 +42,9 @@ const Article = ({ slug }: ArticleProps) => {
       lastVisitedUrlRef.current = article.fields.slug;
       sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
 
-      await addActivitiesAnalytics({
-        email: session?.user?.email as string,
+      addActivitiesAnalytics({
+        // eslint-disable-next-line no-underscore-dangle
+        user_id: session?.user?.id,
         slug: article.fields.slug,
       });
     };

@@ -36,6 +36,23 @@ const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  callbacks: {
+    session: async ({ session, token }) => {
+      const newSession: any = { ...session };
+      if (newSession?.user) {
+        newSession.user.id = token.uid;
+      }
+      return newSession;
+    },
+    jwt: async ({ user, token }) => {
+      const newToken = { ...token };
+      if (user) {
+        newToken.uid = user.id.toString();
+      }
+
+      return newToken;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/',
