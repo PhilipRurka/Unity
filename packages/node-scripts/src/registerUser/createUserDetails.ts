@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId } from 'mongodb';
 
-const createUserDetails = async (objectId: ObjectId) => {
+const createUserDetails = async (objectId: ObjectId, email: string) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
@@ -11,6 +11,7 @@ const createUserDetails = async (objectId: ObjectId) => {
     const activitiesAnalytics = db.collection('user_details');
 
     await activitiesAnalytics.insertOne({
+      email,
       user_id: objectId,
       last_active: null,
       status: 'pending',
