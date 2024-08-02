@@ -1,7 +1,10 @@
 import UserTable from '@/Components/UserTable';
+import getUsersDetails from '@/Fetchers/getUsersDetails';
 
-const userList: any = [];
+const UsersPage = async () => {
+  const userDetailsList = await getUsersDetails();
 
-const UsersPage = async () => <UserTable userList={userList} />;
+  return <UserTable userDetailsList={userDetailsList} />;
+};
 
 export default UsersPage;
