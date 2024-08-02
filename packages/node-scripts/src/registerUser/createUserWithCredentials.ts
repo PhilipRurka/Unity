@@ -22,7 +22,7 @@ const createUserWithCredentials = async (email: string, password: string) => {
 
     const result = await users.insertOne({ email: email.toLowerCase(), password: hashedPassword });
 
-    return result.insertedId;
+    return result.insertedId.toString();
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`User not created in the database: ${error.message}`);

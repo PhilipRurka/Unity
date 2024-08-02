@@ -1,6 +1,6 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
-const createActivitiesAnalytics = async (objectId: ObjectId) => {
+const createActivitiesAnalytics = async (userId: string) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
@@ -10,7 +10,7 @@ const createActivitiesAnalytics = async (objectId: ObjectId) => {
     const db = client.db('Production');
     const activitiesAnalytics = db.collection('activities_analytics');
 
-    await activitiesAnalytics.insertOne({ user_id: objectId, activities: [] });
+    await activitiesAnalytics.insertOne({ user_id: userId, activities: [] });
   } catch (error) {
     if (error instanceof Error) {
       throw Error(`Activities Analytics not created: ${error.message}`);

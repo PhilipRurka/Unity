@@ -1,6 +1,6 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
-const createUserDetails = async (objectId: ObjectId, email: string) => {
+const createUserDetails = async (userId: string, email: string) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
@@ -12,7 +12,7 @@ const createUserDetails = async (objectId: ObjectId, email: string) => {
 
     await activitiesAnalytics.insertOne({
       email,
-      user_id: objectId,
+      user_id: userId,
       last_active: null,
       status: 'pending',
       logs: [{ type: 'inviteSent', timestamp: new Date() }],
