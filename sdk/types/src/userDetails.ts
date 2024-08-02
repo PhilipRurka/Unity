@@ -1,4 +1,4 @@
-import { Document, ObjectId } from 'mongoose';
+import type { Document } from 'mongoose';
 
 type UserStatus = 'active' | 'pending' | 'removed';
 
@@ -24,10 +24,11 @@ export type LogType = ActiveSessionType | StatusChangeType | InviteSentType;
 
 export type UserDetailsType = {
   email: string;
+  name: string;
   created_at: Date;
   last_active: Date | null;
   status: UserStatus;
-  user_id: ObjectId;
+  user_id: string;
   logs: LogType[];
 };
 

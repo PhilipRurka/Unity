@@ -1,7 +1,5 @@
-import { ObjectId } from 'mongoose';
-
 export type ActivityReqType = {
-  user_id: ObjectId;
+  user_id: string;
   slug: string;
 };
 
@@ -11,6 +9,6 @@ export type ActivityType = {
 };
 
 export type ActivityAnalytictsType = {
-  user_id: ObjectId;
+  user_id: string;
   activities: ActivityType[];
 };

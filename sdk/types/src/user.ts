@@ -1,4 +1,5 @@
-import { ObjectId } from 'mongoose';
+import type { ObjectId } from 'mongoose';
+import type { DefaultSession } from 'next-auth';
 
 export type UserType = {
   _id: ObjectId;
@@ -10,3 +11,11 @@ export type UserReqType = {
   email: string;
   password: string;
 };
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string;
+    } & DefaultSession['user'];
+  }
+}
