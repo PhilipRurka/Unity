@@ -31,6 +31,11 @@ LogModel.discriminator('inviteSent', InviteSentSchema);
 
 const userDetailsSchema = new Schema<UserDetailsDocumentType>(
   {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     created_at: {
       type: Date,
       required: true,
