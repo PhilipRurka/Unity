@@ -36,6 +36,11 @@ const userDetailsSchema = new Schema<UserDetailsDocumentType>(
       required: true,
       unique: true,
     },
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     created_at: {
       type: Date,
       required: true,
@@ -52,7 +57,7 @@ const userDetailsSchema = new Schema<UserDetailsDocumentType>(
       default: 'pending',
     },
     user_id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       ref: 'User',
     },
