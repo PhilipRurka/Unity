@@ -3,7 +3,7 @@ import readline from 'readline';
 
 import executeStep from '../utils/executeStep.js';
 import createActivitiesAnalytics from './createActivitiesAnalytics.js';
-import createUsersDetails from './createUserDetails.js';
+import createUsers from './createUser.js';
 import createUserWithCredentials from './createUserWithCredentials.js';
 import sendgridInvitationEmail from './sendgridInvitationEmail.js';
 
@@ -19,9 +19,9 @@ async function registerUser(email: string) {
     createUserWithCredentials(email, password)
   );
 
-  await executeStep('Step 2: Create new ActivitiesAnalytics with id', () => createUsersDetails(userId, email));
+  await executeStep('Step 2: Create new ActivitiesAnalytics with id', () => createUsers(userId, email));
 
-  await executeStep('Step 3: Create new UserDetails with id', () => createActivitiesAnalytics(userId));
+  await executeStep('Step 3: Create new User with id', () => createActivitiesAnalytics(userId));
 
   await executeStep('Step 4: Create and send invitation email', () => sendgridInvitationEmail(email, password));
 }

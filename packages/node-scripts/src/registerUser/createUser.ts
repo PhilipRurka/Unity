@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 
-const createUserDetails = async (userId: string, email: string) => {
+const createUser = async (userId: mongoose.Types.ObjectId, email: string) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
@@ -8,7 +9,7 @@ const createUserDetails = async (userId: string, email: string) => {
   try {
     await client.connect();
     const db = client.db('Production');
-    const activitiesAnalytics = db.collection('user_details');
+    const activitiesAnalytics = db.collection('users');
 
     await activitiesAnalytics.insertOne({
       email,
@@ -28,4 +29,4 @@ const createUserDetails = async (userId: string, email: string) => {
   }
 };
 
-export default createUserDetails;
+export default createUser;

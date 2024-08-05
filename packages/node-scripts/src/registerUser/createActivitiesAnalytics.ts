@@ -1,6 +1,7 @@
 import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 
-const createActivitiesAnalytics = async (userId: string) => {
+const createActivitiesAnalytics = async (userId: mongoose.Types.ObjectId) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
