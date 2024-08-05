@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import { activityAnalyticsModel } from '@unity/models';
 import type { ActivityReqType, ApiMethodResponseType } from '@unity/types';
 
@@ -19,7 +21,7 @@ const activityPut: ActivityPut = async ({ user_id, slug }) => {
 
   try {
     const result = await activityAnalyticsModel.findOneAndUpdate(
-      { user_id },
+      { user_id: new mongoose.Types.ObjectId(user_id) },
       {
         $push: {
           activities: {
