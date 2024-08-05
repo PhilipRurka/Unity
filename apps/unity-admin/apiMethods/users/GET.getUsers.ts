@@ -2,13 +2,13 @@ import { MongoClient } from 'mongodb';
 
 import { ApiMethodResponseType } from '@unity/types';
 
-type GetUsersDetailsType = () => ApiMethodResponseType<unknown>;
+type GetUsersType = () => ApiMethodResponseType<unknown>;
 
 type CatchError = {
   message: string;
 };
 
-const getUsersDetails: GetUsersDetailsType = async () => {
+const getUsers: GetUsersType = async () => {
   const { MONGODB_URI = '' } = process.env;
 
   const client = new MongoClient(MONGODB_URI);
@@ -17,8 +17,22 @@ const getUsersDetails: GetUsersDetailsType = async () => {
   try {
     await client.connect();
     const db = client.db('Production');
-    const usersCollection = db.collection('user_details');
-    users = await usersCollection.find({}).toArray();
+    const usersCollection = db.collection('users');
+    users = await usersCollection
+      .aggregate([
+        {
+          $project: {
+            _id: 0,
+            user_id: '$_id',
+            name: 1,
+            email: 1,
+            created_at: 1,
+            status: 1,
+            last_active: 1,
+          },
+        },
+      ])
+      .toArray();
   } catch (err) {
     const error = err as CatchError;
 
@@ -32,4 +46,4 @@ const getUsersDetails: GetUsersDetailsType = async () => {
   return [{ result: users }, { status: 200 }];
 };
 
-export default getUsersDetails;
+export default getUsers;

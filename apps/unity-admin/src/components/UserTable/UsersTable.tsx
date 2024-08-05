@@ -1,15 +1,15 @@
 'use client';
 
-import { UserDetailsType } from '@unity/types';
+import { UserFrontendType } from '@unity/types';
 
 type UsersTableProps = {
-  userDetailsList: UserDetailsType[];
+  usersList: UserFrontendType[];
 };
 
-const UsersTable = ({ userDetailsList }: UsersTableProps) => (
+const UsersTable = ({ usersList }: UsersTableProps) => (
   <ul data-component="UsersTable">
-    {userDetailsList.map((userDetail) => (
-      <li key={`UsersTable-userDetailsList-${userDetail.user_id}`}>{userDetail.email}</li>
+    {usersList.map((user) => (
+      <li key={`UsersTable-usersList-${user.user_id}`}>{user.email}</li>
     ))}
   </ul>
 );
