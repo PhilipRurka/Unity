@@ -55,3 +55,19 @@
 <!-- - **Implementation Details**: -->
 
 <br/>
+
+## 005 Add New Properties To User
+
+**Script**: `005-add-new-properties-to-user.js`  
+**Author**: Philip Rurka  
+**Date**: 13/08/2024  
+**Schema Targets**: users  
+**Model Targets**: Users  
+**Purpose**:
+
+- Add name
+- Add last_active
+- Add status
+<!-- - **Implementation Details**: -->
+
+<br/>
