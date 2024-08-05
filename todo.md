@@ -1,23 +1,6 @@
-Add user_id to the users table
-Change activities_analytics name to sessions_analytics
-Replace email in activities_analytics
-
-Create new table: `user_details`
--- created_at
--- last_active
--- status: active | pending | removed
--- user_id: uuid
--- logs: [
--- -- `active_session`: `timestamp` => When a user begins to navigate and the `active_session_exp` is expired, marking a new `active_session` log
--- -- `active_session_exp`: `timestamp` => uppon entering a new page, an expireation is set
--- -- `status_change`: {
--- -- -- (from): `status`
--- -- -- (to): `status`
--- -- -- (reason)?: `string`
--- -- }
--- ]
-
 Make a check to make sure all href links lead to an actual page.
 
-Reset local db
-try running script again
+Add UserDetails to User
+Create UserLogs
+
+revert the script from watch to dev. And make it for all three

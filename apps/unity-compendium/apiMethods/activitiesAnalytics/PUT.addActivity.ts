@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import { activityAnalyticsModel } from '@unity/models';
 import type { ActivityReqType, ApiMethodResponseType } from '@unity/types';
 
@@ -10,7 +12,7 @@ type CatchError = {
 
 type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
 
-const activityPut: ActivityPut = async ({ email, slug }) => {
+const activityPut: ActivityPut = async ({ user_id, slug }) => {
   try {
     await mongoConnect();
   } catch (error) {
@@ -19,7 +21,7 @@ const activityPut: ActivityPut = async ({ email, slug }) => {
 
   try {
     const result = await activityAnalyticsModel.findOneAndUpdate(
-      { email },
+      { user_id: new mongoose.Types.ObjectId(user_id) },
       {
         $push: {
           activities: {

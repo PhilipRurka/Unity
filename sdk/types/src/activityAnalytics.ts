@@ -1,5 +1,7 @@
+import mongoose from 'mongoose';
+
 export type ActivityReqType = {
-  email: string;
+  user_id: string;
   slug: string;
 };
 
@@ -9,6 +11,6 @@ export type ActivityType = {
 };
 
 export type ActivityAnalytictsType = {
-  email: string;
+  user_id: mongoose.Types.ObjectId;
   activities: ActivityType[];
 };

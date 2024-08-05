@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import mongoose from 'mongoose';
 
-const createActivitiesAnalytics = async (userId: mongoose.Types.ObjectId) => {
+const createUser = async (userId: mongoose.Types.ObjectId, email: string) => {
   const { MONGODB_URI = '' } = (await import('../utils/envVariables.js')).default();
 
   const client = new MongoClient(MONGODB_URI);
@@ -9,9 +9,15 @@ const createActivitiesAnalytics = async (userId: mongoose.Types.ObjectId) => {
   try {
     await client.connect();
     const db = client.db('Production');
-    const activitiesAnalytics = db.collection('activities_analytics');
+    const activitiesAnalytics = db.collection('users');
 
-    await activitiesAnalytics.insertOne({ user_id: userId, activities: [] });
+    await activitiesAnalytics.insertOne({
+      email,
+      user_id: userId,
+      last_active: null,
+      status: 'pending',
+      logs: [{ type: 'inviteSent', timestamp: new Date() }],
+    });
   } catch (error) {
     if (error instanceof Error) {
       throw Error(`Activities Analytics not created: ${error.message}`);
@@ -23,4 +29,4 @@ const createActivitiesAnalytics = async (userId: mongoose.Types.ObjectId) => {
   }
 };
 
-export default createActivitiesAnalytics;
+export default createUser;

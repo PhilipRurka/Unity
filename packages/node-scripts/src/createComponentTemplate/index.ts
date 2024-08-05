@@ -33,7 +33,7 @@ const askForPath = () => {
           const indexContent = `import ${value} from './${value}';\n\nexport default ${value};\n`;
           fs.writeFileSync(indexPath, indexContent);
 
-          const componentContent = `type ${value}Props = {};\n\nconst ${value} = ({}: ${value}Props) => {\n  console.log('');\n  return <div data-component='c${value}'></div>;\n}\n\nexport default ${value};\n`;
+          const componentContent = `type ${value}Props = {};\n\nconst ${value} = ({}: ${value}Props) => {\n  console.log('');\n  return <div data-component='${value}'></div>;\n}\n\nexport default ${value};\n`;
           fs.writeFileSync(componentPath, componentContent);
 
           console.log(`${value} component created successfully in ${baseDir}`);
