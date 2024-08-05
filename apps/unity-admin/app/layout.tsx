@@ -47,7 +47,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         <AuthProvider>
           <Header />
           <Sidebar />
-          <div className="sm:px-6 sm:py-16">{children}</div>
+          <div className="padding mx-auto max-w-5xl bg-white px-8 pb-20 pt-32 sm:px-6 sm:py-16">{children}</div>
         </AuthProvider>
       </SidebarProvider>
     </body>
