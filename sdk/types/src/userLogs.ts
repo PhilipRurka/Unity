@@ -1,6 +1,6 @@
-import type { Document } from 'mongoose';
+import mongoose from 'mongoose';
 
-type UserStatus = 'active' | 'pending' | 'removed';
+import { UserStatus } from './user';
 
 export type ActiveSessionType = {
   type: 'activeSession';
@@ -22,14 +22,9 @@ export type StatusChangeType = {
 
 export type LogType = ActiveSessionType | StatusChangeType | InviteSentType;
 
-export type UserDetailsType = {
-  email: string;
-  name: string;
-  created_at: Date;
-  last_active: Date | null;
-  status: UserStatus;
-  user_id: string;
+export type UserLogs = {
+  user_id: mongoose.Types.ObjectId;
   logs: LogType[];
 };
 
-export type UserDetailsDocumentType = Document & UserDetailsType;
+export type UserLogsDocument = Document & UserLogs;

@@ -7,4 +7,4 @@ export * from './user';
 export * from './icons';
 export * from './api';
 export * from './nodeScripts';
-export * from './userDetails';
+export * from './userLogs';

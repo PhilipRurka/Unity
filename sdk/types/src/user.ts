@@ -1,11 +1,21 @@
-import type { ObjectId } from 'mongoose';
 import type { DefaultSession } from 'next-auth';
 
+export type UserStatus = 'active' | 'pending' | 'removed';
+
 export type UserType = {
-  _id: ObjectId;
   email: string;
   password: string;
+  name: string;
+  created_at: Date;
+  last_active: Date | null;
+  status: UserStatus;
 };
+
+export type UserFrontendType = UserType & {
+  user_id: string;
+};
+
+export type UserDocument = Document & UserType;
 
 export type UserReqType = {
   email: string;
