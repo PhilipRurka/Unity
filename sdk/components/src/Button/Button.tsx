@@ -6,9 +6,11 @@ import PlusIcon from '../Icons/Plus';
 
 type ButtonDefaultProps = {
   size: 'small';
+  children: React.ReactNode;
   color: 'black';
   isFull: boolean;
-  children: React.ReactNode;
+  onClick?: () => void;
+  type?: HTMLButtonElement['type'];
 };
 
 type ButtonWithoutIconProps = ButtonDefaultProps;
@@ -34,22 +36,26 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
 );
 
 const Button = (props: ButtonProps) => {
-  const { size, color, isFull, children } = props;
+  const { size, color, isFull, onClick, children } = props;
 
   const hasIcon = (propsToCheck: ButtonProps): propsToCheck is ButtonWithIconProps =>
     'iconPosition' in propsToCheck && 'icon' in propsToCheck;
 
   const colorTheme = `${color}-${isFull ? 'full' : 'inverted'}`;
 
+  const attributes = props.type ? { type: props.type } : {};
+
   return (
-    <div
+    <button
       data-component="Button"
       className={clsx(
-        'flex cursor-pointer rounded border border-solid p-2 transition-colors',
+        'flex cursor-pointer rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
         colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white'
       )}
+      onClick={onClick}
+      {...attributes}
     >
       {hasIcon(props) && (
         <div
@@ -59,7 +65,7 @@ const Button = (props: ButtonProps) => {
         </div>
       )}
       {children}
-    </div>
+    </button>
   );
 };
 
