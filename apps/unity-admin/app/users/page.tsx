@@ -1,4 +1,4 @@
-import UserTable from '@/Components/UserTable';
+// import UserTable from '@/Components/UserTable';
 import UsersFilter from '@/Components/UsersFilter';
 import getUsers from '@/Fetchers/getUsers';
 
@@ -9,7 +9,7 @@ const UsersPage = async () => {
     <div data-component="UsersPage">
       <h1 className="my-9 text-4xl">List of Users</h1>
       <UsersFilter usersLength={userList.length} />
-      <UserTable usersList={userList} />
+      {/* <UserTable usersList={userList} /> */}
     </div>
   );
 };
