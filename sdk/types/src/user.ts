@@ -22,6 +22,11 @@ export type UserReqType = {
   password: string;
 };
 
+export type AddUserReq = {
+  email: string;
+  name: string;
+};
+
 declare module 'next-auth' {
   interface Session {
     user: {
