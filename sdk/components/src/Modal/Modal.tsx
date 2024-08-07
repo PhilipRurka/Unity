@@ -11,7 +11,7 @@ type ModalProps = {
   handleCloseModal: () => void;
 };
 
-const Modal = ({ children, title, backgroundStyle = '', isModalOpen, handleCloseModal }: ModalProps) => {
+const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, handleCloseModal }: ModalProps) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' || event.code === 'Escape') {
@@ -41,11 +41,10 @@ const Modal = ({ children, title, backgroundStyle = '', isModalOpen, handleClose
       />
       <div
         className={clsx(
-          'sm:right-initial absolute inset-0 z-50 sm:left-1/2 sm:top-16 sm:-translate-x-1/2 sm:transform',
-          'h-full w-full transition-opacity sm:max-h-modal sm:max-w-modal sm:rounded-xl',
+          'absolute inset-0 z-50 h-full w-full bg-cover transition-opacity',
+          'sm:right-initial sm:left-1/2 sm:top-16 sm:max-h-modal sm:max-w-modal sm:-translate-x-1/2 sm:transform sm:rounded-xl',
           isModalOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
-          backgroundStyle,
-          backgroundStyle && 'bg-cover'
+          backgroundStyle
         )}
       >
         <div className={clsx('h-full sm:max-h-modal sm:rounded-xl', backgroundStyle && 'bg-white bg-opacity-90 py-8')}>
