@@ -8,6 +8,7 @@
     "build": "next build",
     "lint": "next lint",
     "env-pull": "vercel env pull .env.local",
+    "env-pull-production": "vercel env pull --environment=production .env.local",
     "format-prettier": "prettier --write .",
     "debug-prettier": "npx prettier --debug-check .",
     "test": "jest",
