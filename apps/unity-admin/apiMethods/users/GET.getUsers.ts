@@ -29,7 +29,7 @@ const getUsers: GetUsersType = async () => {
         status: 1,
         last_active: 1,
       }
-    ).lean();
+    ).exec();
 
     response = [{ result: users }, { status: 200 }];
   } catch (err) {
