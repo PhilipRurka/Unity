@@ -1,5 +1,3 @@
-'use client';
-
 import { formatDate } from 'src/utils';
 
 import { Table, Tdata, Theader, Trow } from '@unity/components';
