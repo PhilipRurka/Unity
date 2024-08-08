@@ -3,7 +3,7 @@ import type { FetchErrorType, UserFrontendType } from '@unity/types';
 type GetUsersType = () => Promise<UserFrontendType[]>;
 
 const getUsers: GetUsersType = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users/placeholder`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
