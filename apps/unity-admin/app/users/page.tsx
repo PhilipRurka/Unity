@@ -1,17 +1,5 @@
-import UserTable from '@/Components/UserTable';
-import UsersFilter from '@/Components/UsersFilter';
-import getUsers from '@/Fetchers/getUsers';
+import Users from '@/Components/Users';
 
-const UsersPage = async () => {
-  const userList = await getUsers();
-
-  return (
-    <div data-component="UsersPage">
-      <h1 className="my-9 text-4xl">List of Users</h1>
-      <UsersFilter usersLength={userList.length} />
-      <UserTable usersList={userList} />
-    </div>
-  );
-};
+const UsersPage = async () => <Users />;
 
 export default UsersPage;
