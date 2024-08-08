@@ -31,9 +31,8 @@ const getUsers: GetUsersType = async () => {
       }
     ).exec();
 
-    const test = JSON.parse(JSON.stringify(users));
-    const element = test.pop();
-    console.log(JSON.stringify(element));
+    const element = users[users.length - 1];
+    console.log(element.name);
 
     response = [{ result: users }, { status: 200 }];
   } catch (err) {
