@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-import { activityAnalyticsModel } from '@unity/models';
+import { ActivityAnalyticsModel } from '@unity/models';
 import type { ActivityReqType, ApiMethodResponseType } from '@unity/types';
 
-import getUtcDateTime from '@/Lib/getUtcDateTime';
-import mongoConnect from '@/Lib/mongoConnect';
+import connectToDatabase from '@/Lib/connectToDatabase';
 
 type CatchError = {
   message: string;
@@ -14,23 +13,24 @@ type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message
 
 const activityPut: ActivityPut = async ({ user_id, slug }) => {
   try {
-    await mongoConnect();
+    await connectToDatabase();
   } catch (error) {
     return [{ error: { message: 'Something went wrong with MongoConnection!' } }, { status: 500 }];
   }
 
   try {
-    const result = await activityAnalyticsModel.findOneAndUpdate(
-      { user_id: new mongoose.Types.ObjectId(user_id) },
+    const userObjectId = new mongoose.Types.ObjectId(user_id);
+
+    const result = await ActivityAnalyticsModel.findOneAndUpdate(
+      { user_id: userObjectId },
       {
         $push: {
           activities: {
             slug,
-            date: getUtcDateTime(),
+            date: new Date(),
           },
         },
-      },
-      { new: true, upsert: true }
+      }
     );
 
     if (!result) {
