@@ -14,8 +14,7 @@ const addUser: AddUserType = async (newUser) => {
   if (!res.ok) {
     const error: FetchErrorType = new Error('An error occurred while fetching the addUser data');
     error.info = await res.json();
-    error.status = res.status;
-    throw error;
+    throw Error(error.info);
   }
 
   const response = await res.json();

@@ -1,16 +1,15 @@
-import { Db } from 'mongodb';
 import mongoose from 'mongoose';
 
+import { ActivityAnalyticsModel } from '@unity/models';
+
 type Params = {
-  db: Db;
   userId: mongoose.Types.ObjectId;
 };
 
-const createActivitiesAnalytics = async ({ db, userId }: Params) => {
+const createActivitiesAnalytics = async ({ userId }: Params) => {
   try {
-    const activitiesAnalytics = db.collection('activities_analytics');
-
-    await activitiesAnalytics.insertOne({ user_id: userId, activities: [] });
+    const newAnalytics = new ActivityAnalyticsModel({ user_id: userId, activities: [] });
+    await newAnalytics.save();
   } catch (error) {
     if (error instanceof Error) {
       throw Error(`Activities Analytics not created: ${error.message}`);

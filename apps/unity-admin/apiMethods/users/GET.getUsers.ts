@@ -1,6 +1,9 @@
-import { Document, MongoClient } from 'mongodb';
+import { Document } from 'mongodb';
 
+import { UserModel } from '@unity/models';
 import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
+
+import connectToDatabase from '@/Lib/connectToDatabase';
 
 type GetUsersType = () => ApiMethodResponseType<unknown>;
 
@@ -9,31 +12,23 @@ type CatchError = {
 };
 
 const getUsers: GetUsersType = async () => {
-  const { MONGODB_URI = '' } = process.env;
-
-  const client = new MongoClient(MONGODB_URI);
-  let users;
   let response: SuccessGetType<Document[]> | ErrorGetType;
 
   try {
-    await client.connect();
-    const db = client.db('Production');
-    const usersCollection = db.collection('users');
-    users = await usersCollection
-      .aggregate([
-        {
-          $project: {
-            _id: 0,
-            user_id: '$_id',
-            name: 1,
-            email: 1,
-            created_at: 1,
-            status: 1,
-            last_active: 1,
-          },
-        },
-      ])
-      .toArray();
+    await connectToDatabase();
+
+    const users = await UserModel.find(
+      {},
+      {
+        _id: 0,
+        user_id: '$_id',
+        name: 1,
+        email: 1,
+        created_at: 1,
+        status: 1,
+        last_active: 1,
+      }
+    ).lean();
 
     response = [{ result: users }, { status: 200 }];
   } catch (err) {
@@ -42,8 +37,6 @@ const getUsers: GetUsersType = async () => {
     console.error(error.message);
 
     response = [{ error: { message: error.message } }, { status: 503 }];
-  } finally {
-    await client.close();
   }
 
   return response;
