@@ -1,3 +1,3 @@
-export { default as activityAnalyticsModel } from './activityAnalytics';
-export { default as userModel } from './user';
-export { default as userLogsModel } from './userLogs';
+export { default as ActivityAnalyticsModel } from './activityAnalytics';
+export { default as UserModel } from './user';
+export { default as UserLogsModel } from './userLogs';

@@ -49,6 +49,6 @@ const userLogsSchema = new Schema<UserLogsDocument>(
   { timestamps: true }
 );
 
-const userLogsModel = models.UserLogs || mongoose.model<UserLogsDocument>('UserLogs', userLogsSchema);
+const UserLogsModel = models.UserLogs || mongoose.model<UserLogsDocument>('UserLogs', userLogsSchema);
 
-export default userLogsModel;
+export default UserLogsModel;
