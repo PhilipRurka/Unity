@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-import { userModel } from '@unity/models';
+import { UserModel } from '@unity/models';
 import type { UserReqType } from '@unity/types';
 
-import mongoConnect from '@/Lib/mongoConnect';
+import connectToDatabase from '@/Lib/connectToDatabase';
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -18,8 +18,8 @@ const authOptions: NextAuthOptions = {
 
         try {
           if (email !== 'hey@philiprurka.com') throw new Error('');
-          await mongoConnect();
-          const user = await userModel.findOne({ email });
+          await connectToDatabase();
+          const user = await UserModel.findOne({ email });
 
           if (!user) return null;
 
