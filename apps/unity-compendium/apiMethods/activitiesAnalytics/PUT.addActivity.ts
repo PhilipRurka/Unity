@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { ActivityAnalyticsModel } from '@unity/models';
-import type { ActivityReqType, ApiMethodResponseType } from '@unity/types';
+import type { ActivityReqType, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 
@@ -12,6 +12,8 @@ type CatchError = {
 type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
 
 const activityPut: ActivityPut = async ({ user_id, slug }) => {
+  let response: SuccessGetType<{ message: string }> | ErrorGetType;
+
   try {
     await connectToDatabase();
   } catch (error) {
@@ -34,15 +36,19 @@ const activityPut: ActivityPut = async ({ user_id, slug }) => {
     );
 
     if (!result) {
-      return [{ error: { message: 'Failed to update activities!' } }, { status: 503 }];
+      response = [{ error: { message: 'Failed to update activities!' } }, { status: 503 }];
     }
 
-    return [{ result: { message: 'Success!' } }, { status: 200 }];
+    response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
-    return [{ error: { message: error.message } }, { status: 503 }];
+    response = [{ error: { message: error.message } }, { status: 503 }];
   }
+
+  mongoose.connection.close();
+
+  return response;
 };
 
 export default activityPut;

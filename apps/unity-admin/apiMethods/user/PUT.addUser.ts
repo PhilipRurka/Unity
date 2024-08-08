@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 
 import type { AddUserReq, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
@@ -43,6 +44,8 @@ const activityPut: UserPut = async ({ name, email }) => {
 
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
+
+  mongoose.connection.close();
 
   return response;
 };

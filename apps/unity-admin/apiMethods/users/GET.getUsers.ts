@@ -1,4 +1,5 @@
 import { Document } from 'mongodb';
+import mongoose from 'mongoose';
 
 import { UserModel } from '@unity/models';
 import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
@@ -38,6 +39,8 @@ const getUsers: GetUsersType = async () => {
 
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
+
+  mongoose.connection.close();
 
   return response;
 };
