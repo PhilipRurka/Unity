@@ -13,7 +13,7 @@ const connectToDatabase = async () => {
     return;
   }
 
-  mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONGODB_DATABASE}`);
+  await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONGODB_DATABASE}`);
 };
 
 export default connectToDatabase;
