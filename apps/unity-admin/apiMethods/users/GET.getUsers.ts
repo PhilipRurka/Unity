@@ -31,6 +31,8 @@ const getUsers: GetUsersType = async () => {
       }
     ).exec();
 
+    console.log(users);
+
     response = [{ result: users }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
