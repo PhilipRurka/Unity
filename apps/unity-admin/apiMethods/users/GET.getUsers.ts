@@ -1,6 +1,6 @@
-import { MongoClient } from 'mongodb';
+import { Document, MongoClient } from 'mongodb';
 
-import { ApiMethodResponseType } from '@unity/types';
+import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
 type GetUsersType = () => ApiMethodResponseType<unknown>;
 
@@ -13,6 +13,7 @@ const getUsers: GetUsersType = async () => {
 
   const client = new MongoClient(MONGODB_URI);
   let users;
+  let response: SuccessGetType<Document[]> | ErrorGetType;
 
   try {
     await client.connect();
@@ -33,17 +34,19 @@ const getUsers: GetUsersType = async () => {
         },
       ])
       .toArray();
+
+    response = [{ result: users }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
     console.error(error.message);
 
-    return [{ error: { message: error.message } }, { status: 503 }];
+    response = [{ error: { message: error.message } }, { status: 503 }];
   } finally {
     await client.close();
   }
 
-  return [{ result: users }, { status: 200 }];
+  return response;
 };
 
 export default getUsers;
