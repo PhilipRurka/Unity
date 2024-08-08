@@ -1,3 +1,4 @@
+import { Document } from 'mongoose';
 import type { DefaultSession } from 'next-auth';
 
 export type UserStatus = 'active' | 'pending' | 'removed';
