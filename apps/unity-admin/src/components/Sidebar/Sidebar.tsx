@@ -11,10 +11,6 @@ const listOfPages = [
     title: 'Users',
     pathname: '/users',
   },
-  {
-    title: 'Test',
-    pathname: '/test-ing',
-  },
 ];
 
 const Sidebar = () => {
