@@ -40,7 +40,7 @@ const getUsers: GetUsersType = async () => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  mongoose.connection.close();
+  await mongoose.disconnect();
 
   return response;
 };
