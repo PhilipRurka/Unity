@@ -9,6 +9,8 @@ import Sidebar from '@/Components/Sidebar';
 import AuthProvider from '@/Providers/SessionProvider';
 import SidebarProvider from '@/Providers/contexts/SidebarProvider';
 
+export const fetchCache = 'default-no-store';
+
 const lexend = Lexend({
   weight: ['300', '500'],
   style: 'normal',
