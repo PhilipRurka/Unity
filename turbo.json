@@ -18,6 +18,10 @@
       "dependsOn": ["^env-pull"],
       "cache": false
     },
+    "env-pull-production": {
+      "dependsOn": ["^env-pull-production"],
+      "cache": false
+    },
     "watch": {
       "dependsOn": ["^watch"],
       "cache": false
