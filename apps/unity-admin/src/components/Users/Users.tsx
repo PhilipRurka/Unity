@@ -11,12 +11,12 @@ import getUsers from '@/Fetchers/getUsers';
 const Users = () => {
   const [usersList, setUsersList] = useState<UserFrontendType[]>([]);
 
-  useEffect(() => {
-    const getUsersList = async () => {
-      const userList = await getUsers();
-      setUsersList(userList);
-    };
+  const getUsersList = async () => {
+    const list = await getUsers();
+    setUsersList(list);
+  };
 
+  useEffect(() => {
     getUsersList();
   }, []);
 
