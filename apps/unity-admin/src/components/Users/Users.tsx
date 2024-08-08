@@ -13,7 +13,7 @@ const Users = () => {
 
   const getUsersList = async () => {
     const list = await getUsers();
-    setUsersList(list);
+    setUsersList([list[0]]);
   };
 
   useEffect(() => {
