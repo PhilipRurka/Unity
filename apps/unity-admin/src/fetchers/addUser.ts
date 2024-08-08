@@ -18,8 +18,6 @@ const addUser: AddUserType = async (newUser) => {
     throw error;
   }
 
-  console.log('Hit 3');
-
   const response = await res.json();
 
   return response.result;

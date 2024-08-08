@@ -25,7 +25,6 @@ const AddUser = () => {
 
   const handleFormSubmit = async ({ email, name }: AddUserSubmit) => {
     try {
-      console.log('Hit 1');
       await addUser({ email, name });
 
       setSuccess(true);

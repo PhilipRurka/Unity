@@ -7,7 +7,11 @@ const getUsers: GetUsersType = async () => {
     method: 'GET',
     headers: {
       Accept: 'application/json',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      Pragma: 'no-cache',
+      Expires: '0',
     },
+    cache: 'no-store',
   });
 
   if (!res.ok) {
