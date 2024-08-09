@@ -74,13 +74,20 @@ const tailwindConfig = {
     "overflow-y-hidden",
 
     /** widths */
+    // FRONTEND: Clean up a lot of these as none of them are custom defined.
     "w-full",
     "w-4",
+    "w-5",
     "w-6",
+    "w-7",
     "w-8",
+    "w-9",
     "w-10",
+    "w-11",
     "w-12",
+    "w-13",
     "w-14",
+    "w-15",
     "w-16",
     "w-17",
     "w-18",
