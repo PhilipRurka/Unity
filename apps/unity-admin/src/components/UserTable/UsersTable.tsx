@@ -1,7 +1,7 @@
-import { formatDate } from 'src/utils';
-
-import { Table, Tdata, Theader, Trow } from '@unity/components';
+import { Table, Theader } from '@unity/components';
 import { TableHeaders, UserFrontendType } from '@unity/types';
+
+import UserRow from '../UserRow';
 
 type UsersTableProps = {
   usersList: UserFrontendType[];
@@ -16,7 +16,7 @@ const headerList: TableHeaders = [
   {
     label: 'Status',
     property: 'status',
-    width: '40',
+    width: '28',
   },
   {
     label: 'Last Active',
@@ -28,6 +28,11 @@ const headerList: TableHeaders = [
     property: 'created_at',
     width: '40',
   },
+  {
+    label: '',
+    property: '',
+    width: '8',
+  },
 ];
 
 const UsersTable = ({ usersList }: UsersTableProps) => (
@@ -37,15 +42,7 @@ const UsersTable = ({ usersList }: UsersTableProps) => (
         <Theader headerList={headerList} />
         <ul className="px-1">
           {usersList.map((user) => (
-            <Trow key={`UsersTable-usersList-${user.user_id}`}>
-              <Tdata width={headerList[0].width}>
-                <p className="text-md font-semibold">{user.name}</p>
-                <p className="text-sm">{user.email}</p>
-              </Tdata>
-              <Tdata width={headerList[1].width}>{user.status}</Tdata>
-              <Tdata width={headerList[2].width}>{user.last_active ? formatDate(user.last_active) : ''}</Tdata>
-              <Tdata width={headerList[3].width}>{formatDate(user.created_at)}</Tdata>
-            </Trow>
+            <UserRow key={`UserList-row-${user.name}`} user={user} headerList={headerList} />
           ))}
         </ul>
       </>
