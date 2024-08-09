@@ -4,3 +4,7 @@ export { default as HierarchyIcon } from './HierarchyIcon';
 export { default as RightArrow } from './RightArrow';
 export { default as Plus } from './Plus';
 export { default as Filter } from './Filter';
+export { default as MenuIcon } from './MenuIcon';
+export { default as EditIcon } from './EditIcon';
+export { default as XInCircleIcon } from './XInCircleIcon';
+export { default as PlusInCircleIcon } from './PlusInCircleIcon';
