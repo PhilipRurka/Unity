@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import React from 'react';
 
+import { EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
 import FilterIcon from '../Icons/Filter';
 import PlusIcon from '../Icons/Plus';
 
@@ -17,21 +18,24 @@ type ButtonWithoutIconProps = ButtonDefaultProps;
 
 type ButtonWithIconProps = ButtonDefaultProps & {
   iconPosition: 'left' | 'right';
-  icon: Icons;
+  icon: Icons | undefined;
 };
 
-type Icons = 'plus' | 'filter';
+export type Icons = 'plus' | 'filter' | 'plusInCircle' | 'xInCircle' | 'edit';
 
 type ButtonIconProps = {
-  icon: Icons;
+  icon: Icons | undefined;
 };
 
 type ButtonProps = ButtonWithoutIconProps | ButtonWithIconProps;
 
 const ButtonIcon = ({ icon }: ButtonIconProps) => (
   <>
-    {icon === 'plus' && <PlusIcon size="4" className="h-full" />}
+    {icon === 'edit' && <EditIcon size="4" className="h-full" />}
     {icon === 'filter' && <FilterIcon size="4" className="h-full" />}
+    {icon === 'plus' && <PlusIcon size="4" className="h-full" />}
+    {icon === 'plusInCircle' && <PlusInCircleIcon size="4" className="h-full" />}
+    {icon === 'xInCircle' && <XInCircleIcon size="4" className="h-full" />}
   </>
 );
 
