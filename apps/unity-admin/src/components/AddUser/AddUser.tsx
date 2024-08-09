@@ -1,9 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
+import type { AddUserReq } from '@unity/types';
 
 import addUser from '@/Fetchers/addUser';
 
@@ -19,13 +21,19 @@ type AddUserSubmit = {
   name: string;
 };
 
+type UpdateUsers = (key: string, change: { arg: AddUserReq }) => void;
+
+const updateUsers: UpdateUsers = (_key, { arg }) => addUser(arg);
+
 const AddUser = () => {
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState(false);
 
+  const { trigger: triggerAddUser } = useSWRMutation('users', updateUsers);
+
   const handleFormSubmit = async ({ email, name }: AddUserSubmit) => {
     try {
-      await addUser({ email, name });
+      await triggerAddUser({ email, name });
 
       setSuccess(true);
     } catch (err) {

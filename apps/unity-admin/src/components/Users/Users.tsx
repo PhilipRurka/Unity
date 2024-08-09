@@ -1,24 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-import { UserFrontendType } from '@unity/types';
-
 import UserTable from '@/Components/UserTable';
 import UsersFilter from '@/Components/UsersFilter';
-import getUsers from '@/Fetchers/getUsers';
+import useUsers from '@/Hooks/useUsers';
 
 const Users = () => {
-  const [usersList, setUsersList] = useState<UserFrontendType[]>([]);
-
-  const getUsersList = async () => {
-    const list = await getUsers();
-    setUsersList(list);
-  };
-
-  useEffect(() => {
-    getUsersList();
-  }, []);
+  // const {data: usersList, usersError, usersIsLoading} = useUsers();
+  const { data: usersList = [] } = useUsers();
 
   return (
     <div data-component="Users">
