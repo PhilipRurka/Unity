@@ -1,7 +1,7 @@
 import { Document } from 'mongoose';
 import type { DefaultSession } from 'next-auth';
 
-export type UserStatus = 'active' | 'pending' | 'removed';
+export type UserStatus = 'active' | 'pending' | 'disabled';
 
 export type UserType = {
   email: string;
