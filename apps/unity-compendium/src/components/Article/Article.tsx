@@ -3,15 +3,13 @@
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-
-import type { ArticleType } from '@unity/types';
+import { useEffect, useRef } from 'react';
 
 import Header from '@/Components/Header';
 import Infobox from '@/Components/Infobox';
 import Markdown from '@/Components/Markdown';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
-import getBySlug from '@/Fetchers/contentful/getBySlug';
+import useGetBySlug from '@/Hooks/useGetBySlug';
 
 type ArticleProps = {
   slug: string;
@@ -19,23 +17,21 @@ type ArticleProps = {
 
 const Article = ({ slug }: ArticleProps) => {
   const lastVisitedUrlRef = useRef<string | null>();
-  const [article, setArticle] = useState<ArticleType>();
   const { data: session } = useSession();
 
-  useEffect(() => {
-    const getArticle = async () => {
-      const entry = await getBySlug(slug);
-      if (!entry) notFound();
-      setArticle(entry);
-    };
+  const { data: article, isLoading: isArticleLoading } = useGetBySlug(slug);
 
+  useEffect(() => {
+    if (!article && !isArticleLoading) notFound();
+  }, [article, isArticleLoading]);
+
+  useEffect(() => {
     lastVisitedUrlRef.current = sessionStorage.getItem('lastVisitedUrl');
-    getArticle();
   }, [slug]);
 
   useEffect(() => {
     const run = async () => {
-      if (!article || !session) return;
+      if (isArticleLoading || !article || !session) return;
 
       if (typeof lastVisitedUrlRef.current === 'undefined' || lastVisitedUrlRef.current === article.fields.slug) return;
 
@@ -43,14 +39,13 @@ const Article = ({ slug }: ArticleProps) => {
       sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
 
       addActivitiesAnalytics({
-        // eslint-disable-next-line no-underscore-dangle
         user_id: session?.user?.id,
         slug: article.fields.slug,
       });
     };
 
     run();
-  }, [article, session]);
+  }, [article, session, isArticleLoading]);
 
   return (
     <>
