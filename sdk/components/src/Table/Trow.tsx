@@ -5,7 +5,7 @@ type TrowProps = {
 };
 
 const Trow = ({ children }: TrowProps) => (
-  <li data-component="Trow" className="flex gap-12 border border-solid border-gray-100 py-4">
+  <li data-component="Trow" className="flex gap-12 border-b border-solid border-gray-100 py-4">
     {children}
   </li>
 );
