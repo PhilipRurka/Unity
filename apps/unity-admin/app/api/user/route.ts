@@ -2,9 +2,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import addUser from '@/Methods/user/PUT.addUser';
+import addUser from '@/Methods/user/POST.addUser';
 
-export const PUT = async (req: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   const isUserAuthenticated = checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 

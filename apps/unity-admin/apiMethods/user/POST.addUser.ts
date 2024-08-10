@@ -14,7 +14,7 @@ type CatchError = {
 
 type UserPut = (reqData: AddUserReq) => ApiMethodResponseType<{ message: string }>;
 
-const activityPut: UserPut = async ({ name, email }) => {
+const addUser: UserPut = async ({ name, email }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -50,4 +50,4 @@ const activityPut: UserPut = async ({ name, email }) => {
   return response;
 };
 
-export default activityPut;
+export default addUser;
