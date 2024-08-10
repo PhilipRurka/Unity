@@ -5,17 +5,20 @@ import { Button, MenuIcon, Tdata, Trow } from '@unity/components';
 import { Icons as ButtonIcons } from '@unity/components/src/Button/Button';
 import { TableHeaders, UserFrontendType } from '@unity/types';
 
+import Pill from '../Pill';
+import { PillProps } from '../Pill/Pill';
+
 type UserRowProps = {
   user: UserFrontendType;
   headerList: TableHeaders;
 };
 
-type MenuStatusAction =
-  | undefined
-  | {
-      copy: string;
-      icon: ButtonIcons;
-    };
+type MenuStatusAction = {
+  actionCopy: string;
+  icon: ButtonIcons;
+  color: PillProps['color'];
+  statusCopy: 'Active' | 'Disabled' | 'Pending' | 'Opps';
+};
 
 const UserRow = ({ user, headerList }: UserRowProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
@@ -26,14 +29,20 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
     setIsMenuOpen(shouldOpen);
   };
 
-  const menuStatusAction = (): MenuStatusAction => {
-    if (user.status === 'active') return { copy: 'Disable', icon: 'xInCircle' };
+  const statusObj = (): MenuStatusAction => {
+    if (user.status === 'active') {
+      return { actionCopy: 'Disable', icon: 'xInCircle', color: 'green', statusCopy: 'Active' };
+    }
 
-    if (user.status === 'disabled') return { copy: 'Sctivate', icon: 'plusInCircle' };
+    if (user.status === 'disabled') {
+      return { actionCopy: 'Activate', icon: 'plusInCircle', color: 'red', statusCopy: 'Disabled' };
+    }
 
-    if (user.status === 'pending') return { copy: 'Cancel', icon: 'xInCircle' };
+    if (user.status === 'pending') {
+      return { actionCopy: 'Cancel', icon: 'xInCircle', color: 'yellow', statusCopy: 'Pending' };
+    }
 
-    return undefined;
+    return { actionCopy: 'Oops', icon: 'xInCircle', color: 'red', statusCopy: 'Opps' };
   };
 
   useEffect(() => {
@@ -61,7 +70,9 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
           <p className="text-md font-semibold">{user.name}</p>
           <p className="text-sm">{user.email}</p>
         </Tdata>
-        <Tdata width={headerList[1].width}>{user.status}</Tdata>
+        <Tdata width={headerList[1].width}>
+          <Pill text={statusObj().statusCopy} color={statusObj().color} />
+        </Tdata>
         <Tdata width={headerList[2].width}>{user.last_active ? formatDate(user.last_active) : ''}</Tdata>
         <Tdata width={headerList[3].width}>{formatDate(user.created_at)}</Tdata>
         <Tdata width={headerList[4].width}>
@@ -74,8 +85,8 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
                 <Button color="black" isFull size="small" icon="edit" iconPosition="left">
                   Edit
                 </Button>
-                <Button color="black" isFull size="small" icon={menuStatusAction()?.icon} iconPosition="left">
-                  {menuStatusAction()?.copy}
+                <Button color="black" isFull size="small" icon={statusObj()?.icon} iconPosition="left">
+                  {statusObj()?.actionCopy}
                 </Button>
               </div>
             )}
