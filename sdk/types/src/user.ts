@@ -20,7 +20,7 @@ export type UserReqType = {
 };
 
 export type UserFrontendType = {
-  id: string;
+  user_id: string;
   email: string;
   password: string;
   name: string;
