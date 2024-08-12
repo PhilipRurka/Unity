@@ -24,8 +24,8 @@ export type UserFrontendType = {
   email: string;
   password: string;
   name: string;
-  createdAt: Date;
-  lastActive: Date | null;
+  created_at: Date;
+  last_active: Date | null;
   status: UserStatus;
 };
 
