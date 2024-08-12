@@ -12,10 +12,6 @@ export type UserType = {
   status: UserStatus;
 };
 
-export type UserFrontendType = UserType & {
-  user_id: string;
-};
-
 export type UserDocument = Document & UserType;
 
 export type UserReqType = {
@@ -23,8 +19,23 @@ export type UserReqType = {
   password: string;
 };
 
+export type UserFrontendType = {
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  createdAt: Date;
+  lastActive: Date | null;
+  status: UserStatus;
+};
+
 export type AddUserReq = {
   email: string;
+  name: string;
+};
+
+export type EditUserReq = {
+  id: string;
   name: string;
 };
 

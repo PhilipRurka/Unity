@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export type ActivityReqType = {
-  user_id: string;
+  userId: string;
   slug: string;
 };
 
