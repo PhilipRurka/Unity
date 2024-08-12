@@ -20,12 +20,12 @@ export type UserReqType = {
 };
 
 export type UserFrontendType = {
-  user_id: string;
+  id: string;
   email: string;
   password: string;
   name: string;
-  created_at: Date;
-  last_active: Date | null;
+  createdAt: Date;
+  lastActive: Date | null;
   status: UserStatus;
 };
 
