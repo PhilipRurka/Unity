@@ -65,7 +65,7 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
 
   return (
     <div data-component="UserRow">
-      <Trow key={`UsersTable-usersList-${user.user_id}`}>
+      <Trow key={`UsersTable-usersList-${user.id}`}>
         <Tdata width={headerList[0].width}>
           <p className="text-md font-semibold">{user.name}</p>
           <p className="text-sm">{user.email}</p>
@@ -73,8 +73,8 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
         <Tdata width={headerList[1].width}>
           <Pill text={statusObj().statusCopy} color={statusObj().color} />
         </Tdata>
-        <Tdata width={headerList[2].width}>{user.last_active ? formatDate(user.last_active) : ''}</Tdata>
-        <Tdata width={headerList[3].width}>{formatDate(user.created_at)}</Tdata>
+        <Tdata width={headerList[2].width}>{user.lastActive ? formatDate(user.lastActive) : ''}</Tdata>
+        <Tdata width={headerList[3].width}>{formatDate(user.createdAt)}</Tdata>
         <Tdata width={headerList[4].width}>
           <div ref={menuRef} className="relative">
             <button onClick={() => handleMenu(!isMenuOpen)}>

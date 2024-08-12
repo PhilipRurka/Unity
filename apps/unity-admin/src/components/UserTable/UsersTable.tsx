@@ -20,12 +20,12 @@ const headerList: TableHeaders = [
   },
   {
     label: 'Last Active',
-    property: 'last_active',
+    property: 'lastActive',
     width: '40',
   },
   {
     label: 'Created At',
-    property: 'created_at',
+    property: 'createdAt',
     width: '40',
   },
   {
