@@ -39,7 +39,7 @@ const Article = ({ slug }: ArticleProps) => {
       sessionStorage.setItem('lastVisitedUrl', article.fields.slug);
 
       addActivitiesAnalytics({
-        user_id: session?.user?.id,
+        userId: session?.user?.id,
         slug: article.fields.slug,
       });
     };

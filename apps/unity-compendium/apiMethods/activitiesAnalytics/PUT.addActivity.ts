@@ -11,7 +11,7 @@ type CatchError = {
 
 type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
 
-const activityPut: ActivityPut = async ({ user_id, slug }) => {
+const activityPut: ActivityPut = async ({ userId, slug }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -21,7 +21,7 @@ const activityPut: ActivityPut = async ({ user_id, slug }) => {
   }
 
   try {
-    const userObjectId = new mongoose.Types.ObjectId(user_id);
+    const userObjectId = new mongoose.Types.ObjectId(userId);
 
     const result = await ActivityAnalyticsModel.findOneAndUpdate(
       { user_id: userObjectId },
