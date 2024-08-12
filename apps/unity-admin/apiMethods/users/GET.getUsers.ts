@@ -22,12 +22,12 @@ const getUsers: GetUsersType = async () => {
       {},
       {
         _id: 0,
-        user_id: '$_id',
+        id: '$_id',
         name: 1,
         email: 1,
-        created_at: 1,
+        createdAt: '$created_at',
         status: 1,
-        last_active: 1,
+        lastActive: '$last_active',
       }
     ).exec();
 

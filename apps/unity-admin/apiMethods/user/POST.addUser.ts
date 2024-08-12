@@ -12,9 +12,9 @@ type CatchError = {
   message: string;
 };
 
-type UserPut = (reqData: AddUserReq) => ApiMethodResponseType<{ message: string }>;
+type AddUser = (reqData: AddUserReq) => ApiMethodResponseType<{ message: string }>;
 
-const addUser: UserPut = async ({ name, email }) => {
+const addUser: AddUser = async ({ name, email }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
