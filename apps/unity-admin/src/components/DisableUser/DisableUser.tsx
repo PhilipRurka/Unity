@@ -5,30 +5,41 @@ import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
-import type { AddUserReq } from '@unity/types';
+import { DisableUserReq } from '@unity/types';
 
-import addUser from '@/Fetchers/addUser';
+import disableUser from '@/Fetchers/disableUser';
 
 const FormSchema = z.object({
-  email: z.string().email(),
+  reason: z.string(),
   name: z.string(),
 });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
-type UpdateUsers = (key: string, change: { arg: AddUserReq }) => void;
+type DisableUserProps = {
+  userId?: string;
+  email?: string;
+  name?: string;
+};
 
-const updateUsers: UpdateUsers = (_key, { arg }) => addUser(arg);
+type DisableUserMutation = (key: string, change: { arg: DisableUserReq }) => void;
 
-const AddUser = () => {
+const disableUsers: DisableUserMutation = (_key, { arg }) => disableUser(arg);
+
+const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) => {
   const [error, setError] = useState<string>();
   const [success, setSuccess] = useState(false);
 
-  const { trigger: triggerAddUser } = useSWRMutation('users', updateUsers);
+  const { trigger: triggerDisableUser } = useSWRMutation('users', disableUsers);
 
-  const handleFormSubmit = async ({ email, name }: FormSchemaType) => {
+  const handleFormSubmit = async ({ reason, name: typedName }: FormSchemaType) => {
+    if (typedName !== name) {
+      setError('Name was not propperly typed out.');
+      return;
+    }
+
     try {
-      await triggerAddUser({ email, name });
+      await triggerDisableUser({ userId, reason });
 
       setSuccess(true);
     } catch (err) {
@@ -46,20 +57,23 @@ const AddUser = () => {
   });
 
   return (
-    <div data-component="AddUser">
+    <div data-component="DisableUser">
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
+        <p>
+          Are you sure you want to delete {name} with email {email}
+        </p>
         <Field>
-          <Label>User Email</Label>
-          <Input id="email" type="email" showErrorStyles={!!errors.email} {...register('email')} />
-          {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
-        </Field>
-        <Field>
-          <Label>User Name</Label>
+          <Label>Write out the user's name</Label>
           <Input id="name" type="text" showErrorStyles={!!errors.name} {...register('name')} />
           {errors.name && <ErrorSpan>{errors.name.message}</ErrorSpan>}
         </Field>
+        <Field>
+          <Label>Reason for disabling user</Label>
+          <Input id="reason" type="text" showErrorStyles={!!errors.reason} {...register('reason')} />
+          {errors.reason && <ErrorSpan>{errors.reason.message}</ErrorSpan>}
+        </Field>
         <Button color="black" isFull size="small" type="submit">
-          Add User
+          Disable User
         </Button>
       </Form>
       {success && <span className="mt-6 text-green-600">Success!</span>}
@@ -68,4 +82,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default DisableUser;

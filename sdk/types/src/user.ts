@@ -69,6 +69,7 @@ export type UserLogsFrontendType = { logs: LogType[] };
 export type UserLogsDocument = Document & UserLogs;
 
 export type DisableUserReq = {
+  userId: string;
   reason: string;
 };
 
