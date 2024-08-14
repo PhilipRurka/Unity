@@ -5,6 +5,7 @@ import type { AddUserReq, ApiMethodResponseType, ErrorGetType, SuccessGetType } 
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 import createActivitiesAnalytics from '@/Lib/createActivitiesAnalytics';
+import createUserLogs from '@/Lib/createUserLogs';
 import createUserWithCredentials from '@/Lib/createUserWithCredentials';
 import sendgridInvitationEmail from '@/Lib/sendgridInvitationEmail';
 
@@ -31,6 +32,8 @@ const addUser: AddUser = async ({ name, email }) => {
       name,
       password,
     });
+
+    await createUserLogs({ userId });
 
     await createActivitiesAnalytics({ userId });
 
