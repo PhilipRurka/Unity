@@ -1,10 +1,10 @@
 import { Table, Theader } from '@unity/components';
-import { TableHeaders, UserFrontendType } from '@unity/types';
+import { TableHeaders, UserBasicFrontendType } from '@unity/types';
 
 import UserRow from '../UserRow';
 
 type UsersTableProps = {
-  usersList: UserFrontendType[];
+  usersList: UserBasicFrontendType[];
 };
 
 const headerList: TableHeaders = [

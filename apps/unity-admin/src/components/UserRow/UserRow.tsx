@@ -1,15 +1,17 @@
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
 import { Button, MenuIcon, Tdata, Trow } from '@unity/components';
 import { Icons as ButtonIcons } from '@unity/components/src/Button/Button';
-import { TableHeaders, UserFrontendType } from '@unity/types';
+import { TableHeaders, UserBasicFrontendType } from '@unity/types';
 
-import Pill from '../Pill';
-import { PillProps } from '../Pill/Pill';
+import Pill from '@/Components/Pill';
+
+import type { PillProps } from '../Pill/Pill';
 
 type UserRowProps = {
-  user: UserFrontendType;
+  user: UserBasicFrontendType;
   headerList: TableHeaders;
 };
 
@@ -83,7 +85,7 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
             {isMenuOpen && (
               <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
                 <Button color="black" isFull size="small" icon="edit" iconPosition="left">
-                  Edit
+                  <Link href={`/users/${user.id}`}>Details</Link>
                 </Button>
                 <Button color="black" isFull size="small" icon={statusObj()?.icon} iconPosition="left">
                   {statusObj()?.actionCopy}

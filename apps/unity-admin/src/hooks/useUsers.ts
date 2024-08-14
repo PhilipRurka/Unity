@@ -1,11 +1,11 @@
 import useSWR from 'swr';
 
-import { UserFrontendType } from '@unity/types';
+import { UserBasicFrontendType } from '@unity/types';
 
 import getUsers from '@/Fetchers/getUsers';
 
 const useUsers = () => {
-  const response = useSWR<UserFrontendType[]>('users', () => getUsers());
+  const response = useSWR<UserBasicFrontendType[]>('users', () => getUsers());
 
   return response;
 };
