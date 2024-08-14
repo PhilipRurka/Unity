@@ -34,7 +34,6 @@ export type AddUserReq = {
 };
 
 export type EditUserReq = {
-  id: string;
   name: string;
 };
 
