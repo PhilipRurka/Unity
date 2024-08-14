@@ -46,15 +46,22 @@ export const up = async (db) => {
 
     if (validOps.length > 0) {
       await userLogsCollection.bulkWrite(validOps);
-      console.log(green, `005-add-user-log-entries --> Migration successful`);
+      console.log(
+        green,
+        `006-create-initial-userLogs --> Migration successful`
+      );
     } else {
       console.log(
         green,
-        `005-add-user-log-entries --> No new log entries needed`
+        `006-create-initial-userLogs --> No new log entries needed`
       );
     }
   } catch (error) {
-    console.error(red, "005-add-user-log-entries --> Migration failed:", error);
+    console.error(
+      red,
+      "006-create-initial-userLogs --> Migration failed:",
+      error
+    );
     throw error;
   }
 };
@@ -63,7 +70,6 @@ export const down = async (db) => {
   try {
     const userLogsCollection = db.collection("user_logs");
 
-    // Remove the specific logs that were added in the "up" migration
     const result = await userLogsCollection.deleteMany({
       logs: {
         $all: [
@@ -78,18 +84,18 @@ export const down = async (db) => {
     if (result.deletedCount > 0) {
       console.log(
         green,
-        `005-remove-user-log-entries --> Removed ${result.deletedCount} log entries successfully`
+        `006-create-initial-userLogs --> Removed ${result.deletedCount} log entries successfully`
       );
     } else {
       console.log(
         green,
-        `005-remove-user-log-entries --> No log entries found to remove`
+        `006-create-initial-userLogs --> No log entries found to remove`
       );
     }
   } catch (error) {
     console.error(
       red,
-      "005-remove-user-log-entries --> Down migration failed:",
+      "006-create-initial-userLogs --> Down migration failed:",
       error
     );
     throw error;
