@@ -71,3 +71,17 @@
 <!-- - **Implementation Details**: -->
 
 <br/>
+
+## 006 Create Initial UserLogs
+
+**Script**: `006-create-initial-userLogs.js`  
+**Author**: Philip Rurka  
+**Date**: 12/08/2024  
+**Schema Targets**: userLogs  
+**Model Targets**: UserLogs  
+**Purpose**:
+
+- Create a UserLogs for each user and set the email.
+<!-- - **Implementation Details**: -->
+
+<br/>
