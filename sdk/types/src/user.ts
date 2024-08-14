@@ -68,6 +68,10 @@ export type UserLogsFrontendType = { logs: LogType[] };
 
 export type UserLogsDocument = Document & UserLogs;
 
+export type DisableUserReq = {
+  reason: string;
+};
+
 declare module 'next-auth' {
   interface Session {
     user: {
