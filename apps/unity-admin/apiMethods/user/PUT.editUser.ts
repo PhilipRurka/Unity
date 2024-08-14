@@ -26,12 +26,7 @@ const editUser: EditUser = async ({ id, name }) => {
     await UserModel.findOneAndUpdate(
       { _id: userObjectId },
       {
-        $push: {
-          activities: {
-            name,
-            date: new Date(),
-          },
-        },
+        name,
       }
     );
 
