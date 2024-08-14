@@ -25,8 +25,8 @@ export const GET = async (req: NextRequest, context: Context) => {
 };
 
 export const PUT = async (req: NextRequest, context: Context) => {
-  // const isUserAuthenticated = checkIfUserAuthenticated(req);
-  // if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
 
