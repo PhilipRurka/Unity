@@ -24,7 +24,20 @@ export const GET = async (req: NextRequest, context: Context) => {
   return NextResponse.json(data, status);
 };
 
-export const PUT = async (req: NextRequest) => {
+export const PUT = async (req: NextRequest, context: Context) => {
+  // const isUserAuthenticated = checkIfUserAuthenticated(req);
+  // if (!isUserAuthenticated) return NextResponse.json({}, {});
+
+  const { id: userId } = context.params;
+
+  const reqData: EditUserReq = await req.json();
+
+  const [data, status] = await editUser(userId, reqData);
+
+  return NextResponse.json(data, status);
+};
+
+export const Delete = async (req: NextRequest) => {
   const isUserAuthenticated = checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 

@@ -9,9 +9,9 @@ type CatchError = {
   message: string;
 };
 
-type EditUser = (reqData: EditUserReq) => ApiMethodResponseType<{ message: string }>;
+type EditUser = (userId: string, reqData: EditUserReq) => ApiMethodResponseType<{ message: string }>;
 
-const editUser: EditUser = async ({ id, name }) => {
+const editUser: EditUser = async (userId, { name }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -21,7 +21,7 @@ const editUser: EditUser = async ({ id, name }) => {
   }
 
   try {
-    const userObjectId = new mongoose.Types.ObjectId(id);
+    const userObjectId = new mongoose.Types.ObjectId(userId);
 
     await UserModel.findOneAndUpdate(
       { _id: userObjectId },
