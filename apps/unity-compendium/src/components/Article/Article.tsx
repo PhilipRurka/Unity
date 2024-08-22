@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
 import { useEffect, useRef } from 'react';
+import withAuth from 'src/hoc/withAuth';
 
 import Header from '@/Components/Header';
 import Infobox from '@/Components/Infobox';
@@ -88,4 +89,4 @@ const Article = ({ slug }: ArticleProps) => {
   );
 };
 
-export default Article;
+export default withAuth(Article);
