@@ -11,7 +11,7 @@ import disableUser from '@/Fetchers/disableUser';
 
 const FormSchema = z.object({
   reason: z.string(),
-  name: z.string(),
+  email: z.string(),
 });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
@@ -27,20 +27,21 @@ type DisableUserMutation = (key: string, change: { arg: DisableUserReq }) => voi
 const disableUsers: DisableUserMutation = (_key, { arg }) => disableUser(arg);
 
 const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) => {
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
   const { trigger: triggerDisableUser } = useSWRMutation('users', disableUsers);
 
-  const handleFormSubmit = async ({ reason, name: typedName }: FormSchemaType) => {
-    if (typedName !== name) {
-      setError('Name was not propperly typed out.');
+  const handleFormSubmit = async ({ reason, email: typedEmail }: FormSchemaType) => {
+    if (typedEmail !== email) {
+      setError('Email was not propperly typed out.');
       return;
     }
 
     try {
       await triggerDisableUser({ userId, reason });
 
+      setError(null);
       setSuccess(true);
     } catch (err) {
       setError('There was an error!');
@@ -63,9 +64,9 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
           Are you sure you want to delete {name} with email {email}
         </p>
         <Field>
-          <Label>Write out the user's name</Label>
-          <Input id="name" type="text" showErrorStyles={!!errors.name} {...register('name')} />
-          {errors.name && <ErrorSpan>{errors.name.message}</ErrorSpan>}
+          <Label>Write out the user's email</Label>
+          <Input id="email" type="email" showErrorStyles={!!errors.email} {...register('email')} />
+          {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
         </Field>
         <Field>
           <Label>Reason for disabling user</Label>

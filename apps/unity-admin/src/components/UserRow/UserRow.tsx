@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
 import { Button, MenuIcon, Tdata, Trow } from '@unity/components';
-import { Icons as ButtonIcons } from '@unity/components/src/Button/Button';
 import { TableHeaders, UserBasicFrontendType } from '@unity/types';
 
 import Pill from '@/Components/Pill';
@@ -16,8 +15,6 @@ type UserRowProps = {
 };
 
 type MenuStatusAction = {
-  actionCopy: string;
-  icon: ButtonIcons;
   color: PillProps['color'];
   statusCopy: 'Active' | 'Disabled' | 'Pending' | 'Opps';
 };
@@ -33,18 +30,18 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
 
   const statusObj = (): MenuStatusAction => {
     if (user.status === 'active') {
-      return { actionCopy: 'Disable', icon: 'xInCircle', color: 'green', statusCopy: 'Active' };
+      return { color: 'green', statusCopy: 'Active' };
     }
 
     if (user.status === 'disabled') {
-      return { actionCopy: 'Activate', icon: 'plusInCircle', color: 'red', statusCopy: 'Disabled' };
+      return { color: 'red', statusCopy: 'Disabled' };
     }
 
     if (user.status === 'pending') {
-      return { actionCopy: 'Cancel', icon: 'xInCircle', color: 'yellow', statusCopy: 'Pending' };
+      return { color: 'yellow', statusCopy: 'Pending' };
     }
 
-    return { actionCopy: 'Oops', icon: 'xInCircle', color: 'red', statusCopy: 'Opps' };
+    return { color: 'red', statusCopy: 'Opps' };
   };
 
   useEffect(() => {
@@ -86,9 +83,6 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
               <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
                 <Button color="black" isFull size="small" icon="edit" iconPosition="left">
                   <Link href={`/users/${user.id}`}>Details</Link>
-                </Button>
-                <Button color="black" isFull size="small" icon={statusObj()?.icon} iconPosition="left">
-                  {statusObj()?.actionCopy}
                 </Button>
               </div>
             )}
