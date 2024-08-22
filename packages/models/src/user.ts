@@ -26,7 +26,7 @@ const userSchema = new Schema<UserDocument>(
     },
     status: {
       type: String,
-      enum: ['active', 'pending', 'removed'],
+      enum: ['active', 'pending', 'disabled'],
       default: 'pending',
     },
   },
