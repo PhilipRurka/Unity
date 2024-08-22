@@ -7,7 +7,7 @@ import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
 import activityPut from '@/Methods/activitiesAnalytics/PUT.addActivity';
 
 export const PUT = async (req: NextRequest) => {
-  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   if (process.env.NODE_ENV === 'development') {
