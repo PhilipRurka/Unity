@@ -7,7 +7,7 @@ const checkIfUserAuthenticated = async (req: NextRequest) => {
     secret: process.env.NEXTAUTH_SECRET,
   });
 
-  return !!token?.sub;
+  return token?.sub;
 };
 
 export default checkIfUserAuthenticated;

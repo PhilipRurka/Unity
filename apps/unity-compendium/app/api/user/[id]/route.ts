@@ -11,10 +11,13 @@ type Context = {
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const tokenSub = await checkIfUserAuthenticated(req);
+  if (!tokenSub) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
+
+  if (userId !== tokenSub)
+    return NextResponse.json([{ error: { message: 'You are not who you say you are!' } }, { status: 503 }]);
 
   const [data, status] = await getUser(userId);
 
