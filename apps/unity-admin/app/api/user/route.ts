@@ -7,7 +7,7 @@ import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
 import addUser from '@/Methods/user/POST.addUser';
 
 export const POST = async (req: NextRequest) => {
-  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const reqData: AddUserReq = await req.json();

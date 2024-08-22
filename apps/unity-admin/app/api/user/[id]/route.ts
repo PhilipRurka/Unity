@@ -15,7 +15,7 @@ type Context = {
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
@@ -26,7 +26,7 @@ export const GET = async (req: NextRequest, context: Context) => {
 };
 
 export const PUT = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
@@ -39,7 +39,7 @@ export const PUT = async (req: NextRequest, context: Context) => {
 };
 
 export const DELETE = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = checkIfUserAuthenticated(req);
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
