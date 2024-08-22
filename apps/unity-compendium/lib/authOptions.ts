@@ -3,7 +3,7 @@ import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 import { UserModel } from '@unity/models';
-import type { UserReqType } from '@unity/types';
+import type { UserDocument, UserReqType } from '@unity/types';
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 
@@ -18,15 +18,15 @@ const authOptions: NextAuthOptions = {
 
         try {
           await connectToDatabase();
-          const user = await UserModel.findOne({ email });
+          const user: UserDocument | null = await UserModel.findOne({ email });
 
           if (!user) return null;
 
           const isPasswordMatch = await bcrypt.compareSync(password, user.password);
 
-          if (!isPasswordMatch) return null;
+          if (!isPasswordMatch || user.status === 'disabled') return null;
 
-          return user;
+          return user as any;
         } catch (err) {
           return null;
         }
