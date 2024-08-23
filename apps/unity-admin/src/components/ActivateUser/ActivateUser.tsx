@@ -1,14 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
 import { UserStatusChangeReq } from '@unity/types';
 
-import updateStatus from '@/Fetchers/updateStatus';
+import UpdateStatus from '@/Fetchers/updateStatus';
 
 const FormSchema = z.object({
   reason: z.string(),
@@ -17,21 +16,21 @@ const FormSchema = z.object({
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
-type DisableUserProps = {
+type ActivateUserProps = {
   userId?: string;
   email?: string;
   name?: string;
 };
 
-type DisableUserMutation = (key: string, change: { arg: UserStatusChangeReq }) => void;
+type ActivateUserMutation = (key: string, change: { arg: UserStatusChangeReq }) => void;
 
-const disableUser: DisableUserMutation = (_key, { arg }) => updateStatus(arg);
+const activateUser: ActivateUserMutation = (_key, { arg }) => UpdateStatus(arg);
 
-const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) => {
+const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const { trigger: triggerDisableUser } = useSWRMutation(`user-${userId}`, disableUser);
+  const { trigger: triggerActivateUser } = useSWRMutation('users', activateUser);
 
   const handleFormSubmit = async ({ reason, email: typedEmail }: FormSchemaType) => {
     if (typedEmail !== email) {
@@ -40,9 +39,7 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
     }
 
     try {
-      await triggerDisableUser({ userId, newStatus: 'disabled', reason });
-
-      mutate(`user-${userId}`);
+      await triggerActivateUser({ userId, newStatus: 'active', reason });
 
       setError(null);
       setSuccess(true);
@@ -61,7 +58,7 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
   });
 
   return (
-    <div data-component="DisableUser">
+    <div data-component="ActivateUser">
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <p>
           Are you sure you want to delete {name} with email {email}
@@ -77,7 +74,7 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
           {errors.reason && <ErrorSpan>{errors.reason.message}</ErrorSpan>}
         </Field>
         <Button color="black" isFull size="small" type="submit">
-          Disable User
+          Activate User
         </Button>
       </Form>
       {success && <span className="mt-6 text-green-600">Success!</span>}
@@ -86,4 +83,4 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
   );
 };
 
-export default DisableUser;
+export default ActivateUser;
