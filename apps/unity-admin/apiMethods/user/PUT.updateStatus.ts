@@ -1,7 +1,13 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
-import type { ApiMethodResponseType, DisableUserReq, ErrorGetType, SuccessGetType } from '@unity/types';
+import type {
+  ApiMethodResponseType,
+  ErrorGetType,
+  SuccessGetType,
+  UserStatus,
+  UserStatusChangeReq,
+} from '@unity/types';
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 
@@ -9,9 +15,9 @@ type CatchError = {
   message: string;
 };
 
-type DisableUser = (userId: string, reqData: DisableUserReq) => ApiMethodResponseType<{ message: string }>;
+type DisableUser = (userId: string, reqData: UserStatusChangeReq) => ApiMethodResponseType<{ message: string }>;
 
-const disableUser: DisableUser = async (userId, { reason }) => {
+const updateStatus: DisableUser = async (userId, { reason, newStatus }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -29,18 +35,20 @@ const disableUser: DisableUser = async (userId, { reason }) => {
       throw new Error('User not found.');
     }
 
-    if (user.status === 'disabled') {
-      throw Error('User is already disabled.');
-    }
+    let fromStatus: UserStatus | null = null;
+
+    if (newStatus === 'active') fromStatus = 'disabled';
+    if (newStatus === 'pending') fromStatus = 'active';
+    if (newStatus === 'disabled') fromStatus = 'active';
 
     await UserModel.findOneAndUpdate(
       { _id: userObjectId },
       {
-        status: 'disabled',
+        status: newStatus,
       }
     );
 
-    const newUserLogs = await UserLogsModel.findOneAndUpdate(
+    await UserLogsModel.findOneAndUpdate(
       {
         user_id: userObjectId,
       },
@@ -48,8 +56,8 @@ const disableUser: DisableUser = async (userId, { reason }) => {
         $push: {
           logs: {
             type: 'statusChange',
-            from: 'active',
-            to: 'disabled',
+            from: fromStatus,
+            to: newStatus,
             reason,
             timestamp: new Date(),
           },
@@ -72,4 +80,4 @@ const disableUser: DisableUser = async (userId, { reason }) => {
   return response;
 };
 
-export default disableUser;
+export default updateStatus;

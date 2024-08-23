@@ -1,10 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import { DisableUserReq, EditUserReq } from '@unity/types';
+import { EditUserReq } from '@unity/types';
 
 import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import disableUser from '@/Methods/user/DELETE.disableUser';
 import getUser from '@/Methods/user/GET.getUser';
 import editUser from '@/Methods/user/PUT.editUser';
 
@@ -34,19 +33,6 @@ export const PUT = async (req: NextRequest, context: Context) => {
   const reqData: EditUserReq = await req.json();
 
   const [data, status] = await editUser(userId, reqData);
-
-  return NextResponse.json(data, status);
-};
-
-export const DELETE = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
-
-  const { id: userId } = context.params;
-
-  const reqData: DisableUserReq = await req.json();
-
-  const [data, status] = await disableUser(userId, reqData);
 
   return NextResponse.json(data, status);
 };
