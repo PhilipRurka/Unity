@@ -68,8 +68,9 @@ export type UserLogsFrontendType = { logs: LogType[] };
 
 export type UserLogsDocument = Document & UserLogs;
 
-export type DisableUserReq = {
+export type UserStatusChangeReq = {
   userId: string;
+  newStatus: UserStatus;
   reason: string;
 };
 
