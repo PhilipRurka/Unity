@@ -1,59 +1,69 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { Button, Modal } from '@unity/components';
-
-import ActivateUser from '@/Components/ActivateUser';
-import DisableUser from '@/Components/DisableUser';
 import useUser from '@/Hooks/useUser';
+
+import EditableActions from './components/EditableActions';
+import UserDetailsForm from './components/UserDetailsForm';
+import UserModels, { ModalType } from './components/UserModels';
+import UserStatusChange from './components/UserStatusChange';
 
 type UserProps = {
   userId: string;
 };
 
-type ModalType = 'activate' | 'disable';
-
 const User = ({ userId }: UserProps) => {
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
   const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [isEditState, setIsEditState] = useState(false);
+
   const { data: user } = useUser(userId);
+
+  if (!user) return <></>;
 
   const handleModalToggle = (type: ModalType | null) => {
     setModalType(type);
   };
 
+  const handleIsEditToggle = (shouldBeEditState: boolean) => {
+    setIsEditState(shouldBeEditState);
+  };
+
+  const handlCancelEdit = () => {
+    if (typeof document === 'undefined') return;
+
+    const nameInput: HTMLInputElement | null = document.querySelector('input#name');
+
+    if (!nameInput) return;
+    nameInput.value = user.name;
+    setIsEditState(false);
+  };
+
+  const handleSave = () => {
+    submitButtonRef.current?.click();
+  };
+
   return (
-    <div data-component="User">
-      {user?.status === 'active' && (
-        <Modal
-          handleCloseModal={() => handleModalToggle(null)}
-          isModalOpen={modalType === 'disable'}
-          title="Disable User"
-        >
-          <DisableUser userId={user?.id} email={user?.email} name={user?.name} />
-        </Modal>
-      )}
-      {user?.status === 'disabled' && (
-        <Modal
-          handleCloseModal={() => handleModalToggle(null)}
-          isModalOpen={modalType === 'activate'}
-          title="Activate User"
-        >
-          <ActivateUser userId={user?.id} email={user?.email} name={user?.name} />
-        </Modal>
-      )}
-      <p>{user?.name}</p>
-      <p>{user?.email}</p>
-      {user?.status === 'active' && (
-        <Button color="black" isFull={false} size="small" onClick={() => handleModalToggle('disable')}>
-          Disable
-        </Button>
-      )}
-      {user?.status === 'disabled' && (
-        <Button color="black" isFull={false} size="small" onClick={() => handleModalToggle('activate')}>
-          Activate
-        </Button>
-      )}
+    <div data-component="User" className="relative mx-auto max-w-xl">
+      <UserModels modalType={modalType} handleModalToggle={handleModalToggle} user={user} />
+
+      <EditableActions
+        handlCancelEdit={handlCancelEdit}
+        handleIsEditToggle={handleIsEditToggle}
+        handleSave={handleSave}
+        isEditState={isEditState}
+      />
+
+      <UserDetailsForm
+        handleIsEditToggle={handleIsEditToggle}
+        isEditState={isEditState}
+        user={user}
+        ref={submitButtonRef}
+      />
+
+      <UserStatusChange handleModalToggle={handleModalToggle} status={user.status} />
     </div>
   );
 };
