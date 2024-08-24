@@ -40,7 +40,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
     <body
       className={clsx(
-        'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden text-ocean-blue',
+        'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden pt-16 text-ocean-blue',
         lexend.variable,
         montserrat.variable
       )}
@@ -49,7 +49,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
         <AuthProvider>
           <Header />
           <Sidebar />
-          <div className="padding mx-auto max-w-5xl bg-white px-8 pb-20 pt-32 sm:px-6 sm:py-16">{children}</div>
+          <div className="padding mx-auto max-w-5xl bg-white px-6 pb-20 pt-32 sm:px-8 sm:py-16">{children}</div>
         </AuthProvider>
       </SidebarProvider>
     </body>
