@@ -31,7 +31,7 @@ const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, han
   }, [isModalOpen]);
 
   return (
-    <div className="pointer-events-none fixed inset-0">
+    <div className="pointer-events-none fixed inset-0 z-20">
       <div
         className={clsx(
           'absolute inset-0 z-40 bg-black transition-opacity',

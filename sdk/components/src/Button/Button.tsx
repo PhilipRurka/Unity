@@ -1,3 +1,4 @@
+// TODO: Allow for Link to be a prop and refactor to handle this. <Link> button </Link>
 import clsx from 'clsx';
 import React from 'react';
 
@@ -9,7 +10,7 @@ type ButtonDefaultProps = {
   size: 'small';
   children: React.ReactNode;
   color: 'black';
-  isFull: boolean;
+  isFull?: boolean;
   onClick?: () => void;
   type?: HTMLButtonElement['type'];
 };
@@ -31,11 +32,11 @@ type ButtonProps = ButtonWithoutIconProps | ButtonWithIconProps;
 
 const ButtonIcon = ({ icon }: ButtonIconProps) => (
   <>
-    {icon === 'edit' && <EditIcon size="4" className="h-full" />}
-    {icon === 'filter' && <FilterIcon size="4" className="h-full" />}
-    {icon === 'plus' && <PlusIcon size="4" className="h-full" />}
-    {icon === 'plusInCircle' && <PlusInCircleIcon size="4" className="h-full" />}
-    {icon === 'xInCircle' && <XInCircleIcon size="4" className="h-full" />}
+    {icon === 'edit' && <EditIcon size="5" className="h-full" />}
+    {icon === 'filter' && <FilterIcon size="5" className="h-full" />}
+    {icon === 'plus' && <PlusIcon size="5" className="h-full" />}
+    {icon === 'plusInCircle' && <PlusInCircleIcon size="5" className="h-full" />}
+    {icon === 'xInCircle' && <XInCircleIcon size="5" className="h-full" />}
   </>
 );
 
@@ -53,7 +54,7 @@ const Button = (props: ButtonProps) => {
     <button
       data-component="Button"
       className={clsx(
-        'flex cursor-pointer rounded-lg border border-solid p-2 transition-colors',
+        'flex cursor-pointer items-center rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
         colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white'
@@ -63,7 +64,7 @@ const Button = (props: ButtonProps) => {
     >
       {hasIcon(props) && (
         <div
-          className={clsx(props.iconPosition === 'left' && 'pr-2', props.iconPosition === 'right' && 'order-last pl-8')}
+          className={clsx(props.iconPosition === 'left' && 'pr-1', props.iconPosition === 'right' && 'order-last pl-8')}
         >
           <ButtonIcon icon={props.icon} />
         </div>
