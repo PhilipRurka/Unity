@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
@@ -81,8 +80,8 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
             </button>
             {isMenuOpen && (
               <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
-                <Button color="black" isFull size="small" icon="edit" iconPosition="left">
-                  <Link href={`/users/${user.id}`}>Details</Link>
+                <Button link={`/users/${user.id}`} color="black" isFull size="small" icon="edit" iconPosition="left">
+                  Details
                 </Button>
               </div>
             )}
