@@ -1,10 +1,14 @@
-// TODO: Allow for Link to be a prop and refactor to handle this. <Link> button </Link>
 import clsx from 'clsx';
+import Link from 'next/link';
 import React from 'react';
 
 import { EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
 import FilterIcon from '../Icons/Filter';
 import PlusIcon from '../Icons/Plus';
+
+type ButtonProps = ButtonContentProps & {
+  link?: string;
+};
 
 type ButtonDefaultProps = {
   size: 'small';
@@ -28,7 +32,7 @@ type ButtonIconProps = {
   icon: Icons | undefined;
 };
 
-type ButtonProps = ButtonWithoutIconProps | ButtonWithIconProps;
+type ButtonContentProps = ButtonWithoutIconProps | ButtonWithIconProps;
 
 const ButtonIcon = ({ icon }: ButtonIconProps) => (
   <>
@@ -40,10 +44,10 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
   </>
 );
 
-const Button = (props: ButtonProps) => {
+const ButtonContent = (props: ButtonContentProps) => {
   const { size, color, isFull, onClick, children } = props;
 
-  const hasIcon = (propsToCheck: ButtonProps): propsToCheck is ButtonWithIconProps =>
+  const hasIcon = (propsToCheck: ButtonContentProps): propsToCheck is ButtonWithIconProps =>
     'iconPosition' in propsToCheck && 'icon' in propsToCheck;
 
   const colorTheme = `${color}-${isFull ? 'full' : 'inverted'}`;
@@ -52,7 +56,6 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
-      data-component="Button"
       className={clsx(
         'flex cursor-pointer items-center rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
@@ -73,5 +76,17 @@ const Button = (props: ButtonProps) => {
     </button>
   );
 };
+
+const Button = ({ link, children, ...rest }: ButtonProps) => (
+  <div data-component="Button">
+    {link ? (
+      <Link href={link}>
+        <ButtonContent {...rest}>{children}</ButtonContent>
+      </Link>
+    ) : (
+      <ButtonContent {...rest}>{children}</ButtonContent>
+    )}
+  </div>
+);
 
 export default Button;
