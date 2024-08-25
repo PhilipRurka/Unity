@@ -5,6 +5,7 @@ import React from 'react';
 import { EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
 import FilterIcon from '../Icons/Filter';
 import PlusIcon from '../Icons/Plus';
+import SaveIcon from '../Icons/SaveIcon';
 
 type ButtonProps = ButtonContentProps & {
   link?: string;
@@ -26,7 +27,7 @@ type ButtonWithIconProps = ButtonDefaultProps & {
   icon: Icons | undefined;
 };
 
-export type Icons = 'plus' | 'filter' | 'plusInCircle' | 'xInCircle' | 'edit';
+export type Icons = 'plus' | 'filter' | 'plusInCircle' | 'xInCircle' | 'edit' | 'save';
 
 type ButtonIconProps = {
   icon: Icons | undefined;
@@ -41,6 +42,7 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
     {icon === 'plus' && <PlusIcon size="5" className="h-full" />}
     {icon === 'plusInCircle' && <PlusInCircleIcon size="5" className="h-full" />}
     {icon === 'xInCircle' && <XInCircleIcon size="5" className="h-full" />}
+    {icon === 'save' && <SaveIcon size="5" className="h-full" />}
   </>
 );
 
