@@ -50,31 +50,31 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
     });
 
     return (
-      <Form onSubmit={handleSubmit(handleFormSubmit)} className="relative flex flex-col gap-3">
-        <Field>
-          <Label>Name</Label>
-          <div className="-mx-2.5">
+      <Form onSubmit={handleSubmit(handleFormSubmit)} className="relative">
+        <div className="flex flex-col gap-3">
+          <Field>
+            <Label>Name</Label>
             <Input
               id="name"
               type="text"
+              isInlineWithContent
               readOnly={!isEditState}
               defaultValue={user.name}
               showErrorStyles={!!errors.name}
               {...register('name')}
             />
-          </div>
-        </Field>
-        <Field>
-          <Label>Email</Label>
-          <div className="-mx-2.5">
+          </Field>
+          <Field>
+            <Label>Email</Label>
             <Input
               type="email"
               readOnly
+              isInlineWithContent
               defaultValue={user.email}
               className="inline-block read-only:border-0 read-only:bg-transparent read-only:outline-none read-only:ring-transparent read-only:focus:border-0"
             />
-          </div>
-        </Field>
+          </Field>
+        </div>
 
         <button ref={submitButtonRef} type="submit" />
 
