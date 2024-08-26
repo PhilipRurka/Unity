@@ -59,10 +59,10 @@ const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps)
 
   return (
     <div data-component="ActivateUser">
+      <p>
+        Are you sure you want to activate {name} with email {email}
+      </p>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
-        <p>
-          Are you sure you want to delete {name} with email {email}
-        </p>
         <Field>
           <Label>Write out the user's email</Label>
           <Input id="email" type="email" showErrorStyles={!!errors.email} {...register('email')} />
@@ -73,7 +73,7 @@ const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps)
           <Input id="reason" type="text" showErrorStyles={!!errors.reason} {...register('reason')} />
           {errors.reason && <ErrorSpan>{errors.reason.message}</ErrorSpan>}
         </Field>
-        <Button color="black" isFull size="small" type="submit">
+        <Button color="green" isFull size="small" type="submit">
           Activate User
         </Button>
       </Form>

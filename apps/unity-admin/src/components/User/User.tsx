@@ -4,10 +4,11 @@ import { useRef, useState } from 'react';
 
 import useUser from '@/Hooks/useUser';
 
-import EditableActions from './components/EditableActions';
 import UserDetailsForm from './components/UserDetailsForm';
+import EditableActions from './components/UserEditableActions';
 import UserModels, { ModalType } from './components/UserModels';
 import UserStatusChange from './components/UserStatusChange';
+import UserTableTabs from './components/UserTableTabs';
 
 type UserProps = {
   userId: string;
@@ -64,6 +65,8 @@ const User = ({ userId }: UserProps) => {
       />
 
       <UserStatusChange handleModalToggle={handleModalToggle} status={user.status} />
+
+      <UserTableTabs />
     </div>
   );
 };

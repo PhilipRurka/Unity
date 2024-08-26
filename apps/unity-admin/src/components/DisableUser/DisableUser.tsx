@@ -62,10 +62,10 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
 
   return (
     <div data-component="DisableUser">
+      <p>
+        Are you sure you want to delete {name} with email {email}
+      </p>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
-        <p>
-          Are you sure you want to delete {name} with email {email}
-        </p>
         <Field>
           <Label>Write out the user's email</Label>
           <Input id="email" type="email" showErrorStyles={!!errors.email} {...register('email')} />
@@ -76,7 +76,7 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
           <Input id="reason" type="text" showErrorStyles={!!errors.reason} {...register('reason')} />
           {errors.reason && <ErrorSpan>{errors.reason.message}</ErrorSpan>}
         </Field>
-        <Button color="black" isFull size="small" type="submit">
+        <Button color="red" isFull size="small" type="submit">
           Disable User
         </Button>
       </Form>
