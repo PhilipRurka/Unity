@@ -5,7 +5,7 @@ type FormProps = HTMLProps<HTMLFormElement> & {
 };
 
 const Form = ({ children, ...rest }: FormProps) => (
-  <form className="mt-8 space-y-6" {...rest}>
+  <form className="mt-8 flex flex-col gap-4 space-y-6" {...rest}>
     {children}
   </form>
 );

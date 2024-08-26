@@ -5,7 +5,7 @@ type FieldProps = HTMLProps<HTMLDivElement> & {
 };
 
 const Field = ({ children, ...rest }: FieldProps) => (
-  <div className="mb-4 flex flex-col" {...rest}>
+  <div className="flex flex-col" {...rest}>
     {children}
   </div>
 );
