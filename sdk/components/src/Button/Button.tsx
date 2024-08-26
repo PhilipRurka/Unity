@@ -6,6 +6,8 @@ import { EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
 import FilterIcon from '../Icons/Filter';
 import PlusIcon from '../Icons/Plus';
 import SaveIcon from '../Icons/SaveIcon';
+import TriangleDownCircle from '../Icons/TriangleDownCircle';
+import TriangleUpCircle from '../Icons/TriangleUpCircle';
 
 type ButtonProps = ButtonContentProps & {
   link?: string;
@@ -14,7 +16,7 @@ type ButtonProps = ButtonContentProps & {
 type ButtonDefaultProps = {
   size: 'small';
   children: React.ReactNode;
-  color: 'black';
+  color: 'black' | 'red' | 'green';
   isFull?: boolean;
   onClick?: () => void;
   type?: HTMLButtonElement['type'];
@@ -27,7 +29,15 @@ type ButtonWithIconProps = ButtonDefaultProps & {
   icon: Icons | undefined;
 };
 
-export type Icons = 'plus' | 'filter' | 'plusInCircle' | 'xInCircle' | 'edit' | 'save';
+export type Icons =
+  | 'plus'
+  | 'filter'
+  | 'plusInCircle'
+  | 'xInCircle'
+  | 'edit'
+  | 'save'
+  | 'triangleUpCircle'
+  | 'triangleDownCircle';
 
 type ButtonIconProps = {
   icon: Icons | undefined;
@@ -43,6 +53,8 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
     {icon === 'plusInCircle' && <PlusInCircleIcon size="5" className="h-full" />}
     {icon === 'xInCircle' && <XInCircleIcon size="5" className="h-full" />}
     {icon === 'save' && <SaveIcon size="5" className="h-full" />}
+    {icon === 'triangleDownCircle' && <TriangleDownCircle size="5" className="h-full" />}
+    {icon === 'triangleUpCircle' && <TriangleUpCircle size="5" className="h-full" />}
   </>
 );
 
@@ -61,8 +73,16 @@ const ButtonContent = (props: ButtonContentProps) => {
       className={clsx(
         'flex cursor-pointer items-center rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
+
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
-        colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white'
+        colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white',
+
+        colorTheme === 'red-full' && 'border-red-500 bg-red-500 text-white hover:bg-white hover:text-red-500',
+        colorTheme === 'red-inverted' && 'border-red-500 bg-white text-red-500 hover:bg-red-500 hover:text-white',
+
+        colorTheme === 'green-full' && 'border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500',
+        colorTheme === 'green-inverted' &&
+          'border-green-500 bg-white text-green-500 hover:bg-green-500 hover:text-white'
       )}
       onClick={onClick}
       {...attributes}
