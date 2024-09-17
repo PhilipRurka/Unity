@@ -1,7 +1,7 @@
 import { Table, Theader } from '@unity/components';
 import { TableHeaders, UserBasicFrontendType } from '@unity/types';
 
-import UserRow from '../UserRow';
+import UserRow from './components/UserRow';
 
 type UsersTableProps = {
   usersList: UserBasicFrontendType[];
@@ -36,7 +36,7 @@ const headerList: TableHeaders = [
 ];
 
 const UsersTable = ({ usersList }: UsersTableProps) => (
-  <ul data-component="UsersTable">
+  <div data-component="UsersTable">
     <Table>
       <>
         <Theader headerList={headerList} />
@@ -47,7 +47,7 @@ const UsersTable = ({ usersList }: UsersTableProps) => (
         </ul>
       </>
     </Table>
-  </ul>
+  </div>
 );
 
 export default UsersTable;

@@ -10,17 +10,13 @@ import UserModels, { ModalType } from './components/UserModels';
 import UserStatusChange from './components/UserStatusChange';
 import UserTableTabs from './components/UserTableTabs';
 
-type UserProps = {
-  userId: string;
-};
-
-const User = ({ userId }: UserProps) => {
+const User = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const [modalType, setModalType] = useState<ModalType | null>(null);
   const [isEditState, setIsEditState] = useState(false);
 
-  const { data: user } = useUser(userId);
+  const { data: user } = useUser();
 
   if (!user) return <></>;
 

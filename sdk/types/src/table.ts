@@ -1,6 +1,6 @@
 export type TableHeaders = Array<{
   label: string | null;
-  property: string | null;
+  property?: string | null;
   width:
     | 'auto'
     | '8'

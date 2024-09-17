@@ -63,7 +63,7 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
 
   return (
     <div data-component="UserRow">
-      <Trow key={`UsersTable-usersList-${user.id}`}>
+      <Trow>
         <Tdata width={headerList[0].width}>
           <p className="text-md font-semibold">{user.name}</p>
           <p className="text-sm">{user.email}</p>

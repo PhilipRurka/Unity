@@ -5,7 +5,6 @@ import UsersTable from '@/Components/UsersTable';
 import useUsers from '@/Hooks/useUsers';
 
 const Users = () => {
-  // const {data: usersList, usersError, usersIsLoading} = useUsers();
   const { data: usersList = [] } = useUsers();
 
   return (
