@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { ActivityAnalyticsModel } from '@unity/models';
 import type {
   ActivityAnalytictsType,
-  ActivityAnalytictsTypeFrontend,
+  ActivityType,
   ApiMethodResponseType,
   ErrorGetType,
   SuccessGetType,
@@ -15,10 +15,10 @@ type CatchError = {
   message: string;
 };
 
-type GetActivities = (userId: string) => ApiMethodResponseType<ActivityAnalytictsTypeFrontend>;
+type GetActivities = (userId: string) => ApiMethodResponseType<ActivityType[]>;
 
 const getActivities: GetActivities = async (userId) => {
-  let response: SuccessGetType<ActivityAnalytictsTypeFrontend> | ErrorGetType;
+  let response: SuccessGetType<ActivityType[]> | ErrorGetType;
 
   try {
     const userObjectId = new mongoose.Types.ObjectId(userId);
