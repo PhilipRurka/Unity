@@ -14,5 +14,3 @@ export type ActivityAnalytictsType = {
   user_id: mongoose.Types.ObjectId;
   activities: ActivityType[];
 };
-
-export type ActivityAnalytictsTypeFrontend = ActivityAnalytictsType['activities'];
