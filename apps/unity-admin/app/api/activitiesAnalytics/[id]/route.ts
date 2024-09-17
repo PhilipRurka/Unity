@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-// import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
+import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
 import getActivities from '@/Methods/activitiesAnalytics/GET.getActivities';
 
 type Context = {
@@ -11,8 +11,8 @@ type Context = {
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  // const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  // if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const isUserAuthenticated = await checkIfUserAuthenticated(req);
+  if (!isUserAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
 
