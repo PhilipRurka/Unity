@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getActivities from '@/Methods/activitiesAnalytics/GET.getActivity';
+import getActivities from '@/Methods/activitiesAnalytics/GET.getActivities';
 
 type Context = {
   params: {
