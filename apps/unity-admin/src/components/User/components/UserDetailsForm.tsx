@@ -5,7 +5,7 @@ import { mutate } from 'swr';
 import z from 'zod';
 
 import { Field, Form, Input, Label } from '@unity/components';
-import { EditUserReq, UserBasicFrontendType } from '@unity/types';
+import { UserBasicFrontendType } from '@unity/types';
 
 import UpdateUser from '@/Fetchers/updateUser';
 
@@ -25,7 +25,7 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
   ({ isEditState, handleIsEditToggle, user }, submitButtonRef) => {
     const [isDisplaySuccess, setIsDisplaySuccess] = useState(false);
 
-    const handleFormSubmit = async ({ name }: EditUserReq) => {
+    const handleFormSubmit = async ({ name }: { name: string }) => {
       try {
         await UpdateUser({
           userId: user.id,
