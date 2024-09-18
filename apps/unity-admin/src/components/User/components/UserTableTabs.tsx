@@ -1,5 +1,6 @@
 import Tabs from '@/Components/Tabs';
 
+import UserActivities from './UserActivities';
 import UserLogs from './UserLogs';
 
 const UserTableTabs = () => (
@@ -15,7 +16,7 @@ const UserTableTabs = () => (
           {/* <UserLogs /> */}
         </Tabs.View>
         <Tabs.View view="activities">
-          <div className="h-7 w-7 bg-green-500">View 2</div>
+          <UserActivities />
         </Tabs.View>
       </Tabs.Content>
     </Tabs>
