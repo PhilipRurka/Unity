@@ -10,8 +10,6 @@ type LogRowProps = {
 };
 
 const LogRow = ({ log, headerList }: LogRowProps) => {
-  console.log('');
-
   const statusColor = (status: UserStatus) => {
     if (status === 'active') return 'text-green-500';
     if (status === 'pending') return 'text-orange-500';

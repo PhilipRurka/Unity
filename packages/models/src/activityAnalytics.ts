@@ -12,6 +12,7 @@ const activityAnalyticsSchema = new Schema<ActivityAnalytictsType>(
     },
     activities: [
       {
+        // TODO: Date should be Timestamp
         date: Date,
         slug: String,
       },
