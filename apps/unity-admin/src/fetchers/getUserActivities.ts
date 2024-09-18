@@ -1,6 +1,6 @@
-import type { ActivityAnalytictsTypeFrontend, FetchErrorType } from '@unity/types';
+import type { ActivityAnalytictsFrontend, FetchErrorType } from '@unity/types';
 
-type GetUserActivities = (userId: string) => Promise<ActivityAnalytictsTypeFrontend>;
+type GetUserActivities = (userId: string) => Promise<ActivityAnalytictsFrontend>;
 
 const getUserActivities: GetUserActivities = async (userId) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/activitiesAnalytics/${userId}`, {
