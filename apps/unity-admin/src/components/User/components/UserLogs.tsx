@@ -8,10 +8,12 @@ import LogRow from './LogRow';
 const headerList: TableHeaders = [
   {
     label: 'Timestamp',
+    property: 'timestamp',
     width: '32',
   },
   {
     label: 'Log',
+    property: 'log',
     width: 'auto',
   },
 ];
@@ -25,8 +27,8 @@ const UserLogs = () => {
         <>
           <Theader headerList={headerList} />
           <ul className="px-1">
-            {userLogs.map((log: LogType) => (
-              <LogRow key={`LogRow-row-${log.timestamp}`} log={log} headerList={headerList} />
+            {userLogs.map((log: LogType, index) => (
+              <LogRow key={`LogRow-row-${log.timestamp}-${index}`} log={log} headerList={headerList} />
             ))}
           </ul>
         </>
