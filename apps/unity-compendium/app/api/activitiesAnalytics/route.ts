@@ -10,9 +10,9 @@ export const PUT = async (req: NextRequest) => {
   const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
-  if (process.env.NODE_ENV === 'development') {
-    return NextResponse.json({}, { status: 200 });
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return NextResponse.json({}, { status: 200 });
+  // }
 
   const reqData: ActivityReqType = await req.json();
 

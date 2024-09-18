@@ -5,6 +5,10 @@ import type { ActivityReqType, ApiMethodResponseType, ErrorGetType, SuccessGetTy
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 
+import getUser from '../user/GET.getUser';
+import editUser from '../user/PUT.editUser';
+import putUserLogs from '../user/PUT.updateUserLogs';
+
 type CatchError = {
   message: string;
 };
@@ -23,17 +27,34 @@ const activityPut: ActivityPut = async ({ userId, slug }) => {
   try {
     const userObjectId = new mongoose.Types.ObjectId(userId);
 
+    const newDate = new Date();
+
     const result = await ActivityAnalyticsModel.findOneAndUpdate(
       { user_id: userObjectId },
       {
         $push: {
           activities: {
             slug,
-            date: new Date(),
+            date: newDate,
           },
         },
       }
     );
+
+    const [userData] = await getUser(userId);
+
+    if ('result' in userData && userData.result.lastActive) {
+      const oneDayInMili = 24 * 60 * 60 * 1000;
+      const lastActivePlus24h = new Date(userData.result.lastActive.getTime() + oneDayInMili);
+
+      if (newDate >= lastActivePlus24h) {
+        putUserLogs(userId);
+      }
+    } else {
+      putUserLogs(userId);
+    }
+
+    await editUser(userId, { lastActive: newDate });
 
     if (!result) {
       response = [{ error: { message: 'Failed to update activities!' } }, { status: 503 }];

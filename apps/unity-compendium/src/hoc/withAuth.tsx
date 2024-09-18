@@ -17,14 +17,14 @@ function withDisableCheck<P extends object>(WrappedComponent: ComponentType<P>) 
     const router = useRouter();
 
     useEffect(() => {
-      const getUserFunc = async () => {
+      const run = async () => {
         if (!session || user) return;
 
         const gotUser = await getUser(session.user.id);
         setUser(gotUser);
       };
 
-      getUserFunc();
+      run();
     }, [session, user]);
 
     useEffect(() => {
