@@ -39,8 +39,6 @@ const editUser: EditUser = async (userId, { name }) => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  mongoose.disconnect();
-
   return response;
 };
 

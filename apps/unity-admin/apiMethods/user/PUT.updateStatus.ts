@@ -75,8 +75,6 @@ const updateStatus: DisableUser = async (userId, { reason, newStatus }) => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  mongoose.disconnect();
-
   return response;
 };
 

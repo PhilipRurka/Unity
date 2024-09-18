@@ -30,11 +30,6 @@ const getUserLogs: GetUserLogsType = async (userId) => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  try {
-    await mongoose.disconnect();
-    // eslint-disable-next-line no-empty
-  } catch (_e) {}
-
   return response;
 };
 
