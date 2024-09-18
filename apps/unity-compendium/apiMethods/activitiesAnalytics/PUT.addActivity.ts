@@ -67,8 +67,6 @@ const activityPut: ActivityPut = async ({ userId, slug }) => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  mongoose.disconnect();
-
   return response;
 };
 

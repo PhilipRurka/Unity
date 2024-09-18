@@ -34,8 +34,6 @@ const editUser: EditUser = async (userId, { lastActive }) => {
     response = [{ error: { message: error.message } }, { status: 503 }];
   }
 
-  mongoose.disconnect();
-
   return response;
 };
 
