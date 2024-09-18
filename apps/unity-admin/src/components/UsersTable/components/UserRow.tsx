@@ -6,7 +6,7 @@ import { TableHeaders, UserBasicFrontendType } from '@unity/types';
 
 import Pill from '@/Components/Pill';
 
-import type { PillProps } from '../Pill/Pill';
+import type { PillProps } from '../../Pill/Pill';
 
 type UserRowProps = {
   user: UserBasicFrontendType;
