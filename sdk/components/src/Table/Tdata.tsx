@@ -3,10 +3,10 @@ import React, { ReactNode } from 'react';
 
 import { TableHeaders } from '@unity/types';
 
-type TdataProps = { children: ReactNode; width: TableHeaders[1]['width'] };
+type TdataProps = { children: ReactNode; width: TableHeaders[1]['width']; className?: string };
 
-const Tdata = ({ children, width }: TdataProps) => (
-  <div data-component="Tdata" className={clsx('self-center', width === 'auto' ? 'flex-auto' : `w-${width}`)}>
+const Tdata = ({ children, width, className = '' }: TdataProps) => (
+  <div data-component="Tdata" className={clsx('self-center', width === 'auto' ? 'flex-auto' : `w-${width}`, className)}>
     {children}
   </div>
 );
