@@ -28,7 +28,7 @@ const UserLogs = () => {
           <Theader headerList={headerList} />
           <ul className="px-1">
             {userLogs.map((log: LogType, index) => (
-              <LogRow key={`LogRow-row-${log.timestamp}-${index}`} log={log} headerList={headerList} />
+              <LogRow key={`LogRow-row-${log.timestamp}-${index}`} index={index} log={log} headerList={headerList} />
             ))}
           </ul>
         </>

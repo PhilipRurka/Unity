@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import useUser from '@/Hooks/useUser';
 
 import UserDetailsForm from './components/UserDetailsForm';
-import EditableActions from './components/UserEditableActions';
+import UserEditableActions from './components/UserEditableActions';
 import UserModels, { ModalType } from './components/UserModels';
 import UserStatusChange from './components/UserStatusChange';
 import UserTableTabs from './components/UserTableTabs';
@@ -46,7 +46,7 @@ const User = () => {
     <div data-component="User" className="relative mx-auto max-w-xl">
       <UserModels modalType={modalType} handleModalToggle={handleModalToggle} user={user} />
 
-      <EditableActions
+      <UserEditableActions
         handlCancelEdit={handlCancelEdit}
         handleIsEditToggle={handleIsEditToggle}
         handleSave={handleSave}

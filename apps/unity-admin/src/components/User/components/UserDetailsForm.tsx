@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
 import z from 'zod';
@@ -15,6 +15,8 @@ type UserDetailsFormProps = {
   isEditState: boolean;
 };
 
+type HandleFormSubmit = (param: { name: string }) => Promise<void>;
+
 const FormSchema = z.object({
   name: z.string(),
 });
@@ -23,9 +25,7 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 
 const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
   ({ isEditState, handleIsEditToggle, user }, submitButtonRef) => {
-    const [isDisplaySuccess, setIsDisplaySuccess] = useState(false);
-
-    const handleFormSubmit = async ({ name }: { name: string }) => {
+    const handleFormSubmit: HandleFormSubmit = async ({ name }) => {
       try {
         await UpdateUser({
           userId: user.id,
@@ -33,9 +33,9 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
         });
 
         mutate(`user-${user.id}`);
+        mutate(`userLogs-${user.id}`);
 
         handleIsEditToggle(false);
-        setIsDisplaySuccess(true);
       } catch (err) {
         console.log(err);
       }
@@ -77,8 +77,6 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
         </div>
 
         <button ref={submitButtonRef} type="submit" />
-
-        {isDisplaySuccess && <span className="mt-6 text-green-600">Success!</span>}
       </Form>
     );
   }
