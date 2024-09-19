@@ -2,10 +2,9 @@ import bcrypt from 'bcrypt';
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+import { connectToDatabase } from '@unity/api-methods';
 import { UserModel } from '@unity/models';
 import type { UserReqType } from '@unity/types';
-
-import connectToDatabase from '@/Lib/connectToDatabase';
 
 const authOptions: NextAuthOptions = {
   providers: [

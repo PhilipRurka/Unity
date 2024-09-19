@@ -26,9 +26,6 @@
       "@/Lib/*": [
         "./lib/*"
       ],
-      "@/Methods/*": [
-        "./apiMethods/*"
-      ]
     },
     "incremental": true
   },

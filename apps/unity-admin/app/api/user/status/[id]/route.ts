@@ -1,10 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import { UserStatusChangeReq } from '@unity/types';
-
-import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import updateStatus from '@/Methods/user/PUT.updateStatus';
+import { isUserAuthenticated as checkIfUserAuthenticated, updateStatus } from '@unity/api-methods';
+import type { UserStatusChangeReq } from '@unity/types';
 
 type Context = {
   params: {

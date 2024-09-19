@@ -1,11 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
+import { isUserAuthenticated as checkIfUserAuthenticated, editUser, getUser } from '@unity/api-methods';
 import { EditUserReq } from '@unity/types';
-
-import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getUser from '@/Methods/user/GET.getUser';
-import editUser from '@/Methods/user/PUT.editUser';
 
 type Context = {
   params: {
