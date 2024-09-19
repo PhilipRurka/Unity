@@ -1,0 +1,18 @@
+{
+  "extends": "@unity/tsconfig/base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist"
+  },
+  "include": [
+    "**/*.ts",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".next",
+    "out",
+    "tailwind.config.js"
+  ]
+}

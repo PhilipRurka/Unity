@@ -2,11 +2,11 @@ import crypto from 'crypto';
 
 import type { AddUserReq, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
-import createActivitiesAnalytics from '@/Lib/createActivitiesAnalytics';
-import createUserLogs from '@/Lib/createUserLogs';
-import createUserWithCredentials from '@/Lib/createUserWithCredentials';
-import sendgridInvitationEmail from '@/Lib/sendgridInvitationEmail';
+import connectToDatabase from '../utils/connectToDatabase';
+import createActivitiesAnalytics from '../utils/createActivitiesAnalytics';
+import createUserLogs from '../utils/createUserLogs';
+import createUserWithCredentials from '../utils/createUserWithCredentials';
+import sendgridInvitationEmail from '../utils/sendgridInvitationEmail';
 
 type CatchError = {
   message: string;

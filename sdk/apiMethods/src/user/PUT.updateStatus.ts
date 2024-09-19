@@ -1,20 +1,23 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
-import type { ApiMethodResponseType, ErrorGetType, SuccessGetType, UpdateUpdateUserLogsReq } from '@unity/types';
+import type {
+  ApiMethodResponseType,
+  ErrorGetType,
+  SuccessGetType,
+  UserStatus,
+  UserStatusChangeReq,
+} from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
+import connectToDatabase from '../utils/connectToDatabase';
 
 type CatchError = {
   message: string;
 };
 
-type UpdateEditUserLogs = (
-  userId: string,
-  reqData: UpdateUpdateUserLogsReq
-) => ApiMethodResponseType<{ message: string }>;
+type UpdateStatus = (userId: string, reqData: UserStatusChangeReq) => ApiMethodResponseType<{ message: string }>;
 
-const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previousValue, name }) => {
+const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -32,15 +35,18 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previo
       throw new Error('User not found.');
     }
 
-    const updatedProperties = [];
+    let fromStatus: UserStatus | null = null;
 
-    if (password) {
-      updatedProperties.push('User Password has been changed');
-    }
+    if (newStatus === 'active') fromStatus = 'disabled';
+    if (newStatus === 'pending') fromStatus = 'active';
+    if (newStatus === 'disabled') fromStatus = 'active';
 
-    if (name) {
-      updatedProperties.push(`User name has been changed from ${previousValue} to ${name}`);
-    }
+    await UserModel.findOneAndUpdate(
+      { _id: userObjectId },
+      {
+        status: newStatus,
+      }
+    );
 
     await UserLogsModel.findOneAndUpdate(
       {
@@ -49,12 +55,15 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previo
       {
         $push: {
           logs: {
-            type: 'userUpdated',
-            updatedProperties,
+            type: 'statusChange',
+            from: fromStatus,
+            to: newStatus,
+            reason,
             timestamp: new Date(),
           },
         },
-      }
+      },
+      { new: true }
     );
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
@@ -69,4 +78,4 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previo
   return response;
 };
 
-export default updateEditUserLogs;
+export default updateStatus;

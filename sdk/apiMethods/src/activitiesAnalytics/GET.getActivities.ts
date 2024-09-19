@@ -9,7 +9,7 @@ import type {
   SuccessGetType,
 } from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
+import connectToDatabase from '../utils/connectToDatabase';
 
 type CatchError = {
   message: string;
