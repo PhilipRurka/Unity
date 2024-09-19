@@ -34,8 +34,11 @@ export type AddUserReq = {
 };
 
 export type EditUserReq = {
-  name?: string;
-  lastActive?: Date;
+  fields: UpdatedFieldLogType['fields'];
+};
+
+export type UpdateActiveLastReq = {
+  lastActive: Date;
 };
 
 export type UserFrontendType = UserBasicFrontendType & UserLogsFrontendType;
@@ -58,13 +61,27 @@ export type StatusChangeType = {
   timestamp: Date;
 };
 
-export type UserUpdatedType = {
-  type: 'userUpdated';
-  updatedProperties: string[];
+export type UpdatedPasswordLogType = {
+  type: 'updatedPassword';
   timestamp: Date;
 };
 
-export type LogType = ActiveSessionType | StatusChangeType | InviteSentType | UserUpdatedType;
+export type UpdatedFieldLogType = {
+  type: 'updatedField';
+  fields: Array<{
+    property: 'name' | 'notes';
+    from: string;
+    to: string;
+  }>;
+  timestamp: Date;
+};
+
+export type LogType =
+  | ActiveSessionType
+  | StatusChangeType
+  | InviteSentType
+  | UpdatedPasswordLogType
+  | UpdatedFieldLogType;
 
 export type UserLogs = {
   user_id: mongoose.Types.ObjectId;
@@ -79,12 +96,6 @@ export type UserStatusChangeReq = {
   userId: string;
   newStatus: UserStatus;
   reason: string;
-};
-
-export type UpdateUpdateUserLogsReq = {
-  password?: UserType['password'];
-  previousValue: string;
-  name?: UserType['name'];
 };
 
 declare module 'next-auth' {
