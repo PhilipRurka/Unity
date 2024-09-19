@@ -1,8 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getAlgoliaResults from '@/Methods/algolia/GET.AlgoliaResults';
+import { checkIfUserAuthenticated, getAlgoliaResults } from '@unity/api-methods';
 
 type Context = {
   params: {

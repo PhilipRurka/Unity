@@ -1,12 +1,12 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import { addUser, isUserAuthenticated as checkIfUserAuthenticated } from '@unity/api-methods';
+import { addUser, checkIfAdminAuthenticated } from '@unity/api-methods';
 import { AddUserReq } from '@unity/types';
 
 export const POST = async (req: NextRequest) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
+  if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
   const reqData: AddUserReq = await req.json();
 

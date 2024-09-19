@@ -1,8 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import getBySlug from '@/Methods/contentful/GET.getBySlug';
+import { checkIfUserAuthenticated, getBySlug } from '@unity/api-methods';
 
 type Context = {
   params: {

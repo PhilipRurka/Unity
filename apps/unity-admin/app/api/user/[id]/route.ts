@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
-import { isUserAuthenticated as checkIfUserAuthenticated, editUser, getUser } from '@unity/api-methods';
+import { checkIfAdminAuthenticated, editUser, getUser } from '@unity/api-methods';
 import { EditUserReq } from '@unity/types';
 
 type Context = {
@@ -11,8 +11,8 @@ type Context = {
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
+  if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
 
@@ -22,8 +22,8 @@ export const GET = async (req: NextRequest, context: Context) => {
 };
 
 export const PUT = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
+  const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
+  if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
   const { id: userId } = context.params;
 

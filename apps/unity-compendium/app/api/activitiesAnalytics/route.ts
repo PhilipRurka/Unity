@@ -1,10 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import { NextRequest, NextResponse } from 'next/server';
 
+import { addActivity, checkIfUserAuthenticated } from '@unity/api-methods';
 import { ActivityReqType } from '@unity/types';
-
-import checkIfUserAuthenticated from '@/Lib/isUserAuthenticated';
-import activityPut from '@/Methods/activitiesAnalytics/PUT.addActivity';
 
 export const PUT = async (req: NextRequest) => {
   const isUserAuthenticated = await checkIfUserAuthenticated(req);
@@ -16,7 +14,7 @@ export const PUT = async (req: NextRequest) => {
 
   const reqData: ActivityReqType = await req.json();
 
-  const [data, status] = await activityPut(reqData);
+  const [data, status] = await addActivity(reqData);
 
   return NextResponse.json(data, status);
 };
