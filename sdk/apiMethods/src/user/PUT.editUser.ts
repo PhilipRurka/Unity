@@ -4,7 +4,7 @@ import { UserModel } from '@unity/models';
 import type { ApiMethodResponseType, EditUserReq, ErrorGetType, SuccessGetType, UserType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
-import updateEditUserLogs from './PUT.updateEditUserLogs';
+import updateEditUserLogs from './PUT.updateFieldsLogs';
 
 type CatchError = {
   message: string;
@@ -12,7 +12,7 @@ type CatchError = {
 
 type EditUser = (userId: string, reqData: EditUserReq) => ApiMethodResponseType<{ message: string }>;
 
-const editUser: EditUser = async (userId, { name }) => {
+const editUser: EditUser = async (userId, { fields }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -27,14 +27,14 @@ const editUser: EditUser = async (userId, { name }) => {
     const preUpdatedUser: UserType | null = await UserModel.findOneAndUpdate(
       { _id: userObjectId },
       {
-        name,
+        name: fields[0].to,
       },
       { returnDocument: 'before' }
     );
 
     if (!preUpdatedUser) throw Error('User Not Found in editUser apiMethods');
 
-    await updateEditUserLogs(userId, { previousValue: preUpdatedUser.name, name });
+    await updateEditUserLogs(userId, fields);
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {

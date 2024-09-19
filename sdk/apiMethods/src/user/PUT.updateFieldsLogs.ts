@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
-import type { ApiMethodResponseType, ErrorGetType, SuccessGetType, UpdateUpdateUserLogsReq } from '@unity/types';
+import type { ApiMethodResponseType, ErrorGetType, SuccessGetType, UpdatedFieldLogType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
@@ -11,10 +11,10 @@ type CatchError = {
 
 type UpdateEditUserLogs = (
   userId: string,
-  reqData: UpdateUpdateUserLogsReq
+  reqData: UpdatedFieldLogType['fields']
 ) => ApiMethodResponseType<{ message: string }>;
 
-const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previousValue, name }) => {
+const updateEditUserLogs: UpdateEditUserLogs = async (userId, fields) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -32,16 +32,6 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previo
       throw new Error('User not found.');
     }
 
-    const updatedProperties = [];
-
-    if (password) {
-      updatedProperties.push('User Password has been changed');
-    }
-
-    if (name) {
-      updatedProperties.push(`User name has been changed from ${previousValue} to ${name}`);
-    }
-
     await UserLogsModel.findOneAndUpdate(
       {
         user_id: userObjectId,
@@ -49,12 +39,14 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previo
       {
         $push: {
           logs: {
-            type: 'userUpdated',
-            updatedProperties,
+            type: 'updatedField',
+            fields,
+            test: 'hey',
             timestamp: new Date(),
           },
         },
-      }
+      },
+      { runValidators: true, strict: true }
     );
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];

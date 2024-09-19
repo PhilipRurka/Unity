@@ -13,6 +13,8 @@ const connectToDatabase = async () => {
     return;
   }
 
+  mongoose.set('strictQuery', true);
+
   await mongoose.connect(`${process.env.MONGODB_URI}/${process.env.MONGODB_DATABASE}`);
 };
 
