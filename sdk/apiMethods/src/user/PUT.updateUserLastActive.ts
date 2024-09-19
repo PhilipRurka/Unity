@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { UserModel } from '@unity/models';
 import type { ApiMethodResponseType, EditUserReq, ErrorGetType, SuccessGetType } from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
+import connectToDatabase from '../utils/connectToDatabase';
 
 type CatchError = {
   message: string;

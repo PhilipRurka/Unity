@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import { UserLogsModel } from '@unity/models';
 import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
+import connectToDatabase from '../utils/connectToDatabase';
 
 type PutUserLogsType = (userId: string) => ApiMethodResponseType<{ message: string }>;
 

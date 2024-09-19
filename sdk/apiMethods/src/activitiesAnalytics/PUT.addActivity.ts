@@ -3,11 +3,10 @@ import mongoose from 'mongoose';
 import { ActivityAnalyticsModel } from '@unity/models';
 import type { ActivityReqType, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
 
-import connectToDatabase from '@/Lib/connectToDatabase';
-
 import getUser from '../user/GET.getUser';
-import editUser from '../user/PUT.editUser';
+import updateUserLastActive from '../user/PUT.updateUserLastActive';
 import putUserLogs from '../user/PUT.updateUserLogs';
+import connectToDatabase from '../utils/connectToDatabase';
 
 type CatchError = {
   message: string;
@@ -15,7 +14,7 @@ type CatchError = {
 
 type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
 
-const activityPut: ActivityPut = async ({ userId, slug }) => {
+const addActivity: ActivityPut = async ({ userId, slug }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -54,7 +53,7 @@ const activityPut: ActivityPut = async ({ userId, slug }) => {
       putUserLogs(userId);
     }
 
-    await editUser(userId, { lastActive: newDate });
+    await updateUserLastActive(userId, { lastActive: newDate });
 
     if (!result) {
       response = [{ error: { message: 'Failed to update activities!' } }, { status: 503 }];
@@ -70,4 +69,4 @@ const activityPut: ActivityPut = async ({ userId, slug }) => {
   return response;
 };
 
-export default activityPut;
+export default addActivity;

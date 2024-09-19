@@ -16,7 +16,7 @@
     "env-pull": "turbo run env-pull && vercel env pull .env.local",
     "env-pull-production": "turbo run env-pull-production && vercel env pull --environment=production .env.local",
     "migrate-up": "(cd ./migrations && npx migrate-mongo up && cd -)",
-    "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\" \"yarn workspace @unity/components watch\" \"yarn workspace @unity/models watch\" \"yarn workspace @unity/hooks watch\""
+    "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\" \"yarn workspace @unity/components watch\" \"yarn workspace @unity/models watch\" \"yarn workspace @unity/hooks watch\" \"yarn workspace @unity/api-methods watch\""
   },
   "dependencies": {
     "algoliasearch": "^4.23.3",

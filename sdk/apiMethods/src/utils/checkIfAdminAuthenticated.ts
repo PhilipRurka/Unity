@@ -1,7 +1,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest } from 'next/server';
 
-const checkIfUserAuthenticated = async (req: NextRequest) => {
+const checkIfAdminAuthenticated = async (req: NextRequest) => {
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
@@ -10,4 +10,4 @@ const checkIfUserAuthenticated = async (req: NextRequest) => {
   return token?.sub === '6640e38ce23790af77133226';
 };
 
-export default checkIfUserAuthenticated;
+export default checkIfAdminAuthenticated;
