@@ -6,13 +6,13 @@ import DisableUser from '@/Components/DisableUser';
 
 export type ModalType = 'activate' | 'disable';
 
-type UserModelsProps = {
+type UserModalsProps = {
   modalType: ModalType | null;
   handleModalToggle: (modelType: ModalType | null) => void;
   user: UserBasicFrontendType;
 };
 
-const UserModels = ({ modalType, handleModalToggle, user }: UserModelsProps) => (
+const UserModals = ({ modalType, handleModalToggle, user }: UserModalsProps) => (
   <>
     {user.status === 'active' && (
       <Modal
@@ -35,4 +35,4 @@ const UserModels = ({ modalType, handleModalToggle, user }: UserModelsProps) => 
   </>
 );
 
-export default UserModels;
+export default UserModals;

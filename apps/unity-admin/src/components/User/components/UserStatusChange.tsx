@@ -1,7 +1,7 @@
 import { Button, Field, Input, Label } from '@unity/components';
 import { UserStatus } from '@unity/types';
 
-import { ModalType } from './UserModels';
+import { ModalType } from './UserModals';
 
 type UserStatusChangeProps = {
   status: UserStatus;
