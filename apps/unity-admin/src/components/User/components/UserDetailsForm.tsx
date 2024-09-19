@@ -29,7 +29,13 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
       try {
         await UpdateUser({
           userId: user.id,
-          name,
+          fields: [
+            {
+              property: 'name',
+              from: user.name,
+              to: name,
+            },
+          ],
         });
 
         mutate(`user-${user.id}`);

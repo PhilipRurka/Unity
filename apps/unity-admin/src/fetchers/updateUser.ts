@@ -1,20 +1,20 @@
-import type { FetchErrorType } from '@unity/types';
+import type { FetchErrorType, UpdatedFieldLogType } from '@unity/types';
 
 type UpdateUserProps = {
   userId: string;
-  name: string;
+  fields: UpdatedFieldLogType['fields'];
 };
 
 type UpdateUserType = (props: UpdateUserProps) => Promise<void>;
 
-const UpdateUser: UpdateUserType = async ({ userId, name }) => {
+const UpdateUser: UpdateUserType = async ({ userId, fields }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${userId}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
     },
     body: JSON.stringify({
-      name,
+      fields,
     }),
   });
 
