@@ -1,9 +1,11 @@
 import mongoose from 'mongoose';
 
 import { UserModel } from '@unity/models';
-import type { ApiMethodResponseType, EditUserReq, ErrorGetType, SuccessGetType } from '@unity/types';
+import type { ApiMethodResponseType, EditUserReq, ErrorGetType, SuccessGetType, UserType } from '@unity/types';
 
 import connectToDatabase from '@/Lib/connectToDatabase';
+
+import updateEditUserLogs from './PUT.updateEditUserLogs';
 
 type CatchError = {
   message: string;
@@ -23,12 +25,17 @@ const editUser: EditUser = async (userId, { name }) => {
   try {
     const userObjectId = new mongoose.Types.ObjectId(userId);
 
-    await UserModel.findOneAndUpdate(
+    const preUpdatedUser: UserType | null = await UserModel.findOneAndUpdate(
       { _id: userObjectId },
       {
         name,
-      }
+      },
+      { returnDocument: 'before' }
     );
+
+    if (!preUpdatedUser) throw Error('User Not Found in editUser apiMethods');
+
+    await updateEditUserLogs(userId, { previousValue: preUpdatedUser.name, name });
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {

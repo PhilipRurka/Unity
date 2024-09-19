@@ -1,13 +1,7 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
-import type {
-  ApiMethodResponseType,
-  ErrorGetType,
-  SuccessGetType,
-  UserStatus,
-  UserStatusChangeReq,
-} from '@unity/types';
+import type { ApiMethodResponseType, ErrorGetType, SuccessGetType, UpdateUpdateUserLogsReq } from '@unity/types';
 
 import connectToDatabase from '@/Lib/connectToDatabase';
 
@@ -15,9 +9,12 @@ type CatchError = {
   message: string;
 };
 
-type UpdateStatus = (userId: string, reqData: UserStatusChangeReq) => ApiMethodResponseType<{ message: string }>;
+type UpdateEditUserLogs = (
+  userId: string,
+  reqData: UpdateUpdateUserLogsReq
+) => ApiMethodResponseType<{ message: string }>;
 
-const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
+const updateEditUserLogs: UpdateEditUserLogs = async (userId, { password, previousValue, name }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -35,18 +32,15 @@ const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
       throw new Error('User not found.');
     }
 
-    let fromStatus: UserStatus | null = null;
+    const updatedProperties = [];
 
-    if (newStatus === 'active') fromStatus = 'disabled';
-    if (newStatus === 'pending') fromStatus = 'active';
-    if (newStatus === 'disabled') fromStatus = 'active';
+    if (password) {
+      updatedProperties.push('User Password has been changed');
+    }
 
-    await UserModel.findOneAndUpdate(
-      { _id: userObjectId },
-      {
-        status: newStatus,
-      }
-    );
+    if (name) {
+      updatedProperties.push(`User name has been changed from ${previousValue} to ${name}`);
+    }
 
     await UserLogsModel.findOneAndUpdate(
       {
@@ -55,15 +49,12 @@ const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
       {
         $push: {
           logs: {
-            type: 'statusChange',
-            from: fromStatus,
-            to: newStatus,
-            reason,
+            type: 'userUpdated',
+            updatedProperties,
             timestamp: new Date(),
           },
         },
-      },
-      { new: true }
+      }
     );
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
@@ -78,4 +69,4 @@ const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
   return response;
 };
 
-export default updateStatus;
+export default updateEditUserLogs;
