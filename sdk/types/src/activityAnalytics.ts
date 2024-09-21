@@ -10,6 +10,14 @@ export type ActivityType = {
   slug: string;
 };
 
+export type ActivitiesBundleType = {
+  timestamp: Date;
+  activities: Array<{
+    time: string;
+    slug: string;
+  }>;
+};
+
 export type ActivityAnalytictsType = {
   user_id: mongoose.Types.ObjectId;
   activities: ActivityType[];
