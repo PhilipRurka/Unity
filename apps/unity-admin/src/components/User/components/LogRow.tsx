@@ -1,16 +1,15 @@
 import clsx from 'clsx';
 import { formatDate } from 'src/utils';
 
-import { Tdata, Trow } from '@unity/components';
-import { LogType, TableHeaders, UserStatus } from '@unity/types';
+import { Table } from '@unity/components';
+import { LogType, UserStatus } from '@unity/types';
 
 type LogRowProps = {
   log: LogType;
-  headerList: TableHeaders;
   index: number;
 };
 
-const LogRow = ({ log, headerList, index }: LogRowProps) => {
+const LogRow = ({ log, index }: LogRowProps) => {
   const statusColor = (status: UserStatus) => {
     if (status === 'active') return 'text-green-500';
     if (status === 'pending') return 'text-orange-500';
@@ -21,11 +20,11 @@ const LogRow = ({ log, headerList, index }: LogRowProps) => {
 
   return (
     <div data-component="LogRow">
-      <Trow>
-        <Tdata width={headerList[0].width} className="shrink-0">
+      <Table.Row>
+        <Table.Data>
           <p className="text-sm">{formatDate(log.timestamp)}</p>
-        </Tdata>
-        <Tdata width={headerList[1].width}>
+        </Table.Data>
+        <Table.Data>
           <>
             {log.type === 'activeSession' && (
               <div>
@@ -77,8 +76,8 @@ const LogRow = ({ log, headerList, index }: LogRowProps) => {
               </div>
             )}
           </>
-        </Tdata>
-      </Trow>
+        </Table.Data>
+      </Table.Row>
     </div>
   );
 };

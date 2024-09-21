@@ -1,53 +1,46 @@
-import { Table, Theader } from '@unity/components';
-import { TableHeaders, UserBasicFrontendType } from '@unity/types';
+import { useState } from 'react';
 
-import UserRow from './components/UserRow';
+import { Table } from '@unity/components';
+import { UserBasicFrontendType } from '@unity/types';
+
+import UserRow from '../UserRow';
 
 type UsersTableProps = {
   usersList: UserBasicFrontendType[];
 };
 
-const headerList: TableHeaders = [
-  {
-    label: 'Name',
-    property: 'name',
-    width: 'auto',
-  },
-  {
-    label: 'Status',
-    property: 'status',
-    width: '28',
-  },
-  {
-    label: 'Last Active',
-    property: 'lastActive',
-    width: '40',
-  },
-  {
-    label: 'Created At',
-    property: 'createdAt',
-    width: '40',
-  },
-  {
-    label: '',
-    property: '',
-    width: '8',
-  },
-];
+const UsersTable = ({ usersList }: UsersTableProps) => {
+  const [filteredProperty, setFilteredProperty] = useState<UserBasicFrontendType[]>(usersList);
 
-const UsersTable = ({ usersList }: UsersTableProps) => (
-  <div data-component="UsersTable">
-    <Table>
-      <>
-        <Theader headerList={headerList} />
-        <ul className="px-1">
-          {usersList.map((user) => (
-            <UserRow key={`UserList-row-${user.name}`} user={user} headerList={headerList} />
-          ))}
-        </ul>
-      </>
-    </Table>
-  </div>
-);
+  // TODO: Remove this type any
+  const handleFilterChange = (list: any) => {
+    setFilteredProperty(list);
+  };
+
+  return (
+    <div data-component="UsersTable">
+      <Table
+        gridCols="grid-cols-user-table"
+        handleFilterUpdateCallback={handleFilterChange}
+        listForFilter={usersList}
+        defaultFilterProperty="status"
+      >
+        <Table.Header>
+          <Table.Heading property="name">Name</Table.Heading>
+          <Table.Heading property="status">Status</Table.Heading>
+          <Table.Heading property="lastActive">Last Active</Table.Heading>
+          <Table.Heading property="createdAt">Created At</Table.Heading>
+        </Table.Header>
+        <Table.Content>
+          <>
+            {filteredProperty.map((user) => (
+              <UserRow key={`UsersTable-${user.name}`} user={user} />
+            ))}
+          </>
+        </Table.Content>
+      </Table>
+    </div>
+  );
+};
 
 export default UsersTable;

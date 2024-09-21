@@ -1,22 +1,9 @@
 import { formatDate } from 'src/utils';
 
-import { Table, Tdata, Theader, Trow } from '@unity/components';
-import { ActivityType, TableHeaders } from '@unity/types';
+import { Table } from '@unity/components';
+import { ActivityType } from '@unity/types';
 
 import useActivities from '@/Hooks/useActivities';
-
-const headerList: TableHeaders = [
-  {
-    label: 'Timestamp',
-    property: 'timestamp',
-    width: '32',
-  },
-  {
-    label: 'Activities',
-    property: 'activities',
-    width: 'auto',
-  },
-];
 
 const UserActivities = () => {
   const { data: userActivities = [] } = useActivities();
@@ -25,22 +12,25 @@ const UserActivities = () => {
 
   return (
     <div data-component="UserActivities" className="mt-8">
-      <Table>
-        <>
-          <Theader headerList={headerList} />
-          <ul className="px-1">
+      <Table gridCols="grid-cols-user-activities">
+        <Table.Header>
+          <Table.Heading>Timestamp</Table.Heading>
+          <Table.Heading>Activity</Table.Heading>
+        </Table.Header>
+        <Table.Content>
+          <>
             {userActivities.map((activity: ActivityType, index) => (
-              <Trow key={`UserActivities-${activity.date}-${index}`}>
-                <Tdata width={headerList[0].width}>
+              <Table.Row key={`UserActivities-${activity.date}-${index}`}>
+                <Table.Data>
                   <p className="text-sm">{formatDate(activity.date)}</p>
-                </Tdata>
-                <Tdata width={headerList[1].width}>
+                </Table.Data>
+                <Table.Data>
                   <p className="text-sm">{activity.slug}</p>
-                </Tdata>
-              </Trow>
+                </Table.Data>
+              </Table.Row>
             ))}
-          </ul>
-        </>
+          </>
+        </Table.Content>
       </Table>
     </div>
   );

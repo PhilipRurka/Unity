@@ -1,16 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
-import { Button, MenuIcon, Tdata, Trow } from '@unity/components';
-import { TableHeaders, UserBasicFrontendType } from '@unity/types';
+import { Button, MenuIcon, Table } from '@unity/components';
+import type { UserBasicFrontendType } from '@unity/types';
 
 import Pill from '@/Components/Pill';
 
-import type { PillProps } from '../../Pill/Pill';
+import type { PillProps } from '../Pill/Pill';
 
 type UserRowProps = {
   user: UserBasicFrontendType;
-  headerList: TableHeaders;
 };
 
 type MenuStatusAction = {
@@ -18,7 +17,7 @@ type MenuStatusAction = {
   statusCopy: 'Active' | 'Disabled' | 'Pending' | 'Opps';
 };
 
-const UserRow = ({ user, headerList }: UserRowProps) => {
+const UserRow = ({ user }: UserRowProps) => {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,17 +62,17 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
 
   return (
     <div data-component="UserRow">
-      <Trow>
-        <Tdata width={headerList[0].width}>
+      <Table.Row>
+        <Table.Data>
           <p className="text-md font-semibold">{user.name}</p>
           <p className="text-sm">{user.email}</p>
-        </Tdata>
-        <Tdata width={headerList[1].width}>
+        </Table.Data>
+        <Table.Data>
           <Pill text={statusObj().statusCopy} color={statusObj().color} />
-        </Tdata>
-        <Tdata width={headerList[2].width}>{user.lastActive ? formatDate(user.lastActive) : ''}</Tdata>
-        <Tdata width={headerList[3].width}>{formatDate(user.createdAt)}</Tdata>
-        <Tdata width={headerList[4].width}>
+        </Table.Data>
+        <Table.Data>{user.lastActive ? formatDate(user.lastActive) : ''}</Table.Data>
+        <Table.Data>{formatDate(user.createdAt)}</Table.Data>
+        <Table.Data>
           <div ref={menuRef} className="relative">
             <button onClick={() => handleMenu(!isMenuOpen)}>
               <MenuIcon size="8" />
@@ -86,8 +85,8 @@ const UserRow = ({ user, headerList }: UserRowProps) => {
               </div>
             )}
           </div>
-        </Tdata>
-      </Trow>
+        </Table.Data>
+      </Table.Row>
     </div>
   );
 };
