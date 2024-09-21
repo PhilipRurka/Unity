@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import React, { FC, ReactNode, createContext, useContext, useState } from 'react';
 
+/* #region Types */
+
 type TabsProps = {
   defaultView: string;
   children: ReactNode;
@@ -31,7 +33,10 @@ type ViewProps = {
   children: ReactNode;
 };
 
-// Context and hook definition
+/* #endregion */
+
+/* #region Context */
+
 const TabsContext = createContext<{ activeView: string | null; setActiveView: (view: string) => void } | undefined>(
   undefined
 );
@@ -44,7 +49,10 @@ const useTabs = () => {
   return context;
 };
 
-// Tabs component definition
+/* #endregion */
+
+/* #region Components */
+
 const Tabs: TabsComponent = ({ defaultView, children }) => {
   const [activeView, setActiveView] = useState<string | null>(defaultView);
 
@@ -55,7 +63,6 @@ const Tabs: TabsComponent = ({ defaultView, children }) => {
   );
 };
 
-// Subcomponents
 const Header: FC<HeaderProps> = ({ children }) => (
   <div className="flex justify-center">
     <div className="flex grow-0 gap-4 border-y-2 border-solid border-gray-500 px-8">{children}</div>
@@ -82,6 +89,8 @@ const View: FC<ViewProps> = ({ view, children }) => {
   const { activeView } = useTabs();
   return activeView === view ? <div>{children}</div> : null;
 };
+
+/* #endregion */
 
 // Assign subcomponents to Tabs
 Tabs.Header = Header;
