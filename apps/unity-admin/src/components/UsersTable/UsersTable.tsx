@@ -10,11 +10,11 @@ type UsersTableProps = {
 };
 
 const UsersTable = ({ usersList }: UsersTableProps) => {
-  const [filteredProperty, setFilteredProperty] = useState<UserBasicFrontendType[]>(usersList);
+  const [filteredList, setFilteredList] = useState<UserBasicFrontendType[]>([]);
 
   // TODO: Remove this type any
   const handleFilterChange = (list: any) => {
-    setFilteredProperty(list);
+    setFilteredList(list);
   };
 
   return (
@@ -33,7 +33,7 @@ const UsersTable = ({ usersList }: UsersTableProps) => {
         </Table.Header>
         <Table.Content>
           <>
-            {filteredProperty.map((user) => (
+            {filteredList.map((user) => (
               <UserRow key={`UsersTable-${user.name}`} user={user} />
             ))}
           </>

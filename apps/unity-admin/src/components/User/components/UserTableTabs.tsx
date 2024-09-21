@@ -13,7 +13,6 @@ const UserTableTabs = () => (
       <Tabs.Content>
         <Tabs.View view="logs">
           <UserLogs />
-          {/* <UserLogs /> */}
         </Tabs.View>
         <Tabs.View view="activities">
           <UserActivities />
