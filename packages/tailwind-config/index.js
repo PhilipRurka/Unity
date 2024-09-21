@@ -36,6 +36,11 @@ const tailwindConfig = {
         "user-table": "1fr, 7rem, 10rem, 10rem, 2rem",
         "user-logs": "8rem, 1fr",
         "user-activities": "8rem, 1fr",
+        "activity-bundle": "6rem, 1fr",
+      },
+      rotate: {
+        "opened-accordion-triangle": "61deg",
+        "closed-accordion-triangle": "33deg",
       },
     },
   },
@@ -79,6 +84,8 @@ const tailwindConfig = {
   safelist: [
     "overflow-y-hidden",
     "grid-cols-user-table",
+    "opened-accordion-triangle",
+    "closed-accordion-triangle",
 
     /** widths */
     // FRONTEND: Clean up a lot of these as none of them are custom defined.
