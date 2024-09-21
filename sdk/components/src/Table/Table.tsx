@@ -18,6 +18,7 @@ type HeaderProps = {
 };
 
 type HeadingProps = {
+  /** Only use to enable filter on this column. Property of the column. */
   property?: string;
   children: ReactNode;
 };
@@ -37,11 +38,15 @@ type DataProps = {
 type List = Record<string, any>[];
 
 type TableProps = {
+  /** The CSS grid column configuration for the table layout. Make sure to add this configuration to Tailwind.config. */
   gridCols: string;
-  children: ReactNode;
+  /** Only use to enable filter. Pass the original list. */
   listForFilter?: List;
+  /** Only use to enable filter. The default property from which you want to filter. */
   defaultFilterProperty?: string;
+  /** Only use to enable filter. A callback to send back the filtered list to the parent component. */
   handleFilterUpdateCallback?: (filteredList: List) => void;
+  children: ReactNode;
 };
 
 type TableContextType =
