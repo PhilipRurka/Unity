@@ -8,3 +8,4 @@ export { default as MenuIcon } from './MenuIcon';
 export { default as EditIcon } from './EditIcon';
 export { default as XInCircleIcon } from './XInCircleIcon';
 export { default as PlusInCircleIcon } from './PlusInCircleIcon';
+export { default as TrangleIcon } from './TriangleIcon';
