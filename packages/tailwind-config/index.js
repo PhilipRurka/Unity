@@ -1,3 +1,4 @@
+/** @format */
 import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
@@ -30,6 +31,11 @@ const tailwindConfig = {
       },
       fontFamily: {
         lexend: "var(--font-lexend)",
+      },
+      gridTemplateColumns: {
+        "user-table": "1fr, 7rem, 10rem, 10rem, 2rem",
+        "user-logs": "8rem, 1fr",
+        "user-activities": "8rem, 1fr",
       },
     },
   },
@@ -72,10 +78,12 @@ const tailwindConfig = {
   ],
   safelist: [
     "overflow-y-hidden",
+    "grid-cols-user-table",
 
     /** widths */
     // FRONTEND: Clean up a lot of these as none of them are custom defined.
     "w-full",
+    "w-3",
     "w-4",
     "w-5",
     "w-6",
