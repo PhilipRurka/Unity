@@ -11,6 +11,10 @@ const listOfPages = [
     title: 'Users',
     pathname: '/users',
   },
+  {
+    title: 'Internal Tools',
+    pathname: '/tools',
+  },
 ];
 
 const Sidebar = () => {
