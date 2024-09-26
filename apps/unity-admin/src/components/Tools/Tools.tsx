@@ -2,9 +2,7 @@
 
 import { Button } from '@unity/components';
 
-type ToolsProps = {};
-
-const Tools = ({}: ToolsProps) => {
+const Tools = () => {
   console.log('');
   return (
     <div data-component="Tools">
