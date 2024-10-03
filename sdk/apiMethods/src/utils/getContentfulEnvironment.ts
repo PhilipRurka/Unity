@@ -1,6 +1,6 @@
 import { Environment, createClient } from 'contentful-management';
 
-const contentfulEnvironment = async (): Promise<Environment> => {
+const getContentfulEnvironment = async (): Promise<Environment> => {
   const managementClient = createClient({
     accessToken: process.env.CONTENTFUL_CMA_TOKEN || '',
   });
@@ -11,4 +11,4 @@ const contentfulEnvironment = async (): Promise<Environment> => {
   return environment;
 };
 
-export default contentfulEnvironment;
+export default getContentfulEnvironment;

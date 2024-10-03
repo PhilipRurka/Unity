@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
 
 /* eslint-disable import/no-extraneous-dependencies */
-// import contentfulManagement from 'contentful-management';
-import { Environment } from 'contentful-management';
 import { diff } from 'deep-object-diff';
 
 import { TransformedToRichTextData } from '@unity/types';
 
-const updateArticleEntries = async (environment: Environment, items: TransformedToRichTextData) => {
+import getContentfulEnvironment from '../../../utils/getContentfulEnvironment';
+
+const updateArticleEntries = async (items: TransformedToRichTextData) => {
   try {
     const promises = items.map(async ({ id, transformedData }) => {
       try {
-        const entry = await environment.getEntry(id);
+        const contentfulEnvironment = await getContentfulEnvironment();
+
+        const entry = await contentfulEnvironment.getEntry(id);
 
         const differences = diff(entry.fields.keywordsHelperCheck?.['en-US'], transformedData);
         const isNothingChanged = Object.keys(differences).length === 0;

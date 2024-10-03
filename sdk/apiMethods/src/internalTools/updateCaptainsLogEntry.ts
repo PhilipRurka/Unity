@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 import { Document } from '@contentful/rich-text-types';
-import { Environment } from 'contentful-management';
 import { diff } from 'deep-object-diff';
 
 import { CaptainsLogType } from '@unity/types';
 
 import { getByContentModel } from '../contentful';
+import getContentfulEnvironment from '../utils/getContentfulEnvironment';
 
-const updateCaptainsLogEntry = async (environment: Environment, field: string, newValue: Document) => {
+const updateCaptainsLogEntry = async (field: string, newValue: Document) => {
   try {
     try {
       const [data] = await getByContentModel('captainsLog');
@@ -16,7 +16,9 @@ const updateCaptainsLogEntry = async (environment: Environment, field: string, n
 
       const [captainsLog] = data.result as CaptainsLogType[];
 
-      let entry = await environment.getEntry(captainsLog.sys.id);
+      const contentfulEnvironment = await getContentfulEnvironment();
+
+      let entry = await contentfulEnvironment.getEntry(captainsLog.sys.id);
 
       const differences = diff(entry.fields[field]?.['en-US'], newValue);
       const isNothingChanged = Object.keys(differences).length === 0;
@@ -27,7 +29,7 @@ const updateCaptainsLogEntry = async (environment: Environment, field: string, n
         };
 
         await entry.update();
-        entry = await environment.getEntry(entry.sys.id);
+        entry = await contentfulEnvironment.getEntry(entry.sys.id);
 
         try {
           await entry.publish();

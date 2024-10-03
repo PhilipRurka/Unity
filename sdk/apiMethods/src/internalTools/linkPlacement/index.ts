@@ -1,5 +1,3 @@
-import { Environment } from 'contentful-management';
-
 import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
@@ -11,9 +9,9 @@ import transformIntoCaptainsLogValue from './utils/transformIntoCaptainsLogValue
 import transformIntoArticleValue from './utils/transformIntoValue';
 import updateArticleEntries from './utils/updateArticleEntries';
 
-type UpdateLinkPlacement = (environemnt: Environment) => Promise<AuditType>;
+type UpdateLinkPlacement = () => Promise<AuditType>;
 
-const updateLinkPlacement: UpdateLinkPlacement = async (environment) => {
+const updateLinkPlacement: UpdateLinkPlacement = async () => {
   /** Get all entries from Contentful with content model type "articles" */
   const [data] = (await getByContentModel('article')) as unknown as ApiMethodResponse<ArticleType[]>;
 
@@ -32,13 +30,13 @@ const updateLinkPlacement: UpdateLinkPlacement = async (environment) => {
   const transformedArticleData = transformIntoArticleValue(keywordMatchChecks);
 
   /** Upload keyword checks onto the Contentful's Article entry */
-  await updateArticleEntries(environment, transformedArticleData);
+  await updateArticleEntries(transformedArticleData);
 
   /** Transform concatted values into Captain's log uploadable values */
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
 
   /** Upload keyword checks onto Contentful's Captain's Log entry */
-  await updateCaptainsLogEntry(environment, 'keywordLinksCheckOverview', transformedCaptainsLogData);
+  await updateCaptainsLogEntry('keywordLinksCheckOverview', transformedCaptainsLogData);
 
   return { last_link_placement_update: new Date() };
 };

@@ -23,7 +23,6 @@
     "@unity/models": "*",
     "@unity/styles": "*",
     "contentful-import": "^9.0.4",
-    "contentful-management": "^11.25.5",
     "react-instantsearch": "^7.8.0"
   },
   "devDependencies": {

@@ -10,15 +10,11 @@ import {
 } from '@unity/api-methods';
 import { AuditOption, AuditType } from '@unity/types';
 
-import contentfulEnvironment from '@/Lib/contentfulEnvironment';
-
 export const PUT = async (req: NextRequest) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
   const { option }: AuditOption = await req.json();
-
-  const environment = await contentfulEnvironment();
 
   let toolsToUpdate: AuditType = {};
 
@@ -28,17 +24,17 @@ export const PUT = async (req: NextRequest) => {
       break;
 
     case 'incomplete':
-      toolsToUpdate = await updateIncomplete(environment);
+      toolsToUpdate = await updateIncomplete();
       break;
 
     case 'link placement':
-      toolsToUpdate = await updateLinkPlacement(environment);
+      toolsToUpdate = await updateLinkPlacement();
       break;
 
     case 'all': {
       const algoliaObj = await updateAlgolia();
-      const incompleteObj = await updateIncomplete(environment);
-      const linkPlacementObj = await updateLinkPlacement(environment);
+      const incompleteObj = await updateIncomplete();
+      const linkPlacementObj = await updateLinkPlacement();
 
       toolsToUpdate = {
         ...algoliaObj,
