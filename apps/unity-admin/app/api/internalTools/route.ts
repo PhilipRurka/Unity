@@ -13,8 +13,8 @@ import { AuditOption, AuditType } from '@unity/types';
 import contentfulEnvironment from '@/Lib/contentfulEnvironment';
 
 export const PUT = async (req: NextRequest) => {
-  // const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
-  // if (!isAdminAuthenticated) return NextResponse.json({}, {});
+  const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
+  if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
   const { option }: AuditOption = await req.json();
 
