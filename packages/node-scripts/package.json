@@ -25,7 +25,8 @@
     "@unity/tsconfig": "*",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",
-    "contentful-cli": "^3.3.1"
+    "contentful-cli": "^3.3.1",
+    "contentful-management": "^11.25.5"
   },
   "ntl": {
     "runner": "yarn",

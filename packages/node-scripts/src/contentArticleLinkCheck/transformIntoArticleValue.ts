@@ -49,13 +49,13 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
       return;
     }
 
-    const entryTitles = [
-      ...new Set(
+    const entryTitles = Array.from(
+      new Set(
         data.missingLinks
           .map((link) => link.entryTitle)
           .concat(data.listOfMissPlacedLinks.map((link) => link.entryTitle))
-      ),
-    ];
+      )
+    );
 
     entryTitles.forEach((entryTitle) => {
       content.push(createHeading(BLOCKS.HEADING_2, entryTitle));
