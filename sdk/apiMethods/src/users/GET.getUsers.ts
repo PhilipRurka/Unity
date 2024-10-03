@@ -1,11 +1,11 @@
 import { Document } from 'mongodb';
 
 import { UserModel } from '@unity/models';
-import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
+import { ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
-type GetUsersType = () => ApiMethodResponseType<unknown>;
+type GetUsersType = () => ApiMethodResponsePromise<unknown>;
 
 type CatchError = {
   message: string;

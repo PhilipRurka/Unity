@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
 import type {
-  ApiMethodResponseType,
+  ApiMethodResponsePromise,
   ErrorGetType,
   SuccessGetType,
   UserStatus,
@@ -15,7 +15,7 @@ type CatchError = {
   message: string;
 };
 
-type UpdateStatus = (userId: string, reqData: UserStatusChangeReq) => ApiMethodResponseType<{ message: string }>;
+type UpdateStatus = (userId: string, reqData: UserStatusChangeReq) => ApiMethodResponsePromise<{ message: string }>;
 
 const updateStatus: UpdateStatus = async (userId, { reason, newStatus }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

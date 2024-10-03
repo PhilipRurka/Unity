@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { UserModel } from '@unity/models';
-import type { ApiMethodResponseType, EditUserReq, ErrorGetType, SuccessGetType, UserType } from '@unity/types';
+import type { ApiMethodResponsePromise, EditUserReq, ErrorGetType, SuccessGetType, UserType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 import updateEditUserLogs from './PUT.updateFieldsLogs';
@@ -10,7 +10,7 @@ type CatchError = {
   message: string;
 };
 
-type EditUser = (userId: string, reqData: EditUserReq) => ApiMethodResponseType<{ message: string }>;
+type EditUser = (userId: string, reqData: EditUserReq) => ApiMethodResponsePromise<{ message: string }>;
 
 const editUser: EditUser = async (userId, { fields }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

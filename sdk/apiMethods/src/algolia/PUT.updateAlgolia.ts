@@ -1,12 +1,11 @@
 import algoliasearch from 'algoliasearch';
 
-import { ApiMethodResponseType, ArticleType } from '@unity/types';
+import { ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../contentful';
-import { updateInternalTools } from '../internalTools';
 import createAlgoliaRecords from '../utils/createAlgoliaRecords';
 
-type UpdateAlgolia = () => ApiMethodResponseType<{ message: string }>;
+type UpdateAlgolia = () => Promise<AuditType>;
 
 const updateAlgolia: UpdateAlgolia = async () => {
   const searchClient = algoliasearch(process.env.ALGOLIA_DASHBOARD || '', process.env.ALGOLIA_WRITE_KEY || '');
@@ -22,9 +21,7 @@ const updateAlgolia: UpdateAlgolia = async () => {
 
   await algoliaIndex.replaceAllObjects(algoliaRecords, { autoGenerateObjectIDIfNotExist: true });
 
-  updateInternalTools({ lastAlgoliaUpdate: new Date() });
-
-  return [{ result: { message: 'Success' } }, { status: 200 }];
+  return { last_algolia_update: new Date() };
 };
 
 export default updateAlgolia;

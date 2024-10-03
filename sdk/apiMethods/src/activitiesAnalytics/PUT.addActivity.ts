@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { ActivityAnalyticsModel } from '@unity/models';
-import type { ActivityReqType, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
+import type { ActivityReqType, ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import getUser from '../user/GET.getUser';
 import updateUserLastActive from '../user/PUT.updateUserLastActive';
@@ -12,7 +12,7 @@ type CatchError = {
   message: string;
 };
 
-type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponseType<{ message: string }>;
+type ActivityPut = (reqData: ActivityReqType) => ApiMethodResponsePromise<{ message: string }>;
 
 const addActivity: ActivityPut = async ({ userId, slug }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

@@ -4,7 +4,7 @@ import { ActivityAnalyticsModel } from '@unity/models';
 import type {
   ActivityAnalytictsType,
   ActivityType,
-  ApiMethodResponseType,
+  ApiMethodResponsePromise,
   ErrorGetType,
   SuccessGetType,
 } from '@unity/types';
@@ -15,7 +15,7 @@ type CatchError = {
   message: string;
 };
 
-type GetActivities = (userId: string) => ApiMethodResponseType<ActivityType[]>;
+type GetActivities = (userId: string) => ApiMethodResponsePromise<ActivityType[]>;
 
 const getActivities: GetActivities = async (userId) => {
   let response: SuccessGetType<ActivityType[]> | ErrorGetType;

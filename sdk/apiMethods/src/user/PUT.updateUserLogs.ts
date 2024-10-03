@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel } from '@unity/models';
-import { ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
+import { ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
-type PutUserLogsType = (userId: string) => ApiMethodResponseType<{ message: string }>;
+type PutUserLogsType = (userId: string) => ApiMethodResponsePromise<{ message: string }>;
 
 type CatchError = {
   message: string;

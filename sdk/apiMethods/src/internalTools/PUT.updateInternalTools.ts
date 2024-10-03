@@ -1,5 +1,5 @@
 import { InternalToolsModel } from '@unity/models';
-import { ApiMethodResponseType, AuditFrontendType, ErrorGetType, SuccessGetType } from '@unity/types';
+import { ApiMethodResponsePromise, AuditType, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import { connectToDatabase } from '../utils';
 
@@ -7,7 +7,7 @@ type CatchError = {
   message: string;
 };
 
-type UpdateInternalTools = (audits: AuditFrontendType) => ApiMethodResponseType<{ message: string }>;
+type UpdateInternalTools = (audits: AuditType) => ApiMethodResponsePromise<{ message: string }>;
 
 const updateInternalTools: UpdateInternalTools = async (audits) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

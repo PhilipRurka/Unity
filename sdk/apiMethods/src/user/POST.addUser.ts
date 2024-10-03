@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import type { AddUserReq, ApiMethodResponseType, ErrorGetType, SuccessGetType } from '@unity/types';
+import type { AddUserReq, ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 import createActivitiesAnalytics from '../utils/createActivitiesAnalytics';
@@ -12,7 +12,7 @@ type CatchError = {
   message: string;
 };
 
-type AddUser = (reqData: AddUserReq) => ApiMethodResponseType<{ message: string }>;
+type AddUser = (reqData: AddUserReq) => ApiMethodResponsePromise<{ message: string }>;
 
 const addUser: AddUser = async ({ name, email }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

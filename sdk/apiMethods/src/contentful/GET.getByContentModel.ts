@@ -1,8 +1,8 @@
 import { createClient } from 'contentful';
 
-import type { AllContentModelTypes, ApiMethodResponseType } from '@unity/types';
+import type { AllContentModelTypes, ApiMethodResponsePromise } from '@unity/types';
 
-type GetByContentModel = (contentModel: AllContentModelTypes) => ApiMethodResponseType<unknown[]>;
+type GetByContentModel = (contentModel: AllContentModelTypes) => ApiMethodResponsePromise<unknown[]>;
 
 type CatchError = {
   message: string;

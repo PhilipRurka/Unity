@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { UserModel } from '@unity/models';
-import type { ApiMethodResponseType, ErrorGetType, SuccessGetType, UpdateActiveLastReq } from '@unity/types';
+import type { ApiMethodResponsePromise, ErrorGetType, SuccessGetType, UpdateActiveLastReq } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
@@ -9,7 +9,7 @@ type CatchError = {
   message: string;
 };
 
-type EditUser = (userId: string, reqData: UpdateActiveLastReq) => ApiMethodResponseType<{ message: string }>;
+type EditUser = (userId: string, reqData: UpdateActiveLastReq) => ApiMethodResponsePromise<{ message: string }>;
 
 const updateUserLastActive: EditUser = async (userId, { lastActive }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;

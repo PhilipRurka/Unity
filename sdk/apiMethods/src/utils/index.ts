@@ -6,3 +6,4 @@ export { default as checkIfAdminAuthenticated } from './checkIfAdminAuthenticate
 export { default as checkIfUserAuthenticated } from './checkIfUserAuthenticated';
 export { default as sendgridInvitationEmail } from './sendgridInvitationEmail';
 export { default as userRegistrationemailTemplate } from './userRegistrationemailTemplate';
+export * from './richTextNodeCreation';

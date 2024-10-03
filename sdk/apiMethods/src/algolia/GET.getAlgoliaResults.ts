@@ -1,12 +1,12 @@
 import algoliasearch from 'algoliasearch/lite';
 
-import type { ApiMethodResponseType, ArticleSearchType } from '@unity/types';
+import type { ApiMethodResponsePromise, ArticleSearchType } from '@unity/types';
 
 type CatchError = {
   message: string;
 };
 
-type GetAlgoliaResults = (query: string) => ApiMethodResponseType<ArticleSearchType[]>;
+type GetAlgoliaResults = (query: string) => ApiMethodResponsePromise<ArticleSearchType[]>;
 
 const searchClient = algoliasearch(process.env.ALGOLIA_DASHBOARD || '', process.env.ALGOLIA_SEARCH || '');
 
