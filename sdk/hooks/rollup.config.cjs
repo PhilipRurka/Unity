@@ -1,5 +1,3 @@
-const path = require('path');
-
 const dependenciesPkgPath = require.resolve('@unity/frontend-dependencies/package.json');
 const devDependenciesPkgPath = require.resolve('@unity/frontend-dev-dependencies/package.json');
 const pkg = require('./package.json');
