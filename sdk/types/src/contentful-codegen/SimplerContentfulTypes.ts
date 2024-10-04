@@ -29,7 +29,7 @@ export type InfoboxBlockType = TypeInfoboxBlockWithoutUnresolvableLinksResponse;
 export type InfoboxItemType = TypeInfoboxItemWithoutUnresolvableLinksResponse;
 export type LinkType = TypeLinkWithoutUnresolvableLinksResponse;
 
-type ContentModelMapping = {
+export type ContentModelMapping = {
   article: ArticleType;
   captainsLog: CaptainsLogType;
   contentSection: ContentSectionType;
@@ -41,4 +41,4 @@ type ContentModelMapping = {
   link: LinkType;
 };
 
-export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T]>;
+export type GetContentModelType = <T extends AllContentModelTypes>(model: T) => Promise<Array<ContentModelMapping[T]>>;
