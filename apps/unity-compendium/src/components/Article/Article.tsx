@@ -6,9 +6,10 @@ import { notFound } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import withAuth from 'src/hoc/withAuth';
 
+import { Markdown } from '@unity/components';
+
 import Header from '@/Components/Header';
 import Infobox from '@/Components/Infobox';
-import Markdown from '@/Components/Markdown';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
 import useGetBySlug from '@/Hooks/useGetBySlug';
 
