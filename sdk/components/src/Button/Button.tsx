@@ -20,6 +20,7 @@ type ButtonDefaultProps = {
   isFull?: boolean;
   onClick?: () => void;
   type?: HTMLButtonElement['type'];
+  disabled?: boolean;
 };
 
 type ButtonWithoutIconProps = ButtonDefaultProps;
@@ -59,7 +60,7 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
 );
 
 const ButtonContent = (props: ButtonContentProps) => {
-  const { size, color, isFull, onClick, children } = props;
+  const { size, color, isFull, onClick, children, disabled } = props;
 
   const hasIcon = (propsToCheck: ButtonContentProps): propsToCheck is ButtonWithIconProps =>
     'iconPosition' in propsToCheck && 'icon' in propsToCheck;
@@ -73,6 +74,7 @@ const ButtonContent = (props: ButtonContentProps) => {
       className={clsx(
         'flex cursor-pointer items-center rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
+        disabled && 'cursor-not-allowed',
 
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
         colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white',
@@ -85,6 +87,7 @@ const ButtonContent = (props: ButtonContentProps) => {
           'border-green-500 bg-white text-green-500 hover:bg-green-500 hover:text-white'
       )}
       onClick={onClick}
+      disabled={disabled}
       {...attributes}
     >
       {hasIcon(props) && (
