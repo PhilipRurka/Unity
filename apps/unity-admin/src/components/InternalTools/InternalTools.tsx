@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { formatDate } from 'src/utils';
 import { mutate } from 'swr';
 
-import { Button } from '@unity/components';
+import { Button, Markdown } from '@unity/components';
 import { AuditOptions } from '@unity/types';
 
 import updateInternalTools from '@/Fetchers/updateInternalTools';
@@ -15,9 +15,11 @@ const InternalTools = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { data: internalTools } = useInternalTools();
-  const { data: captainsLog } = useContentModel('captainsLog');
+  const { data: captainsLogArray } = useContentModel('captainsLog');
 
-  if (!internalTools || !captainsLog) return <></>;
+  if (!internalTools || !captainsLogArray) return <></>;
+
+  const [captainsLog] = captainsLogArray;
 
   const handleUpdateInternalTools = async (option: AuditOptions) => {
     setIsLoading(true);
@@ -41,7 +43,8 @@ const InternalTools = () => {
       <div className="flex flex-col gap-16">
         <div>
           <div className="mb-3">
-            <h2 className="my-9 inline text-2xl">All</h2>
+            <h2 className="my-9 inline text-2xl font-bold">All</h2>
+            <hr className="border-black" />
           </div>
           <Button
             color="black"
@@ -56,8 +59,9 @@ const InternalTools = () => {
 
         <div>
           <div className="mb-3">
-            <h2 className="my-9 inline text-2xl">Algolia</h2>
+            <h2 className="my-9 inline text-2xl font-bold">Algolia</h2>
             <span className="inline text-xs italic"> - Last updated: {lastAlgoliaDate} </span>
+            <hr className="border-black" />
           </div>
           <Button
             color="black"
@@ -72,8 +76,9 @@ const InternalTools = () => {
 
         <div>
           <div className="mb-3">
-            <h2 className="my-9 inline text-2xl">Link Placement</h2>
+            <h2 className="my-9 inline text-2xl font-bold">Link Placement</h2>
             <span className="inline text-xs italic"> - Last updated: {lastLinkPlacementDate}</span>
+            <hr className="border-black" />
           </div>
           <Button
             color="black"
@@ -85,13 +90,16 @@ const InternalTools = () => {
             Update
           </Button>
 
-          <div></div>
+          <div>
+            <Markdown content={captainsLog.fields.keywordLinksCheckOverview} />
+          </div>
         </div>
 
         <div>
           <div className="mb-3">
-            <h2 className="my-9 inline text-2xl">Incomplete</h2>
+            <h2 className="my-9 inline text-2xl font-bold">Incomplete</h2>
             <span className="inline text-xs italic"> - Last updated: {lastIncompleteDate}</span>
+            <hr className="border-black" />
           </div>
 
           <Button
@@ -103,6 +111,9 @@ const InternalTools = () => {
           >
             Update
           </Button>
+          <div>
+            <Markdown content={captainsLog.fields.incompleteUnderlinedItems} />
+          </div>
         </div>
       </div>
     </div>
