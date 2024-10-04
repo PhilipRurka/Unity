@@ -3,11 +3,9 @@ import type { Metadata } from 'next';
 import { Lexend, Montserrat } from 'next/font/google';
 
 import '@unity/styles/global.css';
-import type { HierarchyLayoutType } from '@unity/types';
 
 import HierarchyNav from '@/Components/HierarchyNav';
 import SearchModal from '@/Components/SearchModal';
-import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 import AuthProvider from '@/Providers/SessionProvider';
 import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
 import HierarchyNavContextProvider from '@/Providers/contexts/HierarchyNavContextProvider';
@@ -38,14 +36,6 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const [hierarchyLayout] = (await getByContentModel(
-    'hierarchyLayout',
-    { adminKey: process.env.ADMIN_KEY },
-    {
-      cache: 'no-store',
-    }
-  )) as HierarchyLayoutType[];
-
   return (
     <html lang="en">
       <body
@@ -59,7 +49,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <HeaderContextProvider>
             <AuthProvider>
               <SearchModal />
-              <HierarchyNav hierarchyLayout={hierarchyLayout} />
+              <HierarchyNav />
               <div className="sm:px-6 sm:py-16">{children}</div>
             </AuthProvider>
           </HeaderContextProvider>

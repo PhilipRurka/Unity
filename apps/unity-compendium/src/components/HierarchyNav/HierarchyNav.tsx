@@ -4,16 +4,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useContext, useEffect } from 'react';
 
-import type { HierarchyLayoutType } from '@unity/types';
-
 import RecursiveHierarchy from '@/Components/RecursiveHierarchy';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 
-type HierarchyNavProps = {
-  hierarchyLayout: HierarchyLayoutType;
-};
-
-const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
+const HierarchyNav = () => {
   const { isHierarchyNavOpen, slugsList, handleShouldBeOpen } = useContext(HierarchyNavContext);
 
   const handleTriggerClose = () => {
@@ -58,7 +52,7 @@ const HierarchyNav = ({ hierarchyLayout }: HierarchyNavProps) => {
             <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
               Go To Random Page
             </Link>
-            <RecursiveHierarchy data={hierarchyLayout} />
+            <RecursiveHierarchy />
           </div>
         </div>
       </div>

@@ -1,26 +1,39 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Fragment, useContext, useEffect, useRef } from 'react';
+import { Fragment, useContext, useEffect } from 'react';
 
-import type { HierarchyLayoutType, HierarchyLinkType } from '@unity/types';
+import type { HierarchyLinkType } from '@unity/types';
 
+import useContentModel from '@/Hooks/useContentModel';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 
-type RecursiveHierarchyProps = {
-  data: HierarchyLayoutType;
-};
-
-const RecursiveHierarchy = ({ data }: RecursiveHierarchyProps) => {
+const RecursiveHierarchy = () => {
   const pathname = usePathname();
   const { handleSlugListRandomization } = useContext(HierarchyNavContext);
-  const pagesOptionRef = useRef<string[]>([]);
+
+  const { data: hierarchyDataArray } = useContentModel('hierarchyLayout');
 
   useEffect(() => {
-    handleSlugListRandomization(pagesOptionRef.current);
+    if (hierarchyDataArray) {
+      const pageList: string[] = [];
+
+      hierarchyDataArray[0].fields.links.map((item) => {
+        const slug = item?.fields.link?.fields.slug;
+        if (slug) {
+          pageList.push(slug);
+        }
+
+        return undefined;
+      });
+
+      handleSlugListRandomization(pageList);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [hierarchyDataArray]);
+
+  if (!hierarchyDataArray) return <></>;
 
   const renderElement = (item: HierarchyLinkType) => {
     if (!item) return null;
@@ -28,8 +41,6 @@ const RecursiveHierarchy = ({ data }: RecursiveHierarchyProps) => {
     const { link, childrenLinks } = item.fields;
 
     if (!link) return null;
-
-    pagesOptionRef.current.push(link.fields.slug);
 
     const linkPathname = `/articles/${link.fields.slug}`;
 
@@ -50,14 +61,11 @@ const RecursiveHierarchy = ({ data }: RecursiveHierarchyProps) => {
     );
   };
 
-  const runRecursion = () => {
-    pagesOptionRef.current = [];
-    return (
-      <Fragment key="hecursiveHierarchy">
-        {data.fields.links.map((item: any | undefined) => item && renderElement(item))}
-      </Fragment>
-    );
-  };
+  const runRecursion = () => (
+    <Fragment key="hecursiveHierarchy">
+      {hierarchyDataArray[0].fields.links.map((item: any | undefined) => item && renderElement(item))}
+    </Fragment>
+  );
 
   return (
     <div className="*:pl-0 *:before:content-none *:after:content-none" data-component="cRecursiveHierarchy">
