@@ -13,7 +13,7 @@ const listOfPages = [
   },
   {
     title: 'Internal Tools',
-    pathname: '/tools',
+    pathname: '/internal-tools',
   },
 ];
 
