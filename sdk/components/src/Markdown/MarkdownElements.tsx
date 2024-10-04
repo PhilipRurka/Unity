@@ -1,5 +1,6 @@
 import { Block, Inline } from '@contentful/rich-text-types';
 import Link from 'next/link';
+import React from 'react';
 
 type MarkdownElementProps = {
   children: React.ReactNode;
@@ -23,6 +24,12 @@ export const OrderedList = ({ children }: MarkdownElementProps) => (
 );
 
 export const ListItem = ({ children }: MarkdownElementProps) => <li className="mb-1">{children}</li>;
+
+export const TableHeaderCell = ({ children }: MarkdownElementProps) => <th className="text-left">{children}</th>;
+
+export const TableRow = ({ children }: MarkdownElementProps) => (
+  <tr className="*:pl-8 [&>*:first-child]:pl-0">{children}</tr>
+);
 
 export const Hyperlink = ({ children, node }: MarkdownElementProps) => (
   <Link className="inline text-blue-500 hover:text-blue-900" href={node?.data.uri}>

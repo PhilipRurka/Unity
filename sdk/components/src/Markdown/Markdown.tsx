@@ -1,7 +1,17 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import React from 'react';
 
-import { Heading3, Heading4, Hyperlink, ListItem, OrderedList, UnorderedList } from '../MarkdownElements';
+import {
+  Heading3,
+  Heading4,
+  Hyperlink,
+  ListItem,
+  OrderedList,
+  TableHeaderCell,
+  TableRow,
+  UnorderedList,
+} from './MarkdownElements';
 
 type MarkdownType = { content: any };
 
@@ -15,6 +25,8 @@ const Markdown = ({ content }: MarkdownType) => (
         [BLOCKS.UL_LIST]: (_node, children) => <UnorderedList>{children}</UnorderedList>,
         [BLOCKS.OL_LIST]: (_node, children) => <OrderedList>{children}</OrderedList>,
         [BLOCKS.LIST_ITEM]: (_node, children) => <ListItem>{children}</ListItem>,
+        [BLOCKS.TABLE_HEADER_CELL]: (_node, children) => <TableHeaderCell>{children}</TableHeaderCell>,
+        [BLOCKS.TABLE_ROW]: (_node, children) => <TableRow>{children}</TableRow>,
       },
       renderText: (text) =>
         text

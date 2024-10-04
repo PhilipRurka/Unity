@@ -72,9 +72,9 @@ const ButtonContent = (props: ButtonContentProps) => {
   return (
     <button
       className={clsx(
-        'flex cursor-pointer items-center rounded-lg border border-solid p-2 transition-colors',
+        'flex items-center rounded-lg border border-solid p-2 transition-colors',
         size === 'small' && 'text-sm',
-        disabled && 'cursor-not-allowed',
+        disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
         colorTheme === 'black-inverted' && 'border-black bg-white text-black hover:bg-black hover:text-white',
