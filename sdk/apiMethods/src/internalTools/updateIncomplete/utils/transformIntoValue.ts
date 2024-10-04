@@ -33,7 +33,7 @@ const createTable = (rows: ReStructureForCaptainsLogLinkCheck[]): TopLevelBlock 
 const transformIntoValue = (concattedContentArray: ReStructureForCaptainsLogLinkCheck[]): Document => {
   const content: Document['content'] = [];
 
-  content.push(createHeading(BLOCKS.HEADING_2, 'Overview of Incomplete Underlined Items'));
+  content.push(createHeading(BLOCKS.HEADING_3, 'Overview of Incomplete Underlined Items'));
   content.push(createTable(concattedContentArray));
   content.push(createParagraph(''));
 
