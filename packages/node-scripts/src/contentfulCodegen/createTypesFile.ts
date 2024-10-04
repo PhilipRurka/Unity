@@ -33,14 +33,31 @@ const createTypesFile = async () => {
     .map((name) => `'${name.charAt(0).toLowerCase() + name.slice(1)}'`);
   const typeUnion = `export type AllContentModelTypes = ${typeNames.join(' | ')};`;
 
-  const contentModelMapping = `type ContentModelMapping = {
+  const contentModelMapping = `export type ContentModelMapping = {
   ${mappings.join('\n  ')}
 };`;
 
   const getByContentModel = `
   export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T]>;`;
 
-  const content = [...imports, '', typeUnion, '', ...types, '', contentModelMapping, '', getByContentModel].join('\n');
+  const getByContentModelGeneric = `
+  export type GetContentModelType = <T extends AllContentModelTypes>(
+  model: T) => Promise<ContentModelMapping[T]>;
+  `;
+
+  const content = [
+    ...imports,
+    '',
+    typeUnion,
+    '',
+    ...types,
+    '',
+    contentModelMapping,
+    '',
+    getByContentModel,
+    '',
+    getByContentModelGeneric,
+  ].join('\n');
 
   await writeFile(filePath, content);
   await runPrettier(filePath);
