@@ -58,7 +58,7 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
     );
 
     entryTitles.forEach((entryTitle) => {
-      content.push(createHeading(BLOCKS.HEADING_2, entryTitle));
+      content.push(createHeading(BLOCKS.HEADING_3, entryTitle));
 
       const missingLinks = data.missingLinks.filter((link) => link.entryTitle === entryTitle);
       if (missingLinks.length > 0) {

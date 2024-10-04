@@ -43,7 +43,7 @@ const createTable = (rows: ArticlesKeywordsCheck[]): TopLevelBlock => {
 const transformIntoCaptainsLogValue = (keywordMatchChecks: ArticlesKeywordsCheck[]): Document => {
   const content: Document['content'] = [];
 
-  content.push(createHeading(BLOCKS.HEADING_2, 'Overview of Keyword Links Check'));
+  content.push(createHeading(BLOCKS.HEADING_3, 'Overview of Keyword Links Check'));
   content.push(createTable(keywordMatchChecks));
   content.push(createParagraph(''));
 
