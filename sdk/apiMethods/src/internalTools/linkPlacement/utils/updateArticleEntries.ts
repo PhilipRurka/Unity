@@ -13,7 +13,7 @@ const updateArticleEntries = async (items: TransformedToRichTextData) => {
       try {
         const contentfulEnvironment = await getContentfulEnvironment();
 
-        const entry = await contentfulEnvironment.getEntry(id);
+        let entry = await contentfulEnvironment.getEntry(id);
 
         const differences = diff(entry.fields.keywordsHelperCheck?.['en-US'], transformedData);
         const isNothingChanged = Object.keys(differences).length === 0;
@@ -24,6 +24,14 @@ const updateArticleEntries = async (items: TransformedToRichTextData) => {
           };
 
           await entry.update();
+          entry = await contentfulEnvironment.getEntry(id);
+
+          try {
+            await entry.publish();
+          } catch (publishError) {
+            console.error(`Error publishing entry: ${publishError}`);
+            throw new Error(`Publish failed for entry ${id}`);
+          }
         }
       } catch (error) {
         console.error(`Error updating entry with id "${id}":`, error);

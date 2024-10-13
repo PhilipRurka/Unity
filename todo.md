@@ -1,10 +1,6 @@
-Make a check to make sure all href links lead to an actual page.
+<!-- @format -->
 
-Add UserDetails to User
-Create UserLogs
+- Re order keyword list from most to characters to least
 
-revert the script from watch to dev. And make it for all three
-
-Create apiMethod for addUser
-
-https://stackoverflow.com/questions/15999999/mongoose-close-connection/16000730#16000730
+Make sure the Link Placement logic is working as expected
+Create new column to check if any links lead a 404

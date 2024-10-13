@@ -18,7 +18,6 @@ const reStructureArticles = (articles: ArticleType[]) => {
           node.content.forEach((textNode) => {
             if (textNode.nodeType === 'text') {
               const textNodeValue = textNode.value;
-              const isTextNodeValueFirstComma = textNodeValue.charAt(0) === ',';
               const isTextNodeValueLastSpace = textNodeValue.charAt(textNodeValue.length - 1) === ' ';
               const isSectionTextValueLastSpace = sectionText.charAt(textNodeValue.length - 1) === ' ';
 
@@ -26,19 +25,16 @@ const reStructureArticles = (articles: ArticleType[]) => {
                 sectionText += ' ';
               }
 
-              if (isTextNodeValueFirstComma) {
-                sectionText = sectionText.slice(0, -1);
-              }
-
               sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}`;
             } else if (textNode.nodeType === 'hyperlink') {
+              const href = textNode.data.uri;
               const value = textNode.content
                 .map((linkNode) => {
                   if (linkNode.nodeType !== 'text') return '';
                   return linkNode.value;
                 })
                 .join('');
-              sectionText += `<>${value}</>`;
+              sectionText += `<>${value}[${href}]</>`;
             }
           });
 
