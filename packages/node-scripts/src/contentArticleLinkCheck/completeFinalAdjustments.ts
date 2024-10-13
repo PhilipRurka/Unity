@@ -80,9 +80,9 @@ const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, list
     articlesKeywordsCheck.push({
       id,
       slug: articleSlug,
-      listOfTrackedKeywords,
       listOfMissPlacedLinks,
       missingLinks,
+      invalidLinks: [],
     });
   });
 
