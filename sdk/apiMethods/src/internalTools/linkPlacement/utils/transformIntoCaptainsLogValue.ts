@@ -13,6 +13,7 @@ const createTable = (rows: ArticlesKeywordsCheck[]): TopLevelBlock => {
         createTableCell('Slug', true),
         createTableCell('Miss Placed Links', true),
         createTableCell('Missing Links', true),
+        createTableCell('Invalid Links', true),
       ],
     },
   ];
@@ -20,7 +21,8 @@ const createTable = (rows: ArticlesKeywordsCheck[]): TopLevelBlock => {
   const sortedRows = rows.sort((a, b) => a.slug.localeCompare(b.slug));
 
   sortedRows.forEach((row) => {
-    if (row.listOfMissPlacedLinks.length === 0 && row.missingLinks.length === 0) return;
+    if (row.listOfMissPlacedLinks.length === 0 && row.missingLinks.length === 0 && row.invalidLinks.length === 0)
+      return;
 
     tableContent.push({
       nodeType: BLOCKS.TABLE_ROW,
@@ -29,6 +31,7 @@ const createTable = (rows: ArticlesKeywordsCheck[]): TopLevelBlock => {
         createTableCell(row.slug),
         createTableCell(String(row.listOfMissPlacedLinks.length)),
         createTableCell(String(row.missingLinks.length)),
+        createTableCell(String(row.invalidLinks.length)),
       ],
     });
   });

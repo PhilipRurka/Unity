@@ -1,6 +1,6 @@
 import { BLOCKS, Document, TopLevelBlock } from '@contentful/rich-text-types';
 
-import { ArticlesKeywordsCheck, TrackedKeyword, TransformedToRichTextData } from '@unity/types';
+import { ArticleType, ArticlesKeywordsCheck, TrackedKeyword, TransformedToRichTextData } from '@unity/types';
 
 import { createHeading, createParagraph, createTableCell } from '../../../utils';
 
@@ -30,14 +30,14 @@ const createTable = (rows: TrackedKeyword[]): TopLevelBlock => {
   };
 };
 
-const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) => {
+const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[], articles: ArticleType[]) => {
   const transformedData: TransformedToRichTextData = [];
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;
     const content: Document['content'] = [];
 
-    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0) {
+    if (data.listOfMissPlacedLinks.length === 0 && data.missingLinks.length === 0 && data.invalidLinks.length === 0) {
       transformedData.push({
         id,
         transformedData: {
@@ -54,6 +54,7 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
         data.missingLinks
           .map((link) => link.entryTitle)
           .concat(data.listOfMissPlacedLinks.map((link) => link.entryTitle))
+          .concat(data.invalidLinks.map((link) => link.entryTitle))
       )
     );
 
@@ -70,6 +71,12 @@ const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) 
       if (missPlacedLinks.length > 0) {
         content.push(createHeading(BLOCKS.HEADING_3, 'Miss Placed Links'));
         content.push(createTable(missPlacedLinks));
+      }
+
+      const invalidLinks = data.invalidLinks.filter((link) => link.entryTitle === entryTitle);
+      if (invalidLinks.length > 0) {
+        content.push(createHeading(BLOCKS.HEADING_3, 'Invalid Links'));
+        content.push(createTable(invalidLinks));
       }
 
       content.push(createParagraph(''));

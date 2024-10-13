@@ -15,9 +15,9 @@ export type ReStructureForArticleLinkCheck = Array<{
 export type ArticlesKeywordsCheck = {
   id: string;
   slug: string;
-  listOfTrackedKeywords: string[];
   listOfMissPlacedLinks: TrackedKeyword[];
   missingLinks: TrackedKeyword[];
+  invalidLinks: TrackedKeyword[];
 };
 
 export type TrackedKeyword = {

@@ -13,21 +13,21 @@ type UpdateLinkPlacement = () => Promise<AuditType>;
 
 const updateLinkPlacement: UpdateLinkPlacement = async () => {
   /** Get all entries from Contentful with content model type "articles" */
-  const [data] = (await getByContentModel('article')) as unknown as ApiMethodResponse<ArticleType[]>;
+  const [articles] = (await getByContentModel('article')) as unknown as ApiMethodResponse<ArticleType[]>;
 
-  if (!('result' in data)) throw new Error('Missing data results in getByModel');
+  if (!('result' in articles)) throw new Error('Missing data results in getByModel');
 
   /** Concat content text within sections */
-  const concattedContentArray = reStructureArticles(data.result);
+  const concattedContentArray = reStructureArticles(articles.result);
 
   /** Create list of keyword link array */
-  const listOfKeywordLinks = formatKeywordLinks(data.result);
+  const listOfKeywordLinks = formatKeywordLinks(articles.result);
 
   /** Create array of keyword checks */
   const keywordMatchChecks = completeFinalAdjustments(concattedContentArray, listOfKeywordLinks);
 
   /** Transform concatted values into Article uploadable values */
-  const transformedArticleData = transformIntoArticleValue(keywordMatchChecks);
+  const transformedArticleData = transformIntoArticleValue(keywordMatchChecks, articles.result);
 
   /** Upload keyword checks onto the Contentful's Article entry */
   await updateArticleEntries(transformedArticleData);
