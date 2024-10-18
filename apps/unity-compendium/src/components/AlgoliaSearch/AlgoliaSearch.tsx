@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 
 import { Input } from '@unity/components';
@@ -41,7 +42,7 @@ const AlgoliaSearch = () => {
   }, [isSearchModalOpen]);
 
   return (
-    <div data-component="cAlgoliaSearch">
+    <div data-component="cAlgoliaSearch" className={clsx(!isSearchModalOpen && 'hidden')}>
       <Input
         ref={inputRef}
         defaultValue={lastQuery}

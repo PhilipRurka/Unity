@@ -48,7 +48,7 @@ const HierarchyNav = () => {
         )}
       >
         <div className="sidebar-height hide-scrollbar overflow-y-scroll">
-          <div className="p-8">
+          <div className={clsx('p-8', !isHierarchyNavOpen && 'hidden')}>
             <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
               Go To Random Page
             </Link>
