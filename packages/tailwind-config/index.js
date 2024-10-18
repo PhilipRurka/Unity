@@ -86,6 +86,7 @@ const tailwindConfig = {
     "grid-cols-user-table",
     "opened-accordion-triangle",
     "closed-accordion-triangle",
+    "hidden",
 
     /** widths */
     // FRONTEND: Clean up a lot of these as none of them are custom defined.
