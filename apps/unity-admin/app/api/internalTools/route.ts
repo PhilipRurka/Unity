@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import {
-  checkIfAdminAuthenticated,
+  // checkIfAdminAuthenticated,
   updateAlgolia,
   updateIncomplete,
   updateInternalTools,
