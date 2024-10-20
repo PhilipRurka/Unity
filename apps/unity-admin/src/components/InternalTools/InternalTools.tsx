@@ -35,11 +35,9 @@ const InternalTools = () => {
     : '';
   const lastIncompleteDate = internalTools.lastIncompleteUpdate ? formatDate(internalTools.lastIncompleteUpdate) : '';
 
-  console.log(captainsLog);
-
   return (
     <div data-component="InternalTools">
-      <h1 className="my-9 text-4xl">Internal InternalTools</h1>
+      <h1 className="my-9 text-4xl">Internal Tools</h1>
       <div className="flex flex-col gap-16">
         <div>
           <div className="mb-3">
