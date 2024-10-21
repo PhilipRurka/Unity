@@ -1,4 +1,4 @@
-import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
+import { ApiMethodResponse, ArticleType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import updateCaptainsLogEntry from '../updateCaptainsLogEntry';
@@ -9,7 +9,7 @@ import transformIntoCaptainsLogValue from './utils/transformIntoCaptainsLogValue
 import transformIntoArticleValue from './utils/transformIntoValue';
 import updateArticleEntries from './utils/updateArticleEntries';
 
-type UpdateLinkPlacement = () => Promise<AuditType>;
+type UpdateLinkPlacement = () => Promise<void>;
 
 const updateLinkPlacement: UpdateLinkPlacement = async () => {
   /** Get all entries from Contentful with content model type "articles" */
@@ -37,8 +37,6 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
 
   /** Upload keyword checks onto Contentful's Captain's Log entry */
   await updateCaptainsLogEntry('keywordLinksCheckOverview', transformedCaptainsLogData);
-
-  return { last_link_placement_update: new Date() };
 };
 
 export default updateLinkPlacement;

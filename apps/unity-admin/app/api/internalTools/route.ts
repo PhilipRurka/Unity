@@ -28,13 +28,15 @@ export const PUT = async (req: NextRequest) => {
       break;
 
     case 'link placement':
-      toolsToUpdate = await updateLinkPlacement();
+      toolsToUpdate = { last_link_placement_update: new Date() };
+      updateLinkPlacement();
+
       break;
 
     case 'all': {
       const algoliaObj = await updateAlgolia();
       const incompleteObj = await updateIncomplete();
-      const linkPlacementObj = await updateLinkPlacement();
+      const linkPlacementObj = updateLinkPlacement();
 
       toolsToUpdate = {
         ...algoliaObj,
