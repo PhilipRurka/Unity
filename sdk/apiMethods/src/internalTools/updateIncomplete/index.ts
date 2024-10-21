@@ -1,11 +1,11 @@
-import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
+import { ApiMethodResponse, ArticleType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import updateCaptainsLogEntry from '../updateCaptainsLogEntry';
 import reStructureArticles from './utils/reStructureArticles';
 import transformIntoValue from './utils/transformIntoValue';
 
-type UpdateAlgolia = () => Promise<AuditType>;
+type UpdateAlgolia = () => Promise<void>;
 
 const updateIncomplete: UpdateAlgolia = async () => {
   /** Get all entries from Contentful with content model type "articles" */
