@@ -39,7 +39,7 @@ const updateCaptainsLogEntry = async (field: string, newValue: Document) => {
         }
       }
 
-      return { last_incomplete_update: new Date() };
+      return;
     } catch (error) {
       throw new Error("Error updating Captain's Log:");
     }

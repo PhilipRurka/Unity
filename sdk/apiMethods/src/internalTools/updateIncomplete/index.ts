@@ -21,8 +21,6 @@ const updateIncomplete: UpdateAlgolia = async () => {
 
   /** Update Captain's Log with Incomplete underlined items */
   await updateCaptainsLogEntry('incompleteUnderlinedItems', transformedValue);
-
-  return { last_incomplete_update: new Date() };
 };
 
 export default updateIncomplete;

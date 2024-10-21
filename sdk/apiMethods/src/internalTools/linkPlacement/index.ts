@@ -36,7 +36,7 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
 
   /** Upload keyword checks onto Contentful's Captain's Log entry */
-  await updateCaptainsLogEntry('keywordLinksCheckOverview', transformedCaptainsLogData);
+  updateCaptainsLogEntry('keywordLinksCheckOverview', transformedCaptainsLogData);
 };
 
 export default updateLinkPlacement;
