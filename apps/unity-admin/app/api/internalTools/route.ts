@@ -24,31 +24,22 @@ export const PUT = async (req: NextRequest) => {
       break;
 
     case 'incomplete':
-      toolsToUpdate = { last_incomplete_update: new Date() };
-      setTimeout(() => {
-        updateIncomplete();
-      }, 0);
+      toolsToUpdate = await updateIncomplete();
       break;
 
     case 'link placement':
-      toolsToUpdate = { last_link_placement_update: new Date() };
-      setTimeout(() => {
-        updateLinkPlacement();
-      }, 0);
-
+      toolsToUpdate = await updateLinkPlacement();
       break;
 
     case 'all': {
       const algoliaObj = await updateAlgolia();
-      setTimeout(() => {
-        updateIncomplete();
-        updateLinkPlacement();
-      }, 0);
+      const incompleteObj = await updateIncomplete();
+      const linkPlacementObj = await updateLinkPlacement();
 
       toolsToUpdate = {
         ...algoliaObj,
-        last_incomplete_update: new Date(),
-        last_link_placement_update: new Date(),
+        ...incompleteObj,
+        ...linkPlacementObj,
       };
 
       break;
