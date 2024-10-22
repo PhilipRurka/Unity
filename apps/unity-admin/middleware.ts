@@ -9,6 +9,15 @@ export default async function middleware(req: NextRequest) {
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');
 
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
+      const response = NextResponse.next();
+      response.headers.set('Access-Control-Allow-Origin', '*');
+      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+      return response; // Respond immediately to OPTIONS requests
+    }
+
     // Get the token for authentication
     const token = await getToken({ req, secret });
 
