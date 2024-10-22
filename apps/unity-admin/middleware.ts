@@ -9,45 +9,27 @@ export default async function middleware(req: NextRequest) {
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');
 
-    // Handle preflight OPTIONS request
-    if (req.method === 'OPTIONS') {
-      const response = NextResponse.next();
-      response.headers.set('Access-Control-Allow-Origin', '*');
-      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-      response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-      return response; // Respond immediately to OPTIONS requests
-    }
-
-    // Get the token for authentication
     const token = await getToken({ req, secret });
 
-    // Create the response object and set CORS headers
-    const response = NextResponse.next();
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-
-    // Authentication logic
     if (token) {
       if (req.nextUrl.pathname === '/') {
         return NextResponse.redirect(new URL('/dashboard', req.url));
       }
 
-      return response; // Return the response with CORS headers
+      return NextResponse.next();
     }
 
     if (req.nextUrl.pathname !== '/') {
       return NextResponse.redirect(new URL('/', req.url));
     }
 
-    return response; // Allow access if the path is '/'
+    return NextResponse.next();
   } catch (error) {
     console.error('Middleware error:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
 
-// Apply middleware to both authentication routes and API routes
 export const config = {
-  matcher: ['/', '/dashboard', '/users', '/user/:path*', '/api/:path*'], // Include API routes for CORS handling
+  matcher: ['/', '/dashboard', '/users', '/user/:path*'],
 };
