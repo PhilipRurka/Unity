@@ -1,11 +1,11 @@
-import { ApiMethodResponse, ArticleType } from '@unity/types';
+import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import updateCaptainsLogEntry from '../updateCaptainsLogEntry';
 import reStructureArticles from './utils/reStructureArticles';
 import transformIntoValue from './utils/transformIntoValue';
 
-type UpdateAlgolia = () => Promise<void>;
+type UpdateAlgolia = () => Promise<AuditType>;
 
 const updateIncomplete: UpdateAlgolia = async () => {
   /** Get all entries from Contentful with content model type "articles" */
@@ -21,6 +21,8 @@ const updateIncomplete: UpdateAlgolia = async () => {
 
   /** Update Captain's Log with Incomplete underlined items */
   await updateCaptainsLogEntry('incompleteUnderlinedItems', transformedValue);
+
+  return { last_incomplete_update: new Date() };
 };
 
 export default updateIncomplete;
