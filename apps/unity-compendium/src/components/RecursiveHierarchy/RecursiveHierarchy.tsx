@@ -20,9 +20,20 @@ const RecursiveHierarchy = () => {
 
       hierarchyDataArray[0].fields.links.map((item) => {
         const slug = item?.fields.link?.fields.slug;
+
         if (slug) {
           pageList.push(slug);
         }
+
+        item?.fields.childrenLinks?.map((subItem) => {
+          const subSlug = subItem?.fields.link?.fields.slug;
+
+          if (subSlug) {
+            pageList.push(subSlug);
+          }
+
+          return undefined;
+        });
 
         return undefined;
       });
