@@ -6,9 +6,8 @@ import completeFinalAdjustments from './utils/completeFinalAdjustments';
 import formatKeywordLinks from './utils/formatKeywordLinks';
 import reStructureArticles from './utils/reStructureArticles';
 import transformIntoCaptainsLogValue from './utils/transformIntoCaptainsLogValue';
-
-// import transformIntoArticleValue from './utils/transformIntoValue';
-// import updateArticleEntries from './utils/updateArticleEntries';
+import transformIntoArticleValue from './utils/transformIntoValue';
+import updateArticleEntries from './utils/updateArticleEntries';
 
 type UpdateLinkPlacement = () => Promise<AuditType>;
 
@@ -28,10 +27,10 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
   const keywordMatchChecks = completeFinalAdjustments(concattedContentArray, listOfKeywordLinks);
 
   /** Transform concatted values into Article uploadable values */
-  // const transformedArticleData = transformIntoArticleValue(keywordMatchChecks, articles.result);
+  const transformedArticleData = transformIntoArticleValue(keywordMatchChecks, articles.result);
 
   /** Upload keyword checks onto the Contentful's Article entry */
-  // await updateArticleEntries(transformedArticleData);
+  await updateArticleEntries(transformedArticleData);
 
   /** Transform concatted values into Captain's log uploadable values */
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
