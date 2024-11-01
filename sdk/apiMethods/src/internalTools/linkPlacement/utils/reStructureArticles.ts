@@ -11,7 +11,7 @@ const reStructureArticles = (articles: ArticleType[]) => {
     article.fields.content.forEach((section) => {
       let sectionText = '';
 
-      if (!section) return;
+      if (!section || !section.fields) return;
 
       section.fields.content.content.forEach((node) => {
         if (node.nodeType === 'paragraph') {
@@ -28,6 +28,7 @@ const reStructureArticles = (articles: ArticleType[]) => {
               sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}`;
             } else if (textNode.nodeType === 'hyperlink') {
               const href = textNode.data.uri;
+
               const value = textNode.content
                 .map((linkNode) => {
                   if (linkNode.nodeType !== 'text') return '';
