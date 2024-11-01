@@ -12,7 +12,9 @@ const reStructureArticles = (articles: ArticleType[]) => {
     let markUnderlineCount = 0;
 
     article.fields.content.forEach((section) => {
-      section?.fields.content.content.forEach((node) => {
+      if (!section || !section.fields) return;
+
+      section.fields.content.content.forEach((node) => {
         if (node.nodeType === 'paragraph') {
           node.content.forEach((textNode) => {
             if (textNode.nodeType === 'text') {

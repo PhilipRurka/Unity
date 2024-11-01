@@ -30,8 +30,6 @@ const updateArticleEntries: UpdateArticleEntries = async (items, articles) => {
             'en-US': transformedData,
           };
 
-          console.log(entry?.fields.slug);
-
           await environmentEntry.update();
           environmentEntry = await contentfulEnvironment.getEntry(id);
 

@@ -9,7 +9,9 @@ const createAlgoliaRecords = (articles: ArticleType[]) => {
     article.fields.content.forEach((section) => {
       let sectionText = '';
 
-      section?.fields.content.content.forEach((node) => {
+      if (!section || !section.fields) return;
+
+      section.fields.content.content.forEach((node) => {
         const isHeading =
           node.nodeType === 'heading-3' ||
           node.nodeType === 'heading-4' ||
