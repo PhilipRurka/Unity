@@ -3,31 +3,40 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { diff } from 'deep-object-diff';
 
-import { TransformedToRichTextData } from '@unity/types';
+import { TransformedToRichTextData, TypeArticleWithoutUnresolvableLinksResponse } from '@unity/types';
 
 import getContentfulEnvironment from '../../../utils/getContentfulEnvironment';
 
-const updateArticleEntries = async (items: TransformedToRichTextData) => {
+type UpdateArticleEntries = (
+  items: TransformedToRichTextData,
+  articles: TypeArticleWithoutUnresolvableLinksResponse[]
+) => Promise<void>;
+
+const updateArticleEntries: UpdateArticleEntries = async (items, articles) => {
   try {
     const promises = items.map(async ({ id, transformedData }) => {
       try {
-        const contentfulEnvironment = await getContentfulEnvironment();
+        const entry = articles.find((article) => id === article.sys.id);
 
-        let entry = await contentfulEnvironment.getEntry(id);
-
-        const differences = diff(entry.fields.keywordsHelperCheck?.['en-US'], transformedData);
+        const differences = diff(entry?.fields.keywordsHelperCheck || {}, transformedData);
         const isNothingChanged = Object.keys(differences).length === 0;
 
         if (entry && !isNothingChanged) {
-          entry.fields.keywordsHelperCheck = {
+          const contentfulEnvironment = await getContentfulEnvironment();
+
+          let environmentEntry = await contentfulEnvironment.getEntry(id);
+
+          environmentEntry.fields.keywordsHelperCheck = {
             'en-US': transformedData,
           };
 
-          await entry.update();
-          entry = await contentfulEnvironment.getEntry(id);
+          console.log(entry?.fields.slug);
+
+          await environmentEntry.update();
+          environmentEntry = await contentfulEnvironment.getEntry(id);
 
           try {
-            await entry.publish();
+            await environmentEntry.publish();
           } catch (publishError) {
             console.error(`Error publishing entry: ${publishError}`);
             throw new Error(`Publish failed for entry ${id}`);

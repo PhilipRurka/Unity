@@ -30,7 +30,7 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
   const transformedArticleData = transformIntoArticleValue(keywordMatchChecks, articles.result);
 
   /** Upload keyword checks onto the Contentful's Article entry */
-  await updateArticleEntries(transformedArticleData);
+  await updateArticleEntries(transformedArticleData, articles.result);
 
   /** Transform concatted values into Captain's log uploadable values */
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
