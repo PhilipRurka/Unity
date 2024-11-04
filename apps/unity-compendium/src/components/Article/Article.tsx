@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
 import { notFound } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 import withAuth from 'src/hoc/withAuth';
 
 import { Markdown } from '@unity/components';
@@ -66,21 +66,25 @@ const Article = ({ slug }: ArticleProps) => {
             <div>
               {article.fields.infobox && <Infobox infobox={article.fields.infobox} />}
               <div>
-                {article.fields.content.map((section, i) => (
-                  <div key={`Article-${i}`} className="mb-16">
-                    {section?.fields.title && (
-                      <h2
-                        className={clsx(
-                          'relative mb-4 text-3xl lg:text-4xl',
-                          'before:content[""] before:absolute before:left-0 before:top-full before:h-px before:w-full before:bg-black'
-                        )}
-                      >
-                        {section?.fields.title}
-                      </h2>
-                    )}
-                    <Markdown content={section?.fields.content} />
-                  </div>
-                ))}
+                {article.fields.content.map((section, i) => {
+                  if (!section?.fields) return <Fragment key={`Article-${i}`} />;
+
+                  return (
+                    <div key={`Article-${i}`} className="mb-16">
+                      {section?.fields.title && (
+                        <h2
+                          className={clsx(
+                            'relative mb-4 text-3xl lg:text-4xl',
+                            'before:content[""] before:absolute before:left-0 before:top-full before:h-px before:w-full before:bg-black'
+                          )}
+                        >
+                          {section?.fields.title}
+                        </h2>
+                      )}
+                      <Markdown content={section?.fields.content} />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </>
