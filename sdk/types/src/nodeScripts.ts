@@ -31,10 +31,10 @@ export type ListOfKeywordLinks = Array<{
   keywords: string[];
 }>;
 
-export type TransformedToRichTextData = Array<{
+export type TransformedToRichTextData = {
   id: string;
   transformedData: Document;
-}>;
+};
 
 export type AlgoliaEntrie = {
   slug: string;

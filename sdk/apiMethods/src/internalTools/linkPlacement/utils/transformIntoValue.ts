@@ -1,6 +1,6 @@
 import { BLOCKS, Document, TopLevelBlock } from '@contentful/rich-text-types';
 
-import { ArticleType, ArticlesKeywordsCheck, TrackedKeyword, TransformedToRichTextData } from '@unity/types';
+import { ArticlesKeywordsCheck, TrackedKeyword, TransformedToRichTextData } from '@unity/types';
 
 import { createHeading, createParagraph, createTableCell } from '../../../utils';
 
@@ -30,8 +30,8 @@ const createTable = (rows: TrackedKeyword[]): TopLevelBlock => {
   };
 };
 
-const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[], articles: ArticleType[]) => {
-  const transformedData: TransformedToRichTextData = [];
+const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) => {
+  const transformedData: TransformedToRichTextData[] = [];
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;

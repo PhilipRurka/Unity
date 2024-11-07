@@ -8,7 +8,7 @@ import { TransformedToRichTextData, TypeArticleWithoutUnresolvableLinksResponse 
 import getContentfulEnvironment from '../../../utils/getContentfulEnvironment';
 
 type UpdateArticleEntries = (
-  items: TransformedToRichTextData,
+  items: TransformedToRichTextData[],
   articles: TypeArticleWithoutUnresolvableLinksResponse[]
 ) => Promise<void>;
 

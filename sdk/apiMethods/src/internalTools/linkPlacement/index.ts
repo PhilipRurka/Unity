@@ -27,7 +27,7 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
   const keywordMatchChecks = completeFinalAdjustments(concattedContentArray, listOfKeywordLinks);
 
   /** Transform concatted values into Article uploadable values */
-  const transformedArticleData = transformIntoArticleValue(keywordMatchChecks, articles.result);
+  const transformedArticleData = transformIntoArticleValue(keywordMatchChecks);
 
   /** Upload keyword checks onto the Contentful's Article entry */
   await updateArticleEntries(transformedArticleData, articles.result);

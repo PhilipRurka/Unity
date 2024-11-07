@@ -6,7 +6,7 @@ import { diff } from 'deep-object-diff';
 
 import { TransformedToRichTextData } from '@unity/types';
 
-const updateArticleEntries = async (items: TransformedToRichTextData) => {
+const updateArticleEntries = async (items: TransformedToRichTextData[]) => {
   const { CONTENTFUL_SPACE_ID = '', CONTENTFUL_CMA_TOKEN = '' } = (await import('../utils/envVariables.js')).default();
 
   const managementClient = contentfulManagement.createClient({

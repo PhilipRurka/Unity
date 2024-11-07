@@ -31,7 +31,7 @@ const createTable = (rows: TrackedKeyword[]): TopLevelBlock => {
 };
 
 const transformIntoArticleValue = (keywordMatchChecks: ArticlesKeywordsCheck[]) => {
-  const transformedData: TransformedToRichTextData = [];
+  const transformedData: TransformedToRichTextData[] = [];
 
   keywordMatchChecks.forEach((data) => {
     const { id } = data;
