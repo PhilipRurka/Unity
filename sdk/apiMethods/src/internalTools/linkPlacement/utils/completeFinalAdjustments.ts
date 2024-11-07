@@ -37,7 +37,7 @@ const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, list
               finalInvalidLinks.push({
                 entryTitle,
                 keyword,
-                slug: match.href,
+                slug,
               });
             }
           });
