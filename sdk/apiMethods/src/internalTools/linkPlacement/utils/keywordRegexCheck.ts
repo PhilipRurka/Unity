@@ -13,14 +13,12 @@ const keywordRegexCheck = (keyword: string, content: string) => {
 
   const wrappedMatches = Array.from(content.matchAll(wrappedRegex));
 
-  const wrappedMatchesObj = wrappedMatches.map((match) => {
-    return {
-      fullMatch: match[0],
-      keyword,
-      href: match[2],
-      index: match.index,
-    };
-  });
+  const wrappedMatchesObj = wrappedMatches.map((match) => ({
+    fullMatch: match[0],
+    keyword,
+    href: match[2],
+    index: match.index,
+  }));
 
   return wrappedMatchesObj;
 };

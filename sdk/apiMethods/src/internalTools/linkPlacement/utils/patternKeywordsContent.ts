@@ -15,13 +15,17 @@ const patternKeywordsContent = (keyword: string, content: string) => {
     const modifiedPart = part.replace(new RegExp(`\\b(${keyword})(?:’s|'s|s|es)?\\b`), (match) => {
       if ((match.endsWith("'s") || match.endsWith('’s')) && match !== keyword) {
         return `<>${keyword}'s[]</>`;
-      } else if (match.endsWith('es') && match !== keyword) {
-        return `<>${keyword}es[]</>`;
-      } else if (match.endsWith('s') && match !== keyword) {
-        return `<>${keyword}s[]</>`;
-      } else {
-        return `<>${keyword}[]</>`;
       }
+
+      if (match.endsWith('es') && match !== keyword) {
+        return `<>${keyword}es[]</>`;
+      }
+
+      if (match.endsWith('s') && match !== keyword) {
+        return `<>${keyword}s[]</>`;
+      }
+
+      return `<>${keyword}[]</>`;
     });
 
     return modifiedPart;
