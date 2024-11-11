@@ -1,4 +1,4 @@
-import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
+import { ApiMethodResponse, ArticleType, TransformedToRichTextData } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import updateCaptainsLogEntry from '../updateCaptainsLogEntry';
@@ -7,11 +7,11 @@ import formatKeywordLinks from './utils/formatKeywordLinks';
 import reStructureArticles from './utils/reStructureArticles';
 import transformIntoCaptainsLogValue from './utils/transformIntoCaptainsLogValue';
 import transformIntoArticleValue from './utils/transformIntoValue';
-import updateArticleEntries from './utils/updateArticleEntries';
+import compareArticleData from './utils/updateArticleEntries';
 
-type UpdateLinkPlacement = () => Promise<AuditType>;
+type UpdateLinkPlacement = () => Promise<TransformedToRichTextData[]>;
 
-const updateLinkPlacement: UpdateLinkPlacement = async () => {
+const buildLinkPlacement: UpdateLinkPlacement = async () => {
   /** Get all entries from Contentful with content model type "articles" */
   const [articles] = (await getByContentModel('article')) as unknown as ApiMethodResponse<ArticleType[]>;
 
@@ -29,16 +29,17 @@ const updateLinkPlacement: UpdateLinkPlacement = async () => {
   /** Transform concatted values into Article uploadable values */
   const transformedArticleData = transformIntoArticleValue(keywordMatchChecks);
 
-  /** Upload keyword checks onto the Contentful's Article entry */
-  await updateArticleEntries(transformedArticleData, articles.result);
-
   /** Transform concatted values into Captain's log uploadable values */
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
+
+  /** Upload keyword checks onto the Contentful's Article entry */
+
+  const changedArticles = compareArticleData(transformedArticleData, articles.result);
 
   /** Upload keyword checks onto Contentful's Captain's Log entry */
   await updateCaptainsLogEntry('keywordLinksCheckOverview', transformedCaptainsLogData);
 
-  return { last_link_placement_update: new Date() };
+  return changedArticles;
 };
 
-export default updateLinkPlacement;
+export default buildLinkPlacement;
