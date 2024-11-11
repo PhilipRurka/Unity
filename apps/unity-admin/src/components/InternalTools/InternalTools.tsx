@@ -1,18 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 import { mutate } from 'swr';
 
 import { Button, Markdown } from '@unity/components';
-import { AuditOptions } from '@unity/types';
+import { AuditOptions, TransformedToRichTextData } from '@unity/types';
 
 import updateInternalTools from '@/Fetchers/updateInternalTools';
+import updateKeywordLinkArticle from '@/Fetchers/updateKeywordLinkArticle';
+import updateKeywordLinkInternalTools from '@/Fetchers/updateKeywordLinkInternalTools';
 import useContentModel from '@/Hooks/useContentModel';
 import useInternalTools from '@/Hooks/useInternalTools';
 
+type DisplayUpdatingPercentage = 'incomplete' | 'linkPlacement' | null;
+
 const InternalTools = () => {
+  const percentageFractionRef = useRef(0);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [displayUpdatingPercentage, setDisplayUpdatingPercentage] = useState<DisplayUpdatingPercentage>(null);
+  const [amountUpdatingPercentage, setAmountUpdatingPercentage] = useState(0);
 
   const { data: internalTools } = useInternalTools();
   const { data: captainsLogArray } = useContentModel('captainsLog');
@@ -21,9 +29,30 @@ const InternalTools = () => {
 
   const [captainsLog] = captainsLogArray;
 
+  const processItemsRecursively = async (items: TransformedToRichTextData[], index = 0) => {
+    if (index >= items.length) return;
+
+    await updateKeywordLinkArticle({ article: items[index] });
+    setAmountUpdatingPercentage(Math.round(percentageFractionRef.current) * (index + 1));
+
+    await processItemsRecursively(items, index + 1);
+  };
+
   const handleUpdateInternalTools = async (option: AuditOptions) => {
     setIsLoading(true);
-    await updateInternalTools(option);
+    const result = await updateInternalTools(option);
+
+    if (Array.isArray(result)) {
+      percentageFractionRef.current = 100 / result.length;
+      setDisplayUpdatingPercentage('linkPlacement');
+
+      await processItemsRecursively(result);
+
+      await updateKeywordLinkInternalTools();
+
+      setDisplayUpdatingPercentage(null);
+      setAmountUpdatingPercentage(0);
+    }
 
     mutate(`internal-tools`);
     setIsLoading(false);
@@ -85,7 +114,7 @@ const InternalTools = () => {
             onClick={() => handleUpdateInternalTools('link placement')}
             disabled={isLoading}
           >
-            Update
+            {displayUpdatingPercentage === 'linkPlacement' ? `${amountUpdatingPercentage}%` : 'Update'}
           </Button>
 
           <div>

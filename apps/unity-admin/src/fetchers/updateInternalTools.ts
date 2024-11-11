@@ -1,8 +1,8 @@
-import type { AuditOptions, FetchErrorType } from '@unity/types';
+import type { AuditOptions, FetchErrorType, TransformedToRichTextData } from '@unity/types';
 
-type UpdateInternalToolsType = (option: AuditOptions) => Promise<void>;
+type UpdateInternalToolsType = (option: AuditOptions) => Promise<TransformedToRichTextData[]>;
 
-const UpdateInternalTools: UpdateInternalToolsType = async (option) => {
+const updateInternalTools: UpdateInternalToolsType = async (option) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/internalTools`, {
     method: 'PUT',
     headers: {
@@ -25,4 +25,4 @@ const UpdateInternalTools: UpdateInternalToolsType = async (option) => {
   return response.result;
 };
 
-export default UpdateInternalTools;
+export default updateInternalTools;
