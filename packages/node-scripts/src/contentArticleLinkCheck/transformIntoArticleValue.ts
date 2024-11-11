@@ -19,7 +19,7 @@ const createTable = (rows: TrackedKeyword[]): TopLevelBlock => {
     tableContent.push({
       nodeType: BLOCKS.TABLE_ROW,
       data: {},
-      content: [createTableCell(row.keyword), createTableCell(row.slug)],
+      content: [createTableCell(row.keyword), createTableCell(row.slug || '')],
     });
   });
 
