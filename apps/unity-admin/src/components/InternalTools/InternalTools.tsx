@@ -13,7 +13,7 @@ import updateKeywordLinkInternalTools from '@/Fetchers/updateKeywordLinkInternal
 import useContentModel from '@/Hooks/useContentModel';
 import useInternalTools from '@/Hooks/useInternalTools';
 
-type DisplayUpdatingPercentage = 'incomplete' | 'linkPlacement' | null;
+type DisplayUpdatingPercentage = 'linkPlacement' | null;
 
 const InternalTools = () => {
   const percentageFractionRef = useRef(0);
