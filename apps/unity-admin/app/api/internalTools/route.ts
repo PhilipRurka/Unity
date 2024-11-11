@@ -2,13 +2,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import {
+  buildLinkPlacement,
   checkIfAdminAuthenticated,
   updateAlgolia,
   updateIncomplete,
   updateInternalTools,
-  updateLinkPlacement,
 } from '@unity/api-methods';
-import { AuditOption, AuditType } from '@unity/types';
+import { AuditOption, AuditType, TransformedToRichTextData } from '@unity/types';
 
 export const PUT = async (req: NextRequest) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
@@ -17,6 +17,7 @@ export const PUT = async (req: NextRequest) => {
   const { option }: AuditOption = await req.json();
 
   let toolsToUpdate: AuditType = {};
+  let builtlinkPlacement: TransformedToRichTextData[] = [];
 
   switch (option) {
     case 'algolia':
@@ -28,18 +29,17 @@ export const PUT = async (req: NextRequest) => {
       break;
 
     case 'link placement':
-      toolsToUpdate = await updateLinkPlacement();
+      builtlinkPlacement = await buildLinkPlacement();
       break;
 
     case 'all': {
       const algoliaObj = await updateAlgolia();
       const incompleteObj = await updateIncomplete();
-      const linkPlacementObj = await updateLinkPlacement();
+      builtlinkPlacement = await buildLinkPlacement();
 
       toolsToUpdate = {
         ...algoliaObj,
         ...incompleteObj,
-        ...linkPlacementObj,
       };
 
       break;
@@ -51,5 +51,11 @@ export const PUT = async (req: NextRequest) => {
 
   const [data, status] = await updateInternalTools(toolsToUpdate);
 
-  return NextResponse.json(data, status);
+  debugger;
+
+  if (builtlinkPlacement.length === 0) return NextResponse.json(data, status);
+
+  debugger;
+
+  return NextResponse.json({ result: builtlinkPlacement }, status);
 };
