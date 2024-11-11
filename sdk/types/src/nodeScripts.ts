@@ -23,7 +23,7 @@ export type ArticlesKeywordsCheck = {
 export type TrackedKeyword = {
   entryTitle: string;
   keyword: string;
-  slug: string;
+  slug?: string;
 };
 
 export type ListOfKeywordLinks = Array<{
