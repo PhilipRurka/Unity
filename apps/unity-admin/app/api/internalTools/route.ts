@@ -51,11 +51,7 @@ export const PUT = async (req: NextRequest) => {
 
   const [data, status] = await updateInternalTools(toolsToUpdate);
 
-  debugger;
-
   if (builtlinkPlacement.length === 0) return NextResponse.json(data, status);
-
-  debugger;
 
   return NextResponse.json({ result: builtlinkPlacement }, status);
 };
