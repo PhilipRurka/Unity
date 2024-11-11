@@ -33,7 +33,11 @@ const InternalTools = () => {
     if (index >= items.length) return;
 
     await updateKeywordLinkArticle({ article: items[index] });
-    setAmountUpdatingPercentage(Math.round(percentageFractionRef.current) * (index + 1));
+
+    let percentage = Math.round(percentageFractionRef.current) * (index + 1);
+    percentage = percentage > 100 ? 100 : percentage;
+
+    setAmountUpdatingPercentage(percentage);
 
     await processItemsRecursively(items, index + 1);
   };
