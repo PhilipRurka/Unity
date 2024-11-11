@@ -5,12 +5,20 @@ import {
   TrackedKeyword,
 } from '@unity/types';
 
+import getInvalidLinks from './getInvalidLinks';
 import keywordRegexCheck from './keywordRegexCheck';
 import patternKeywordsContent from './patternKeywordsContent';
 
 const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, listOfKeywordLinks: ListOfKeywordLinks) => {
   const articlesKeywordsCheck: ArticlesKeywordsCheck[] = [];
   const listOfSlugs = listOfKeywordLinks.map(({ slug }) => slug);
+  const listOfArticleSlugs = articles.map(({ slug }) => {
+    if (slug === 'kitnapana') {
+      debugger;
+    }
+
+    return slug;
+  });
 
   articles.forEach(({ id, slug: articleSlug, sections }) => {
     const finalListOfMissPlacedLinks: TrackedKeyword[] = [];
@@ -19,7 +27,24 @@ const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, list
 
     const listOfTrackedKeywords: string[] = [];
 
+    const listOfKeywordsMap: Record<string, boolean> = {};
+
+    listOfKeywordLinks.forEach(({ keywords }) => {
+      keywords.forEach((keyword) => {
+        listOfKeywordsMap[keyword] = true;
+      });
+    });
+
     sections.forEach(({ entryTitle, content }) => {
+      const invalidLinks = getInvalidLinks({ content, listOfKeywordsMap, listOfArticleSlugs });
+
+      invalidLinks.forEach(({ text }) => {
+        finalInvalidLinks.push({
+          entryTitle,
+          keyword: text,
+        });
+      });
+
       listOfKeywordLinks.forEach(({ slug, keywords }) => {
         keywords.forEach((keyword) => {
           if (articleSlug === slug) return;
