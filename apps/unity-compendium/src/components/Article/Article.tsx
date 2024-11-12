@@ -72,14 +72,10 @@ const Article = ({ slug }: ArticleProps) => {
                   return (
                     <div key={`Article-${i}`} className="mb-16">
                       {section?.fields.title && (
-                        <h2
-                          className={clsx(
-                            'relative mb-4 text-3xl lg:text-4xl',
-                            'before:content[""] before:absolute before:left-0 before:top-full before:h-px before:w-full before:bg-black'
-                          )}
-                        >
-                          {section?.fields.title}
-                        </h2>
+                        <>
+                          <h2 className={clsx('relative text-3xl lg:text-4xl')}>{section?.fields.title}</h2>
+                          <hr className=" mb-4 border-black" />
+                        </>
                       )}
                       <Markdown content={section?.fields.content} />
                     </div>
