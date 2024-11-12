@@ -9,7 +9,7 @@ const Infobox = ({ infobox }: InfoboxProps) => {
 
   return (
     <div
-      className="mb-8 rounded-lg sm:float-right sm:mb-0 sm:ml-8 sm:w-64 sm:bg-white sm:bg-opacity-80 sm:p-5"
+      className="relative z-10 mb-8 rounded-lg bg-white sm:float-right sm:mb-0 sm:ml-8 sm:w-64 sm:p-5"
       data-component="cInfobox"
     >
       {blocks.map((block) => (
