@@ -10,7 +10,7 @@ function getDisplayName<P>(WrappedComponent: ComponentType<P>) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-function withDisableCheck<P extends object>(WrappedComponent: ComponentType<P>) {
+function withAuth<P extends object>(WrappedComponent: ComponentType<P>) {
   const DisableCheck = (props: P) => {
     const { data: session } = useSession();
     const [user, setUser] = useState<UserBasicFrontendType>();
@@ -29,7 +29,7 @@ function withDisableCheck<P extends object>(WrappedComponent: ComponentType<P>) 
 
     useEffect(() => {
       if (user?.status === 'disabled') {
-        signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/` });
+        signOut({ callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/login` });
       }
     }, [user, router]);
 
@@ -38,10 +38,10 @@ function withDisableCheck<P extends object>(WrappedComponent: ComponentType<P>) 
     return <WrappedComponent {...props} />;
   };
 
-  DisableCheck.displayName = `withDisableCheck
+  DisableCheck.displayName = `withAuth
   (${getDisplayName(WrappedComponent)})`;
 
   return DisableCheck;
 }
 
-export default withDisableCheck;
+export default withAuth;

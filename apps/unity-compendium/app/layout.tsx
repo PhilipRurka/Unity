@@ -1,9 +1,11 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Lexend, Montserrat } from 'next/font/google';
+import { headers } from 'next/headers';
 
 import '@unity/styles/global.css';
 
+import HeaderServer from '@/Components/Header/HeaderServer';
 import HierarchyNav from '@/Components/HierarchyNav';
 import SearchModal from '@/Components/SearchModal';
 import AuthProvider from '@/Providers/SessionProvider';
@@ -36,6 +38,9 @@ type RootLayoutProps = {
 };
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  const incomingHeaders = headers();
+  const showHeader = incomingHeaders.get('x-show-header') === 'true';
+
   return (
     <html lang="en">
       <body
@@ -50,6 +55,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <AuthProvider>
               <SearchModal />
               <HierarchyNav />
+              {showHeader && <HeaderServer />}
               <div className="sm:px-6 sm:py-16">{children}</div>
             </AuthProvider>
           </HeaderContextProvider>

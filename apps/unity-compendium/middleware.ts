@@ -4,6 +4,8 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
+const authPaths = ['/login', '/reset-password'];
+
 export default async function middleware(req: NextRequest) {
   try {
     const secret = process.env.NEXTAUTH_SECRET;
@@ -11,16 +13,22 @@ export default async function middleware(req: NextRequest) {
 
     const token = await getToken({ req, secret });
 
+    const { pathname } = req.nextUrl;
+
+    const isAuthPath = authPaths.includes(pathname);
+
     if (token) {
-      if (req.nextUrl.pathname === '/') {
-        return NextResponse.redirect(new URL('/articles/unity-race', req.url));
+      if (isAuthPath) {
+        return NextResponse.redirect(new URL('/', req.url));
       }
 
-      return NextResponse.next();
+      const response = NextResponse.next();
+      response.headers.set('x-show-header', 'true');
+      return response;
     }
 
-    if (req.nextUrl.pathname !== '/') {
-      return NextResponse.redirect(new URL('/', req.url));
+    if (!isAuthPath) {
+      return NextResponse.redirect(new URL('/login', req.url));
     }
 
     return NextResponse.next();
@@ -31,5 +39,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/articles/:path*'],
+  matcher: ['/login', '/', '/reset-password', '/articles/:path*'],
 };

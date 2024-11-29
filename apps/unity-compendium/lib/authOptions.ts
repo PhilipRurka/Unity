@@ -21,7 +21,7 @@ const authOptions: NextAuthOptions = {
 
           if (!user) return null;
 
-          const isPasswordMatch = await bcrypt.compareSync(password, user.password);
+          const isPasswordMatch = bcrypt.compareSync(password, user.password);
 
           if (!isPasswordMatch || user.status === 'disabled') return null;
 
@@ -48,7 +48,7 @@ const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: '/',
+    signIn: '/login',
   },
 };
 
