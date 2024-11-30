@@ -1,3 +1,5 @@
-const ResetPasswordPage = () => <h2>Reset Password</h2>;
+import ResetPassword from '@/Components/ResetPassword';
+
+const ResetPasswordPage = () => <ResetPassword />;
 
 export default ResetPasswordPage;

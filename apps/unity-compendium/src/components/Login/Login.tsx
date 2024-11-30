@@ -41,6 +41,10 @@ const Login = () => {
     }
   };
 
+  const handleResetRedirect = () => {
+    router.push('/reset-password');
+  };
+
   const {
     register,
     handleSubmit,
@@ -64,12 +68,19 @@ const Login = () => {
             <Input id="password" type="password" showErrorStyles={!!errors.password} {...register('password')} />
             {errors.password && <ErrorSpan>{errors.password.message}</ErrorSpan>}
           </Field>
-          <div>
+          <div className="flex gap-4">
             <button
               type="submit"
               className="w-full rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Login
+            </button>
+            <button
+              type="button"
+              className="w-full rounded-lg bg-amber-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-amber-800 focus:ring-4 focus:ring-amber-300 sm:w-auto dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
+              onClick={handleResetRedirect}
+            >
+              Reset Password
             </button>
           </div>
         </Form>
