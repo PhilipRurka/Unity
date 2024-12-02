@@ -10,6 +10,7 @@ export interface TypeArticleFields {
     infobox?: EntryFieldTypes.EntryLink<TypeInfoboxSkeleton>;
     content: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeContentSectionSkeleton>>;
     keywordLinks?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    algoliaSynonyms: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     previousRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
     nextRecommendedLink?: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
