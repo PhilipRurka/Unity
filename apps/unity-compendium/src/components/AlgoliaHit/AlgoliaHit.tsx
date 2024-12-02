@@ -1,9 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
-import { RightArrow } from '@unity/components';
+import { RightArrow, TextButton } from '@unity/components';
 import type { ArticleSearchType } from '@unity/types';
 
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
@@ -14,12 +14,46 @@ type AlgoliaHitProps = {
 
 const AlgoliaHit = ({ hit }: AlgoliaHitProps) => {
   const [isSelected, setIsSelected] = useState(false);
+  const [hitValue, setHitValue] = useState(hit._snippetResult?.content.value || '');
+  const [isExpanded, setIsExpended] = useState(false);
+  const [exactResults, setExactResults] = useState<number>();
+
   const { handleIsSearchModalOpen } = useContext(HeaderContext);
+
+  const handleUpdateHitValue = (expandedToggleTriggered: boolean) => {
+    const isCurrentExpanded = expandedToggleTriggered ? !isExpanded : isExpanded;
+    const newValue = isCurrentExpanded ? hit._highlightResult?.content.value : hit._snippetResult?.content.value;
+
+    setHitValue(newValue || '');
+  };
 
   const toggleIsSelected = () => setIsSelected(!isSelected);
 
-  // eslint-disable-next-line no-underscore-dangle
-  if (hit._highlightResult.content.matchLevel === 'none') return null;
+  const handleExpand = () => {
+    handleUpdateHitValue(true);
+    setIsExpended(!isExpanded);
+  };
+
+  useEffect(() => {
+    const instanceCount = (content: string, matchedWord: string) => {
+      const regex = new RegExp(`(?=${matchedWord})`, 'gi');
+      return (content.match(regex) || []).length;
+    };
+
+    const content = hit._highlightResult?.content.value;
+    const matchedWord = hit._highlightResult?.content.matchedWords[0];
+
+    const count = instanceCount(content, matchedWord);
+
+    setExactResults(count);
+  }, [hit]);
+
+  useEffect(() => {
+    handleUpdateHitValue(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hit]);
+
+  const hasMoreToExpand = hit._highlightResult?.content.value.length !== hit._snippetResult?.content.value.length;
 
   return (
     <article
@@ -37,12 +71,24 @@ const AlgoliaHit = ({ hit }: AlgoliaHitProps) => {
             onMouseEnter={toggleIsSelected}
             onMouseLeave={toggleIsSelected}
           >
-            <RightArrow className="" size="12" />
+            <RightArrow size="12" />
           </div>
         </Link>
       </div>
       {hit.contentTitle && <h2 className="mb-2 text-xl">{hit.contentTitle}</h2>}
-      <div dangerouslySetInnerHTML={{ __html: hit._snippetResult?.content.value || '' }} />
+      <div dangerouslySetInnerHTML={{ __html: hitValue }} />
+      <div className="mt-3 flex gap-4">
+        {typeof exactResults !== 'undefined' && (
+          <span className={clsx(exactResults > 0 ? 'text-green-700' : 'text-amber-700')}>
+            {exactResults} exact results
+          </span>
+        )}
+        {hasMoreToExpand && (
+          <TextButton color="blue" onClick={handleExpand}>
+            {isExpanded ? 'Collapse' : 'Expand'}
+          </TextButton>
+        )}
+      </div>
     </article>
   );
 };

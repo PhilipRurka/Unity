@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import clsx from 'clsx';
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 
@@ -21,19 +22,26 @@ const AlgoliaSearch = () => {
     const fetchResults = async () => {
       if (debouncedQuery && debouncedQuery.length >= 3) {
         const results = await getAlgoliaResults(debouncedQuery);
-        setHits(results);
         handleUpdateLastQuery(debouncedQuery);
 
-        return;
+        return results;
       }
 
-      setHits([]);
       handleUpdateLastQuery('');
+      return [];
     };
 
-    if (debouncedQuery) {
-      fetchResults();
-    }
+    const run = async () => {
+      if (debouncedQuery) {
+        const results = await fetchResults();
+
+        const matchedResults = results.filter((hit) => hit._highlightResult.content.matchLevel !== 'none');
+
+        setHits(matchedResults);
+      }
+    };
+
+    run();
   }, [debouncedQuery, handleUpdateLastQuery]);
 
   useEffect(() => {
@@ -41,13 +49,22 @@ const AlgoliaSearch = () => {
     inputRef.current?.focus();
   }, [isSearchModalOpen]);
 
+  console.log(hits);
+
   return (
     <div data-component="cAlgoliaSearch" className={clsx(!isSearchModalOpen && 'hidden')}>
-      <Input
-        ref={inputRef}
-        defaultValue={lastQuery}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
-      />
+      <div className="flex items-center gap-4">
+        <Input
+          ref={inputRef}
+          defaultValue={lastQuery}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+        />
+        <span
+          className={clsx('whitespace-nowrap pr-2 text-base', hits.length === 0 && 'pointer-events-none opacity-0')}
+        >
+          {hits.length} results
+        </span>
+      </div>
       {hits.map((hit) => (
         <AlgoliaHit key={`algoliaSearch-${hit.content}`} hit={hit} />
       ))}
