@@ -6,7 +6,7 @@ import connectToDatabase from '../utils/connectToDatabase';
 import createActivitiesAnalytics from '../utils/createActivitiesAnalytics';
 import createUserLogs from '../utils/createUserLogs';
 import createUserWithCredentials from '../utils/createUserWithCredentials';
-import sendgridInvitationEmail from '../utils/sendgridInvitationEmail';
+import sendgridEmail from '../utils/sendgridEmail';
 
 type CatchError = {
   message: string;
@@ -36,7 +36,7 @@ const addUser: AddUser = async ({ name, email }) => {
 
     await createActivitiesAnalytics({ userId });
 
-    await sendgridInvitationEmail({ email, password });
+    await sendgridEmail({ type: 'create account', email, password });
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {
