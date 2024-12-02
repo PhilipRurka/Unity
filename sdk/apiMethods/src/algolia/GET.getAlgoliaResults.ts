@@ -16,6 +16,8 @@ const getAlgoliaResults: GetAlgoliaResults = async (query) => {
   try {
     const res = await index.search<ArticleSearchType>(query, {
       attributesToSnippet: ['content:50'],
+      queryLanguages: ['en'],
+      advancedSyntax: true,
     });
 
     const result = res.hits as ArticleSearchType[];
