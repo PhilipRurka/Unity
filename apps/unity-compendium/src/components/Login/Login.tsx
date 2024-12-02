@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 import { ErrorSpan, Field, Form, Input, Label } from '@unity/components';
-import type { UserReqType } from '@unity/types';
 
 const FormSchema = z.object({
   email: z.string().email(),
@@ -22,7 +21,7 @@ const Login = () => {
 
   const router = useRouter();
 
-  const handleFormSubmit = async ({ email, password }: UserReqType) => {
+  const handleFormSubmit = async ({ email, password }: FormSchemaType) => {
     try {
       const res = await signIn('credentials', {
         email: email.toLocaleLowerCase(),

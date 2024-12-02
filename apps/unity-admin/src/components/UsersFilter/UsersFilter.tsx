@@ -27,9 +27,9 @@ const UsersFilter = ({ usersLength }: UsersFilterProps) => {
         </div>
         <div className="flex gap-2">
           {/* <SearchInput /> */}
-          <Button size="small" color="black" isFull={false} icon="filter" iconPosition="left" onClick={() => {}}>
+          {/* <Button size="small" color="black" isFull={false} icon="filter" iconPosition="left" onClick={() => {}}>
             Filter
-          </Button>
+          </Button> */}
           <Button
             size="small"
             color="black"

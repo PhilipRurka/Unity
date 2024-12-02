@@ -8,6 +8,8 @@ import { z } from 'zod';
 
 import { ErrorSpan, Field, Form, Input, Label } from '@unity/components';
 
+import resetPassword from '@/Fetchers/user/resetPassword';
+
 const FormSchema = z.object({
   email: z.string().email(),
 });
@@ -19,7 +21,8 @@ const ResetPassword = () => {
 
   const router = useRouter();
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = ({ email }: FormSchemaType) => {
+    resetPassword(email);
     setEmailSent(true);
   };
 
