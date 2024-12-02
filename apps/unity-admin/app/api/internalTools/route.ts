@@ -7,14 +7,17 @@ import {
   updateAlgolia,
   updateIncomplete,
   updateInternalTools,
+  updateSynonyms,
 } from '@unity/api-methods';
 import { AuditOption, AuditType, TransformedToRichTextData } from '@unity/types';
+
+type ReqType = AuditOption & { synonyms?: string[][] };
 
 export const PUT = async (req: NextRequest) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
-  const { option }: AuditOption = await req.json();
+  const { option, synonyms }: ReqType = await req.json();
 
   let toolsToUpdate: AuditType = {};
   let builtlinkPlacement: TransformedToRichTextData[] = [];
@@ -22,6 +25,7 @@ export const PUT = async (req: NextRequest) => {
   switch (option) {
     case 'algolia':
       toolsToUpdate = await updateAlgolia();
+      await updateSynonyms();
       break;
 
     case 'incomplete':
@@ -36,6 +40,8 @@ export const PUT = async (req: NextRequest) => {
       const algoliaObj = await updateAlgolia();
       const incompleteObj = await updateIncomplete();
       builtlinkPlacement = await buildLinkPlacement();
+
+      await updateSynonyms();
 
       toolsToUpdate = {
         ...algoliaObj,
