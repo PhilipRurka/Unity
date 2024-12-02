@@ -49,8 +49,6 @@ const AlgoliaSearch = () => {
     inputRef.current?.focus();
   }, [isSearchModalOpen]);
 
-  console.log(hits);
-
   return (
     <div data-component="cAlgoliaSearch" className={clsx(!isSearchModalOpen && 'hidden')}>
       <div className="flex items-center gap-4">
@@ -66,7 +64,7 @@ const AlgoliaSearch = () => {
         </span>
       </div>
       {hits.map((hit) => (
-        <AlgoliaHit key={`algoliaSearch-${hit.content}`} hit={hit} />
+        <AlgoliaHit key={`algoliaSearch-${hit.content}`} query={query} hit={hit} />
       ))}
     </div>
   );

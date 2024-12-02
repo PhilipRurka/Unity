@@ -10,9 +10,10 @@ import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 
 type AlgoliaHitProps = {
   hit: ArticleSearchType;
+  query: string;
 };
 
-const AlgoliaHit = ({ hit }: AlgoliaHitProps) => {
+const AlgoliaHit = ({ hit, query }: AlgoliaHitProps) => {
   const [isSelected, setIsSelected] = useState(false);
   const [hitValue, setHitValue] = useState(hit._snippetResult?.content.value || '');
   const [isExpanded, setIsExpended] = useState(false);
@@ -35,15 +36,12 @@ const AlgoliaHit = ({ hit }: AlgoliaHitProps) => {
   };
 
   useEffect(() => {
-    const instanceCount = (content: string, matchedWord: string) => {
-      const regex = new RegExp(`(?=${matchedWord})`, 'gi');
+    const instanceCount = (content: string) => {
+      const regex = new RegExp(`(?=${query})`, 'gi');
       return (content.match(regex) || []).length;
     };
 
-    const content = hit._highlightResult?.content.value;
-    const matchedWord = hit._highlightResult?.content.matchedWords[0];
-
-    const count = instanceCount(content, matchedWord);
+    const count = instanceCount(hit._highlightResult?.content.value);
 
     setExactResults(count);
   }, [hit]);
