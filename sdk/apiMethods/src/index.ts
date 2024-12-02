@@ -1,3 +1,4 @@
+export * from './auth';
 export * from './activitiesAnalytics';
 export * from './algolia';
 export * from './contentful';
