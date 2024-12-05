@@ -48,3 +48,14 @@ export type ReStructureForCaptainsLogLinkCheck = {
   slug: string;
   markUnderlineCount: number;
 };
+
+export type HierarchyLink = {
+  title: string;
+  slug: string;
+};
+
+export type ListOfHicherarcyCheck = {
+  missingLinks: string[];
+  hierarchyDuplicates: HierarchyLink[];
+  invalidLinks: HierarchyLink[];
+};
