@@ -5,19 +5,20 @@ import {
   buildLinkPlacement,
   checkIfAdminAuthenticated,
   updateAlgolia,
+  updateHierarchyLinks,
   updateIncomplete,
   updateInternalTools,
   updateSynonyms,
 } from '@unity/api-methods';
 import { AuditOption, AuditType, TransformedToRichTextData } from '@unity/types';
 
-type ReqType = AuditOption & { synonyms?: string[][] };
+type ReqType = AuditOption;
 
 export const PUT = async (req: NextRequest) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
-  const { option, synonyms }: ReqType = await req.json();
+  const { option }: ReqType = await req.json();
 
   let toolsToUpdate: AuditType = {};
   let builtlinkPlacement: TransformedToRichTextData[] = [];
@@ -36,9 +37,14 @@ export const PUT = async (req: NextRequest) => {
       builtlinkPlacement = await buildLinkPlacement();
       break;
 
+    case 'hierarchy links':
+      toolsToUpdate = await updateHierarchyLinks();
+      break;
+
     case 'all': {
       const algoliaObj = await updateAlgolia();
       const incompleteObj = await updateIncomplete();
+      const hierarchyObj = await updateHierarchyLinks();
       builtlinkPlacement = await buildLinkPlacement();
 
       await updateSynonyms();
@@ -46,6 +52,7 @@ export const PUT = async (req: NextRequest) => {
       toolsToUpdate = {
         ...algoliaObj,
         ...incompleteObj,
+        ...hierarchyObj,
       };
 
       break;
