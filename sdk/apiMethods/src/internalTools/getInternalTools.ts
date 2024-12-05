@@ -24,6 +24,7 @@ const getUsers: GetUsersType = async () => {
         lastAlgoliaUpdate: '$last_algolia_update',
         lastIncompleteUpdate: '$last_incomplete_update',
         lastLinkPlacementUpdate: '$last_link_placement_update',
+        hierarchyLinks: '$hierarchy_links',
       }
     ).exec();
 
