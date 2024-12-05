@@ -5,8 +5,8 @@ import updateCaptainsLogEntry from '../updateCaptainsLogEntry';
 import completeFinalAdjustments from './utils/completeFinalAdjustments';
 import formatKeywordLinks from './utils/formatKeywordLinks';
 import reStructureArticles from './utils/reStructureArticles';
+import transformIntoArticleValue from './utils/transformIntoArticleValue';
 import transformIntoCaptainsLogValue from './utils/transformIntoCaptainsLogValue';
-import transformIntoArticleValue from './utils/transformIntoValue';
 import compareArticleData from './utils/updateArticleEntries';
 
 type UpdateLinkPlacement = () => Promise<TransformedToRichTextData[]>;
@@ -33,7 +33,6 @@ const buildLinkPlacement: UpdateLinkPlacement = async () => {
   const transformedCaptainsLogData = transformIntoCaptainsLogValue(keywordMatchChecks);
 
   /** Upload keyword checks onto the Contentful's Article entry */
-
   const changedArticles = compareArticleData(transformedArticleData, articles.result);
 
   /** Upload keyword checks onto Contentful's Captain's Log entry */
