@@ -5,6 +5,7 @@ export interface TypeCaptainsLogFields {
     notes?: EntryFieldTypes.RichText;
     incompleteUnderlinedItems?: EntryFieldTypes.RichText;
     keywordLinksCheckOverview?: EntryFieldTypes.RichText;
+    hierarchyLayoutCheck?: EntryFieldTypes.RichText;
 }
 
 export type TypeCaptainsLogSkeleton = EntrySkeletonType<TypeCaptainsLogFields, "captainsLog">;
