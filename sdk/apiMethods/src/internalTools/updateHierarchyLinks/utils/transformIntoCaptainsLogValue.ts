@@ -101,8 +101,6 @@ const transformIntoArticleValue = (hierarchyLinks: ListOfHicherarcyCheck): Docum
 
   content = content.concat(createParagraph(''));
 
-  console.log(content);
-
   return { nodeType: BLOCKS.DOCUMENT, data: {}, content };
 };
 
