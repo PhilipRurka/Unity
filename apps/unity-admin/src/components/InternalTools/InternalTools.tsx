@@ -107,6 +107,27 @@ const InternalTools = () => {
 
         <div>
           <div className="mb-3">
+            <h2 className="my-9 inline text-2xl font-bold">Hierarchy</h2>
+            <span className="inline text-xs italic"> - Last updated: {lastIncompleteDate}</span>
+            <hr className="border-black" />
+          </div>
+
+          <Button
+            color="black"
+            size="small"
+            isFull
+            onClick={() => handleUpdateInternalTools('hierarchy links')}
+            disabled={isLoading}
+          >
+            Update
+          </Button>
+          <div>
+            <Markdown content={captainsLog.fields.hierarchyLayoutCheck} />
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-3">
             <h2 className="my-9 inline text-2xl font-bold">Link Placement</h2>
             <span className="inline text-xs italic"> - Last updated: {lastLinkPlacementDate}</span>
             <hr className="border-black" />
