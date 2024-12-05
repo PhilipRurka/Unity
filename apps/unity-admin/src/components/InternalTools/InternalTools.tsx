@@ -67,6 +67,7 @@ const InternalTools = () => {
     ? formatDate(internalTools.lastLinkPlacementUpdate)
     : '';
   const lastIncompleteDate = internalTools.lastIncompleteUpdate ? formatDate(internalTools.lastIncompleteUpdate) : '';
+  const hierarchyDate = internalTools.hierarchyLinks ? formatDate(internalTools.hierarchyLinks) : '';
 
   return (
     <div data-component="InternalTools">
@@ -108,7 +109,7 @@ const InternalTools = () => {
         <div>
           <div className="mb-3">
             <h2 className="my-9 inline text-2xl font-bold">Hierarchy</h2>
-            <span className="inline text-xs italic"> - Last updated: {lastIncompleteDate}</span>
+            <span className="inline text-xs italic"> - Last updated: {hierarchyDate}</span>
             <hr className="border-black" />
           </div>
 
