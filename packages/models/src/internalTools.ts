@@ -7,6 +7,7 @@ const InternalToolsSchema = new Schema<InternalToolsDocument>(
     last_algolia_update: { type: Date },
     last_incomplete_update: { type: Date },
     last_link_placement_update: { type: Date },
+    hierarchy_links: { type: Date },
   },
   { timestamps: true }
 );
