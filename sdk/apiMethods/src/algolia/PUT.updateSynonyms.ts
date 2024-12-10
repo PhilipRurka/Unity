@@ -13,15 +13,22 @@ const updateSynonyms = async () => {
   if (!('result' in articles)) throw new Error('Missing data results in getByModel');
 
   const synonymBundle = articles.result.map((article) => article.fields.algoliaSynonyms);
-  const filteredBundle = synonymBundle.filter((bundle) => bundle);
 
-  const synonyms = filteredBundle.flat().map((item) => item.split(' - '));
+  const synonyms = synonymBundle.flat().map((item) => {
+    if (!item) return undefined;
 
-  console.log(synonyms);
+    const finalArray = item.split(' - ');
+
+    if (finalArray.length === 1 || finalArray[0].length === 0 || finalArray[1].length === 0) return undefined;
+
+    return finalArray;
+  });
+
+  const filteredSynonyms = synonyms.filter((item) => item) as unknown as Array<string[]>;
 
   try {
     const response = await algoliaIndex.saveSynonyms(
-      synonyms.map((synonym) => ({
+      filteredSynonyms.map((synonym) => ({
         objectID: `synonym-${synonym[0]}`,
         type: 'synonym',
         synonyms: synonym,
