@@ -38,26 +38,9 @@ const createTypesFile = async () => {
 };`;
 
   const getByContentModel = `
-  export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T]>;`;
+  export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T][]>;`;
 
-  const getByContentModelGeneric = `
-  export type GetContentModelType = <T extends AllContentModelTypes>(
-  model: T) => Promise<ContentModelMapping[T]>;
-  `;
-
-  const content = [
-    ...imports,
-    '',
-    typeUnion,
-    '',
-    ...types,
-    '',
-    contentModelMapping,
-    '',
-    getByContentModel,
-    '',
-    getByContentModelGeneric,
-  ].join('\n');
+  const content = [...imports, '', typeUnion, '', ...types, '', contentModelMapping, '', getByContentModel].join('\n');
 
   await writeFile(filePath, content);
   await runPrettier(filePath);
