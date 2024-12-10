@@ -1,6 +1,6 @@
-import type { FetchErrorType, GetContentModelType } from '@unity/types';
+import type { FetchErrorType, GetByContentModel } from '@unity/types';
 
-const getByContentModel: GetContentModelType = async (contentModel, headers = {}, options = {}) => {
+const getByContentModel: GetByContentModel = async (contentModel, headers = {}, options = {}) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contentful/getByContentModel/${contentModel}`, {
     method: 'GET',
     headers: {
