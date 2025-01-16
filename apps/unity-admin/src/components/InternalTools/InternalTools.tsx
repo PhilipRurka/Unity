@@ -13,6 +13,8 @@ import updateKeywordLinkInternalTools from '@/Fetchers/updateKeywordLinkInternal
 import useContentModel from '@/Hooks/useContentModel';
 import useInternalTools from '@/Hooks/useInternalTools';
 
+import ContentfulLayoutAdjust from '../ContentfulLayoutAdjust';
+
 type DisplayUpdatingPercentage = 'linkPlacement' | null;
 
 const InternalTools = () => {
@@ -142,7 +144,6 @@ const InternalTools = () => {
           >
             {displayUpdatingPercentage === 'linkPlacement' ? `${amountUpdatingPercentage}%` : 'Update'}
           </Button>
-
           <div>
             <Markdown content={captainsLog.fields.keywordLinksCheckOverview} />
           </div>
@@ -154,7 +155,6 @@ const InternalTools = () => {
             <span className="inline text-xs italic"> - Last updated: {lastIncompleteDate}</span>
             <hr className="border-black" />
           </div>
-
           <Button
             color="black"
             size="small"
@@ -167,6 +167,14 @@ const InternalTools = () => {
           <div>
             <Markdown content={captainsLog.fields.incompleteUnderlinedItems} />
           </div>
+        </div>
+
+        <div>
+          <div className="mb-3">
+            <h2 className="my-9 inline text-2xl font-bold">Adjust Contentful Layout</h2>
+            <hr className="border-black" />
+          </div>
+          <ContentfulLayoutAdjust />
         </div>
       </div>
     </div>
