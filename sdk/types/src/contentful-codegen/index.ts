@@ -8,6 +8,8 @@ export { isTypeHierarchyLayout } from "./TypeHierarchyLayout";
 export type { TypeHierarchyLayout, TypeHierarchyLayoutFields, TypeHierarchyLayoutSkeleton, TypeHierarchyLayoutWithAllLocalesAndWithoutLinkResolutionResponse, TypeHierarchyLayoutWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeHierarchyLayoutWithAllLocalesResponse, TypeHierarchyLayoutWithoutLinkResolutionResponse, TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from "./TypeHierarchyLayout";
 export { isTypeHierarchyLink } from "./TypeHierarchyLink";
 export type { TypeHierarchyLink, TypeHierarchyLinkFields, TypeHierarchyLinkSkeleton, TypeHierarchyLinkWithAllLocalesAndWithoutLinkResolutionResponse, TypeHierarchyLinkWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeHierarchyLinkWithAllLocalesResponse, TypeHierarchyLinkWithoutLinkResolutionResponse, TypeHierarchyLinkWithoutUnresolvableLinksResponse } from "./TypeHierarchyLink";
+export { isTypeHomepage } from "./TypeHomepage";
+export type { TypeHomepage, TypeHomepageFields, TypeHomepageSkeleton, TypeHomepageWithAllLocalesAndWithoutLinkResolutionResponse, TypeHomepageWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeHomepageWithAllLocalesResponse, TypeHomepageWithoutLinkResolutionResponse, TypeHomepageWithoutUnresolvableLinksResponse } from "./TypeHomepage";
 export { isTypeInfobox } from "./TypeInfobox";
 export type { TypeInfobox, TypeInfoboxFields, TypeInfoboxSkeleton, TypeInfoboxWithAllLocalesAndWithoutLinkResolutionResponse, TypeInfoboxWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeInfoboxWithAllLocalesResponse, TypeInfoboxWithoutLinkResolutionResponse, TypeInfoboxWithoutUnresolvableLinksResponse } from "./TypeInfobox";
 export { isTypeInfoboxBlock } from "./TypeInfoboxBlock";

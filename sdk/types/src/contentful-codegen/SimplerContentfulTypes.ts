@@ -3,6 +3,7 @@ import { TypeCaptainsLogWithoutUnresolvableLinksResponse } from './TypeCaptainsL
 import { TypeContentSectionWithoutUnresolvableLinksResponse } from './TypeContentSection';
 import { TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from './TypeHierarchyLayout';
 import { TypeHierarchyLinkWithoutUnresolvableLinksResponse } from './TypeHierarchyLink';
+import { TypeHomepageWithoutUnresolvableLinksResponse } from './TypeHomepage';
 import { TypeInfoboxWithoutUnresolvableLinksResponse } from './TypeInfobox';
 import { TypeInfoboxBlockWithoutUnresolvableLinksResponse } from './TypeInfoboxBlock';
 import { TypeInfoboxItemWithoutUnresolvableLinksResponse } from './TypeInfoboxItem';
@@ -14,6 +15,7 @@ export type AllContentModelTypes =
   | 'contentSection'
   | 'hierarchyLayout'
   | 'hierarchyLink'
+  | 'homepage'
   | 'infobox'
   | 'infoboxBlock'
   | 'infoboxItem'
@@ -24,6 +26,7 @@ export type CaptainsLogType = TypeCaptainsLogWithoutUnresolvableLinksResponse;
 export type ContentSectionType = TypeContentSectionWithoutUnresolvableLinksResponse;
 export type HierarchyLayoutType = TypeHierarchyLayoutWithoutUnresolvableLinksResponse;
 export type HierarchyLinkType = TypeHierarchyLinkWithoutUnresolvableLinksResponse;
+export type HomepageType = TypeHomepageWithoutUnresolvableLinksResponse;
 export type InfoboxType = TypeInfoboxWithoutUnresolvableLinksResponse;
 export type InfoboxBlockType = TypeInfoboxBlockWithoutUnresolvableLinksResponse;
 export type InfoboxItemType = TypeInfoboxItemWithoutUnresolvableLinksResponse;
@@ -35,6 +38,7 @@ export type ContentModelMapping = {
   contentSection: ContentSectionType;
   hierarchyLayout: HierarchyLayoutType;
   hierarchyLink: HierarchyLinkType;
+  homepage: HomepageType;
   infobox: InfoboxType;
   infoboxBlock: InfoboxBlockType;
   infoboxItem: InfoboxItemType;
