@@ -17,17 +17,19 @@ export default async function middleware(req: NextRequest) {
 
     const isAuthPath = authPaths.includes(pathname);
 
-    if (token) {
+    if (token && pathname !== '/') {
       if (isAuthPath) {
         return NextResponse.redirect(new URL('/', req.url));
       }
 
-      const response = NextResponse.next();
-      response.headers.set('x-show-header', 'true');
-      return response;
+      return NextResponse.next();
     }
 
-    if (!isAuthPath) {
+    if (pathname === '/') {
+      return NextResponse.next();
+    }
+
+    if (!isAuthPath && pathname !== '/') {
       return NextResponse.redirect(new URL('/login', req.url));
     }
 
