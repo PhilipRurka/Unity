@@ -11,10 +11,13 @@ type Context = {
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  const isUserAuthenticated = await checkIfUserAuthenticated(req);
-  if (!isUserAuthenticated) return NextResponse.json({}, {});
-
   const { contentModel } = context.params;
+  const skipAuthentication = contentModel === 'homepage' || contentModel === 'hierarchyLayout';
+
+  if (!skipAuthentication) {
+    const isUserAuthenticated = await checkIfUserAuthenticated(req);
+    if (!isUserAuthenticated) return NextResponse.json({}, {});
+  }
 
   const [result, status] = await getByContentModel(contentModel);
 
