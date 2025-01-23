@@ -74,15 +74,26 @@ const UserRow = ({ user }: UserRowProps) => {
         <Table.Data>{formatDate(user.createdAt)}</Table.Data>
         <Table.Data>
           <div ref={menuRef} className="relative">
-            <button onClick={() => handleMenu(!isMenuOpen)}>
-              <MenuIcon size="8" />
-            </button>
-            {isMenuOpen && (
-              <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
-                <Button link={`/users/${user.id}`} color="black" isFull size="small" icon="edit" iconPosition="left">
-                  Details
-                </Button>
-              </div>
+            {user.name !== 'Philip Rurka' && (
+              <>
+                <button onClick={() => handleMenu(!isMenuOpen)}>
+                  <MenuIcon size="8" />
+                </button>
+                {isMenuOpen && (
+                  <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
+                    <Button
+                      link={`/users/${user.id}`}
+                      color="black"
+                      isFull
+                      size="small"
+                      icon="edit"
+                      iconPosition="left"
+                    >
+                      Details
+                    </Button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </Table.Data>
