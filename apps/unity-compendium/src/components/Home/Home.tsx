@@ -25,7 +25,7 @@ const Home = ({
       )}
       data-component="cArticle"
     >
-      <h1 className="mb-8 text-4xl md:text-5xl lg:text-6xl">{title}</h1>
+      {/* <h1 className="mb-8 text-4xl md:text-5xl lg:text-6xl">{title}</h1> */}
       {/* {content.map((section, i) => {
         if (!section?.fields) return <Fragment key={`Article-${i}`} />;
   
