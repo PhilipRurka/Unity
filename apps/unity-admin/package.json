@@ -6,7 +6,7 @@
     "dev": "PORT=3001 next dev",
     "start": "PORT=3001 next start",
     "build": "next build",
-    "build-compendium": "next build",
+    "build-admin": "next build",
     "lint": "next lint",
     "env-pull": "vercel env pull .env.local",
     "env-pull-production": "vercel env pull --environment=production .env.local",

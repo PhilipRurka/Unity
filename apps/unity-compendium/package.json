@@ -6,7 +6,7 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build",
-    "build-admin": "next build",
+    "build-compendium": "next build",
     "lint": "next lint",
     "env-pull": "vercel env pull .env.local",
     "env-pull-production": "vercel env pull --environment=production .env.local",
