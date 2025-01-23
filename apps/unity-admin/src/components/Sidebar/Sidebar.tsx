@@ -43,7 +43,7 @@ const Sidebar = () => {
   }, [isSidebarOpen, handleIsSidebarOpen]);
 
   return (
-    <>
+    <div data-component="Sidebar">
       <div
         className={clsx(
           'absolute bottom-0 left-0 top-16 z-30 bg-black transition-all',
@@ -58,7 +58,7 @@ const Sidebar = () => {
         )}
       >
         <div className="sidebar-height hide-scrollbar overflow-y-scroll">
-          <div className="p-8">
+          <div className="pb-16 pl-8 pr-8 pt-8">
             {listOfPages.map(({ title, pathname }) => (
               <Link key={`Sidebar-listOfPages-${title}`} href={{ pathname }}>
                 {title}
@@ -67,7 +67,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
