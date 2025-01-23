@@ -33,7 +33,7 @@ const HierarchyNav = () => {
   }, [isHierarchyNavOpen]);
 
   return (
-    <>
+    <div data-component="HierarchyNav">
       <div
         className={clsx(
           'absolute bottom-0 left-0 top-16 z-30 bg-black transition-all',
@@ -48,7 +48,7 @@ const HierarchyNav = () => {
         )}
       >
         <div className="sidebar-height hide-scrollbar overflow-y-scroll">
-          <div className={clsx('p-8', !isHierarchyNavOpen && 'hidden')}>
+          <div className={clsx('pb-16 pl-8 pr-8 pt-8', !isHierarchyNavOpen && 'hidden')}>
             <Link className="mb-4" href={`/articles/${slugsList[0]}`}>
               Go To Random Page
             </Link>
@@ -56,7 +56,7 @@ const HierarchyNav = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
