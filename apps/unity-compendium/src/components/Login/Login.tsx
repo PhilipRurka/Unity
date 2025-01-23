@@ -36,7 +36,7 @@ const Login = () => {
 
       router.push('/');
     } catch (err) {
-      console.log(err);
+      console.log(err, 'something wrong');
     }
   };
 
