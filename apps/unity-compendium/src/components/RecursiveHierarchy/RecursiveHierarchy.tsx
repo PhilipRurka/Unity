@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment, useContext, useEffect } from 'react';
 
-import type { HierarchyLinkType } from '@unity/types';
+import type { HierarchyLinkType, LinkType, TextType } from '@unity/types';
 
 import useContentModel from '@/Hooks/useContentModel';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
@@ -19,14 +19,16 @@ const RecursiveHierarchy = () => {
       const pageList: string[] = [];
 
       hierarchyDataArray[0].fields.links.map((item) => {
-        const slug = item?.fields.link?.fields.slug;
+        const linkData = item?.fields.link as LinkType;
+        const slug = 'slug' in linkData.fields && linkData.fields.slug;
 
         if (slug) {
           pageList.push(slug);
         }
 
         item?.fields.childrenLinks?.map((subItem) => {
-          const subSlug = subItem?.fields.link?.fields.slug;
+          const subData = subItem?.fields.link as LinkType | TextType;
+          const subSlug = 'slug' in subData.fields && subData.fields.slug;
 
           if (subSlug) {
             pageList.push(subSlug);
@@ -49,24 +51,47 @@ const RecursiveHierarchy = () => {
   const renderElement = (item: HierarchyLinkType) => {
     if (!item) return null;
 
+    let linkPathname: string | undefined;
+    let value: string;
+
     const { link, childrenLinks } = item.fields;
 
     if (!link) return null;
 
-    const linkPathname = `/articles/${link.fields.slug}`;
+    if ('slug' in link.fields && 'title' in link.fields) {
+      const linkData = link as LinkType;
+
+      value = linkData.fields.title;
+      linkPathname = `/articles/${linkData.fields.slug}`;
+    } else {
+      const linkData = link as TextType;
+
+      value = linkData.fields.text;
+    }
 
     return (
-      <div className="pl-6" key={`RecursiveHierarchy-${link.fields.slug}-${link.fields.title}`}>
-        <Link
-          className={clsx(
-            'relative text-blue-500 hover:text-blue-900',
-            'before:[""] before:absolute before:-left-3 before:top-3 before:h-px before:w-2 before:bg-black',
-            linkPathname === pathname ? 'text-blue-900' : 'text-blue-500'
-          )}
-          href={linkPathname}
-        >
-          {link.fields.title}
-        </Link>
+      <div key={`RecursiveHierarchy-${value}`} className="pl-6">
+        {linkPathname ? (
+          <Link
+            className={clsx(
+              'relative text-blue-500 hover:text-blue-900',
+              'before:[""] before:absolute before:-left-3 before:top-3 before:h-px before:w-2 before:bg-black',
+              linkPathname === pathname ? 'text-blue-900' : 'text-blue-500'
+            )}
+            href={linkPathname}
+          >
+            {value}
+          </Link>
+        ) : (
+          <p
+            className={clsx(
+              'relative',
+              'before:[""] before:absolute before:-left-3 before:top-3 before:h-px before:w-2 before:bg-black'
+            )}
+          >
+            {value}
+          </p>
+        )}
         {childrenLinks && childrenLinks.map((child: HierarchyLinkType | undefined) => child && renderElement(child))}
       </div>
     );
