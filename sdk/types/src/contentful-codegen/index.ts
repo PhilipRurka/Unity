@@ -18,3 +18,5 @@ export { isTypeInfoboxItem } from "./TypeInfoboxItem";
 export type { TypeInfoboxItem, TypeInfoboxItemFields, TypeInfoboxItemSkeleton, TypeInfoboxItemWithAllLocalesAndWithoutLinkResolutionResponse, TypeInfoboxItemWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeInfoboxItemWithAllLocalesResponse, TypeInfoboxItemWithoutLinkResolutionResponse, TypeInfoboxItemWithoutUnresolvableLinksResponse } from "./TypeInfoboxItem";
 export { isTypeLink } from "./TypeLink";
 export type { TypeLink, TypeLinkFields, TypeLinkSkeleton, TypeLinkWithAllLocalesAndWithoutLinkResolutionResponse, TypeLinkWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeLinkWithAllLocalesResponse, TypeLinkWithoutLinkResolutionResponse, TypeLinkWithoutUnresolvableLinksResponse } from "./TypeLink";
+export { isTypeText } from "./TypeText";
+export type { TypeText, TypeTextFields, TypeTextSkeleton, TypeTextWithAllLocalesAndWithoutLinkResolutionResponse, TypeTextWithAllLocalesAndWithoutUnresolvableLinksResponse, TypeTextWithAllLocalesResponse, TypeTextWithoutLinkResolutionResponse, TypeTextWithoutUnresolvableLinksResponse } from "./TypeText";

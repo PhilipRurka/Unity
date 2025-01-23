@@ -8,6 +8,7 @@ import { TypeInfoboxWithoutUnresolvableLinksResponse } from './TypeInfobox';
 import { TypeInfoboxBlockWithoutUnresolvableLinksResponse } from './TypeInfoboxBlock';
 import { TypeInfoboxItemWithoutUnresolvableLinksResponse } from './TypeInfoboxItem';
 import { TypeLinkWithoutUnresolvableLinksResponse } from './TypeLink';
+import { TypeTextWithoutUnresolvableLinksResponse } from './TypeText';
 
 export type AllContentModelTypes =
   | 'article'
@@ -19,7 +20,8 @@ export type AllContentModelTypes =
   | 'infobox'
   | 'infoboxBlock'
   | 'infoboxItem'
-  | 'link';
+  | 'link'
+  | 'text';
 
 export type ArticleType = TypeArticleWithoutUnresolvableLinksResponse;
 export type CaptainsLogType = TypeCaptainsLogWithoutUnresolvableLinksResponse;
@@ -31,6 +33,7 @@ export type InfoboxType = TypeInfoboxWithoutUnresolvableLinksResponse;
 export type InfoboxBlockType = TypeInfoboxBlockWithoutUnresolvableLinksResponse;
 export type InfoboxItemType = TypeInfoboxItemWithoutUnresolvableLinksResponse;
 export type LinkType = TypeLinkWithoutUnresolvableLinksResponse;
+export type TextType = TypeTextWithoutUnresolvableLinksResponse;
 
 export type ContentModelMapping = {
   article: ArticleType;
@@ -43,6 +46,7 @@ export type ContentModelMapping = {
   infoboxBlock: InfoboxBlockType;
   infoboxItem: InfoboxItemType;
   link: LinkType;
+  text: TextType;
 };
 
 export type GetByContentModel = <T extends AllContentModelTypes>(model: T) => Promise<ContentModelMapping[T][]>;

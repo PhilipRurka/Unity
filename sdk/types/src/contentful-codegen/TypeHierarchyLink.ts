@@ -1,9 +1,10 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
 import type { TypeLinkSkeleton } from "./TypeLink";
+import type { TypeTextSkeleton } from "./TypeText";
 
 export interface TypeHierarchyLinkFields {
     entryTitle: EntryFieldTypes.Symbol;
-    link: EntryFieldTypes.EntryLink<TypeLinkSkeleton>;
+    link: EntryFieldTypes.EntryLink<TypeLinkSkeleton | TypeTextSkeleton>;
     childrenLinks?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeHierarchyLinkSkeleton>>;
 }
 
