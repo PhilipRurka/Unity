@@ -10,6 +10,16 @@
       "outputs": ["dist/**", "build/**"],
       "cache": false
     },
+    "build-compendium": {
+      "dependsOn": ["^build-compendium"],
+      "outputs": ["dist/**", "build/**"],
+      "cache": false
+    },
+    "build-admin": {
+      "dependsOn": ["^build-admin"],
+      "outputs": ["dist/**", "build/**"],
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true

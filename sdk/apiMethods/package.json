@@ -8,6 +8,8 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
+    "build-admin": "rollup -c",
+    "build-compendium": "rollup -c",
     "watch": "rollup -c --watch"
   },
   "dependencies": {

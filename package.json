@@ -9,6 +9,8 @@
     "cd-mongodb": "(cd packages/mongodb && yarn ntl)",
     "lint": "turbo run lint",
     "build": "turbo run build",
+    "build-admin": "turbo run build-admin",
+    "build-compendium": "turbo run build-compendium",
     "dev-all": "turbo run dev",
     "dev-compendium": "(cd apps/unity-compendium && yarn dev)",
     "dev-admin": "(cd apps/unity-admin && yarn dev)",

@@ -7,6 +7,8 @@
     "ntl": "npx ntl -o",
     "cd-root": "(cd ../.. && yarn ntl)",
     "build": "tsc",
+    "build-compendium": "tsc",
+    "build-admin": "tsc",
     "watch": "tsc --watch",
     "dump-local": "node dist/dump/dumpLocal.js",
     "dump-production": "node dist/dump/dumpProd.js",
