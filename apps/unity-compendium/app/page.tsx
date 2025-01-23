@@ -6,6 +6,8 @@ import getByContentModel from '@/Fetchers/contentful/getByContentModel';
 const HomePage = async () => {
   const data: HomepageType[] = await getByContentModel('homepage');
 
+  if (!data) return <></>;
+
   return <Home data={data[0]} />;
 };
 
