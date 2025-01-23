@@ -60,7 +60,7 @@ const InternalTools = () => {
       setAmountUpdatingPercentage(0);
     }
 
-    mutate(`internal-tools`);
+    await Promise.all([mutate('internal-tools'), mutate('content-model-captainsLog')]);
     setIsLoading(false);
   };
 
