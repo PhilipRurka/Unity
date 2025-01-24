@@ -59,7 +59,12 @@ export const metadata: Metadata = {
   creator: 'Philip Rurka',
   publisher: 'Philip Rurka',
   openGraph: {
-    images: '/unity-logo.png',
+    images: {
+      url: 'https://unitystory.info/unity-logo.png',
+      width: 650,
+      height: 650,
+      type: 'image/png',
+    },
     locale: 'en_US',
     type: 'article',
     url: 'https://unitystory.info',
