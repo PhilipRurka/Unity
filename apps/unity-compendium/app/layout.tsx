@@ -29,6 +29,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://unitystory.info'),
   title: 'Unity Compendium',
   description:
     'Immerse yourself in a meticulously crafted fantasy world filled with rich lore, breathtaking landscapes, and unique creations. Explore a universe brought to life through detailed world-building, where imagination and creativity shape every corner.',
