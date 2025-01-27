@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://unitystory.info
+
+# Sitemaps
+Sitemap: https://unitystory.info/sitemap.xml
