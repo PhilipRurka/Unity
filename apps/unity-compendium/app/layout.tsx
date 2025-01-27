@@ -86,6 +86,10 @@ export const metadata: Metadata = {
     '/unity-logo.png',
   ],
   category: 'Fantasy',
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {
@@ -97,13 +101,14 @@ export const viewport: Viewport = {
 };
 
 type RootLayoutProps = {
+  pathname: string;
   children: React.ReactNode;
 };
 
-export default async function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children, pathname }: RootLayoutProps) {
   return (
     <html lang="en">
-      <AddedHead />
+      <AddedHead pathname={pathname} />
       <body
         className={clsx(
           'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden bg-layout bg-cover bg-fixed bg-bottom bg-no-repeat text-ocean-blue',

@@ -1,7 +1,12 @@
 import Head from 'next/head';
 
-const AddedHead = () => (
+type AddedHeadProps = {
+  pathname: string;
+};
+
+const AddedHead = ({ pathname }: AddedHeadProps) => (
   <Head>
+    {pathname.startsWith('/articles') && <meta name="robots" content="noindex, nofollow" />}
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
