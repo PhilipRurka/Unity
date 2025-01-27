@@ -1,9 +1,10 @@
-# *
+# Prevent search engines from indexing the admin subdomain
+User-agent: *
+Disallow: https://admin.unitystory.info/
+
+# Allow search engines to crawl everything else on the main domain
 User-agent: *
 Allow: /
 
-# Host
-Host: https://unitystory.info
-
-# Sitemaps
+# Sitemap location for the main site
 Sitemap: https://unitystory.info/sitemap.xml
