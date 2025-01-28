@@ -8,12 +8,14 @@ const authPaths = ['/login', '/reset-password'];
 
 export default async function middleware(req: NextRequest) {
   try {
+    const { pathname } = req.nextUrl;
+
+    if (pathname === '/') return NextResponse.next();
+
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');
 
     const token = await getToken({ req, secret });
-
-    const { pathname } = req.nextUrl;
 
     const isAuthPath = authPaths.includes(pathname);
 
@@ -22,10 +24,6 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL('/', req.url));
       }
 
-      return NextResponse.next();
-    }
-
-    if (pathname === '/') {
       return NextResponse.next();
     }
 
