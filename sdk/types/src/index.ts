@@ -9,3 +9,4 @@ export * from './api';
 export * from './nodeScripts';
 export * from './table';
 export * from './internalTools';
+export * from './registrationRequest';
