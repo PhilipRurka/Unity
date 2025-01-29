@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { ErrorSpan, Field, Form, Input, Label } from '@unity/components';
+import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
 
 import resetPassword from '@/Fetchers/user/resetPassword';
 
@@ -63,20 +63,12 @@ const ResetPassword = () => {
           {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
         </Field>
         <div className="flex gap-4">
-          <button
-            type="submit"
-            className="w-full rounded-lg bg-blue-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 disabled:bg-gray-700 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            disabled={emailSent}
-          >
-            Send New Password
-          </button>
-          <button
-            type="button"
-            className="w-full rounded-lg bg-amber-700 px-5 py-3 text-center text-base font-medium text-white hover:bg-amber-800 focus:ring-4 focus:ring-amber-300 disabled:bg-gray-700 sm:w-auto dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800"
-            onClick={handleBackToLogin}
-          >
-            Back to Login
-          </button>
+          <Button color="green" isFull type="submit" disabled={emailSent} size="medium">
+            Reset
+          </Button>
+          <Button color="black" type="button" onClick={handleBackToLogin} size="medium">
+            Back To Login
+          </Button>
         </div>
       </Form>
     </div>
