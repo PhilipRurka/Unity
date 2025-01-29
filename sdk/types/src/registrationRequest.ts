@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export type RegistrationRequestType = {
   name: string;
   email: string;
-  message: string;
+  message?: string;
 };
 
 export type RegistrationRequestFrontendType = {
