@@ -14,7 +14,7 @@ type ButtonProps = ButtonContentProps & {
 };
 
 type ButtonDefaultProps = {
-  size: 'small';
+  size: 'small' | 'medium' | 'large';
   children: React.ReactNode;
   color: 'black' | 'red' | 'green';
   isFull?: boolean;
@@ -72,8 +72,10 @@ const ButtonContent = (props: ButtonContentProps) => {
   return (
     <button
       className={clsx(
-        'flex items-center rounded-lg border border-solid p-2 transition-colors',
-        size === 'small' && 'text-sm',
+        'flex items-center rounded-lg border border-solid transition-colors',
+        size === 'small' && 'p-2 text-sm',
+        size === 'medium' && 'px-6 py-2 text-base font-medium',
+        size === 'large' && 'px-8 py-3 text-lg font-medium',
         disabled ? 'cursor-not-allowed' : 'cursor-pointer',
 
         colorTheme === 'black-full' && 'border-black bg-black text-white hover:bg-white hover:text-black',
