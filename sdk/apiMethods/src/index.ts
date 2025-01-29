@@ -5,4 +5,5 @@ export * from './contentful';
 export * from './user';
 export * from './users';
 export * from './internalTools';
+export * from './registrationRequest';
 export * from './utils';
