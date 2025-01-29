@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
+import { Button, ErrorSpan, Field, Form, Input, Label, TextButton } from '@unity/components';
 
 const FormSchema = z.object({
   email: z.string().email(),
@@ -36,12 +36,9 @@ const Login = () => {
 
       router.push('/');
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err, 'something wrong');
     }
-  };
-
-  const handleResetRedirect = () => {
-    router.push('/reset-password');
   };
 
   const {
@@ -71,10 +68,13 @@ const Login = () => {
             <Button color="green" isFull type="submit" size="medium">
               Login
             </Button>
-            <Button color="black" type="button" onClick={handleResetRedirect} size="medium">
+            <Button color="black" type="button" link="/reset-password" size="medium">
               Reset Password
             </Button>
           </div>
+          <TextButton type="button" link="/registration-request" color="amber">
+            Request Registration
+          </TextButton>
         </Form>
         <span className="mt-6 text-red-600">{error}</span>
       </div>

@@ -7,24 +7,26 @@ import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
 
-import resetPassword from '@/Fetchers/user/resetPassword';
+import addRegistrationRequest from '@/Fetchers/registrationRequest/addRegistrationRequest';
 
 const FormSchema = z.object({
   email: z.string().email(),
+  message: z.string().max(120).optional(),
+  name: z.string().min(3),
 });
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
-const ResetPassword = () => {
-  const [emailSent, setEmailSent] = useState(false);
+const RegistrationRequest = () => {
+  const [requestSent, setRequestSent] = useState(false);
 
-  const handleFormSubmit = ({ email }: FormSchemaType) => {
-    resetPassword(email);
-    setEmailSent(true);
+  const handleFormSubmit = ({ email, message, name }: FormSchemaType) => {
+    addRegistrationRequest({ email, message, name });
+    setRequestSent(true);
   };
 
   const handleInputChange = () => {
-    setEmailSent(false);
+    setRequestSent(false);
   };
 
   const {
@@ -37,13 +39,24 @@ const ResetPassword = () => {
 
   return (
     <div
-      data-component="ResetPassword"
+      data-component="RegistrationRequest"
       className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8 dark:bg-gray-800"
     >
       <h2 className="inline text-2xl font-bold text-gray-900 dark:text-white">
-        Reset Password{emailSent && <span className="inline text-green-700"> was sent!!</span>}
+        Reset Password{requestSent && <span className="inline text-green-700"> was sent!!</span>}
       </h2>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
+        <Field>
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            type="name"
+            showErrorStyles={!!errors.name}
+            {...register('name')}
+            onChange={handleInputChange}
+          />
+          {errors.name && <ErrorSpan>{errors.name.message}</ErrorSpan>}
+        </Field>
         <Field>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -55,9 +68,20 @@ const ResetPassword = () => {
           />
           {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
         </Field>
+        <Field>
+          <Label htmlFor="message">Message</Label>
+          <Input
+            id="message"
+            type="message"
+            showErrorStyles={!!errors.message}
+            {...register('message')}
+            onChange={handleInputChange}
+          />
+          {errors.message && <ErrorSpan>{errors.message.message}</ErrorSpan>}
+        </Field>
         <div className="flex gap-4">
-          <Button color="green" isFull type="submit" disabled={emailSent} size="medium">
-            Reset
+          <Button color="green" isFull type="submit" disabled={requestSent} size="medium">
+            Request Registration
           </Button>
           <Button color="black" type="button" link="/login" size="medium">
             Back To Login
@@ -68,4 +92,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default RegistrationRequest;
