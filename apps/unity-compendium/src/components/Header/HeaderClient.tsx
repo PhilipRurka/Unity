@@ -2,6 +2,7 @@
 
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 import { useContext } from 'react';
 
 import { Button, HierarchyIcon, SearchIcon } from '@unity/components';
@@ -12,8 +13,11 @@ import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextPro
 const HeaderClient = () => {
   const { isHierarchyNavOpen, handleShouldBeOpen: hierarchyBeOpen } = useContext(HierarchyNavContext);
   const { handleIsSearchModalOpen } = useContext(HeaderContext);
-
   const { data: session, status: userSessionStatus } = useSession();
+  const pathname = usePathname();
+
+  const isSessionLoading = userSessionStatus === 'loading';
+  const isAuthRoute = pathname === '/login' || pathname === '/reset-password';
 
   const openHierarchyNav = () => {
     hierarchyBeOpen(!isHierarchyNavOpen);
@@ -26,8 +30,8 @@ const HeaderClient = () => {
   };
 
   return (
-    <div className={clsx('flex transition-opacity', userSessionStatus === 'loading' ? 'opacity-0' : 'opacity-100')}>
-      {session ? (
+    <div className={clsx('flex transition-opacity', isSessionLoading ? 'opacity-0' : 'opacity-100')}>
+      {!isSessionLoading && session && (
         <div>
           <button className="p-4" onClick={() => openSearchModal()}>
             <SearchIcon size="8" />
@@ -36,7 +40,8 @@ const HeaderClient = () => {
             <HierarchyIcon size="8" />
           </button>
         </div>
-      ) : (
+      )}
+      {!isSessionLoading && !session && !isAuthRoute && (
         <div className="mr-4 flex self-center">
           <Button color="green" size="small" link="/login" isFull>
             Login
