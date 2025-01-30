@@ -10,8 +10,6 @@ export default async function middleware(req: NextRequest) {
   try {
     const { pathname } = req.nextUrl;
 
-    if (pathname === '/') return NextResponse.next();
-
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');
 
@@ -39,5 +37,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/login', '/', '/reset-password', '/articles/:path*'],
+  matcher: ['/login', '/reset-password', '/articles/:path*'],
 };
