@@ -17,7 +17,7 @@ const HeaderClient = () => {
   const pathname = usePathname();
 
   const isSessionLoading = userSessionStatus === 'loading';
-  const isAuthRoute = pathname === '/login' || pathname === '/reset-password';
+  const isAuthRoute = pathname === '/login' || pathname === '/reset-password' || pathname === '/registration-request';
 
   const openHierarchyNav = () => {
     hierarchyBeOpen(!isHierarchyNavOpen);
