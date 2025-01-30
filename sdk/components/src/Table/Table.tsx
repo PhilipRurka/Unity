@@ -31,9 +31,9 @@ type TableProps<T> = {
   /** The CSS grid column configuration for the table layout. Make sure to add this configuration to Tailwind.config. */
   gridCols: string;
   /** Only use to enable filter. Pass the original list. */
-  listForFilter: T[];
+  listForFilter?: T[];
   /** Only use to enable filter. The default property from which you want to filter. */
-  defaultFilterProperty: keyof T;
+  defaultFilterProperty?: keyof T;
   /** Only use to enable filter. A callback to send back the filtered list to the parent component. */
   handleFilterUpdateCallback?: (filteredList: T[]) => void;
   children: ReactNode;
@@ -75,7 +75,7 @@ const Table = <T extends Record<string, any>>({
   handleFilterUpdateCallback,
   listForFilter,
 }: TableProps<T>) => {
-  const [filterProperty, setFilterProperty] = useState<keyof T>(defaultFilterProperty);
+  const [filterProperty, setFilterProperty] = useState<keyof T | undefined>(defaultFilterProperty);
   const [isFilterDirectionAscend, setFilterDirectionAscend] = useState(true);
 
   const isDate = (value: any): value is Date => value instanceof Date;
