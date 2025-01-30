@@ -3,23 +3,22 @@ import { useState } from 'react';
 import { Table } from '@unity/components';
 import { UserBasicFrontendType } from '@unity/types';
 
+import useUsers from '@/Hooks/useUsers';
+
 import UserRow from '../UserRow';
 
-type UsersTableProps = {
-  usersList: UserBasicFrontendType[];
-};
+const UsersTable = () => {
+  const { data: usersList = [] } = useUsers();
 
-const UsersTable = ({ usersList }: UsersTableProps) => {
-  const [filteredList, setFilteredList] = useState<UserBasicFrontendType[]>([]);
+  const [filteredList, setFilteredList] = useState<UserBasicFrontendType[]>(usersList);
 
-  // TODO: Remove this type any
-  const handleFilterChange = (list: any) => {
+  const handleFilterChange = (list: UserBasicFrontendType[]) => {
     setFilteredList(list);
   };
 
   return (
     <div data-component="UsersTable">
-      <Table
+      <Table<UserBasicFrontendType>
         gridCols="grid-cols-user-table"
         handleFilterUpdateCallback={handleFilterChange}
         listForFilter={usersList}
