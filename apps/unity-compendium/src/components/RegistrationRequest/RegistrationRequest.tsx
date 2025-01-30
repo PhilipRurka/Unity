@@ -5,13 +5,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
+import { Button, ErrorSpan, Field, Form, Input, Label, TextArea } from '@unity/components';
 
 import addRegistrationRequest from '@/Fetchers/registrationRequest/addRegistrationRequest';
 
 const FormSchema = z.object({
   email: z.string().email(),
-  message: z.string().max(120).optional(),
+  message: z.string().max(500).optional(),
   name: z.string().min(3),
 });
 
@@ -43,8 +43,12 @@ const RegistrationRequest = () => {
       className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8 dark:bg-gray-800"
     >
       <h2 className="inline text-2xl font-bold text-gray-900 dark:text-white">
-        Reset Password{requestSent && <span className="inline text-green-700"> was sent!!</span>}
+        Request Registration{requestSent && <span className="inline text-green-700"> was sent!!</span>}
       </h2>
+      <p>
+        Submit your name, email, and a brief message (if we haven’t met before) to register on the platform. After
+        submitting, you’ll receive an email within a few days with instructions to access the platform.
+      </p>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
         <Field>
           <Label htmlFor="name">Name</Label>
@@ -70,7 +74,7 @@ const RegistrationRequest = () => {
         </Field>
         <Field>
           <Label htmlFor="message">Message</Label>
-          <Input
+          <TextArea
             id="message"
             type="message"
             showErrorStyles={!!errors.message}
