@@ -5,14 +5,6 @@ import TriangleIcon from '../Icons/TriangleIcon';
 
 /* #region Types */
 
-type TableComponent = FC<TableProps> & {
-  Header: FC<HeaderProps>;
-  Heading: FC<HeadingProps>;
-  Row: FC<RowProps>;
-  Content: FC<ContentProps>;
-  Data: FC<DataProps>;
-};
-
 type HeaderProps = {
   children: ReactNode;
 };
@@ -35,17 +27,15 @@ type DataProps = {
   children: ReactNode;
 };
 
-type List = Record<string, any>[];
-
-type TableProps = {
+type TableProps<T> = {
   /** The CSS grid column configuration for the table layout. Make sure to add this configuration to Tailwind.config. */
   gridCols: string;
   /** Only use to enable filter. Pass the original list. */
-  listForFilter?: List;
+  listForFilter: T[];
   /** Only use to enable filter. The default property from which you want to filter. */
-  defaultFilterProperty?: string;
+  defaultFilterProperty: keyof T;
   /** Only use to enable filter. A callback to send back the filtered list to the parent component. */
-  handleFilterUpdateCallback?: (filteredList: List) => void;
+  handleFilterUpdateCallback?: (filteredList: T[]) => void;
   children: ReactNode;
 };
 
@@ -58,7 +48,7 @@ type TableContextType =
       handleFilterProperty: (property: string) => void;
     };
 
-type SortByProperty = (property?: string, isAscending?: boolean) => List;
+type SortByProperty<T> = (propertyParam?: keyof T, isAscendingParam?: boolean) => T[];
 
 /* #endregion */
 
@@ -78,19 +68,21 @@ const useTable = () => {
 
 /* #region Main Components */
 
-const Table: TableComponent = ({
+const Table = <T extends Record<string, any>>({
   gridCols,
   children,
   defaultFilterProperty,
   handleFilterUpdateCallback,
   listForFilter,
-}) => {
-  const [filterProperty, setFilterProperty] = useState<string | undefined>(defaultFilterProperty);
-  const [isFilterDirectionAscend, setFilterDirectionAscend] = useState<boolean>(!!defaultFilterProperty);
+}: TableProps<T>) => {
+  const [filterProperty, setFilterProperty] = useState<keyof T>(defaultFilterProperty);
+  const [isFilterDirectionAscend, setFilterDirectionAscend] = useState(true);
 
-  const sortByProperty: SortByProperty = (propertyParam, isAscendingpParam) => {
-    const property = typeof propertyParam === 'undefined' ? filterProperty : propertyParam;
-    const isAscending = typeof isAscendingpParam === 'undefined' ? isFilterDirectionAscend : isAscendingpParam;
+  const isDate = (value: any): value is Date => value instanceof Date;
+
+  const sortByProperty: SortByProperty<T> = (propertyParam, isAscendingParam) => {
+    const property = propertyParam ?? filterProperty;
+    const isAscending = isAscendingParam ?? isFilterDirectionAscend;
 
     if (!listForFilter || !filterProperty || !property) return [];
 
@@ -109,7 +101,7 @@ const Table: TableComponent = ({
           return a[property] - b[property];
         }
 
-        if (a[property] instanceof Date && b[property] instanceof Date) {
+        if (isDate(a[property]) && isDate(b[property])) {
           return (a[property] as Date).getTime() - (b[property] as Date).getTime();
         }
 
@@ -128,7 +120,7 @@ const Table: TableComponent = ({
           return b[property] - a[property];
         }
 
-        if (a[property] instanceof Date && b[property] instanceof Date) {
+        if (isDate(a[property]) && isDate(b[property])) {
           return (b[property] as Date).getTime() - (a[property] as Date).getTime();
         }
 
@@ -139,10 +131,10 @@ const Table: TableComponent = ({
     return newFilterOrder;
   };
 
-  const handleFilterProperty = (property: string) => {
+  const handleFilterProperty = (property: keyof T) => {
     if (!defaultFilterProperty || !handleFilterUpdateCallback || !listForFilter) return;
 
-    let newFilterOrder;
+    let newFilterOrder: T[];
 
     if (filterProperty === property) {
       newFilterOrder = sortByProperty(undefined, !isFilterDirectionAscend);
@@ -167,8 +159,12 @@ const Table: TableComponent = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listForFilter]);
 
+  const filterPropertyString = typeof filterProperty === 'string' ? filterProperty : undefined;
+
   return (
-    <TableContext.Provider value={{ gridCols, filterProperty, isFilterDirectionAscend, handleFilterProperty }}>
+    <TableContext.Provider
+      value={{ gridCols, filterProperty: filterPropertyString, isFilterDirectionAscend, handleFilterProperty }}
+    >
       <div data-component="Table">{children}</div>
     </TableContext.Provider>
   );
@@ -193,15 +189,10 @@ const Heading: FC<HeadingProps> = ({ children, property }) => {
     <div className="flex">
       <div
         className={clsx('flex gap-1 text-sm', property && 'cursor-pointer')}
-        onClick={property ? () => handleFilterProperty(property) : undefined}
+        onClick={property ? () => handleFilterProperty(property as string) : undefined}
       >
         {children}
-        {showTriangle && (
-          <TriangleIcon
-            size="3"
-            className={clsx('inline transition-transform', !isFilterDirectionAscend && 'rotate-180')}
-          />
-        )}
+        {showTriangle && <TriangleIcon size="3" />}
       </div>
     </div>
   );
