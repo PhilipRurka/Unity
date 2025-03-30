@@ -29,7 +29,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://unitystory.info'),
+  metadataBase: new URL('https://www.unitystory.info'),
   title: 'Unity Compendium',
   description:
     'Immerse yourself in a meticulously crafted fantasy world filled with rich lore, breathtaking landscapes, and unique creations. Explore a universe brought to life through detailed world-building, where imagination and creativity shape every corner.',
@@ -61,14 +61,14 @@ export const metadata: Metadata = {
   publisher: 'Philip Rurka',
   openGraph: {
     images: {
-      url: 'https://unitystory.info/unity-logo.png',
+      url: 'https://www.unitystory.info/unity-logo.png',
       width: 650,
       height: 650,
       type: 'image/png',
     },
     locale: 'en_US',
     type: 'article',
-    url: 'https://unitystory.info',
+    url: 'https://www.unitystory.info',
     siteName: 'Unity Compendium',
     authors: ['Philip Rurka'],
   },
@@ -86,6 +86,9 @@ export const metadata: Metadata = {
     '/unity-logo.png',
   ],
   category: 'Fantasy',
+  alternates: {
+    canonical: 'https://unitystory.info',
+  },
 };
 
 export const viewport: Viewport = {
