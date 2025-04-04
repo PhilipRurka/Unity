@@ -7,6 +7,7 @@ const RegistrationRequestSchema = new Schema<RegistrationRequestDocument>(
     name: { type: String },
     email: { type: String },
     message: { type: String },
+    created_at: { type: Date },
   },
   { timestamps: true }
 );
