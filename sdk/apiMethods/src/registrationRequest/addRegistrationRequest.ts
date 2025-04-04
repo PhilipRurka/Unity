@@ -1,5 +1,5 @@
 import { RegistrationRequestModel } from '@unity/models';
-import type { ApiMethodResponsePromise, ErrorGetType, RegistrationRequestType, SuccessGetType } from '@unity/types';
+import type { ApiMethodResponsePromise, ErrorGetType, RegistrationRequestReq, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
@@ -7,7 +7,7 @@ type CatchError = {
   message: string;
 };
 
-type AddRegistration = (params: RegistrationRequestType) => ApiMethodResponsePromise<{ message: string }>;
+type AddRegistration = (params: RegistrationRequestReq) => ApiMethodResponsePromise<{ message: string }>;
 
 const addRegistrationRequest: AddRegistration = async ({ name, email, message }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
@@ -19,7 +19,7 @@ const addRegistrationRequest: AddRegistration = async ({ name, email, message })
   }
 
   try {
-    const newRegistrationRequest = new RegistrationRequestModel({ name, email, message });
+    const newRegistrationRequest = new RegistrationRequestModel({ name, email, message, created_at: new Date() });
     await newRegistrationRequest.save();
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];

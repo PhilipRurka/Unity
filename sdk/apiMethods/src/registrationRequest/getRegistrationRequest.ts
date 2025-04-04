@@ -1,24 +1,26 @@
-import { Document } from 'mongodb';
+import mongoose from 'mongoose';
 
 import { RegistrationRequestModel } from '@unity/models';
-import { ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
+import { ApiMethodResponsePromise, ErrorGetType, RegistrationRequestFrontendType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
-type GetRegistrationRequestType = () => ApiMethodResponsePromise<unknown>;
+type GetRegistrationRequest = (requestId: string) => ApiMethodResponsePromise<RegistrationRequestFrontendType>;
 
 type CatchError = {
   message: string;
 };
 
-const getRegistrationRequest: GetRegistrationRequestType = async () => {
-  let response: SuccessGetType<Document[]> | ErrorGetType;
+const getRegistrationRequest: GetRegistrationRequest = async (requestId) => {
+  let response: SuccessGetType<RegistrationRequestFrontendType> | ErrorGetType;
 
   try {
+    const requestObjectId = new mongoose.Types.ObjectId(requestId);
+
     await connectToDatabase();
 
-    const users = await RegistrationRequestModel.find(
-      {},
+    const requestData = await RegistrationRequestModel.findOne(
+      { _id: requestObjectId },
       {
         _id: 0,
         id: '$_id',
@@ -26,12 +28,10 @@ const getRegistrationRequest: GetRegistrationRequestType = async () => {
         email: 1,
         message: 1,
         createdAt: '$created_at',
-        status: 1,
-        lastActive: '$last_active',
       }
     ).exec();
 
-    response = [{ result: users }, { status: 200 }];
+    response = [{ result: requestData }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 
