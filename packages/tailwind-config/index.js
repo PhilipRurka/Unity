@@ -37,6 +37,7 @@ const tailwindConfig = {
         "user-logs": "8rem, 1fr",
         "user-activities": "8rem, 1fr",
         "activity-bundle": "6rem, 1fr",
+        "registration-request": "10rem, 1fr, 2rem",
       },
       rotate: {
         "opened-accordion-triangle": "61deg",
@@ -84,6 +85,7 @@ const tailwindConfig = {
   safelist: [
     "overflow-y-hidden",
     "grid-cols-user-table",
+    "grid-cols-registration-request",
     "opened-accordion-triangle",
     "closed-accordion-triangle",
     "hidden",
