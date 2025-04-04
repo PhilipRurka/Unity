@@ -65,7 +65,7 @@ const UserRow = ({ user }: UserRowProps) => {
       <Table.Row>
         <Table.Data>
           <p className="text-md font-semibold">{user.name}</p>
-          <p className="text-sm">{user.email}</p>
+          <p className="line-clamp-1 text-sm">{user.email}</p>
         </Table.Data>
         <Table.Data>
           <Pill text={statusObj().statusCopy} color={statusObj().color} />

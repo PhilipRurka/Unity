@@ -1,3 +1,4 @@
+import { usePathname } from 'next/navigation';
 import useSWR from 'swr';
 
 import { RegistrationRequestFrontendType } from '@unity/types';
@@ -5,7 +6,12 @@ import { RegistrationRequestFrontendType } from '@unity/types';
 import getRegistrationRequest from '@/Fetchers/getRegistrationRequest';
 
 const useRegistrationRequest = () => {
-  const response = useSWR<RegistrationRequestFrontendType[]>('registrationRequest', () => getRegistrationRequest());
+  const pathname = usePathname();
+  const requestId = pathname.replace('/registration-request/', '');
+
+  const response = useSWR<RegistrationRequestFrontendType>('registrationRequest', () =>
+    getRegistrationRequest(requestId)
+  );
 
   return response;
 };

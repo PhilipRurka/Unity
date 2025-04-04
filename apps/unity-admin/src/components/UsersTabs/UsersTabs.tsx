@@ -1,6 +1,7 @@
 import Tabs from '@/Components/Tabs';
 import useUsers from '@/Hooks/useUsers';
 
+import RegistrationRequestsTable from '../RegistrationRequestsTable';
 import UsersFilter from '../UsersFilter';
 import UsersTable from '../UsersTable';
 
@@ -21,7 +22,8 @@ const UserTableTabs = () => {
             <UsersTable />
           </Tabs.View>
           <Tabs.View view="registration-request">
-            <h1>Hey</h1>
+            <h1 className="my-9 text-4xl">List of Requests</h1>
+            <RegistrationRequestsTable />
           </Tabs.View>
         </Tabs.Content>
       </Tabs>

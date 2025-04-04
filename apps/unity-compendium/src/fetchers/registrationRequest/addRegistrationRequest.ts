@@ -1,6 +1,6 @@
-import type { FetchErrorType, RegistrationRequestType } from '@unity/types';
+import type { FetchErrorType, RegistrationRequestReq } from '@unity/types';
 
-type RegistrationRequest = (data: RegistrationRequestType) => void;
+type RegistrationRequest = (data: RegistrationRequestReq) => void;
 
 const addRegistrationRequest: RegistrationRequest = async (data) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequest`, {

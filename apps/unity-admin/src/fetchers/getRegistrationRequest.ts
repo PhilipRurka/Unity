@@ -1,9 +1,9 @@
 import type { FetchErrorType, RegistrationRequestFrontendType } from '@unity/types';
 
-type GetUsersType = () => Promise<RegistrationRequestFrontendType[]>;
+type GetUserType = (requestId: string) => Promise<RegistrationRequestFrontendType>;
 
-const getRegistrationRequest: GetUsersType = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequest/placeholder`, {
+const getRegistrationRequest: GetUserType = async (requestId) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequest/${requestId}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
