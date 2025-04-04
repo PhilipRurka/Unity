@@ -2,6 +2,7 @@ import mongoose, { Document } from 'mongoose';
 import type { DefaultSession } from 'next-auth';
 
 export type UserStatus = 'active' | 'pending' | 'disabled';
+export type UserSourceType = 'manual' | 'request';
 
 export type UserType = {
   email: string;
@@ -10,6 +11,7 @@ export type UserType = {
   created_at: Date;
   last_active: Date | null;
   status: UserStatus;
+  source_type: UserSourceType;
 };
 
 export type UserDocument = Document & UserType;
@@ -31,6 +33,7 @@ export type UserBasicFrontendType = {
 export type AddUserReq = {
   email: string;
   name: string;
+  sourceType: UserSourceType;
 };
 
 export type EditUserReq = {

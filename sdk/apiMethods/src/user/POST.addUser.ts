@@ -14,7 +14,7 @@ type CatchError = {
 
 type AddUser = (reqData: AddUserReq) => ApiMethodResponsePromise<{ message: string }>;
 
-const addUser: AddUser = async ({ name, email }) => {
+const addUser: AddUser = async ({ name, email, sourceType }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -30,6 +30,7 @@ const addUser: AddUser = async ({ name, email }) => {
       email,
       name,
       password,
+      sourceType,
     });
 
     await createUserLogs({ userId });

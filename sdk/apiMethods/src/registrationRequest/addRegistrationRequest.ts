@@ -1,4 +1,4 @@
-import { RegistrationRequestModel } from '@unity/models';
+import { RegistrationRequestModel, UserModel } from '@unity/models';
 import type { ApiMethodResponsePromise, ErrorGetType, RegistrationRequestReq, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
@@ -19,13 +19,36 @@ const addRegistrationRequest: AddRegistration = async ({ name, email, message })
   }
 
   try {
-    const newRegistrationRequest = new RegistrationRequestModel({ name, email, message, created_at: new Date() });
-    await newRegistrationRequest.save();
+    const [hasRegistrationRequest, hasAccount] = await Promise.all([
+      RegistrationRequestModel.findOne({ email }),
+      UserModel.findOne({ email }),
+    ]);
 
-    response = [{ result: { message: 'Success!' } }, { status: 200 }];
+    if (hasRegistrationRequest || hasAccount) {
+      response = [
+        {
+          result: {
+            message: 'This email was already used to send out a request for registration or already has an account.',
+          },
+        },
+        { status: 409 },
+      ];
+    } else {
+      const newRegistrationRequest = new RegistrationRequestModel({
+        name,
+        email,
+        message,
+        created_at: new Date(),
+        status: 'pending',
+      });
+      await newRegistrationRequest.save();
+
+      response = [{ result: { message: 'Success!' } }, { status: 200 }];
+    }
   } catch (err) {
     const error = err as CatchError;
 
+    // eslint-disable-next-line no-console
     console.log(error.message);
 
     response = [{ error: { message: error.message } }, { status: 503 }];

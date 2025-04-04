@@ -2,14 +2,16 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 
 import { UserModel } from '@unity/models';
+import { UserSourceType } from '@unity/types';
 
 type CreateUserWithCredentials = (params: {
   email: string;
   password: string;
   name: string;
+  sourceType: UserSourceType;
 }) => Promise<mongoose.Types.ObjectId>;
 
-const createUserWithCredentials: CreateUserWithCredentials = async ({ email, password, name }) => {
+const createUserWithCredentials: CreateUserWithCredentials = async ({ email, password, name, sourceType }) => {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!emailRegex.test(email)) {
@@ -23,6 +25,7 @@ const createUserWithCredentials: CreateUserWithCredentials = async ({ email, pas
       email: email.toLowerCase(),
       name,
       password: hashedPassword,
+      source_type: sourceType,
     });
 
     const savedUser = await newUser.save();

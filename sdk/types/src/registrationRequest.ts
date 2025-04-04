@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+export type RegistrationRequestStatus = 'pending' | 'accepted' | 'declined';
+
 export type RegistrationRequestReq = {
   name: string;
   email: string;
@@ -11,6 +13,7 @@ export type RegistrationRequestType = {
   email: string;
   message?: string;
   created_at: Date;
+  status: RegistrationRequestStatus;
 };
 
 export type RegistrationRequestFrontendType = {

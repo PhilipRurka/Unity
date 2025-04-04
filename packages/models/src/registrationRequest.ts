@@ -8,6 +8,7 @@ const RegistrationRequestSchema = new Schema<RegistrationRequestDocument>(
     email: { type: String },
     message: { type: String },
     created_at: { type: Date },
+    status: { type: String, enum: ['pending', 'accepted', 'declined'], default: 'pending' },
   },
   { timestamps: true }
 );
