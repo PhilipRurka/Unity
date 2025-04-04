@@ -29,6 +29,10 @@ const userSchema = new Schema<UserDocument>(
       enum: ['active', 'pending', 'disabled'],
       default: 'pending',
     },
+    source_type: {
+      type: String,
+      enum: ['manual', 'request'],
+    },
   },
   { timestamps: true }
 );

@@ -28,7 +28,7 @@ const AddUser = () => {
 
   const handleFormSubmit = async ({ email, name }: FormSchemaType) => {
     try {
-      await triggerAddUser({ email, name });
+      await triggerAddUser({ email, name, sourceType: 'manual' });
 
       setSuccess(true);
     } catch (err) {
