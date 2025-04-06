@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Table } from '@unity/components';
 import { ActivitiesBundleType } from '@unity/types';
@@ -8,11 +8,12 @@ import useActivities from '@/Hooks/useActivities';
 
 const UserActivities = () => {
   const [filteredList, setFilteredList] = useState<ActivitiesBundleType[]>([]);
-  const [activitiesdList, setActivitiesList] = useState<ActivitiesBundleType[]>([]);
 
   const { data: userActivities = [] } = useActivities();
 
-  const handleBundleList = () => {
+  const bundleList = useMemo(() => {
+    if (userActivities.length === 0) return [];
+
     const newList: ActivitiesBundleType[] = [];
 
     let latestDate: Date | undefined;
@@ -40,13 +41,7 @@ const UserActivities = () => {
       }
     }
 
-    setActivitiesList(newList);
-  };
-
-  useEffect(() => {
-    if (userActivities.length !== 0) {
-      handleBundleList();
-    }
+    return newList;
   }, [userActivities]);
 
   // TODO: Remove this type any
@@ -61,7 +56,7 @@ const UserActivities = () => {
       <Table
         gridCols="grid-cols-user-activities"
         defaultFilterProperty="timestamp"
-        listForFilter={activitiesdList}
+        listForFilter={bundleList}
         handleFilterUpdateCallback={handleFilterChange}
       >
         <Table.Header>

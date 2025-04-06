@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button, ErrorSpan, Field, Form, Input, Label, TextButton } from '@unity/components';
+import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
 
 const FormSchema = z.object({
   email: z.string().email(),

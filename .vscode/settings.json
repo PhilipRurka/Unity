@@ -1,5 +1,8 @@
 
 {
+  "eslint.enable": true,
+  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -10,6 +13,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  
   "settings.cycle": [
     {
       "id": "zMode",

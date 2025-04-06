@@ -42,7 +42,6 @@ const DeclineRegistrationRequest = ({ requestId, email, name }: DeclineRegistrat
       setSuccess(true);
     } catch (err) {
       setError('There was an error!');
-      console.log(err);
     }
   };
 

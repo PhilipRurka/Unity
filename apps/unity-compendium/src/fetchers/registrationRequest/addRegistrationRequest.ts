@@ -17,6 +17,9 @@ const addRegistrationRequest: RegistrationRequest = async (data) => {
     error.status = res.status;
     return error;
   }
+
+  const response = await res.json();
+  return response;
 };
 
 export default addRegistrationRequest;

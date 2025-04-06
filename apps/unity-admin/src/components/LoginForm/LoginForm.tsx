@@ -37,6 +37,7 @@ const LoginForm = () => {
 
       router.replace('dashboard');
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };

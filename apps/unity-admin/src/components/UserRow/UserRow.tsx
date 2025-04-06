@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
-import { Button, MenuIcon, Table } from '@unity/components';
+import { MenuIcon, Table } from '@unity/components';
 import type { UserBasicFrontendType } from '@unity/types';
 
 import Pill from '@/Components/Pill';

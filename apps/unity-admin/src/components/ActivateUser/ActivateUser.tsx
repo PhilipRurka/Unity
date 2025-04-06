@@ -45,7 +45,6 @@ const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps)
       setSuccess(true);
     } catch (err) {
       setError('There was an error!');
-      console.log(err);
     }
   };
 

@@ -44,7 +44,7 @@ const AlgoliaHit = ({ hit, query }: AlgoliaHitProps) => {
     const count = instanceCount(hit._highlightResult?.content.value);
 
     setExactResults(count);
-  }, [hit]);
+  }, [hit, query]);
 
   useEffect(() => {
     handleUpdateHitValue(false);

@@ -43,6 +43,7 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
 
         handleIsEditToggle(false);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     };
