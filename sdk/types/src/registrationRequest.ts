@@ -14,6 +14,7 @@ export type RegistrationRequestType = {
   message?: string;
   created_at: Date;
   status: RegistrationRequestStatus;
+  reason_for_decline?: string;
 };
 
 export type RegistrationRequestFrontendType = {
@@ -22,6 +23,14 @@ export type RegistrationRequestFrontendType = {
   email: string;
   message: string;
   createdAt: Date;
+  status: RegistrationRequestStatus;
+  reasonForDecline?: string;
 };
 
 export type RegistrationRequestDocument = mongoose.Document & RegistrationRequestType;
+
+export type RegistrationRequestStatusChange = {
+  id: string;
+  status: RegistrationRequestStatus;
+  reasonForDecline?: string;
+};

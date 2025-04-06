@@ -28,6 +28,7 @@ export type UserBasicFrontendType = {
   createdAt: Date;
   lastActive: Date | null;
   status: UserStatus;
+  sourceType: UserSourceType;
 };
 
 export type AddUserReq = {
