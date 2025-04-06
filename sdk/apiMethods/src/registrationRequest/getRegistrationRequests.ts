@@ -17,7 +17,7 @@ const getRegistrationRequests: GetRegistrationRequestType = async () => {
   try {
     await connectToDatabase();
 
-    const users = await RegistrationRequestModel.find(
+    const requests = await RegistrationRequestModel.find(
       {},
       {
         _id: 0,
@@ -25,11 +25,12 @@ const getRegistrationRequests: GetRegistrationRequestType = async () => {
         name: 1,
         email: 1,
         message: 1,
-        createdAt: '$created_at',
+        createdAt: 1,
+        status: 1,
       }
     ).exec();
 
-    response = [{ result: users }, { status: 200 }];
+    response = [{ result: requests }, { status: 200 }];
   } catch (err) {
     const error = err as CatchError;
 

@@ -20,11 +20,11 @@ const getUser: GetUserType = async (userId) => {
     await connectToDatabase();
 
     const rawUser = await UserLogsModel.findOne({ user_id: userObjectId })
-      .populate({ path: 'user_id', select: 'name email created_at status last_active' })
+      .populate({ path: 'user_id', select: 'name email created_at status last_active source_type' })
       .exec();
 
     const {
-      user_id: { created_at: createdAt, email, last_active: lastActive, name, status },
+      user_id: { created_at: createdAt, email, last_active: lastActive, name, status, source_type: sourceType },
       logs,
     } = rawUser;
 
@@ -36,6 +36,7 @@ const getUser: GetUserType = async (userId) => {
       name,
       status,
       id: userId,
+      sourceType,
     };
 
     response = [{ result: user }, { status: 200 }];

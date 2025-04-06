@@ -5,7 +5,7 @@ type LabelProps = HTMLProps<HTMLLabelElement> & {
 };
 
 const Label = ({ children, ...rest }: LabelProps) => (
-  <label className="block text-sm font-medium text-gray-900 dark:text-white" {...rest}>
+  <label className="block text-sm font-medium text-gray-900" {...rest}>
     {children}
   </label>
 );

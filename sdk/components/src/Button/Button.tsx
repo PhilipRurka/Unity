@@ -16,7 +16,7 @@ type ButtonProps = ButtonContentProps & {
 type ButtonDefaultProps = {
   size: 'small' | 'medium' | 'large';
   children: React.ReactNode;
-  color: 'black' | 'red' | 'green';
+  color: 'black' | 'red' | 'green' | 'amber';
   isFull?: boolean;
   onClick?: () => void;
   type?: HTMLButtonElement['type'];
@@ -86,7 +86,11 @@ const ButtonContent = (props: ButtonContentProps) => {
 
         colorTheme === 'green-full' && 'border-green-500 bg-green-500 text-white hover:bg-white hover:text-green-500',
         colorTheme === 'green-inverted' &&
-          'border-green-500 bg-white text-green-500 hover:bg-green-500 hover:text-white'
+          'border-green-500 bg-white text-green-500 hover:bg-green-500 hover:text-white',
+
+        colorTheme === 'amber-full' && 'border-amber-500 bg-amber-500 text-white hover:bg-white hover:text-amber-500',
+        colorTheme === 'amber-inverted' &&
+          'border-amber-500 bg-white text-amber-500 hover:bg-amber-500 hover:text-white'
       )}
       onClick={onClick}
       disabled={disabled}

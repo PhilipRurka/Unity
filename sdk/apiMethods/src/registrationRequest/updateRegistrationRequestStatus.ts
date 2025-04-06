@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
 
 import { RegistrationRequestModel } from '@unity/models';
-import type { ApiMethodResponsePromise, ErrorGetType, RegistrationRequestStatus, SuccessGetType } from '@unity/types';
+import type {
+  ApiMethodResponsePromise,
+  ErrorGetType,
+  RegistrationRequestStatusChange,
+  SuccessGetType,
+} from '@unity/types';
 
 import { addUser } from '../user';
 import connectToDatabase from '../utils/connectToDatabase';
@@ -11,11 +16,14 @@ type CatchError = {
 };
 
 type UpdateRegistrationRequestStatus = (
-  requestId: string,
-  reqData: { status: RegistrationRequestStatus }
+  param: RegistrationRequestStatusChange
 ) => ApiMethodResponsePromise<{ message: string }>;
 
-const updateRegistrationRequestStatus: UpdateRegistrationRequestStatus = async (requestId, { status }) => {
+const updateRegistrationRequestStatus: UpdateRegistrationRequestStatus = async ({
+  id: requestId,
+  status,
+  reasonForDecline,
+}) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -31,6 +39,7 @@ const updateRegistrationRequestStatus: UpdateRegistrationRequestStatus = async (
       { _id: userObjectId },
       {
         status,
+        reason_for_decline: reasonForDecline,
       }
     );
 

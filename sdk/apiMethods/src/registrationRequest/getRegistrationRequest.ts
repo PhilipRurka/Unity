@@ -19,17 +19,23 @@ const getRegistrationRequest: GetRegistrationRequest = async (requestId) => {
 
     await connectToDatabase();
 
-    const requestData = await RegistrationRequestModel.findOne(
-      { _id: requestObjectId },
+    const [requestData] = await RegistrationRequestModel.aggregate([
       {
-        _id: 0,
-        id: '$_id',
-        name: 1,
-        email: 1,
-        message: 1,
-        createdAt: '$created_at',
-      }
-    ).exec();
+        $match: { _id: requestObjectId },
+      },
+      {
+        $project: {
+          _id: 0,
+          id: '$_id',
+          name: 1,
+          email: 1,
+          message: 1,
+          createdAt: 1,
+          status: 1,
+          reasonForDecline: '$reason_for_decline',
+        },
+      },
+    ]);
 
     response = [{ result: requestData }, { status: 200 }];
   } catch (err) {
