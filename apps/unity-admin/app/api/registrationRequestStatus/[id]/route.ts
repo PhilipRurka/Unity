@@ -22,7 +22,7 @@ export const PUT = async (req: NextRequest, context: Context) => {
 
   const reqData: ReqData = await req.json();
 
-  const [data, status] = await updateRegistrationRequestStatus(requestId, reqData);
+  const [data, status] = await updateRegistrationRequestStatus({ id: requestId, ...reqData });
 
   return NextResponse.json(data, status);
 };

@@ -37,7 +37,7 @@ const tailwindConfig = {
         "user-logs": "8rem, 1fr",
         "user-activities": "8rem, 1fr",
         "activity-bundle": "6rem, 1fr",
-        "registration-request": "10rem, 1fr, 2rem",
+        "registration-request": "10rem, 1fr, 1fr, 2rem",
       },
       rotate: {
         "opened-accordion-triangle": "61deg",
