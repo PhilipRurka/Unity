@@ -1,9 +1,9 @@
 import type { FetchErrorType, RegistrationRequestReq } from '@unity/types';
 
-type RegistrationRequest = (data: RegistrationRequestReq) => void;
+type RegistrationRequest = (data: RegistrationRequestReq) => Promise<void | FetchErrorType>;
 
 const addRegistrationRequest: RegistrationRequest = async (data) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequest`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequest`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -11,11 +11,11 @@ const addRegistrationRequest: RegistrationRequest = async (data) => {
     body: JSON.stringify({ ...data }),
   });
 
-  if (!response.ok) {
+  if (!res.ok) {
     const error: FetchErrorType = new Error('An error occurred while adding a new registration request');
-    error.info = await response.json();
-    error.status = response.status;
-    throw error;
+    error.info = await res.json();
+    error.status = res.status;
+    return error;
   }
 };
 

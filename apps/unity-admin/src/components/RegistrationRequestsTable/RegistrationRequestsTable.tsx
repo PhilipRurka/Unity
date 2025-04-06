@@ -18,6 +18,7 @@ const RegistrationRequestsTable = () => {
         <Table.Header>
           <Table.Heading property="createdAt">requested At</Table.Heading>
           <Table.Heading property="name">Name</Table.Heading>
+          <Table.Heading property="source-type">Source Type</Table.Heading>
         </Table.Header>
         <Table.Content>
           <>

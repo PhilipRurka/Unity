@@ -51,8 +51,8 @@ const Login = () => {
 
   return (
     <div data-component="cLogin" className="sm:px-8">
-      <div className="mx-auto mt-16 w-full space-y-8 bg-white bg-opacity-90 p-6 pt-12 shadow-xl sm:max-w-xl sm:rounded-lg sm:p-8 dark:bg-gray-800">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Sign in</h2>
+      <div className="mx-auto mt-16 w-full space-y-8 bg-white bg-opacity-90 p-6 pt-12 shadow-xl sm:max-w-xl sm:rounded-lg sm:p-8">
+        <h2 className="text-2xl font-bold text-gray-900">Sign in</h2>
         <Form onSubmit={handleSubmit(handleFormSubmit)}>
           <Field>
             <Label htmlFor="email">Email</Label>
@@ -64,6 +64,7 @@ const Login = () => {
             <Input id="password" type="password" showErrorStyles={!!errors.password} {...register('password')} />
             {errors.password && <ErrorSpan>{errors.password.message}</ErrorSpan>}
           </Field>
+          <span className="mt-6 text-red-600">{error}</span>
           <div className="flex gap-4">
             <Button color="green" isFull type="submit" size="medium">
               Login
@@ -71,12 +72,11 @@ const Login = () => {
             <Button color="black" type="button" link="/reset-password" size="medium">
               Reset Password
             </Button>
+            <Button link="/registration-request" color="amber" size="medium">
+              Registration
+            </Button>
           </div>
-          <TextButton type="button" link="/registration-request" color="amber">
-            Request Registration
-          </TextButton>
         </Form>
-        <span className="mt-6 text-red-600">{error}</span>
       </div>
     </div>
   );

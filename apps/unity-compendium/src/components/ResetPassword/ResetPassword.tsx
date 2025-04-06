@@ -38,9 +38,9 @@ const ResetPassword = () => {
   return (
     <div
       data-component="ResetPassword"
-      className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8 dark:bg-gray-800"
+      className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8"
     >
-      <h2 className="inline text-2xl font-bold text-gray-900 dark:text-white">
+      <h2 className="inline text-2xl font-bold text-gray-900">
         Reset Password{emailSent && <span className="inline text-green-700"> was sent!!</span>}
       </h2>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>

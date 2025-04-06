@@ -4,7 +4,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-const authPaths = ['/login', '/reset-password'];
+const authPaths = ['/login', '/reset-password', '/registration-request'];
 
 export default async function middleware(req: NextRequest) {
   try {
@@ -37,5 +37,5 @@ export default async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/login', '/reset-password', '/articles/:path*'],
+  matcher: ['/login', '/registration-request', '/reset-password', '/articles/:path*'],
 };

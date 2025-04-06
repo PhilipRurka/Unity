@@ -40,7 +40,7 @@ const RootLayout = ({ children }: RootLayoutProps) => (
   <html lang="en">
     <body
       className={clsx(
-        'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden pt-16 text-ocean-blue',
+        'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden bg-white pt-16 text-ocean-blue',
         lexend.variable,
         montserrat.variable
       )}

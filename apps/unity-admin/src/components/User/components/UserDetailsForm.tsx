@@ -80,6 +80,16 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
               className="inline-block read-only:border-0 read-only:bg-transparent read-only:outline-none read-only:ring-transparent read-only:focus:border-0"
             />
           </Field>
+          <Field>
+            <Label>Source Type</Label>
+            <Input
+              type="text"
+              readOnly
+              isInlineWithContent
+              defaultValue={user.sourceType}
+              className="inline-block read-only:border-0 read-only:bg-transparent read-only:outline-none read-only:ring-transparent read-only:focus:border-0"
+            />
+          </Field>
         </div>
 
         <button ref={submitButtonRef} type="submit" />

@@ -9,7 +9,7 @@ const useRegistrationRequest = () => {
   const pathname = usePathname();
   const requestId = pathname.replace('/registration-request/', '');
 
-  const response = useSWR<RegistrationRequestFrontendType>('registrationRequest', () =>
+  const response = useSWR<RegistrationRequestFrontendType>(`registrationRequest-${requestId}`, () =>
     getRegistrationRequest(requestId)
   );
 

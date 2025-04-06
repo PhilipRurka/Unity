@@ -19,14 +19,22 @@ type FormSchemaType = z.infer<typeof FormSchema>;
 
 const RegistrationRequest = () => {
   const [requestSent, setRequestSent] = useState(false);
+  const [isEmailBeingUsed, setIsEmailBeingUsed] = useState(false);
 
-  const handleFormSubmit = ({ email, message, name }: FormSchemaType) => {
-    addRegistrationRequest({ email, message, name });
+  const handleFormSubmit = async ({ email, message, name }: FormSchemaType) => {
+    const response = await addRegistrationRequest({ email, message, name });
+
+    if (response && 'status' in response && response.status === 409) {
+      setIsEmailBeingUsed(true);
+      return;
+    }
+
     setRequestSent(true);
   };
 
   const handleInputChange = () => {
     setRequestSent(false);
+    setIsEmailBeingUsed(false);
   };
 
   const {
@@ -40,11 +48,9 @@ const RegistrationRequest = () => {
   return (
     <div
       data-component="RegistrationRequest"
-      className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8 dark:bg-gray-800"
+      className="mx-auto mt-16 w-full space-y-8 rounded-lg bg-white bg-opacity-90 p-6 shadow-xl sm:max-w-xl sm:p-8"
     >
-      <h2 className="inline text-2xl font-bold text-gray-900 dark:text-white">
-        Request Registration{requestSent && <span className="inline text-green-700"> was sent!!</span>}
-      </h2>
+      <h2 className="inline text-2xl font-bold text-gray-900">Request Registration</h2>
       <p>
         Submit your name, email, and a brief message (if we haven’t met before) to register on the platform. After
         submitting, you’ll receive an email within a few days with instructions to access the platform.
@@ -83,6 +89,8 @@ const RegistrationRequest = () => {
           />
           {errors.message && <ErrorSpan>{errors.message.message}</ErrorSpan>}
         </Field>
+        {requestSent && <span className="text-lg text-green-700">Emai was sent!!</span>}
+        {isEmailBeingUsed && <span className="text-lg text-red-600 "> Email is already being used!</span>}
         <div className="flex gap-4">
           <Button color="green" isFull type="submit" disabled={requestSent} size="medium">
             Request Registration

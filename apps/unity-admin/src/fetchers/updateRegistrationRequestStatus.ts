@@ -1,15 +1,15 @@
-import type { FetchErrorType, RegistrationRequestStatus } from '@unity/types';
+import type { FetchErrorType, RegistrationRequestStatusChange } from '@unity/types';
 
-type GetUsersType = (param: { requestId: string; status: RegistrationRequestStatus }) => Promise<void>;
+type UpdateRegistrationRequestStatus = (param: RegistrationRequestStatusChange) => Promise<void>;
 
-const updateRegistrationRequestStatus: GetUsersType = async ({ requestId, status }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequestStatus/${requestId}`, {
+const updateRegistrationRequestStatus: UpdateRegistrationRequestStatus = async ({ id, status, reasonForDecline }) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/registrationRequestStatus/${id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
     },
     cache: 'no-store',
-    body: JSON.stringify({ status }),
+    body: JSON.stringify({ status, reasonForDecline }),
   });
 
   if (!res.ok) {

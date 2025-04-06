@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { formatDate } from 'src/utils';
 
@@ -18,14 +19,6 @@ type MenuStatusAction = {
 };
 
 const UserRow = ({ user }: UserRowProps) => {
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleMenu = (shouldOpen: boolean) => {
-    setIsMenuOpen(shouldOpen);
-  };
-
   const statusObj = (): MenuStatusAction => {
     if (user.status === 'active') {
       return { color: 'green', statusCopy: 'Active' };
@@ -42,24 +35,6 @@ const UserRow = ({ user }: UserRowProps) => {
     return { color: 'red', statusCopy: 'Opps' };
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isMenuOpen]);
-
   return (
     <div data-component="UserRow">
       <Table.Row>
@@ -73,27 +48,11 @@ const UserRow = ({ user }: UserRowProps) => {
         <Table.Data>{user.lastActive ? formatDate(user.lastActive) : ''}</Table.Data>
         <Table.Data>{formatDate(user.createdAt)}</Table.Data>
         <Table.Data>
-          <div ref={menuRef} className="relative">
+          <div className="relative">
             {user.name !== 'Philip Rurka' && (
-              <>
-                <button onClick={() => handleMenu(!isMenuOpen)}>
-                  <MenuIcon size="8" />
-                </button>
-                {isMenuOpen && (
-                  <div className="absolute bottom-full right-0 flex flex-col gap-4 bg-gray-100 p-4">
-                    <Button
-                      link={`/users/${user.id}`}
-                      color="black"
-                      isFull
-                      size="small"
-                      icon="edit"
-                      iconPosition="left"
-                    >
-                      Details
-                    </Button>
-                  </div>
-                )}
-              </>
+              <Link href={`/users/${user.id}`}>
+                <MenuIcon size="8" />
+              </Link>
             )}
           </div>
         </Table.Data>
