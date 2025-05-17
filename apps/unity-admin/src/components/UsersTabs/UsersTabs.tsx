@@ -5,11 +5,11 @@ import RegistrationRequestsTable from '../RegistrationRequestsTable';
 import UsersFilter from '../UsersFilter';
 import UsersTable from '../UsersTable';
 
-const UserTableTabs = () => {
+const UsersTabs = () => {
   const { data: usersList = [] } = useUsers();
 
   return (
-    <div data-component="UserTableTabs" className="mt-16">
+    <div data-component="UsersTabs">
       <Tabs defaultView="active">
         <Tabs.Header>
           <Tabs.Heading view="active">Active Users</Tabs.Heading>
@@ -31,4 +31,4 @@ const UserTableTabs = () => {
   );
 };
 
-export default UserTableTabs;
+export default UsersTabs;

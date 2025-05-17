@@ -55,7 +55,7 @@ const ResetPassword = () => {
           />
           {errors.email && <ErrorSpan>{errors.email.message}</ErrorSpan>}
         </Field>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <Button color="green" isFull type="submit" disabled={emailSent} size="medium">
             Reset
           </Button>

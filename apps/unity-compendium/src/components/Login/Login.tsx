@@ -65,7 +65,7 @@ const Login = () => {
             {errors.password && <ErrorSpan>{errors.password.message}</ErrorSpan>}
           </Field>
           <span className="mt-6 text-red-600">{error}</span>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <Button color="green" isFull type="submit" size="medium">
               Login
             </Button>

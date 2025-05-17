@@ -8,7 +8,7 @@ type UpdateStatusProps = {
 
 type UpdateStatusType = (props: UpdateStatusProps) => Promise<void>;
 
-const UpdateStatus: UpdateStatusType = async ({ userId, reason, newStatus }) => {
+const updateStatus: UpdateStatusType = async ({ userId, reason, newStatus }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/status/${userId}`, {
     method: 'PUT',
     headers: {
@@ -32,4 +32,4 @@ const UpdateStatus: UpdateStatusType = async ({ userId, reason, newStatus }) => 
   return response.result;
 };
 
-export default UpdateStatus;
+export default updateStatus;
