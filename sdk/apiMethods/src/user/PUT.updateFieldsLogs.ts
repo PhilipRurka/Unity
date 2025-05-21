@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 import { UserLogsModel, UserModel } from '@unity/models';
-import type { ApiMethodResponsePromise, ErrorGetType, SuccessGetType, UpdatedFieldLogType } from '@unity/types';
+import type { ApiMethodResponsePromise, ErrorGetType, LogType, SuccessGetType } from '@unity/types';
 
 import connectToDatabase from '../utils/connectToDatabase';
 
@@ -9,12 +9,9 @@ type CatchError = {
   message: string;
 };
 
-type UpdateEditUserLogs = (
-  userId: string,
-  reqData: UpdatedFieldLogType['fields']
-) => ApiMethodResponsePromise<{ message: string }>;
+type UpdateEditUserLogs = (userId: string, log: LogType) => ApiMethodResponsePromise<{ message: string }>;
 
-const updateEditUserLogs: UpdateEditUserLogs = async (userId, fields) => {
+const updateEditUserLogs: UpdateEditUserLogs = async (userId, log) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -37,14 +34,7 @@ const updateEditUserLogs: UpdateEditUserLogs = async (userId, fields) => {
         user_id: userObjectId,
       },
       {
-        $push: {
-          logs: {
-            type: 'updatedField',
-            fields,
-            test: 'hey',
-            timestamp: new Date(),
-          },
-        },
+        $push: { logs: log },
       },
       { runValidators: true, strict: true }
     );

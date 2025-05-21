@@ -12,7 +12,7 @@ type CatchError = {
 
 type EditUser = (userId: string, reqData: EditUserReq) => ApiMethodResponsePromise<{ message: string }>;
 
-const editUser: EditUser = async (userId, { fields }) => {
+const editUser: EditUser = async (userId, { log, toUpdate }) => {
   let response: SuccessGetType<{ message: string }> | ErrorGetType;
 
   try {
@@ -27,14 +27,14 @@ const editUser: EditUser = async (userId, { fields }) => {
     const preUpdatedUser: UserType | null = await UserModel.findOneAndUpdate(
       { _id: userObjectId },
       {
-        name: fields[0].to,
+        ...toUpdate,
       },
       { returnDocument: 'before' }
     );
 
     if (!preUpdatedUser) throw Error('User Not Found in editUser apiMethods');
 
-    await updateEditUserLogs(userId, fields);
+    await updateEditUserLogs(userId, log);
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {

@@ -12,3 +12,6 @@
 - Implement the "Request for Registration" which will not only show the request in the admin, but also email me.
 
 - Work in the Homepage of the Admin. Perhaps added up users and their status, how many missing, links, unerlines, wether or not algolia is outdated (based on last time it has been updated, vs when the last time the others were updated.), Perhaps have some sort of integrety percentage, donno.
+
+Important!!!
+If there is already a request with a given email or name, mention the email is either already requested or used and for the name, mention that it is already being used. Create indexing for the name and email property in db

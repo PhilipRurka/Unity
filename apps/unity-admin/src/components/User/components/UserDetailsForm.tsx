@@ -7,7 +7,7 @@ import z from 'zod';
 import { Field, Form, Input, Label } from '@unity/components';
 import { UserBasicFrontendType } from '@unity/types';
 
-import UpdateUser from '@/Fetchers/updateUser';
+import updateUser from '@/Fetchers/updateUser';
 
 type UserDetailsFormProps = {
   handleIsEditToggle: (shouldIsEditModel: boolean) => void;
@@ -27,15 +27,20 @@ const UserDetailsForm = forwardRef<HTMLButtonElement, UserDetailsFormProps>(
   ({ isEditState, handleIsEditToggle, user }, submitButtonRef) => {
     const handleFormSubmit: HandleFormSubmit = async ({ name }) => {
       try {
-        await UpdateUser({
+        await updateUser({
           userId: user.id,
-          fields: [
-            {
-              property: 'name',
-              from: user.name,
-              to: name,
-            },
-          ],
+          toUpdate: { name },
+          log: {
+            type: 'updatedField',
+            fields: [
+              {
+                property: 'name',
+                from: user.name,
+                to: name,
+              },
+            ],
+            timestamp: new Date(),
+          },
         });
 
         mutate(`user-${user.id}`);

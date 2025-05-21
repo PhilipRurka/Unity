@@ -38,7 +38,11 @@ export type AddUserReq = {
 };
 
 export type EditUserReq = {
-  fields: UpdatedFieldLogType['fields'];
+  toUpdate: {
+    name?: string;
+    status?: UserStatus;
+  };
+  log: LogType;
 };
 
 export type UpdateActiveLastReq = {
@@ -95,12 +99,6 @@ export type UserLogs = {
 export type UserLogsFrontendType = { logs: LogType[] };
 
 export type UserLogsDocument = Document & UserLogs;
-
-export type UserStatusChangeReq = {
-  userId: string;
-  newStatus: UserStatus;
-  reason: string;
-};
 
 declare module 'next-auth' {
   interface Session {

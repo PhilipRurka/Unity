@@ -6,9 +6,8 @@ import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
-import { UserStatusChangeReq } from '@unity/types';
 
-import updateStatus from '@/Fetchers/updateStatus';
+import updateUser, { UpdateUserParams } from '@/Fetchers/updateUser';
 
 const FormSchema = z.object({
   reason: z.string(),
@@ -23,9 +22,9 @@ type DisableUserProps = {
   name?: string;
 };
 
-type DisableUserMutation = (key: string, change: { arg: UserStatusChangeReq }) => void;
+type DisableUserMutation = (key: string, change: { arg: UpdateUserParams }) => void;
 
-const disableUser: DisableUserMutation = (_key, { arg }) => updateStatus(arg);
+const disableUser: DisableUserMutation = (_key, { arg }) => updateUser(arg);
 
 const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) => {
   const [error, setError] = useState<string | null>(null);
@@ -40,9 +39,14 @@ const DisableUser = ({ userId = '', email = '', name = '' }: DisableUserProps) =
     }
 
     try {
-      await triggerDisableUser({ userId, newStatus: 'disabled', reason });
+      await triggerDisableUser({
+        userId,
+        toUpdate: { status: 'disabled' },
+        log: { type: 'statusChange', from: 'active', timestamp: new Date(), to: 'disabled', reason },
+      });
 
       mutate(`user-${userId}`);
+      mutate(`userLogs-${userId}`);
 
       setError(null);
       setSuccess(true);

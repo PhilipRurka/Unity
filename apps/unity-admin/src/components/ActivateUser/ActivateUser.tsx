@@ -1,13 +1,13 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { mutate } from 'swr';
 import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
 
 import { Button, ErrorSpan, Field, Form, Input, Label } from '@unity/components';
-import { UserStatusChangeReq } from '@unity/types';
 
-import UpdateStatus from '@/Fetchers/updateStatus';
+import updateUser, { UpdateUserParams } from '@/Fetchers/updateUser';
 
 const FormSchema = z.object({
   reason: z.string(),
@@ -22,9 +22,9 @@ type ActivateUserProps = {
   name?: string;
 };
 
-type ActivateUserMutation = (key: string, change: { arg: UserStatusChangeReq }) => void;
+type ActivateUserMutation = (key: string, change: { arg: UpdateUserParams }) => void;
 
-const activateUser: ActivateUserMutation = (_key, { arg }) => UpdateStatus(arg);
+const activateUser: ActivateUserMutation = (_key, { arg }) => updateUser(arg);
 
 const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps) => {
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +39,14 @@ const ActivateUser = ({ userId = '', email = '', name = '' }: ActivateUserProps)
     }
 
     try {
-      await triggerActivateUser({ userId, newStatus: 'active', reason });
+      await triggerActivateUser({
+        userId,
+        toUpdate: { status: 'active' },
+        log: { type: 'statusChange', from: 'disabled', timestamp: new Date(), to: 'active', reason },
+      });
+
+      mutate(`user-${userId}`);
+      mutate(`userLogs-${userId}`);
 
       setError(null);
       setSuccess(true);
