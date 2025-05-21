@@ -35,6 +35,12 @@ export const PUT = async (req: NextRequest) => {
 
     case 'link placement':
       builtlinkPlacement = await buildLinkPlacement();
+
+      if (builtlinkPlacement.length === 0) {
+        toolsToUpdate = {
+          last_link_placement_update: new Date(),
+        };
+      }
       break;
 
     case 'hierarchy links':
@@ -53,6 +59,9 @@ export const PUT = async (req: NextRequest) => {
         ...algoliaObj,
         ...incompleteObj,
         ...hierarchyObj,
+        ...(builtlinkPlacement.length === 0 && {
+          last_link_placement_update: new Date(),
+        }),
       };
 
       break;
