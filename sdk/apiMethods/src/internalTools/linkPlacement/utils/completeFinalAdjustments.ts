@@ -12,13 +12,7 @@ import patternKeywordsContent from './patternKeywordsContent';
 const completeFinalAdjustments = (articles: ReStructureForArticleLinkCheck, listOfKeywordLinks: ListOfKeywordLinks) => {
   const articlesKeywordsCheck: ArticlesKeywordsCheck[] = [];
   const listOfSlugs = listOfKeywordLinks.map(({ slug }) => slug);
-  const listOfArticleSlugs = articles.map(({ slug }) => {
-    if (slug === 'kitnapana') {
-      debugger;
-    }
-
-    return slug;
-  });
+  const listOfArticleSlugs = articles.map(({ slug }) => slug);
 
   articles.forEach(({ id, slug: articleSlug, sections }) => {
     const finalListOfMissPlacedLinks: TrackedKeyword[] = [];
