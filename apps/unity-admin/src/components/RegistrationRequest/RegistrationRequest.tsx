@@ -37,7 +37,6 @@ const RegistrationRequest = () => {
         handleModalToggle={handleModalToggle}
         requestData={requestData}
       />
-      handleStatusAccepted
       <h1 className="text-5xl">Registration Request</h1>
       <div className="mt-10 flex flex-col gap-6">
         <div>
