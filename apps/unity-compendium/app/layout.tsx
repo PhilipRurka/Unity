@@ -4,7 +4,6 @@ import { Lexend, Montserrat } from 'next/font/google';
 
 import '@unity/styles/global.css';
 
-import AddedHead from '@/Components/AddedHead';
 import HeaderServer from '@/Components/Header/HeaderServer';
 import HierarchyNav from '@/Components/HierarchyNav';
 import SearchModal from '@/Components/SearchModal';
@@ -123,6 +122,37 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CreativeWorkSeries',
+      name: 'Unity Compendium',
+      description: 'Immerse yourself in a meticulously crafted fantasy world...',
+      author: { '@type': 'Person', name: 'Philip Rurka' },
+      creator: { '@type': 'Person', name: 'Philip Rurka' },
+      publisher: { '@type': 'Person', name: 'Philip Rurka' },
+      genre: 'Fantasy',
+      keywords: ['fantasy', 'world-building', 'lore', 'Unity Compendium'],
+      inLanguage: 'en-US',
+      url: 'https://www.unitystory.info',
+      image: 'https://www.unitystory.info/unity-logo.png',
+      mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://www.unitystory.info' },
+    },
+    {
+      '@type': 'WebSite',
+      url: 'https://www.unitystory.info',
+      name: 'Unity Compendium',
+    },
+    {
+      '@type': 'Organization',
+      name: 'Unity Compendium',
+      url: 'https://www.unitystory.info',
+      logo: 'https://www.unitystory.info/unity-logo.png',
+    },
+  ],
+};
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -138,7 +168,9 @@ type RootLayoutProps = {
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <AddedHead />
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      </head>
       <body
         className={clsx(
           'hide-scrollbar relative h-full min-h-screen w-screen overflow-x-hidden bg-layout bg-cover bg-fixed bg-bottom bg-no-repeat text-ocean-blue',
