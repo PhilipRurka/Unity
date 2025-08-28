@@ -28,7 +28,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Unity Compendium',
+  metadataBase: new URL('https://www.admin.unitystory.info'),
+  title: 'Unity Admin',
   robots: 'noindex, nofollow',
 };
 
