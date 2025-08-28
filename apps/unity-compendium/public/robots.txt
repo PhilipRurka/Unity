@@ -1,10 +1,10 @@
 # Prevent search engines from indexing the admin subdomain
 User-agent: *
-Disallow: https://admin.unitystory.info/
+Disallow: https://www.admin.unitystory.info/
 
 # Allow search engines to crawl everything else on the main domain
 User-agent: *
 Allow: /
 
 # Sitemap location for the main site
-Sitemap: https://unitystory.info/sitemap.xml
+Sitemap: https://www.unitystory.info/sitemap.xml

@@ -17,11 +17,11 @@ const AddedHead = () => (
           keywords: 'fantasy, world-building, lore, Unity Compendium',
           genre: 'Fantasy',
           inLanguage: 'en-US',
-          url: 'https://unitystory.info',
-          image: 'https://unitystory.info/unity-logo.png',
+          url: 'https://www.unitystory.info',
+          image: 'https://www.unitystory.info/unity-logo.png',
           mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': 'https://unitystory.info',
+            '@id': 'https://www.unitystory.info',
           },
         }),
       }}

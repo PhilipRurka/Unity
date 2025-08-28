@@ -76,7 +76,7 @@ const userResetPasswordemailTemplate = (email: string, password: string) => ({
             </p>
           </div>
           <a
-            href='https://unitystory.info'
+            href='https://www.unitystory.info'
             class="button"
             style='color: #ffffff'
           >

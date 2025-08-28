@@ -75,7 +75,7 @@ const userRegistrationemailTemplate = (email: string, password: string) => ({
             <p class="password-label">This is your password to log in:</p>
             <p class="password">${password}</p>
           </div>
-          <a href='https://unitystory.info' class="button">Are you ready?</a>
+          <a href='https://www.unitystory.info' class="button">Are you ready?</a>
         </div>
       </body>
       </html>
