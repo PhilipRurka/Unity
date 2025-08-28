@@ -4,6 +4,8 @@
   "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
 
   "editor.formatOnSave": true,
+  "prettier.ignorePath": "packages/prettier-config/.prettierignore",
+
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
