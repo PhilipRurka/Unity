@@ -3,38 +3,40 @@ import { TypeHierarchyLayoutWithoutUnresolvableLinksResponse } from '@unity/type
 type Entry = {
   fields: {
     entryTitle: string;
-    link: { fields: { slug?: string; id?: string } };
+    link: { fields: { slug?: string; text?: string } };
     childrenLinks?: Entry[];
   };
 };
 
-type MapEntry = {
-  parents: { title: string; slug?: string }[];
-  children: { title: string; slug?: string }[];
+export type MapEntry = {
+  parents: { text?: string; slug?: string; title: string }[];
+  children: { text?: string; slug?: string; title: string }[];
 };
 
 const buildMap = (data: TypeHierarchyLayoutWithoutUnresolvableLinksResponse[]): Record<string, MapEntry> => {
   const { links } = data[0].fields;
   const map: Record<string, MapEntry> = {};
 
-  const traverse = (node: Entry, parents: { title: string; slug?: string }[] = []) => {
+  const traverse = (node: Entry, parents: { slug?: string; text?: string; title: string }[] = []) => {
     const { entryTitle, link, childrenLinks = [] } = node.fields;
     if (!link) return;
-    const { slug } = link.fields;
+    const { slug, text } = link.fields;
 
-    if (!slug) return;
+    if (!slug && !text) return;
 
     const currentParents = [...parents];
     const children = childrenLinks.map((child) => ({
       title: child.fields.entryTitle,
-      slug: child.fields.link.fields.slug || child.fields.link.fields.id,
+      slug: child.fields.link.fields.slug,
+      text: child.fields.link.fields.text,
     }));
 
-    // Add to the map
-    map[slug] = { parents: currentParents, children };
+    const key = slug || text;
+    if (!key) return;
 
-    // Recurse into children
-    childrenLinks.forEach((child) => traverse(child, [...currentParents, { title: entryTitle, slug }]));
+    map[key] = { parents: currentParents, children };
+
+    childrenLinks.forEach((child) => traverse(child, [...currentParents, { title: entryTitle, slug, text }]));
   };
 
   links.forEach((root: any) => traverse(root));

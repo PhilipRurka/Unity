@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { createContext, useEffect, useRef, useState } from 'react';
-import buildMap from 'src/utils/buildBreadcrumpMap';
+import buildMap, { MapEntry } from 'src/utils/buildBreadcrumpMap';
 
 import useContentModel from '@/Hooks/useContentModel';
 
@@ -13,6 +13,7 @@ type Context = {
   handleShouldBeOpen: (shouldBeOpen: boolean) => void;
   handleSlugListRandomization: (slugsList: string[]) => void;
   slugsList: string[];
+  breadcrumpMap: Record<string, MapEntry>;
 };
 
 export const HierarchyNavContext = createContext<Context>({
@@ -20,6 +21,7 @@ export const HierarchyNavContext = createContext<Context>({
   handleShouldBeOpen: () => {},
   handleSlugListRandomization: () => {},
   slugsList: [],
+  breadcrumpMap: {},
 });
 
 type HierarchyNavContextProps = {
@@ -34,6 +36,7 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
 
   const [isHierarchyNavOpen, setIsOpen] = useState(false);
   const [slugsList, setSlugsList] = useState<string[]>([]);
+  const [breadcrumpMap, setBreadcrumpMap] = useState<Record<string, MapEntry>>({});
 
   const handleShouldBeOpen = (shouldBeOpen: boolean) => {
     setIsOpen(shouldBeOpen);
@@ -48,21 +51,7 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
   useEffect(() => {
     if (!hierarchyDataArray) return;
     const result = buildMap(hierarchyDataArray);
-    console.log(result);
-
-    /**
-     * Loop through and create a map of keys to
-     *  {
-     *    parents: [{
-     *      title: string,
-     *      slug?: string,
-     *    }],
-     *    children: [{
-     *      title: string,
-     *      slug?: string,
-     *    }]
-     *  }
-     */
+    setBreadcrumpMap(result);
   }, [hierarchyDataArray]);
 
   useEffect(() => {
@@ -107,58 +96,9 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
     }
   }, [isHierarchyNavOpen]);
 
-  // const renderElement = (item: HierarchyLinkType) => {
-  //   if (!item) return null;
-
-  //   let linkPathname: string | undefined;
-  //   let value: string;
-
-  //   const { link, childrenLinks } = item.fields;
-
-  //   if (!link) return null;
-
-  //   if ('slug' in link.fields && 'title' in link.fields) {
-  //     const linkData = link as LinkType;
-
-  //     value = linkData.fields.title;
-  //     linkPathname = `/articles/${linkData.fields.slug}`;
-  //   } else {
-  //     const linkData = link as TextType;
-
-  //     value = linkData.fields.text;
-  //   }
-
-  //   return (
-  //     <div key={`RecursiveHierarchy-${value}`} className="pl-6">
-  //       {linkPathname ? (
-  //         <Link
-  //           className={clsx(
-  //             'relative text-blue-500 hover:text-blue-900',
-  //             'before:[""] before:absolute before:-left-3 before:top-3 before:h-px before:w-2 before:bg-black',
-  //             linkPathname === pathname ? 'text-blue-900' : 'text-blue-500'
-  //           )}
-  //           href={linkPathname}
-  //         >
-  //           {value}
-  //         </Link>
-  //       ) : (
-  //         <p
-  //           className={clsx(
-  //             'relative',
-  //             'before:[""] before:absolute before:-left-3 before:top-3 before:h-px before:w-2 before:bg-black'
-  //           )}
-  //         >
-  //           {value}
-  //         </p>
-  //       )}
-  //       {childrenLinks && childrenLinks.map((child: HierarchyLinkType | undefined) => child && renderElement(child))}
-  //     </div>
-  //   );
-  // };
-
   return (
     <HierarchyNavContext.Provider
-      value={{ isHierarchyNavOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList }}
+      value={{ isHierarchyNavOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList, breadcrumpMap }}
     >
       {children}
     </HierarchyNavContext.Provider>
