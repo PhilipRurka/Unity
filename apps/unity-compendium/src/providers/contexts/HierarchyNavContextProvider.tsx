@@ -2,6 +2,9 @@
 
 import { usePathname } from 'next/navigation';
 import { createContext, useEffect, useRef, useState } from 'react';
+import buildMap, { MapEntry } from 'src/utils/buildBreadcrumpMap';
+
+import useContentModel from '@/Hooks/useContentModel';
 
 import shuffleArray from '../../utils/shuffleArray';
 
@@ -10,6 +13,7 @@ type Context = {
   handleShouldBeOpen: (shouldBeOpen: boolean) => void;
   handleSlugListRandomization: (slugsList: string[]) => void;
   slugsList: string[];
+  breadcrumpMap: Record<string, MapEntry>;
 };
 
 export const HierarchyNavContext = createContext<Context>({
@@ -17,6 +21,7 @@ export const HierarchyNavContext = createContext<Context>({
   handleShouldBeOpen: () => {},
   handleSlugListRandomization: () => {},
   slugsList: [],
+  breadcrumpMap: {},
 });
 
 type HierarchyNavContextProps = {
@@ -27,8 +32,11 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
   const pathname = usePathname();
   const slugsListRef = useRef<string[]>();
 
+  const { data: hierarchyDataArray } = useContentModel('hierarchyLayout');
+
   const [isHierarchyNavOpen, setIsOpen] = useState(false);
   const [slugsList, setSlugsList] = useState<string[]>([]);
+  const [breadcrumpMap, setBreadcrumpMap] = useState<Record<string, MapEntry>>({});
 
   const handleShouldBeOpen = (shouldBeOpen: boolean) => {
     setIsOpen(shouldBeOpen);
@@ -39,6 +47,12 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
     setSlugsList(shuffledArray);
     slugsListRef.current = shuffledArray;
   };
+
+  useEffect(() => {
+    if (!hierarchyDataArray) return;
+    const result = buildMap(hierarchyDataArray);
+    setBreadcrumpMap(result);
+  }, [hierarchyDataArray]);
 
   useEffect(() => {
     const handleCurrentSlugRemoval = () => {
@@ -84,7 +98,7 @@ const HierarchyNavContextProvider = ({ children }: HierarchyNavContextProps) => 
 
   return (
     <HierarchyNavContext.Provider
-      value={{ isHierarchyNavOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList }}
+      value={{ isHierarchyNavOpen, handleShouldBeOpen, handleSlugListRandomization, slugsList, breadcrumpMap }}
     >
       {children}
     </HierarchyNavContext.Provider>

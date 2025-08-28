@@ -12,6 +12,9 @@ import Infobox from '@/Components/Infobox';
 import addActivitiesAnalytics from '@/Fetchers/activitiesAnalytics/addActivitiesAnalytics';
 import useGetBySlug from '@/Hooks/useGetBySlug';
 
+import Breadcrumbs from '../Breadcrumbs';
+import ChildrenCrumbs from '../ChildrenCrumbs';
+
 type ArticleProps = {
   slug: string;
 };
@@ -59,6 +62,7 @@ const Article = ({ slug }: ArticleProps) => {
     >
       {article && (
         <>
+          <Breadcrumbs currentSlug={article.fields.slug} />
           <h1 className="mb-8 text-4xl md:text-5xl lg:text-6xl">{article.fields.title}</h1>
           <div>
             {article.fields.infobox && <Infobox infobox={article.fields.infobox} />}
@@ -80,6 +84,7 @@ const Article = ({ slug }: ArticleProps) => {
               })}
             </div>
           </div>
+          <ChildrenCrumbs currentSlug={article.fields.slug} />
         </>
       )}
     </main>

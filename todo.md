@@ -1,5 +1,8 @@
 <!-- @format -->
 
+Build out bread crumbs and nesting links navigation bar
+Change the color of celected links in the hierarchy links tab
+
 !! Code Integrety !!
 
 - Move nodescript Types that are still relevent to types
