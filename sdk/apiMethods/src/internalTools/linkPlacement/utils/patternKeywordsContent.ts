@@ -1,7 +1,7 @@
 import { splitTextAtPositions } from '../../../utils';
 
 const patternKeywordsContent = (keyword: string, content: string) => {
-  const keywordRegex = new RegExp(`(?<![>[\\[])\\b(${keyword})(?:(?:\u2019s|'s|s|es)\\b)?(?![-\\w])`, 'g');
+  const keywordRegex = new RegExp(`(?<![>[\\[\\w])\\b(${keyword})(?:(?:\u2019s|'s|s|es)\\b)?(?![-\\w\\]])`, 'g');
 
   const keywordMatches = Array.from(content.matchAll(keywordRegex));
 
