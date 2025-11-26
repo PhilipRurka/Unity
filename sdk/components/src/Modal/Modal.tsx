@@ -48,7 +48,7 @@ const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, han
         )}
       >
         <div className={clsx('h-full sm:max-h-modal sm:rounded-xl', backgroundStyle && 'bg-white bg-opacity-90 py-8')}>
-          <div className="relative mb-3">
+          <div className="relative mb-8">
             <span className="ml-8 text-2xl md:text-3xl">{title}</span>
             <button className="absolute right-8 top-0" onClick={handleCloseModal}>
               <CloseIcon size="10" />
