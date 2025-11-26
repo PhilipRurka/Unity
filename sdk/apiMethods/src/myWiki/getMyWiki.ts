@@ -18,7 +18,7 @@ const getMyWiki: GetMyWiki = async (userId) => {
     const rawData: any = await MyWikiChatMessagesModel.findOne({ userId: userObjectId }).lean();
 
     const formattedResult: MyWikiResponseType = {
-      messages: rawData.messages || [],
+      messages: rawData?.messages || [],
       createdAt: rawData?.createdAt,
     };
 
