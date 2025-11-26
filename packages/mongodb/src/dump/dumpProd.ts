@@ -11,6 +11,7 @@ const dumpFunc = async (username: string, password: string) => {
   const command = 'mongodump';
   const args = [
     `--uri=mongodb+srv://${username}:${password}@unitycluster.${MONGODB_CLUSTER_DOMAIN_ID}.mongodb.net/`,
+    '--db=Production',
     '--out=dump/production',
   ];
 
