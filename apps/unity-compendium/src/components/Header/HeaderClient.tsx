@@ -5,14 +5,14 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import { useContext } from 'react';
 
-import { Button, HierarchyIcon, SearchIcon } from '@unity/components';
+import { Button, CloudSearchIcon, HierarchyIcon, SearchIcon } from '@unity/components';
 
 import { HeaderContext } from '@/Providers/contexts/HeaderContextProvider';
 import { HierarchyNavContext } from '@/Providers/contexts/HierarchyNavContextProvider';
 
 const HeaderClient = () => {
   const { isHierarchyNavOpen, handleShouldBeOpen: hierarchyBeOpen } = useContext(HierarchyNavContext);
-  const { handleIsSearchModalOpen } = useContext(HeaderContext);
+  const { handleIsSearchModalOpen, handleIsMyWikiModalOpen } = useContext(HeaderContext);
   const { data: session, status: userSessionStatus } = useSession();
   const pathname = usePathname();
 
@@ -29,10 +29,18 @@ const HeaderClient = () => {
     hierarchyBeOpen(false);
   };
 
+  const openMyWiki = async () => {
+    handleIsMyWikiModalOpen(true);
+    hierarchyBeOpen(false);
+  };
+
   return (
     <div className={clsx('flex transition-opacity', isSessionLoading ? 'opacity-0' : 'opacity-100')}>
       {!isSessionLoading && session && (
         <div>
+          <button className="p-4" onClick={() => openMyWiki()}>
+            <CloudSearchIcon size="8" />
+          </button>
           <button className="p-4" onClick={() => openSearchModal()}>
             <SearchIcon size="8" />
           </button>

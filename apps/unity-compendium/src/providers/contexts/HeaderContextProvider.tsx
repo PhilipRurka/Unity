@@ -6,6 +6,8 @@ import { createContext, useEffect, useState } from 'react';
 type Context = {
   isSearchModalOpen: boolean;
   handleIsSearchModalOpen: (shouldBeOpen: boolean) => void;
+  isMyWikiModalOpen: boolean;
+  handleIsMyWikiModalOpen: (shouldBeOpen: boolean) => void;
   lastQuery: string;
   handleUpdateLastQuery: (query: string) => void;
 };
@@ -13,6 +15,8 @@ type Context = {
 export const HeaderContext = createContext<Context>({
   isSearchModalOpen: false,
   handleIsSearchModalOpen: () => {},
+  isMyWikiModalOpen: false,
+  handleIsMyWikiModalOpen: () => {},
   lastQuery: '',
   handleUpdateLastQuery: () => {},
 });
@@ -25,6 +29,7 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
   const pathname = usePathname();
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isMyWikiModalOpen, setIsMyWikiModalOpen] = useState(false);
   const [lastQuery, setLastQuery] = useState<string>('');
 
   const handleUpdateLastQuery = (query: string) => {
@@ -35,6 +40,10 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
     setIsSearchModalOpen(shouldBeOpen);
   };
 
+  const handleIsMyWikiModalOpen = (shouldBeOpen: boolean) => {
+    setIsMyWikiModalOpen(shouldBeOpen);
+  };
+
   useEffect(() => {
     handleIsSearchModalOpen(false);
   }, [pathname]);
@@ -43,7 +52,7 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
     const html = document.getElementsByTagName('html');
     const body = document.getElementsByTagName('body');
     if (
-      isSearchModalOpen &&
+      (isSearchModalOpen || isMyWikiModalOpen) &&
       !html[0].classList.contains('overflow-y-hidden') &&
       !body[0].classList.contains('overflow-y-hidden')
     ) {
@@ -51,16 +60,26 @@ const HeaderContextProvider = ({ children }: HeaderContextProps) => {
       body[0].classList.add('overflow-y-hidden');
     } else if (
       !isSearchModalOpen &&
+      !isMyWikiModalOpen &&
       html[0].classList.contains('overflow-y-hidden') &&
       body[0].classList.contains('overflow-y-hidden')
     ) {
       html[0].classList.remove('overflow-y-hidden');
       body[0].classList.remove('overflow-y-hidden');
     }
-  }, [isSearchModalOpen]);
+  }, [isSearchModalOpen, isMyWikiModalOpen]);
 
   return (
-    <HeaderContext.Provider value={{ isSearchModalOpen, handleIsSearchModalOpen, lastQuery, handleUpdateLastQuery }}>
+    <HeaderContext.Provider
+      value={{
+        isSearchModalOpen,
+        handleIsSearchModalOpen,
+        isMyWikiModalOpen,
+        handleIsMyWikiModalOpen,
+        lastQuery,
+        handleUpdateLastQuery,
+      }}
+    >
       {children}
     </HeaderContext.Provider>
   );
