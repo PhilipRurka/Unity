@@ -27,6 +27,8 @@ const MyWiki = () => {
 
   const handleSubmit = async () => {
     if (!textAreaRef.current) return;
+    const question = textAreaRef.current.value.trim();
+    if (!question) return;
 
     setIsAskDisabled(true);
 
@@ -112,15 +114,15 @@ const MyWiki = () => {
   }, [conversation]);
 
   return (
-    <div data-component="MyWiki" className={clsx(!isMyWikiModalOpen && 'hidden')}>
+    <div data-component="MyWiki" className={clsx('flex h-my-wiki flex-col', !isMyWikiModalOpen && 'hidden')}>
       <div className="flex items-start gap-4">
-        <TextArea ref={textAreaRef} />
+        <TextArea ref={textAreaRef} className="flex-1 resize-none" />
         <Button color="green" isFull size="medium" disabled={isAskDisabled} onClick={handleSubmit}>
           Ask
         </Button>
       </div>
       {timeToDeletion && (
-        <span>{`Conversation will be deleted in ${timeToDeletion.hours}:${timeToDeletion.minutes} hours`}</span>
+        <span className="mb-2">{`Conversation will be deleted in ${timeToDeletion.hours}:${timeToDeletion.minutes} hours`}</span>
       )}
       {conversation && <MyWikiConversation conversation={conversation} />}
     </div>
@@ -128,3 +130,9 @@ const MyWiki = () => {
 };
 
 export default MyWiki;
+
+/**
+ * 1. When a query is submited, pre create the container from which the response will be printed onto. This container will contain a min height of calc(100vh - 260px - the height of the question bubble)
+ * 2. When the new response returns from the backend, populate this new container.
+ * 3. When a new query is submited, create the new container with the calc mn height, before remove the min height of the last response and add the new query.
+ */

@@ -17,6 +17,7 @@ const MyWikiModal = () => {
         title="Ask My Wiki AI a question"
         backgroundStyle="bg-search-modal"
         isModalOpen={isMyWikiModalOpen}
+        disableScroll
         handleCloseModal={() => handleIsMyWikiModalOpen(false)}
       >
         <MyWiki />

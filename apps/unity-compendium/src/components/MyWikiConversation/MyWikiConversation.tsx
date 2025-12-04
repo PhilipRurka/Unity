@@ -7,7 +7,7 @@ type MyWikiConversationProps = {
 };
 
 const MyWikiConversation = ({ conversation }: MyWikiConversationProps) => (
-  <div data-component="MyWikiConversation">
+  <div data-component="MyWikiConversation" className="flex-1 overflow-y-auto pb-4">
     {conversation?.messages.map((message, index) => (
       <div key={`MyWikiConversation-${index}`} className={clsx('my-4 flex', message.role === 'user' && 'justify-end')}>
         <p
