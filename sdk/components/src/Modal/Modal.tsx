@@ -8,10 +8,18 @@ type ModalProps = {
   backgroundStyle?: string;
   title: string;
   isModalOpen: boolean;
+  disableScroll?: boolean;
   handleCloseModal: () => void;
 };
 
-const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, handleCloseModal }: ModalProps) => {
+const Modal = ({
+  children,
+  title,
+  backgroundStyle = 'bg-white',
+  isModalOpen,
+  disableScroll,
+  handleCloseModal,
+}: ModalProps) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' || event.code === 'Escape') {
@@ -55,7 +63,7 @@ const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, han
             </button>
           </div>
           <div className="relative h-search-results overflow-y-hidden">
-            <div className="h-full overflow-y-scroll px-8">{children}</div>
+            <div className={clsx('h-full overflow-y-scroll px-8', disableScroll && 'overflow-hidden')}>{children}</div>
           </div>
         </div>
       </div>
