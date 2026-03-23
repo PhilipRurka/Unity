@@ -19,22 +19,23 @@ type TimeToDeletion =
 
 const MyWiki = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const isDisabledRef = useRef<boolean>(false);
   const { isMyWikiModalOpen } = useContext(HeaderContext);
 
   const [conversation, setConversation] = useState<MyWikiResponseType>();
   const [timeToDeletion, setTimeToDeletion] = useState<TimeToDeletion>();
-  const [isAskDisabled, setIsAskDisabled] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     if (!textAreaRef.current) return;
     const question = textAreaRef.current.value.trim();
-    if (!question) return;
+    if (!question || isDisabledRef.current) return;
 
-    setIsAskDisabled(true);
+    setIsLoading(true);
+
+    isDisabledRef.current = true;
 
     const response = await askMyWiki(textAreaRef.current.value);
-
-    setIsAskDisabled(false);
 
     setConversation(response);
     textAreaRef.current.value = '';
@@ -106,6 +107,9 @@ const MyWiki = () => {
       updateTimeLeft();
 
       interval = setInterval(updateTimeLeft, 60 * 1000);
+
+      setIsLoading(false);
+      isDisabledRef.current = false;
     }
 
     return () => {
@@ -114,10 +118,16 @@ const MyWiki = () => {
   }, [conversation]);
 
   return (
-    <div data-component="MyWiki" className={clsx('flex h-my-wiki flex-col', !isMyWikiModalOpen && 'hidden')}>
+    <div data-component="MyWiki" className={clsx('flex h-my-wiki flex-col pt-6', !isMyWikiModalOpen && 'hidden')}>
+      <div
+        className={clsx(
+          'pointer-events-none absolute inset-0 bg-slate-600 opacity-0 transition-opacity ease-linear',
+          isLoading && 'pointer-events-auto opacity-40'
+        )}
+      />
       <div className="flex items-start gap-4">
         <TextArea ref={textAreaRef} className="flex-1 resize-none" />
-        <Button color="green" isFull size="medium" disabled={isAskDisabled} onClick={handleSubmit}>
+        <Button color="green" isFull size="medium" onClick={handleSubmit}>
           Ask
         </Button>
       </div>
@@ -130,9 +140,3 @@ const MyWiki = () => {
 };
 
 export default MyWiki;
-
-/**
- * 1. When a query is submited, pre create the container from which the response will be printed onto. This container will contain a min height of calc(100vh - 260px - the height of the question bubble)
- * 2. When the new response returns from the backend, populate this new container.
- * 3. When a new query is submited, create the new container with the calc mn height, before remove the min height of the last response and add the new query.
- */

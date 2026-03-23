@@ -1,26 +1,43 @@
-import clsx from 'clsx';
+import { Fragment, useEffect, useRef } from 'react';
 
 import { MyWikiResponseType } from '@unity/types';
+
+import MyWikiChatMessage from '../MyWikiChatMessage';
 
 type MyWikiConversationProps = {
   conversation: MyWikiResponseType;
 };
 
-const MyWikiConversation = ({ conversation }: MyWikiConversationProps) => (
-  <div data-component="MyWikiConversation" className="flex-1 overflow-y-auto pb-4">
-    {conversation?.messages.map((message, index) => (
-      <div key={`MyWikiConversation-${index}`} className={clsx('my-4 flex', message.role === 'user' && 'justify-end')}>
-        <p
-          className={clsx(
-            'inline-block rounded p-4',
-            message.role === 'user' ? 'bg-blue-100 text-right' : 'bg-gray-100 text-left'
-          )}
-        >
-          {message.content}
-        </p>
-      </div>
-    ))}
-  </div>
-);
+const MyWikiConversation = ({ conversation }: MyWikiConversationProps) => {
+  const lastQuestionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (lastQuestionRef.current) {
+      lastQuestionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [conversation]);
+
+  if (!conversation?.messages) return <></>;
+
+  const { messages } = conversation;
+  return (
+    <div data-component="MyWikiConversation" className="flex-1 overflow-y-auto pb-4">
+      {messages.map((message, index) => (
+        <Fragment key={`MyWikiConversation-fragment-${index}`}>
+          <MyWikiChatMessage
+            key={`MyWikiConversation-${index}`}
+            message={message}
+            ref={index !== messages.length - 1 ? lastQuestionRef : null}
+          >
+            {message.content}
+          </MyWikiChatMessage>
+        </Fragment>
+      ))}
+    </div>
+  );
+};
 
 export default MyWikiConversation;
