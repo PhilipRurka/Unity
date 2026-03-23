@@ -1,11 +1,11 @@
-import { ApiMethodResponse, ArticleType } from '@unity/types';
+import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import createEmbedding from './utils/createEmbedding';
 import createVectorEmbeddingArray from './utils/createVectorEmbeddingArray';
 import updateContentfulVectorEmbedding from './utils/updateContentfulVectorEmbedding';
 
-type BuildMyWikiVectorIndex = () => Promise<void>;
+type BuildMyWikiVectorIndex = () => Promise<AuditType>;
 
 const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async () => {
   /** Get contentSection contentful data */
@@ -21,6 +21,8 @@ const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async () => {
 
   /** Delete, upload and index vectors new ContentfulVectorEmbedding collection documents */
   await updateContentfulVectorEmbedding(vectorEmbedding);
+
+  return { last_my_wiki_update: new Date() };
 };
 
 export default buildMyWikiVectorIndex;
