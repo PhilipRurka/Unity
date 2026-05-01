@@ -26,7 +26,7 @@ export const PUT = async (req: NextRequest) => {
 
   switch (option) {
     case 'myWiki':
-      await buildMyWikiVectorIndex();
+      toolsToUpdate = await buildMyWikiVectorIndex();
       break;
 
     case 'algolia':
