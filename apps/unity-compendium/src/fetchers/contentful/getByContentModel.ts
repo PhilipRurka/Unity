@@ -1,7 +1,7 @@
 import type { FetchErrorType, GetByContentModel } from '@unity/types';
 
 const getByContentModel: GetByContentModel = async (contentModel, headers = {}, options = {}) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/contentful/getByContentModel/${contentModel}`, {
+  const res = await fetch(`/api/contentful/getByContentModel/${contentModel}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
