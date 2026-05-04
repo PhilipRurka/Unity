@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react';
 
-import { EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
+import { CloudSearchIcon, EditIcon, PlusInCircleIcon, XInCircleIcon } from '../Icons';
 import FilterIcon from '../Icons/Filter';
 import PlusIcon from '../Icons/Plus';
 import SaveIcon from '../Icons/SaveIcon';
@@ -38,7 +38,8 @@ export type Icons =
   | 'edit'
   | 'save'
   | 'triangleUpCircle'
-  | 'triangleDownCircle';
+  | 'triangleDownCircle'
+  | 'cloudSearch';
 
 type ButtonIconProps = {
   icon: Icons | undefined;
@@ -56,6 +57,8 @@ const ButtonIcon = ({ icon }: ButtonIconProps) => (
     {icon === 'save' && <SaveIcon size="5" className="h-full" />}
     {icon === 'triangleDownCircle' && <TriangleDownCircle size="5" className="h-full" />}
     {icon === 'triangleUpCircle' && <TriangleUpCircle size="5" className="h-full" />}
+    {icon === 'triangleDownCircle' && <TriangleDownCircle size="5" className="h-full" />}
+    {icon === 'cloudSearch' && <CloudSearchIcon size="5" className="h-full" />}
   </>
 );
 

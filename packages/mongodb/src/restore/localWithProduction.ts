@@ -51,7 +51,9 @@ const run = async () => {
   if (answer.toLowerCase() === 'y') {
     try {
       execSync(`mongosh "mongodb://localhost:27017" --eval "db.getSiblingDB('Production').dropDatabase()"`);
-      execSync('mongorestore --uri=mongodb://localhost:27017 --drop dump/production');
+      execSync(
+        'mongorestore --uri=mongodb://localhost:27017 --drop --nsFrom="production.*" --nsTo="Production.*" dump/production'
+      );
 
       displayArt(successArt);
     } catch (error) {

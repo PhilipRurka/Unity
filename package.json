@@ -4,9 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "ntl": "npx ntl -o",
-    "cd-node-scripts": "(cd packages/node-scripts && yarn ntl)",
     "cd-mongodb": "(cd packages/mongodb && yarn ntl)",
+    "cd-node-scripts": "(cd packages/node-scripts && yarn ntl)",
     "lint": "turbo run lint",
     "build": "turbo run build",
     "build-admin": "turbo run build-admin",
@@ -19,7 +18,10 @@
     "env-pull": "turbo run env-pull && vercel env pull .env.local",
     "env-pull-production": "turbo run env-pull-production && vercel env pull --environment=production .env.local",
     "migrate-up": "(cd ./migrations && npx migrate-mongo up && cd -)",
-    "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\" \"yarn workspace @unity/components watch\" \"yarn workspace @unity/models watch\" \"yarn workspace @unity/hooks watch\" \"yarn workspace @unity/api-methods watch\""
+    "ntl": "npx ntl -o",
+    "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\" \"yarn workspace @unity/components watch\" \"yarn workspace @unity/models watch\" \"yarn workspace @unity/hooks watch\" \"yarn workspace @unity/api-methods watch\"",
+    "start-mongodb": "brew services start mongodb-community@7.0",
+    "stop-mongodb": "brew services stop mongodb-community@7.0"
   },
   "dependencies": {
     "algoliasearch": "^4.23.3",
@@ -56,8 +58,9 @@
   "ntl": {
     "runner": "yarn",
     "descriptions": {
-      "cd-node-scripts": "cd into packages/node-scripts",
       "cd-mongodb": "cd into packages/mongodb",
+      "cd-node-scripts": "cd into packages/node-scripts",
+      "dev-admin": "Start Admin on port 3001",
       "dev-all": "Start Compendium on port 3000 & Admin on port 3001",
       "dev-compendium": "Start Compendium on port 3000",
       "dev-admin": "Start Admin on port 3001",
@@ -68,7 +71,9 @@
       "env-pull": "pull env for multiple workspaces",
       "env-pull-production": "pull production env for multiple workspaces",
       "watch": "Watches for changes done in packages or sdk typescript files",
-      "migrate-up": "run migrate-mongo up"
+      "migrate-up": "run migrate-mongo up",
+      "start-mongodb": "Start a local Mongodb instance",
+      "stop-mongodb": "Stop the local Mongodb instance"
     }
   }
 }

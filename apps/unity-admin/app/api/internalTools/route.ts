@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import {
   buildLinkPlacement,
+  buildMyWikiVectorIndex,
   checkIfAdminAuthenticated,
   updateAlgolia,
   updateHierarchyLinks,
@@ -24,6 +25,10 @@ export const PUT = async (req: NextRequest) => {
   let builtlinkPlacement: TransformedToRichTextData[] = [];
 
   switch (option) {
+    case 'myWiki':
+      toolsToUpdate = await buildMyWikiVectorIndex();
+      break;
+
     case 'algolia':
       toolsToUpdate = await updateAlgolia();
       await updateSynonyms();
@@ -48,6 +53,7 @@ export const PUT = async (req: NextRequest) => {
       break;
 
     case 'all': {
+      const myWikiObj = await buildMyWikiVectorIndex();
       const algoliaObj = await updateAlgolia();
       const incompleteObj = await updateIncomplete();
       const hierarchyObj = await updateHierarchyLinks();
@@ -56,6 +62,7 @@ export const PUT = async (req: NextRequest) => {
       await updateSynonyms();
 
       toolsToUpdate = {
+        ...myWikiObj,
         ...algoliaObj,
         ...incompleteObj,
         ...hierarchyObj,

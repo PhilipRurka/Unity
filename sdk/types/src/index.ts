@@ -10,3 +10,5 @@ export * from './nodeScripts';
 export * from './table';
 export * from './internalTools';
 export * from './registrationRequest';
+export * from './vectorEmbeddingArray';
+export * from './myWiki';
