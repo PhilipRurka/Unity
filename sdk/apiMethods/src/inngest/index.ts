@@ -1,2 +1,2 @@
-export { default as client } from './client';
-export { default as functions } from './functions';
+export { default as inngest } from './inngest';
+export * from './functions';

@@ -18,3 +18,5 @@ Change the color of celected links in the hierarchy links tab
 
 Important!!!
 If there is already a request with a given email or name, mention the email is either already requested or used and for the name, mention that it is already being used. Create indexing for the name and email property in db
+
+In vercel I went from node version 20.11.0 to 20.22.2

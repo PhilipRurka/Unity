@@ -1,7 +1,7 @@
 import { Inngest } from 'inngest';
 
-const client = new Inngest({
+const inngest = new Inngest({
   id: 'unity-admin',
 });
 
-export default client;
+export default inngest;

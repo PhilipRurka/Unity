@@ -1,8 +1,8 @@
 import { serve } from 'inngest/next';
 
-import { client, functions } from '@unity/api-methods';
+import { inngest, test1, test2 } from '@unity/api-methods';
 
 export const { GET, POST, PUT } = serve({
-  client,
-  functions,
+  client: inngest,
+  functions: [test1, test2],
 });
