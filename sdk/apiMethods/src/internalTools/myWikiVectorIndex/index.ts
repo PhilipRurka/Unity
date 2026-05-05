@@ -5,9 +5,9 @@ import createEmbedding from './utils/createEmbedding';
 import createVectorEmbeddingArray from './utils/createVectorEmbeddingArray';
 import updateContentfulVectorEmbedding from './utils/updateContentfulVectorEmbedding';
 
-type BuildMyWikiVectorIndex = () => Promise<AuditType>;
+type BuildMyWikiVectorIndex = (step: any) => Promise<AuditType>;
 
-const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async () => {
+const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (step) => {
   /** Get contentSection contentful data */
   const [article] = (await getByContentModel('article')) as unknown as ApiMethodResponse<ArticleType[]>;
 
@@ -20,7 +20,7 @@ const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async () => {
   const vectorEmbedding = await createEmbedding(vectorEmbeddedArray);
 
   /** Delete, upload and index vectors new ContentfulVectorEmbedding collection documents */
-  await updateContentfulVectorEmbedding(vectorEmbedding);
+  await updateContentfulVectorEmbedding(vectorEmbedding, step);
 
   return { last_my_wiki_update: new Date() };
 };

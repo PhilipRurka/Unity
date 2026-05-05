@@ -3,9 +3,9 @@ import inngest from '../inngest';
 
 const taskBuildMyWikiVectorIndex = inngest.createFunction(
   { id: 'process-update-myWiki', triggers: { event: 'task.buildMyWikiVectorIndex' } },
-  async () => {
+  async ({ step }) => {
     console.log('Received task to build MyWiki vector index');
-    await buildMyWikiVectorIndex();
+    await buildMyWikiVectorIndex(step);
   }
 );
 

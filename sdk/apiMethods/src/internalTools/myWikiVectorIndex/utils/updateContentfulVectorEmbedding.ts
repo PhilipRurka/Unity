@@ -5,20 +5,16 @@ import { connectToDatabase } from '../../../utils';
 import waitForIndexCreate from './waitForIndexCreate';
 import waitForIndexDeletion from './waitForIndexDeletion';
 
-type UpdateContentfulVectorEmbedding = (vectorEmbeddings: ContentfulVectorEmbeddingType[]) => Promise<void>;
+type UpdateContentfulVectorEmbedding = (vectorEmbeddings: ContentfulVectorEmbeddingType[], step: any) => Promise<void>;
 
-const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings) => {
+const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings, step) => {
   await connectToDatabase();
 
   const { collection } = ContentfulVectorEmbeddingModel;
 
-  console.log('Waiting for existing vector index to be deleted...');
-
   await collection.dropSearchIndex('vector_index');
 
-  await waitForIndexDeletion(collection, 'vector_index');
-
-  console.log('Existing vector index deleted. Updating ContentfulVectorEmbedding collection...');
+  await waitForIndexDeletion(collection, 'vector_index', step);
 
   try {
     await ContentfulVectorEmbeddingModel.deleteMany({});
@@ -43,8 +39,9 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
 
     await collection.createSearchIndex(index);
 
-    await waitForIndexCreate(collection, 'vector_index');
+    await waitForIndexCreate(collection, 'vector_index', step);
   } catch (err: any) {
+    // eslint-disable-next-line no-console
     console.error('Error updating ContentfulVectorEmbedding:', err);
   }
 };
