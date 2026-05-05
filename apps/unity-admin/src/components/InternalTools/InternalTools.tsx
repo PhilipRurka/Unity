@@ -65,6 +65,7 @@ const InternalTools = () => {
   };
 
   const lastAlgoliaDate = internalTools.lastAlgoliaUpdate ? formatDate(internalTools.lastAlgoliaUpdate) : '';
+  const lastMyWikiDate = internalTools.lastMyWikiUpdate ? formatDate(internalTools.lastMyWikiUpdate) : '';
   const lastLinkPlacementDate = internalTools.lastLinkPlacementUpdate
     ? formatDate(internalTools.lastLinkPlacementUpdate)
     : '';
@@ -85,6 +86,23 @@ const InternalTools = () => {
             size="small"
             isFull
             onClick={() => handleUpdateInternalTools('all')}
+            disabled={isLoading}
+          >
+            Update
+          </Button>
+        </div>
+
+        <div>
+          <div className="mb-3">
+            <h2 className="my-9 inline text-2xl font-bold">MyWiki</h2>
+            <span className="inline text-xs italic"> - Last updated: {lastMyWikiDate} </span>
+            <hr className="border-black" />
+          </div>
+          <Button
+            color="black"
+            size="small"
+            isFull
+            onClick={() => handleUpdateInternalTools('myWiki')}
             disabled={isLoading}
           >
             Update

@@ -7,6 +7,7 @@ import '@unity/styles/global.css';
 
 import HeaderServer from '@/Components/Header/HeaderServer';
 import HierarchyNav from '@/Components/HierarchyNav';
+import MyWikiModal from '@/Components/MyWikiModal';
 import SearchModal from '@/Components/SearchModal';
 import AuthProvider from '@/Providers/SessionProvider';
 import HeaderContextProvider from '@/Providers/contexts/HeaderContextProvider';
@@ -59,6 +60,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <HeaderContextProvider>
             <AuthProvider>
               <SearchModal />
+              <MyWikiModal />
               <HierarchyNav />
               <HeaderServer />
               <div className="sm:px-6 sm:py-16">{children}</div>

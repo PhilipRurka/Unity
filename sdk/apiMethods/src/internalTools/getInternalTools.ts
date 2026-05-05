@@ -22,6 +22,7 @@ const getUsers: GetUsersType = async () => {
       {
         _id: 0,
         lastAlgoliaUpdate: '$last_algolia_update',
+        lastMyWikiUpdate: '$last_my_wiki_update',
         lastIncompleteUpdate: '$last_incomplete_update',
         lastLinkPlacementUpdate: '$last_link_placement_update',
         hierarchyLinks: '$hierarchy_links',

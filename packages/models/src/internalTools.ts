@@ -4,6 +4,7 @@ import type { InternalToolsDocument } from '@unity/types';
 
 const InternalToolsSchema = new Schema<InternalToolsDocument>(
   {
+    last_my_wiki_update: { type: Date },
     last_algolia_update: { type: Date },
     last_incomplete_update: { type: Date },
     last_link_placement_update: { type: Date },

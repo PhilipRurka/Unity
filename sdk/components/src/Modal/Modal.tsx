@@ -8,10 +8,18 @@ type ModalProps = {
   backgroundStyle?: string;
   title: string;
   isModalOpen: boolean;
+  disableScroll?: boolean;
   handleCloseModal: () => void;
 };
 
-const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, handleCloseModal }: ModalProps) => {
+const Modal = ({
+  children,
+  title,
+  backgroundStyle = 'bg-white',
+  isModalOpen,
+  disableScroll,
+  handleCloseModal,
+}: ModalProps) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape' || event.code === 'Escape') {
@@ -48,14 +56,14 @@ const Modal = ({ children, title, backgroundStyle = 'bg-white', isModalOpen, han
         )}
       >
         <div className={clsx('h-full sm:max-h-modal sm:rounded-xl', backgroundStyle && 'bg-white bg-opacity-90 py-8')}>
-          <div className="relative mb-3">
+          <div className="relative mb-8">
             <span className="ml-8 text-2xl md:text-3xl">{title}</span>
             <button className="absolute right-8 top-0" onClick={handleCloseModal}>
               <CloseIcon size="10" />
             </button>
           </div>
           <div className="relative h-search-results overflow-y-hidden">
-            <div className="h-full overflow-y-scroll px-8">{children}</div>
+            <div className={clsx('h-full overflow-y-scroll px-8', disableScroll && 'overflow-hidden')}>{children}</div>
           </div>
         </div>
       </div>

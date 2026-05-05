@@ -25,6 +25,7 @@ const tailwindConfig = {
       },
       height: {
         "search-results": "calc(100% - 49px)",
+        "my-wiki": "calc(100vh - 260px)",
       },
       colors: {
         "ocean-blue": "#003052",
