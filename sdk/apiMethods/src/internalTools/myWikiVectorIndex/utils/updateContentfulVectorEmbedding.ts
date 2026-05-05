@@ -2,6 +2,8 @@ import { ContentfulVectorEmbeddingModel } from '@unity/models';
 import { ContentfulVectorEmbeddingType } from '@unity/types';
 
 import { connectToDatabase } from '../../../utils';
+import waitForIndexCreate from './waitForIndexCreate';
+import waitForIndexDeletion from './waitForIndexDeletion';
 
 type UpdateContentfulVectorEmbedding = (vectorEmbeddings: ContentfulVectorEmbeddingType[]) => Promise<void>;
 
@@ -10,15 +12,13 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
 
   const { collection } = ContentfulVectorEmbeddingModel;
 
-  try {
-    await collection.dropSearchIndex('vector_index');
-  } catch (err: any) {
-    if (err.codeName === 'IndexNotFound') {
-      console.log('No existing vector index found, skipping drop.');
-    } else {
-      throw err;
-    }
-  }
+  console.log('Waiting for existing vector index to be deleted...');
+
+  await collection.dropSearchIndex('vector_index');
+
+  await waitForIndexDeletion(collection, 'vector_index');
+
+  console.log('Existing vector index deleted. Updating ContentfulVectorEmbedding collection...');
 
   try {
     await ContentfulVectorEmbeddingModel.deleteMany({});
@@ -43,8 +43,7 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
 
     await collection.createSearchIndex(index);
 
-    const indexes = await collection.listSearchIndexes().toArray();
-    console.log(indexes);
+    await waitForIndexCreate(collection, 'vector_index');
   } catch (err: any) {
     console.error('Error updating ContentfulVectorEmbedding:', err);
   }
