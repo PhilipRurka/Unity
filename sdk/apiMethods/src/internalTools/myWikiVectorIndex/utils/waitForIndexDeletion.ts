@@ -6,8 +6,10 @@ type WaitForIndexDeletion = (collection: any, indexName: string, step: any, logg
 
 const waitForIndexDeletion: WaitForIndexDeletion = async (collection, indexName, step, logger): Promise<void> => {
   for (let attempt = 0; attempt < 20; attempt += 1) {
-    const indexes = await collection.listSearchIndexes().toArray();
-    const indexExists = indexes.some((idx: any) => idx.name === indexName);
+    const indexExists = await step.run(`check-index-exists-${attempt}`, async () => {
+      const indexes = await collection.listSearchIndexes().toArray();
+      return indexes.some((idx: any) => idx.name === indexName);
+    });
 
     if (!indexExists) {
       console.log(`Inngest ++++++++++ Index "${indexName}" successfully deleted.`);

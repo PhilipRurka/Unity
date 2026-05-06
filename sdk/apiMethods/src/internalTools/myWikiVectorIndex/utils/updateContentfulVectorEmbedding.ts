@@ -30,12 +30,21 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
         console.log('Inngest ++++++++++ No existing vector index found, skipping drop.');
       } else {
         logger.error('Error dropping existing vector index:', err);
+
         throw err;
       }
     }
   });
 
-  await waitForIndexDeletion(collection, 'vector_index', step, logger);
+  try {
+    await waitForIndexDeletion(collection, 'vector_index', step, logger);
+  } catch (err: any) {
+    logger.error('Error waiting for index deletion:', err);
+    // eslint-disable-next-line no-console
+    console.error('Error waiting for index deletion:', err);
+
+    throw err;
+  }
 
   await step.run('update-contentful-vector-embedding', async () => {
     try {
@@ -46,6 +55,8 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
       logger.error('Error updating ContentfulVectorEmbedding:', err);
       // eslint-disable-next-line no-console
       console.error('Error updating ContentfulVectorEmbedding:', err);
+
+      throw err;
     }
   });
 
@@ -72,7 +83,12 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
       logger.error('Error creating new vector index:', err);
       // eslint-disable-next-line no-console
       console.error('Error creating vector index:', err);
+      throw err;
     }
   });
+
+  const result = await step.run('finalize-update', () => ({ last_my_wiki_update: new Date() }));
+
+  return result;
 };
 export default updateContentfulVectorEmbedding;
