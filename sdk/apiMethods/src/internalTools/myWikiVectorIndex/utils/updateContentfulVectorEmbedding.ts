@@ -1,3 +1,5 @@
+import { Logger } from 'inngest';
+
 import { ContentfulVectorEmbeddingModel } from '@unity/models';
 import { ContentfulVectorEmbeddingType } from '@unity/types';
 
@@ -5,9 +7,13 @@ import { connectToDatabase } from '../../../utils';
 // import waitForIndexCreate from './waitForIndexCreate';
 import waitForIndexDeletion from './waitForIndexDeletion';
 
-type UpdateContentfulVectorEmbedding = (vectorEmbeddings: ContentfulVectorEmbeddingType[], step: any) => Promise<void>;
+type UpdateContentfulVectorEmbedding = (
+  vectorEmbeddings: ContentfulVectorEmbeddingType[],
+  step: any,
+  logger: Logger
+) => Promise<void>;
 
-const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings, step) => {
+const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings, step, logger) => {
   await connectToDatabase();
 
   const { collection } = ContentfulVectorEmbeddingModel;
@@ -23,12 +29,13 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
         // eslint-disable-next-line no-console
         console.log('Inngest ++++++++++ No existing vector index found, skipping drop.');
       } else {
+        logger.error('Error dropping existing vector index:', err);
         throw err;
       }
     }
   });
 
-  await waitForIndexDeletion(collection, 'vector_index', step);
+  await waitForIndexDeletion(collection, 'vector_index', step, logger);
 
   await step.run('update-contentful-vector-embedding', async () => {
     try {
@@ -36,6 +43,7 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
 
       await ContentfulVectorEmbeddingModel.insertMany(vectorEmbeddings, { ordered: false });
     } catch (err: any) {
+      logger.error('Error updating ContentfulVectorEmbedding:', err);
       // eslint-disable-next-line no-console
       console.error('Error updating ContentfulVectorEmbedding:', err);
     }
@@ -61,6 +69,7 @@ const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (
 
       await collection.createSearchIndex(index);
     } catch (err: any) {
+      logger.error('Error creating new vector index:', err);
       // eslint-disable-next-line no-console
       console.error('Error creating vector index:', err);
     }

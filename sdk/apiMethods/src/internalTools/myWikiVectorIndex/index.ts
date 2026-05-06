@@ -1,3 +1,5 @@
+import { Logger } from 'inngest';
+
 import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
@@ -5,9 +7,9 @@ import createEmbedding from './utils/createEmbedding';
 import createVectorEmbeddingArray from './utils/createVectorEmbeddingArray';
 import updateContentfulVectorEmbedding from './utils/updateContentfulVectorEmbedding';
 
-type BuildMyWikiVectorIndex = (step: any) => Promise<AuditType>;
+type BuildMyWikiVectorIndex = (step: any, logger: Logger) => Promise<AuditType>;
 
-const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (step) => {
+const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (step, logger) => {
   /** Get contentSection contentful data */
   const [article]: ApiMethodResponse<ArticleType[]> = await step.run('fetch-contentful-data', () =>
     getByContentModel('article')
@@ -24,7 +26,7 @@ const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (step) => {
   const vectorEmbedding = await step.run('create-embedding', () => createEmbedding(vectorEmbeddedArray));
 
   /** Delete, upload and index vectors new ContentfulVectorEmbedding collection documents */
-  await updateContentfulVectorEmbedding(vectorEmbedding, step);
+  await updateContentfulVectorEmbedding(vectorEmbedding, step, logger);
 
   console.log('Inngest ++++++++++ Finished building MyWiki vector index');
 
