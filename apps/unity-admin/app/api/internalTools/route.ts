@@ -27,6 +27,7 @@ export const PUT = async (req: NextRequest) => {
   switch (option) {
     case 'myWiki':
       await inngest.send({
+        id: new Date().toISOString().slice(0, 16),
         name: 'task.buildMyWikiVectorIndex',
         data: { id: 'update-myWiki' },
       });
@@ -57,6 +58,7 @@ export const PUT = async (req: NextRequest) => {
 
     case 'all': {
       await inngest.send({
+        id: new Date().toISOString().slice(0, 16),
         name: 'task.buildMyWikiVectorIndex',
         data: { id: 'update-myWiki' },
       });

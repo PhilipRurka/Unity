@@ -1,38 +1,28 @@
-import { VectorIndexes } from '@unity/types';
+// /* eslint-disable no-console */
 
-type WaitForIndexDeletion = (collection: any, indexName: string, step: any, attempt?: number) => Promise<void>;
+// /* eslint-disable no-await-in-loop */
+// import { VectorIndexes } from '@unity/types';
 
-const waitForIndexCreate: WaitForIndexDeletion = async (
-  collection: any,
-  indexName: string,
-  step: any,
-  attempt: number = 0
-): Promise<void> => {
-  // 1. Safety check to stop infinite recursion
-  if (attempt >= 20) {
-    throw new Error(`Timeout: Index "${indexName}" was not deleted after 5 minutes.`);
-  }
+// type WaitForIndexCreate = (collection: any, indexName: string, step: any) => Promise<void>;
 
-  // 2. Check if index exists (Unique ID per attempt to force fresh DB call)
-  const status: VectorIndexes['status'] = await step.run(
-    `check-index-${indexName}-${attempt}`,
-    async (): Promise<VectorIndexes['status']> => {
-      const [indexes]: VectorIndexes[] = await collection.listSearchIndexes().toArray();
-      return indexes.status;
-    }
-  );
+// const waitForIndexCreate: WaitForIndexCreate = async (collection, indexName, step: any): Promise<void> => {
+//   for (let attempt = 0; attempt < 20; attempt += 1) {
+//     const indexes: VectorIndexes[] = await collection.listSearchIndexes().toArray();
+//     const index = indexes.find((i: any) => i.name === indexName);
+//     const status = index?.status;
 
-  if (status !== 'READY') {
-    // 3. Kill the Vercel function and wait 15s
-    await step.sleep(`wait-${indexName}-${attempt}`, '5s');
+//     console.log(`Index Create Attempt ${attempt}: Index "${indexName}" status check: ${status}`);
 
-    // 4. Recursive call (Increments attempt for the next "life")
-    await waitForIndexCreate(collection, indexName, step, attempt + 1);
-  }
+//     if (status === 'READY') {
+//       // 3. Kill the Vercel function and wait 15s
+//       console.log(`Index "${indexName}" successfully created.`);
+//       return;
+//     }
 
-  // If indexExists is false, the function resolves and the main execution continues
-  // eslint-disable-next-line no-console
-  console.log(`Index "${indexName}" successfully deleted.`);
-};
+//     await step.sleep(`wait-for-create-${indexName}`, '15s');
+//   }
 
-export default waitForIndexCreate;
+//   throw new Error(`Timeout: Index "${indexName}" was not created after 5 minutes.`);
+// };
+
+// export default waitForIndexCreate;
