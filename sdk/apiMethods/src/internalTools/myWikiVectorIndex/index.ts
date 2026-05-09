@@ -26,6 +26,8 @@ const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (inngest) => {
 
   // await updateContentfulVectorEmbedding(vectorEmbedding, inngest);
 
+  inngest.logger.info('Finished building MyWiki vector index');
+
   console.log('Inngest ++++++++++ Finished building MyWiki vector index');
 
   return { last_my_wiki_update: new Date() };

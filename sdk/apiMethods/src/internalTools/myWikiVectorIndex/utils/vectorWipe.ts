@@ -10,7 +10,9 @@ const vectorWipe: VectorWipe = async (inngest) => {
 
   const { collection } = ContentfulVectorEmbeddingModel;
 
-  await ContentfulVectorEmbeddingModel.deleteMany({});
+  await inngest.step.run('delete-embedding-documents-from-DB', async () =>
+    ContentfulVectorEmbeddingModel.deleteMany({})
+  );
 
   await inngest.step.sleep('sleep-between-deletion-and-index-drop', '1s');
 
