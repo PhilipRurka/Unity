@@ -2,10 +2,8 @@ import { ApiMethodResponse, ArticleType, AuditType } from '@unity/types';
 
 import { getByContentModel } from '../../contentful';
 import { InngestType } from '../../inngest/inngest';
-// import createEmbedding from './utils/createEmbedding';
 import createVectorEmbeddingArray from './utils/createVectorEmbeddingArray';
 import indexVectors from './utils/indexVectors';
-// import updateContentfulVectorEmbedding from './utils/updateContentfulVectorEmbedding';
 import vectorWipe from './utils/vectorWipe';
 
 type BuildMyWikiVectorIndex = (inngest: InngestType) => Promise<AuditType>;
@@ -23,8 +21,6 @@ const buildMyWikiVectorIndex: BuildMyWikiVectorIndex = async (inngest) => {
   await createVectorEmbeddingArray(article.result, inngest);
 
   await indexVectors(inngest);
-
-  // await updateContentfulVectorEmbedding(vectorEmbedding, inngest);
 
   inngest.logger.info('Finished building MyWiki vector index');
 
