@@ -4,5 +4,14 @@
   "parserOptions": {
     "project": "**/tsconfig.json"
   },
-  "ignorePatterns": ["*config.*", "dist/**/*.js", "dist/**/*.ts"]
+  "ignorePatterns": ["*config.*", "dist/**/*.js", "dist/**/*.ts"],
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
+    "no-await-in-loop": "off"
+  }
 }
