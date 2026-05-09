@@ -20,3 +20,6 @@ Important!!!
 If there is already a request with a given email or name, mention the email is either already requested or used and for the name, mention that it is already being used. Create indexing for the name and email property in db
 
 In vercel I went from node version 20.11.0 to 20.22.2
+
+Move the drop index to the front of the function. Once the loop is done, create the embed and update the database in one single run. That way I am not returning over a MB of information. Also look into splitting this up into seperate step.run chunks.
+It was const vectorEmbedding = await step.run('create-embedding', () => createEmbedding(vectorEmbeddedArray));

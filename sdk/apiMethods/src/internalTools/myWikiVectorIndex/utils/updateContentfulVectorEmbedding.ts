@@ -1,94 +1,79 @@
-import { Logger } from 'inngest';
+// import { Logger } from 'inngest';
 
-import { ContentfulVectorEmbeddingModel } from '@unity/models';
-import { ContentfulVectorEmbeddingType } from '@unity/types';
+// import { ContentfulVectorEmbeddingModel } from '@unity/models';
+// import { ContentfulVectorEmbeddingType } from '@unity/types';
 
-import { connectToDatabase } from '../../../utils';
-// import waitForIndexCreate from './waitForIndexCreate';
-import waitForIndexDeletion from './waitForIndexDeletion';
+// import { connectToDatabase } from '../../../utils';
+// // import waitForIndexCreate from './waitForIndexCreate';
+// import waitForIndexDeletion from './waitForIndexDeletion';
 
-type UpdateContentfulVectorEmbedding = (
-  vectorEmbeddings: ContentfulVectorEmbeddingType[],
-  step: any,
-  logger: Logger
-) => Promise<void>;
+// type UpdateContentfulVectorEmbedding = (
+//   vectorEmbeddings: ContentfulVectorEmbeddingType[],
+//   step: any,
+//   logger: Logger
+// ) => Promise<void>;
 
-const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings, step, logger) => {
-  await connectToDatabase();
+// const updateContentfulVectorEmbedding: UpdateContentfulVectorEmbedding = async (vectorEmbeddings, step, logger) => {
 
-  const { collection } = ContentfulVectorEmbeddingModel;
+//   try {
+//     await waitForIndexDeletion(collection, 'vector_index', step, logger);
+//   } catch (err: any) {
+//     logger.error('Error waiting for index deletion:', err);
+//     // eslint-disable-next-line no-console
+//     console.error('Error waiting for index deletion:', err);
 
-  await step.run('drop-existing-index', async () => {
-    try {
-      await collection.dropSearchIndex('vector_index');
-    } catch (err: any) {
-      const codeName = err.codeName || err?.errorResponse?.codeName;
-      const code = err.code || err?.errorResponse?.code;
+//     throw err;
+//   }
 
-      if (codeName === 'IndexNotFound' || code === 27) {
-        // eslint-disable-next-line no-console
-        console.log('Inngest ++++++++++ No existing vector index found, skipping drop.');
-      } else {
-        logger.error('Error dropping existing vector index:', err);
+//   await step.sleep('reset-timer-before-updating-vector-embeding-model', '1s');
 
-        throw err;
-      }
-    }
-  });
+//   await step.run('update-contentful-vector-embedding', async () => {
+//     try {
+//       await ContentfulVectorEmbeddingModel.deleteMany({});
 
-  try {
-    await waitForIndexDeletion(collection, 'vector_index', step, logger);
-  } catch (err: any) {
-    logger.error('Error waiting for index deletion:', err);
-    // eslint-disable-next-line no-console
-    console.error('Error waiting for index deletion:', err);
+//       await ContentfulVectorEmbeddingModel.insertMany(vectorEmbeddings, { ordered: false });
+//     } catch (err: any) {
+//       logger.error('Error updating ContentfulVectorEmbedding:', err);
+//       // eslint-disable-next-line no-console
+//       console.error('Error updating ContentfulVectorEmbedding:', err);
 
-    throw err;
-  }
+//       throw err;
+//     }
+//   });
 
-  await step.run('update-contentful-vector-embedding', async () => {
-    try {
-      await ContentfulVectorEmbeddingModel.deleteMany({});
+//   await step.sleep('reset-timer-before-create-new-index', '1s');
 
-      await ContentfulVectorEmbeddingModel.insertMany(vectorEmbeddings, { ordered: false });
-    } catch (err: any) {
-      logger.error('Error updating ContentfulVectorEmbedding:', err);
-      // eslint-disable-next-line no-console
-      console.error('Error updating ContentfulVectorEmbedding:', err);
+//   await step.run('create-new-index', async () => {
+//     try {
+//       const index = {
+//         name: 'vector_index',
+//         type: 'vectorSearch',
+//         definition: {
+//           fields: [
+//             {
+//               type: 'vector',
+//               numDimensions: 3072,
+//               path: 'plot_embedding_text_embedding_3_large',
+//               similarity: 'dotProduct',
+//               quantization: 'scalar',
+//             },
+//           ],
+//         },
+//       };
 
-      throw err;
-    }
-  });
+//       await collection.createSearchIndex(index);
+//     } catch (err: any) {
+//       logger.error('Error creating new vector index:', err);
+//       // eslint-disable-next-line no-console
+//       console.error('Error creating vector index:', err);
+//       throw err;
+//     }
+//   });
 
-  await step.run('create-new-index', async () => {
-    try {
-      const index = {
-        name: 'vector_index',
-        type: 'vectorSearch',
-        definition: {
-          fields: [
-            {
-              type: 'vector',
-              numDimensions: 3072,
-              path: 'plot_embedding_text_embedding_3_large',
-              similarity: 'dotProduct',
-              quantization: 'scalar',
-            },
-          ],
-        },
-      };
+//   await step.sleep('reset-timer-before-finalize-update', '1s');
 
-      await collection.createSearchIndex(index);
-    } catch (err: any) {
-      logger.error('Error creating new vector index:', err);
-      // eslint-disable-next-line no-console
-      console.error('Error creating vector index:', err);
-      throw err;
-    }
-  });
+//   const result = await step.run('finalize-update', () => ({ last_my_wiki_update: new Date() }));
 
-  const result = await step.run('finalize-update', () => ({ last_my_wiki_update: new Date() }));
-
-  return result;
-};
-export default updateContentfulVectorEmbedding;
+//   return result;
+// };
+// export default updateContentfulVectorEmbedding;
