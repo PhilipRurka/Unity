@@ -12,7 +12,7 @@ const getConversation: GetConversation = async (userId: string) => {
     const messagesData: MyWikiChatConversationType = (await MyWikiChatMessagesModel.findOne(
       { userId: userObjectId },
       {
-        messages: { $slice: -4 },
+        messages: { $slice: 0 },
       }
     ).lean()) || { userId, messages: [] };
 
