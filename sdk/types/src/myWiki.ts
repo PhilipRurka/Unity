@@ -1,3 +1,5 @@
+export type MyWikiChatConversationType = MyWikiChatMessagesType | null;
+
 export type MyWikiChatMessagesType = MyWikiResponseType & {
   userId: string;
 };
