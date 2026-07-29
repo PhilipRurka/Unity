@@ -2,11 +2,11 @@ import crypto from 'crypto';
 
 import type { AddUserReq, ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
+import resend from '../resend';
 import connectToDatabase from '../utils/connectToDatabase';
 import createActivitiesAnalytics from '../utils/createActivitiesAnalytics';
 import createUserLogs from '../utils/createUserLogs';
 import createUserWithCredentials from '../utils/createUserWithCredentials';
-import sendgridEmail from '../utils/sendgridEmail';
 
 type CatchError = {
   message: string;
@@ -37,7 +37,7 @@ const addUser: AddUser = async ({ name, email, sourceType }) => {
 
     await createActivitiesAnalytics({ userId });
 
-    await sendgridEmail({ type: 'create account', email, password });
+    await resend({ type: 'create account', email, password });
 
     response = [{ result: { message: 'Success!' } }, { status: 200 }];
   } catch (err) {

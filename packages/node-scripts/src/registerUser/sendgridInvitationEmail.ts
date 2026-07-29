@@ -1,29 +1,35 @@
-/* eslint-disable import/no-extraneous-dependencies */
+// /* eslint-disable import/no-extraneous-dependencies */
 
-/* eslint-disable no-console */
-import sgMail from '@sendgrid/mail';
+// /* eslint-disable no-console */
+// import sgMail from '@sendgrid/mail';
 
-import emailTemplate from './emailTemplate.js';
+// import emailTemplate from './emailTemplate.js';
 
-const sendgridInvitationEmail = async (email: string, password: string) => {
-  const { SENDGRID_API_KEY = '' } = (await import('../utils/envVariables.js')).default();
+// type Params = {
+//   type: 'create account' | 'reset password';
+//   email: string;
+//   password: string;
+// };
 
-  sgMail.setApiKey(SENDGRID_API_KEY);
+// const sendgridInvitationEmail = async (email: string, password: string) => {
+//   const { SENDGRID_API_KEY = '' } = (await import('../utils/envVariables.js')).default();
 
-  const builtEmail = emailTemplate(email, password);
+//   sgMail.setApiKey(SENDGRID_API_KEY);
 
-  try {
-    await sgMail.send(builtEmail);
-    console.log('Email sent');
-  } catch (err) {
-    const error = err as any;
-    console.error(error);
-    if (error.response) {
-      console.error(error.response.body);
-    }
+//   const builtEmail = emailTemplate(email, password);
 
-    throw Error('Failed to send out Email');
-  }
-};
+//   try {
+//     await sgMail.send(builtEmail);
+//     console.log('Email sent');
+//   } catch (err) {
+//     const error = err as any;
+//     console.error(error);
+//     if (error.response) {
+//       console.error(error.response.body);
+//     }
 
-export default sendgridInvitationEmail;
+//     throw Error('Failed to send out Email');
+//   }
+// };
+
+// export default sendgridInvitationEmail;
