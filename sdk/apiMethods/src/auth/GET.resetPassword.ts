@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import { UserModel } from '@unity/models';
 import { ApiMethodResponsePromise, ErrorGetType, SuccessGetType } from '@unity/types';
 
-import { sendgridEmail } from '../utils';
+import resend from '../resend';
 import connectToDatabase from '../utils/connectToDatabase';
 
 type ResetPassword = (email: string) => ApiMethodResponsePromise<{ message: string }>;
@@ -23,7 +23,7 @@ const resetPassword: ResetPassword = async (email) => {
 
   await UserModel.findOneAndUpdate({ email }, { password: hashedPassword });
 
-  await sendgridEmail({ type: 'reset password', email, password });
+  await resend({ type: 'reset password', email, password });
 
   try {
     response = [{ result: { message: 'Success!!' } }, { status: 200 }];
