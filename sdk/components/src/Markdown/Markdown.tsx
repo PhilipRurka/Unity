@@ -5,6 +5,7 @@ import React from 'react';
 import {
   Heading3,
   Heading4,
+  Heading5,
   Hyperlink,
   ListItem,
   OrderedList,
@@ -22,6 +23,7 @@ const Markdown = ({ content }: MarkdownType) => (
         [INLINES.HYPERLINK]: (node, children) => <Hyperlink node={node}>{children}</Hyperlink>,
         [BLOCKS.HEADING_3]: (_node, children) => <Heading3>{children}</Heading3>,
         [BLOCKS.HEADING_4]: (_node, children) => <Heading4>{children}</Heading4>,
+        [BLOCKS.HEADING_5]: (_node, children) => <Heading5>{children}</Heading5>,
         [BLOCKS.UL_LIST]: (_node, children) => <UnorderedList>{children}</UnorderedList>,
         [BLOCKS.OL_LIST]: (_node, children) => <OrderedList>{children}</OrderedList>,
         [BLOCKS.LIST_ITEM]: (_node, children) => <ListItem>{children}</ListItem>,

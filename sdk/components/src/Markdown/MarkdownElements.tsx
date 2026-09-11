@@ -15,6 +15,10 @@ export const Heading4 = ({ children }: MarkdownElementProps) => (
   <h4 className="mb-2 mt-8 text-xl lg:mt-12 lg:text-2xl">{children}</h4>
 );
 
+export const Heading5 = ({ children }: MarkdownElementProps) => (
+  <h5 className="mb-2 mt-8 text-lg lg:mt-12 lg:text-xl [&_b]:font-bold">{children}</h5>
+);
+
 export const UnorderedList = ({ children }: MarkdownElementProps) => (
   <ul className="mt-2 list-disc pl-5">{children}</ul>
 );
