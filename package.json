@@ -62,7 +62,7 @@
       "dev-all": "Start Compendium on port 3000 & Admin on port 3001",
       "dev-compendium": "Start Compendium on port 3000",
       "dev-admin": "Start Admin on port 3001",
-      "dev-inngest" : "Start Inngest on port 8288",
+      "dev-inngest": "Start Inngest on port 8288",
       "build": "Lint and build on all workspaces",
       "lint": "Run eslint",
       "reset": "Find and delete all node modules",

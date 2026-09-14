@@ -7478,7 +7478,7 @@ npmlog@^5.0.1:
 
 ntl@^5.1.0:
   version "5.1.0"
-  resolved "https://registry.npmjs.org/ntl/-/ntl-5.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/ntl/-/ntl-5.1.0.tgz#018815afc0ce36bf1a2fcce1afbbb52c8c2897b0"
   integrity sha512-IE6lJnQoIFg0i1S7TN5qSLiKz1qU3iSl+drmAg0Ltxqb3+JqNcZ86x9tUa4XvqqpSGCKerAxGs+LXj7s7s3ySw==
   dependencies:
     ipt "^3.1.1"
