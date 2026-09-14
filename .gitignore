@@ -8,3 +8,4 @@ dist/
 .DS_Store
 packages/mongodb/dump/local
 packages/mongodb/dump/production
+.env*

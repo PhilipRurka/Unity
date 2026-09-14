@@ -1,10 +1,11 @@
+/** @format */
+
 module.exports = {
   extends: [
     "next/core-web-vitals",
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier",
-    "plugin:react-hooks/recommended",
   ],
   rules: {
     "import/extensions": "off",
