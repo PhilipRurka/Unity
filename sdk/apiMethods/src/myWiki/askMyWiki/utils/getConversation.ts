@@ -9,12 +9,12 @@ const getConversation: GetConversation = async (userId: string) => {
   try {
     const userObjectId = new mongoose.Types.ObjectId(userId);
 
-    const messagesData: MyWikiChatConversationType = (await MyWikiChatMessagesModel.findOne(
+    const messagesData: MyWikiChatConversationType = ((await MyWikiChatMessagesModel.findOne(
       { userId: userObjectId },
       {
         messages: { $slice: -2 },
       }
-    ).lean()) || { userId, messages: [] };
+    ).lean()) as unknown as MyWikiChatConversationType) || { userId, messages: [] };
 
     return messagesData.messages.map((message) => `${message.role}: ${message.content}`).join('\n');
   } catch (err) {
