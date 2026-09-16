@@ -28,6 +28,9 @@
     "start-mongodb": "brew services start mongodb-community@7.0",
     "stop-mongodb": "brew services stop mongodb-community@7.0"
   },
+  "dependencies": {
+    "next": "14.2.35"
+},
   "devDependencies": {
     "concurrently": "^8.2.2",
     "husky": "^8.0.3",
