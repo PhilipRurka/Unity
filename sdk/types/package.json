@@ -14,9 +14,14 @@
   },
   "devDependencies": {
     "@contentful/rich-text-types": "^16.2.1",
-    "@unity/eslint-config-node": "*",
-    "@unity/prettier-config": "*",
-    "@unity/rollup-config": "*",
-    "@unity/tsconfig": "*"
+    "@unity/eslint-config-node": "workspace:*",
+    "@unity/prettier-config": "workspace:*",
+    "@unity/rollup-config": "workspace:*",
+    "@unity/tsconfig": "workspace:*",
+    "contentful": "^10.9.2",
+    "mongoose": "^8.3.4",
+    "next-auth": "^4.24.7",
+    "rollup": "^2.63.0",
+    "typescript": "^5.3.3"
   }
 }

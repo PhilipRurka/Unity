@@ -8,14 +8,14 @@ const reStructureArticles = (articles: ArticleType[]) => {
     const { id } = article.sys;
     const items: FinalItems = [];
 
-    article.fields.content.forEach((section) => {
+    article.fields.content.forEach((section: any) => {
       let sectionText = '';
 
       if (!section) return;
 
-      section.fields.content.content.forEach((node) => {
+      section.fields.content.content.forEach((node: any) => {
         if (node.nodeType === 'paragraph') {
-          node.content.forEach((textNode) => {
+          node.content.forEach((textNode: any) => {
             if (textNode.nodeType === 'text') {
               const textNodeValue = textNode.value;
               const isTextNodeValueFirstComma = textNodeValue.charAt(0) === ',';
@@ -33,7 +33,7 @@ const reStructureArticles = (articles: ArticleType[]) => {
               sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}`;
             } else if (textNode.nodeType === 'hyperlink') {
               const value = textNode.content
-                .map((linkNode) => {
+                .map((linkNode: any) => {
                   if (linkNode.nodeType !== 'text') return '';
                   return linkNode.value;
                 })

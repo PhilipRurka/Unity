@@ -13,13 +13,26 @@
     "watch": "rollup -c --watch"
   },
   "dependencies": {
-    "@unity/models": "*",
-    "@unity/types": "*",
+    "@contentful/rich-text-types": "^16.2.1",
+    "@unity/models": "workspace:*",
+    "@unity/types": "workspace:*",
+    "algoliasearch": "^4.23.3",
+    "bcrypt": "^5.1.1",
+    "contentful": "^10.9.2",
     "contentful-management": "^11.25.5",
     "crypto": "^1.0.1",
+    "deep-object-diff": "^1.1.9",
+    "inngest": "^4.2.6",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
     "next": "14.2.35",
     "next-auth": "^4.24.7",
     "openai": "^6.9.1",
     "resend": "^6.18.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "rollup": "^2.63.0",
+    "typescript": "^5.3.3"
   }
 }

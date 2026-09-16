@@ -1,0 +1,14 @@
+# @format
+
+allowBuilds:
+  bcrypt: true
+  esbuild: true
+  protobufjs: true
+  spawn-sync: true
+  turbo: true
+  unrs-resolver: true
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "packages/**/*"
+  - "sdk/*"

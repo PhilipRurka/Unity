@@ -12,11 +12,16 @@
     "build-admin": "rollup -c",
     "watch": "rollup -c --watch"
   },
+  "dependencies": {
+    "mongoose": "^8.3.4"
+  },
   "devDependencies": {
-    "@unity/eslint-config-node": "*",
-    "@unity/prettier-config": "*",
-    "@unity/rollup-config": "*",
-    "@unity/types": "*",
-    "@unity/tsconfig": "*"
+    "@unity/eslint-config-node": "workspace:*",
+    "@unity/prettier-config": "workspace:*",
+    "@unity/rollup-config": "workspace:*",
+    "@unity/types": "workspace:*",
+    "@unity/tsconfig": "workspace:*",
+    "rollup": "^2.63.0",
+    "typescript": "^5.3.3"
   }
 }

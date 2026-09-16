@@ -11,12 +11,12 @@ const reStructureArticles = (articles: ArticleType[]) => {
 
     let markUnderlineCount = 0;
 
-    article.fields.content.forEach((section) => {
-      section?.fields.content.content.forEach((node) => {
+    article.fields.content.forEach((section: any) => {
+      section?.fields.content.content.forEach((node: any) => {
         if (node.nodeType === 'paragraph') {
-          node.content.forEach((textNode) => {
+          node.content.forEach((textNode: any) => {
             if (textNode.nodeType === 'text') {
-              textNode.marks.forEach((mark) => {
+              textNode.marks.forEach((mark: any) => {
                 if (mark.type !== 'underline') return;
 
                 markUnderlineCount += 1;

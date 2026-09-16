@@ -20,16 +20,18 @@
   "devDependencies": {
     "@types/cli-spinner": "^0.2.3",
     "@types/inquirer": "^9.0.7",
-    "@unity/eslint-config-node": "*",
-    "@unity/node-scripts": "*",
-    "@unity/prettier-config": "*",
-    "@unity/tsconfig": "*",
+    "@unity/eslint-config-node": "workspace:*",
+    "@unity/node-scripts": "workspace:*",
+    "@unity/prettier-config": "workspace:*",
+    "@unity/tsconfig": "workspace:*",
     "chalk": "^5.3.0",
     "cli-spinner": "^0.2.10",
-    "inquirer": "^9.2.23"
+    "inquirer": "^9.2.23",
+    "ntl": "^5.1.0",
+    "typescript": "^5.3.3"
   },
   "ntl": {
-    "runner": "yarn",
+    "runner": "pnpm",
     "descriptions": {
       "cd-root": "cd into root",
       "dump-local": "Dump local DB into dump/local",

@@ -4,5 +4,8 @@
   "private": true,
   "type": "module",
   "main": "index.js",
-  "module": "index.js"
+  "module": "index.js",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
 }
