@@ -8,6 +8,11 @@ type Result = {
 }
 
 const HomePage = async () => {
+  console.log('Contentful env from page:', {
+    hasSpaceId: Boolean(process.env.CONTENTFUL_SPACE_ID),
+    hasAccessToken: Boolean(process.env.CONTENTFUL_ACCESS_TOKEN),
+  });
+
   const data = await getByContentModel('homepage');
 
   if (!Array.isArray(data) || !data[0]) return <></>;
