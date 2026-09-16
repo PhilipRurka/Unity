@@ -11,6 +11,11 @@ type CatchError = {
 
 const getByContentModel: GetByContentModel = async (contentModel) => {
   try {
+    console.log('Contentful env:', {
+      hasSpaceId: Boolean(process.env.CONTENTFUL_SPACE_ID),
+      hasAccessToken: Boolean(process.env.CONTENTFUL_ACCESS_TOKEN),
+    });
+
     const client = createClient({
       space: process.env.CONTENTFUL_SPACE_ID || '',
       accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
