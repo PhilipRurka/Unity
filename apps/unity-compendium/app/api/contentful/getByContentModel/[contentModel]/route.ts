@@ -5,13 +5,13 @@ import { checkIfUserAuthenticated, getByContentModel } from '@unity/api-methods'
 import type { AllContentModelTypes } from '@unity/types';
 
 type Context = {
-  params: {
+  params: Promise<{
     contentModel: AllContentModelTypes;
-  };
+  }>;
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
-  const { contentModel } = context.params;
+  const { contentModel } = await context.params;
   const skipAuthentication = contentModel === 'homepage' || contentModel === 'hierarchyLayout';
 
   if (!skipAuthentication) {

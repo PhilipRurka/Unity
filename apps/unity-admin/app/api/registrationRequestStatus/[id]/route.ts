@@ -5,9 +5,9 @@ import { checkIfAdminAuthenticated, updateRegistrationRequestStatus } from '@uni
 import { RegistrationRequestStatus } from '@unity/types';
 
 type Context = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 type ReqData = {
@@ -18,7 +18,7 @@ export const PUT = async (req: NextRequest, context: Context) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
-  const { id: requestId } = context.params;
+  const { id: requestId } = await context.params;
 
   const reqData: ReqData = await req.json();
 

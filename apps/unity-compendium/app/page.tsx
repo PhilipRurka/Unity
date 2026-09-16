@@ -1,14 +1,20 @@
 import { HomepageType } from '@unity/types';
 
 import Home from '@/Components/Home';
-import getByContentModel from '@/Fetchers/contentful/getByContentModel';
+import { getByContentModel } from '@unity/api-methods';
+
+type Result = {
+  result: Array<HomepageType>;
+}
 
 const HomePage = async () => {
-  const data: HomepageType[] = await getByContentModel('homepage');
+  const data = await getByContentModel('homepage');
 
-  if (!data) return <></>;
+  if (!Array.isArray(data) || !data[0]) return <></>;
 
-  return <Home data={data[0]} />;
+  const { result } = data[0] as unknown as Result;
+
+  return <Home data={result[0]} />;
 };
 
 export default HomePage;
