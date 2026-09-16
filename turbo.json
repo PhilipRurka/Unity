@@ -13,7 +13,11 @@
     "build-compendium": {
       "dependsOn": ["^build-compendium"],
       "outputs": ["dist/**", "build/**"],
-      "cache": false
+      "cache": false,
+      "env": [
+      "CONTENTFUL_ACCESS_TOKEN",
+      "CONTENTFUL_SPACE_ID"
+    ]
     },
     "build-admin": {
       "dependsOn": ["^build-admin"],
