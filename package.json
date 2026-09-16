@@ -29,7 +29,7 @@
     "stop-mongodb": "brew services stop mongodb-community@7.0"
   },
   "dependencies": {
-    "next": "14.2.35"
+    "next": "^16.3.5"
 },
   "devDependencies": {
     "concurrently": "^8.2.2",
