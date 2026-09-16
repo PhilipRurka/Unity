@@ -4,16 +4,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkIfUserAuthenticated, getBySlug } from '@unity/api-methods';
 
 type Context = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
   const isUserAuthenticated = await checkIfUserAuthenticated(req);
   if (!isUserAuthenticated) return NextResponse.json({}, {});
 
-  const { slug } = context.params;
+  const { slug } = await context.params;
 
   const [data, status] = await getBySlug(slug);
 

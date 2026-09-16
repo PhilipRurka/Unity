@@ -5,16 +5,16 @@ import { checkIfUserAuthenticated, editUser, getUser } from '@unity/api-methods'
 import { EditUserReq } from '@unity/types';
 
 type Context = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
   const tokenSub = await checkIfUserAuthenticated(req);
   if (!tokenSub) return NextResponse.json({}, {});
 
-  const { id: userId } = context.params;
+  const { id: userId } = await context.params;
 
   if (userId !== tokenSub)
     return NextResponse.json([{ error: { message: 'You are not who you say you are!' } }, { status: 503 }]);
@@ -28,7 +28,7 @@ export const PUT = async (req: NextRequest, context: Context) => {
   const tokenSub = await checkIfUserAuthenticated(req);
   if (!tokenSub) return NextResponse.json({}, {});
 
-  const { id: userId } = context.params;
+  const { id: userId } = await context.params;
 
   const reqData: EditUserReq = await req.json();
 

@@ -4,16 +4,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { checkIfAdminAuthenticated, getActivities } from '@unity/api-methods';
 
 type Context = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export const GET = async (req: NextRequest, context: Context) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
-  const { id: userId } = context.params;
+  const { id: userId } = await context.params;
 
   const [data, status] = await getActivities(userId);
 

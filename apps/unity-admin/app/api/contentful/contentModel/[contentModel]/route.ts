@@ -5,16 +5,16 @@ import { checkIfAdminAuthenticated, getByContentModel } from '@unity/api-methods
 import type { AllContentModelTypes } from '@unity/types';
 
 type Context = {
-  params: {
+  params: Promise<{
     contentModel: AllContentModelTypes;
-  };
-};
+  }>
+}
 
 export const GET = async (req: NextRequest, context: Context) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);
   if (!isAdminAuthenticated) return NextResponse.json({}, {});
 
-  const { contentModel } = context.params;
+  const { contentModel } = await context.params;
 
   const [result, status] = await getByContentModel(contentModel);
 
