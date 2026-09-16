@@ -3,10 +3,6 @@ import plugin from "tailwindcss/plugin";
 
 /** @type {import('tailwindcss').Config} */
 const tailwindConfig = {
-  content: [
-    "../../apps/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../sdk/components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
   theme: {
     extend: {
       backgroundImage: {
