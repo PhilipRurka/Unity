@@ -32,15 +32,17 @@
     "@types/node": "^20.11.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "@unity/eslint-config-next": "*",
-    "@unity/eslint-config-node": "*",
-    "@unity/prettier-config": "*",
-    "@unity/post-config": "*",
-    "@unity/rollup-config": "*",
-    "@unity/tailwind": "*",
-    "@unity/tsconfig": "*",
-    "@unity/types": "*",
+    "@unity/eslint-config-next": "workspace:*",
+    "@unity/eslint-config-node": "workspace:*",
+    "@unity/prettier-config": "workspace:*",
+    "@unity/post-config": "workspace:*",
+    "@unity/rollup-config": "workspace:*",
+    "@unity/tailwind": "workspace:*",
+    "@unity/tsconfig": "workspace:*",
+    "@unity/types": "workspace:*",
     "autoprefixer": "^10.0.1",
-    "postcss": "^8"
+    "postcss": "^8",
+    "rollup": "^2.63.0",
+    "typescript": "^5.3.3"
   }
 }

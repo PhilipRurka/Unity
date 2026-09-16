@@ -3,59 +3,41 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "cd-mongodb": "(cd packages/mongodb && yarn ntl)",
-    "cd-node-scripts": "(cd packages/node-scripts && yarn ntl)",
-    "lint": "turbo run lint",
-    "build": "turbo run build",
-    "build-admin": "turbo run build-admin",
-    "build-compendium": "turbo run build-compendium",
-    "dev-all": "turbo run dev",
-    "dev-compendium": "(cd apps/unity-compendium && yarn dev)",
-    "dev-admin": "(cd apps/unity-admin && yarn dev)",
-    "dev-inngest": "npx inngest-cli@latest dev",
-    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\;",
-    "env-pull": "turbo run env-pull && vercel env pull .env.local",
-    "env-pull-production": "turbo run env-pull-production && vercel env pull --environment=production .env.local",
-    "migrate-up": "(cd ./migrations && npx migrate-mongo up && cd -)",
-    "ntl": "npx ntl -o",
-    "watch": "concurrently \"yarn workspace @unity/node-scripts watch\" \"yarn workspace @unity/mongodb watch\" \"yarn workspace @unity/components watch\" \"yarn workspace @unity/models watch\" \"yarn workspace @unity/hooks watch\" \"yarn workspace @unity/api-methods watch\"",
-    "start-mongodb": "brew services start mongodb-community@7.0",
-    "stop-mongodb": "brew services stop mongodb-community@7.0"
-  },
-  "dependencies": {
-    "algoliasearch": "^4.23.3",
-    "bcrypt": "^5.1.1",
-    "contentful": "^10.9.2",
-    "inngest": "^4.2.6",
-    "mongoose": "^8.3.4"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "deep-object-diff": "^1.1.9",
-    "dotenv": "^16.4.5",
-    "husky": "^8.0.3",
-    "migrate-mongo": "^11.0.0",
-    "mongodb": "^6.6.1",
-    "ntl": "^5.1.0",
-    "turbo": "1.4.7",
-    "typescript": "^5.3.3"
-  },
-  "packageManager": "yarn@1.22.22",
+  "type": "module",
   "engines": {
     "node": "24.21.0"
   },
-  "type": "module",
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*",
-      "packages/**/*",
-      "sdk/*"
-    ]
+  "packageManager": "pnpm@12.4.1+sha512.2e81e399d73fe8390dab25e06aa788ab7a5908248d2f5a370f82b481147a6a7a367bf8048f9a6fdb6460f21a66f0542dedb8b94ca2c8723596741920b1656d4c",
+  "scripts": {
+    "cd-mongodb": "(cd packages/mongodb && pnpm ntl)",
+    "cd-node-scripts": "(cd packages/node-scripts && pnpm ntl)",
+    "lint": "pnpm exec turbo run lint",
+    "build": "pnpm exec turbo run build",
+    "build-admin": "pnpm exec turbo run build-admin",
+    "build-compendium": "pnpm exec turbo run build-compendium",
+    "dev-all": "pnpm exec turbo run dev",
+    "dev-compendium": "(cd apps/unity-compendium && pnpm dev)",
+    "dev-admin": "(cd apps/unity-admin && pnpm dev)",
+    "dev-inngest": "npx inngest-cli@latest dev",
+    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\; && pnpm store prune",
+    "env-pull": "pnpm exec turbo run env-pull && vercel env pull .env.local",
+    "env-pull-production": "pnpm exec turbo run env-pull-production && vercel env pull --environment=production .env.local",
+    "migrate-up": "(cd ./migrations && pnpm exec migrate-mongo up && cd -)",
+    "ntl": "pnpm exec ntl -o",
+    "watch": "concurrently \"pnpm --filter @unity/node-scripts watch\" \"pnpm --filter @unity/mongodb watch\" \"pnpm --filter @unity/components watch\" \"pnpm --filter @unity/models watch\" \"pnpm --filter @unity/hooks watch\" \"pnpm --filter @unity/api-methods watch\"",
+    "start-mongodb": "brew services start mongodb-community@7.0",
+    "stop-mongodb": "brew services stop mongodb-community@7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "husky": "^8.0.3",
+    "migrate-mongo": "^11.0.0",
+    "ntl": "^5.1.0",
+    "turbo": "2.10.12",
+    "typescript": "^5.3.3"
   },
   "ntl": {
-    "runner": "yarn",
+    "runner": "pnpm",
     "descriptions": {
       "cd-mongodb": "cd into packages/mongodb",
       "cd-node-scripts": "cd into packages/node-scripts",

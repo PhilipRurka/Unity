@@ -8,14 +8,14 @@ const reStructureArticles = (articles: ArticleType[]) => {
     const { id } = article.sys;
     const items: FinalItems = [];
 
-    article.fields.content.forEach((section) => {
+    article.fields.content.forEach((section: any) => {
       let sectionText = '';
 
       if (!section || !section.fields) return;
 
-      section.fields.content.content.forEach((node) => {
+      section.fields.content.content.forEach((node: any) => {
         if (node.nodeType === 'paragraph') {
-          node.content.forEach((textNode) => {
+          node.content.forEach((textNode: any) => {
             if (textNode.nodeType === 'text') {
               const textNodeValue = textNode.value;
               const isTextNodeValueLastSpace = textNodeValue.charAt(textNodeValue.length - 1) === ' ';
@@ -30,7 +30,7 @@ const reStructureArticles = (articles: ArticleType[]) => {
               const href = textNode.data.uri;
 
               const value = textNode.content
-                .map((linkNode) => {
+                .map((linkNode: any) => {
                   if (linkNode.nodeType !== 'text') return '';
                   return linkNode.value;
                 })

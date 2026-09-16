@@ -20,18 +20,33 @@
     "delete-user": "node dist/deleteUser",
     "test-migration-script": "node dist/testMigrationScript"
   },
+  "dependencies": {
+    "@contentful/rich-text-types": "^16.2.1",
+    "algoliasearch": "^4.23.3",
+    "bcrypt": "^5.1.1",
+    "contentful": "^10.9.2",
+    "deep-object-diff": "^1.1.9",
+    "mongoose": "^8.3.4",
+    "next-auth": "^4.24.7"
+  },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/cli-spinner": "^0.2.3",
-    "@unity/eslint-config-node": "*",
-    "@unity/prettier-config": "*",
-    "@unity/tsconfig": "*",
+    "@unity/eslint-config-node": "workspace:*",
+    "@unity/prettier-config": "workspace:*",
+    "@unity/tsconfig": "workspace:*",
+    "@unity/types": "workspace:*",
     "cf-content-types-generator": "^2.15.1",
     "cli-spinner": "^0.2.10",
     "contentful-cli": "^3.3.1",
-    "contentful-management": "^11.25.5"
+    "contentful-management": "^11.25.5",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.6.1",
+    "ntl": "^5.1.0",
+    "typescript": "^5.3.3"
   },
   "ntl": {
-    "runner": "yarn",
+    "runner": "pnpm",
     "descriptions": {
       "watch-node-scripts": "Watches for changes done in node-scripts and compiles to js from ts when a change has occured",
       "create-component-template": "Generates a new component using correct pattern",
