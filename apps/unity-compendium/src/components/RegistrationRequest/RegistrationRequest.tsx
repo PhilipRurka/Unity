@@ -90,7 +90,7 @@ const RegistrationRequest = () => {
           {errors.message && <ErrorSpan>{errors.message.message}</ErrorSpan>}
         </Field>
         {requestSent && <span className="text-lg text-green-700">Emai was sent!!</span>}
-        {isEmailBeingUsed && <span className="text-lg text-red-600 "> Email is already being used!</span>}
+        {isEmailBeingUsed && <span className="text-lg text-red-600"> Email is already being used!</span>}
         <div className="flex flex-wrap gap-4">
           <Button color="green" isFull type="submit" disabled={requestSent} size="medium">
             Request Registration

@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 /* eslint-disable import/no-extraneous-dependencies */
 import contentfulManagement from 'contentful-management';
 import { diff } from 'deep-object-diff';

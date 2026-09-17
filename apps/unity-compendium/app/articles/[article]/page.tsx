@@ -10,6 +10,6 @@ const ArticlePage = async ({ params }: ArticleProps) => {
   const { article: slug } = await params;
 
   return <Article slug={slug} />;
-}
+};
 
 export default ArticlePage;

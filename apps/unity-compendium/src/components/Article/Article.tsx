@@ -75,7 +75,7 @@ const Article = ({ slug }: ArticleProps) => {
                     {section?.fields.title && (
                       <>
                         <h2 className={clsx('relative text-3xl lg:text-4xl')}>{section?.fields.title}</h2>
-                        <hr className=" mb-4 border-black" />
+                        <hr className="mb-4 border-black" />
                       </>
                     )}
                     <Markdown content={section?.fields.content} />

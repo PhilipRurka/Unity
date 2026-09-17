@@ -10,17 +10,21 @@
     "build": "rollup -c",
     "build-compendium": "rollup -c",
     "build-admin": "rollup -c",
+    "format-prettier": "prettier --write .",
     "watch": "rollup -c --watch"
   },
   "dependencies": {
     "mongoose": "^8.3.4"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@unity/eslint-config-node": "workspace:*",
     "@unity/prettier-config": "workspace:*",
     "@unity/rollup-config": "workspace:*",
-    "@unity/types": "workspace:*",
     "@unity/tsconfig": "workspace:*",
+    "@unity/types": "workspace:*",
+    "prettier": "^3.9.7",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "rollup": "^2.63.0",
     "typescript": "^5.3.3"
   }

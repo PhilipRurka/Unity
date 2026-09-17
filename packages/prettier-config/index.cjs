@@ -1,26 +1,19 @@
-const pluginSortImports = require("@trivago/prettier-plugin-sort-imports");
-const pluginTailwindcss = require("prettier-plugin-tailwindcss");
-
-/** @type {import("prettier").Parser}  */
-const myParser = {
-  ...pluginSortImports.parsers.typescript,
-  parse: pluginTailwindcss.parsers.typescript.parse,
-};
-
-/** @type {import("prettier").Plugin}  */
-const myPlugin = {
-  parsers: {
-    typescript: myParser,
-  },
-};
+/**
+ * @format
+ * @type {import("prettier").Config}
+ */
 
 module.exports = {
-  plugins: [myPlugin],
+  plugins: [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss",
+  ],
+
   tabWidth: 2,
   printWidth: 120,
   singleQuote: true,
   trailingComma: "es5",
-  formatOnSave: true,
+
   importOrder: ["^@unity/(.*)", "^@/(.*)", "^[./]"],
   importOrderSeparation: true,
   importOrderSortSpecifiers: true,

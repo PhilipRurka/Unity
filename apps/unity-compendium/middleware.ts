@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 /* eslint-disable import/prefer-default-export */
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';

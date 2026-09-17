@@ -10,6 +10,7 @@
     "build": "rollup -c",
     "build-admin": "rollup -c",
     "build-compendium": "rollup -c",
+    "format-prettier": "prettier --write .",
     "watch": "rollup -c --watch"
   },
   "dependencies": {
@@ -30,7 +31,10 @@
     "resend": "^6.28.1"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/bcrypt": "^5.0.2",
+    "prettier": "^3.9.7",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "rollup": "^2.63.0",
     "typescript": "^5.3.3"
   }

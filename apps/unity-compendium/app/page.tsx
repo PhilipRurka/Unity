@@ -1,11 +1,11 @@
+import { getByContentModel } from '@unity/api-methods';
 import { HomepageType } from '@unity/types';
 
 import Home from '@/Components/Home';
-import { getByContentModel } from '@unity/api-methods';
 
 type Result = {
   result: Array<HomepageType>;
-}
+};
 
 const HomePage = async () => {
   const data = await getByContentModel('homepage');
