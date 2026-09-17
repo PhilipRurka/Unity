@@ -3,7 +3,7 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   try {
     const secret = process.env.NEXTAUTH_SECRET;
     if (!secret) throw new Error('Missing secret for NextAuth');

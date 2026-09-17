@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const authPaths = ['/login', '/reset-password', '/registration-request'];
 
-export default async function middleware(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   try {
     const { pathname } = req.nextUrl;
 
