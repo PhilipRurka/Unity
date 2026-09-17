@@ -27,7 +27,8 @@
     "watch": "concurrently \"pnpm --filter @unity/node-scripts watch\" \"pnpm --filter @unity/mongodb watch\" \"pnpm --filter @unity/components watch\" \"pnpm --filter @unity/models watch\" \"pnpm --filter @unity/hooks watch\" \"pnpm --filter @unity/api-methods watch\"",
     "start-mongodb": "brew services start mongodb-community@7.0",
     "stop-mongodb": "brew services stop mongodb-community@7.0",
-    "package-vitality": "pnpm outdated -r"
+    "package-vitality": "pnpm outdated -r",
+    "format-prettier": "concurrently \"pnpm --filter @unity/components format-prettier\" \"pnpm --filter @unity/hooks format-prettier\" \"pnpm --filter @unity/models format-prettier\" \"pnpm --filter @unity/api-methods format-prettier\" \"pnpm --filter @unity/node-scripts format-prettier\" \"pnpm --filter @unity/mongodb format-prettier\" \"pnpm --filter unity-admin format-prettier\" \"pnpm --filter unity-compendium format-prettier\""
   },
   "dependencies": {
     "next": "^16.3.5"
@@ -37,6 +38,7 @@
     "husky": "^8.0.3",
     "migrate-mongo": "^11.0.0",
     "ntl": "^5.1.0",
+    "prettier": "^2.4.0",
     "turbo": "2.10.13",
     "typescript": "^5.3.3"
   },
@@ -58,7 +60,8 @@
       "migrate-up": "run migrate-mongo up",
       "start-mongodb": "Start a local Mongodb instance",
       "stop-mongodb": "Stop the local Mongodb instance",
-      "package-vitality": "Check for outdated packages in all workspaces"
+      "package-vitality": "Check for outdated packages in all workspaces",
+      "format-prettier": "Format code with Prettier"
     }
   }
 }

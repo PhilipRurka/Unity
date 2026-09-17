@@ -10,6 +10,7 @@
     "build-admin": "tsc",
     "build-compendium": "tsc",
     "watch": "tsc --watch",
+    "format-prettier": "prettier --write .",
     "pull-production-env": "vercel env pull --environment=production .env.local",
     "create-component-template": "node dist/createComponentTemplate",
     "contentful-codegen": "node dist/contentfulCodegen",

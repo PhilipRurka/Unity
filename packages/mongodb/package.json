@@ -10,6 +10,7 @@
     "build-compendium": "tsc",
     "build-admin": "tsc",
     "watch": "tsc --watch",
+    "format-prettier": "prettier --write .",
     "dump-local": "node dist/dump/dumpLocal.js",
     "dump-production": "node dist/dump/dumpProd.js",
     "restore-local-with-local": "node dist/restore/localWithLocal.js",

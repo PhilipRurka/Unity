@@ -182,6 +182,9 @@ importers:
       ntl:
         specifier: ^5.1.0
         version: 5.1.0
+      prettier:
+        specifier: ^2.4.0
+        version: 2.8.8
       turbo:
         specifier: 2.10.13
         version: 2.10.13
