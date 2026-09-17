@@ -20,8 +20,9 @@
     "@unity/eslint-config-node": "workspace:*",
     "@unity/prettier-config": "workspace:*",
     "@unity/rollup-config": "workspace:*",
-    "@unity/types": "workspace:*",
     "@unity/tsconfig": "workspace:*",
+    "@unity/types": "workspace:*",
+    "prettier": "^3.9.7",
     "rollup": "^2.63.0",
     "typescript": "^5.3.3"
   }

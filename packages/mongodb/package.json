@@ -29,6 +29,7 @@
     "cli-spinner": "^0.2.10",
     "inquirer": "^9.2.23",
     "ntl": "^5.1.0",
+    "prettier": "^3.9.7",
     "typescript": "^5.3.3"
   },
   "ntl": {
