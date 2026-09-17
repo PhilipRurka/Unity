@@ -38,7 +38,6 @@
     "husky": "^8.0.3",
     "migrate-mongo": "^11.0.0",
     "ntl": "^5.1.0",
-    "prettier": "^2.4.0",
     "turbo": "2.10.13",
     "typescript": "^5.3.3"
   },
