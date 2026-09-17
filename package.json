@@ -19,24 +19,25 @@
     "dev-compendium": "(cd apps/unity-compendium && pnpm dev)",
     "dev-admin": "(cd apps/unity-admin && pnpm dev)",
     "dev-inngest": "npx inngest-cli@latest dev",
-    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\; && pnpm store prune",
+    "reset": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \\; && pnpm store prune && rm -rf apps/unity-compendium/.next apps/unity-admin/.next",
     "env-pull": "pnpm exec turbo run env-pull && vercel env pull .env.local",
     "env-pull-production": "pnpm exec turbo run env-pull-production && vercel env pull --environment=production .env.local",
     "migrate-up": "(cd ./migrations && pnpm exec migrate-mongo up && cd -)",
     "ntl": "pnpm exec ntl -o",
     "watch": "concurrently \"pnpm --filter @unity/node-scripts watch\" \"pnpm --filter @unity/mongodb watch\" \"pnpm --filter @unity/components watch\" \"pnpm --filter @unity/models watch\" \"pnpm --filter @unity/hooks watch\" \"pnpm --filter @unity/api-methods watch\"",
     "start-mongodb": "brew services start mongodb-community@7.0",
-    "stop-mongodb": "brew services stop mongodb-community@7.0"
+    "stop-mongodb": "brew services stop mongodb-community@7.0",
+    "package-vitality": "pnpm outdated -r"
   },
   "dependencies": {
     "next": "^16.3.5"
-},
+  },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "husky": "^8.0.3",
     "migrate-mongo": "^11.0.0",
     "ntl": "^5.1.0",
-    "turbo": "2.10.12",
+    "turbo": "2.10.13",
     "typescript": "^5.3.3"
   },
   "ntl": {
@@ -50,13 +51,14 @@
       "dev-inngest": "Start Inngest on port 8288",
       "build": "Lint and build on all workspaces",
       "lint": "Run eslint",
-      "reset": "Find and delete all node modules",
+      "reset": "Find and delete all node modules and .next",
       "env-pull": "pull env for multiple workspaces",
       "env-pull-production": "pull production env for multiple workspaces",
       "watch": "Watches for changes done in packages or sdk typescript files",
       "migrate-up": "run migrate-mongo up",
       "start-mongodb": "Start a local Mongodb instance",
-      "stop-mongodb": "Stop the local Mongodb instance"
+      "stop-mongodb": "Stop the local Mongodb instance",
+      "package-vitality": "Check for outdated packages in all workspaces"
     }
   }
 }
