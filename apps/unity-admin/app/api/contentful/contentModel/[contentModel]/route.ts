@@ -7,8 +7,8 @@ import type { AllContentModelTypes } from '@unity/types';
 type Context = {
   params: Promise<{
     contentModel: AllContentModelTypes;
-  }>
-}
+  }>;
+};
 
 export const GET = async (req: NextRequest, context: Context) => {
   const isAdminAuthenticated = await checkIfAdminAuthenticated(req);

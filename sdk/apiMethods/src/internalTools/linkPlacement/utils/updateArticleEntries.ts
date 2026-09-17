@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 /* eslint-disable import/no-extraneous-dependencies */
 import { diff } from 'deep-object-diff';
 

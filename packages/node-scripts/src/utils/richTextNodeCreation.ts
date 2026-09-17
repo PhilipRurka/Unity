@@ -1,12 +1,7 @@
 import { BLOCKS, Block, Text, TopLevelBlock } from '@contentful/rich-text-types';
 
 type HeadingValues =
-  | BLOCKS.HEADING_1
-  | BLOCKS.HEADING_2
-  | BLOCKS.HEADING_3
-  | BLOCKS.HEADING_4
-  | BLOCKS.HEADING_5
-  | BLOCKS.HEADING_6;
+  BLOCKS.HEADING_1 | BLOCKS.HEADING_2 | BLOCKS.HEADING_3 | BLOCKS.HEADING_4 | BLOCKS.HEADING_5 | BLOCKS.HEADING_6;
 
 const textContent = (text: string): Text[] => [
   {

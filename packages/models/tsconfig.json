@@ -1,11 +1,9 @@
 {
   "extends": "@unity/tsconfig/base.json",
-  "compilerOptions": { 
+  "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "include": ["**/*.ts", "next-env.d.ts"],
-  "exclude": [
-    "node_modules", ".next", "out"
-  ]
+  "exclude": ["node_modules", ".next", "out"]
 }

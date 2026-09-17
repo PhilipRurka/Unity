@@ -19,6 +19,7 @@
     "pull-production-env": "vercel env pull --environment=production .env.local"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/cli-spinner": "^0.2.3",
     "@types/inquirer": "^9.0.7",
     "@unity/eslint-config-node": "workspace:*",
@@ -30,6 +31,7 @@
     "inquirer": "^9.2.23",
     "ntl": "^5.1.0",
     "prettier": "^3.9.7",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^5.3.3"
   },
   "ntl": {

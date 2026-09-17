@@ -258,6 +258,9 @@ importers:
       '@testing-library/react':
         specifier: ^15.0.4
         version: 15.0.7(@types/react@18.3.31)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -306,6 +309,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -379,6 +385,9 @@ importers:
       '@testing-library/react':
         specifier: ^15.0.4
         version: 15.0.7(@types/react@18.3.31)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -427,6 +436,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -482,6 +494,9 @@ importers:
         specifier: ^8.3.4
         version: 8.24.4(supports-color@8.1.1)
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@unity/eslint-config-node':
         specifier: workspace:*
         version: link:../eslint-config-node
@@ -500,6 +515,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       rollup:
         specifier: ^2.63.0
         version: 2.80.0
@@ -509,6 +527,9 @@ importers:
 
   packages/mongodb:
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/cli-spinner':
         specifier: ^0.2.3
         version: 0.2.3
@@ -542,6 +563,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -576,6 +600,9 @@ importers:
         specifier: ^4.24.7
         version: 4.24.15(next@16.3.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@types/node@26.5.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -618,6 +645,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       typescript:
         specifier: ^5.3.3
         version: 5.9.3
@@ -726,12 +756,18 @@ importers:
         specifier: ^6.28.1
         version: 6.28.1
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       rollup:
         specifier: ^2.63.0
         version: 2.80.0
@@ -778,6 +814,9 @@ importers:
         specifier: ^3.23.8
         version: 3.25.76
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -823,6 +862,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       rollup:
         specifier: ^2.63.0
         version: 2.80.0
@@ -866,6 +908,9 @@ importers:
         specifier: ^3.23.8
         version: 3.25.76
     devDependencies:
+      '@trivago/prettier-plugin-sort-imports':
+        specifier: ^6.0.2
+        version: 6.0.2(prettier@3.9.7)(supports-color@8.1.1)
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
@@ -911,6 +956,9 @@ importers:
       prettier:
         specifier: ^3.9.7
         version: 3.9.7
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(@trivago/prettier-plugin-sort-imports@6.0.2(prettier@3.9.7)(supports-color@8.1.1))(prettier@3.9.7)
       rollup:
         specifier: ^2.63.0
         version: 2.80.0
