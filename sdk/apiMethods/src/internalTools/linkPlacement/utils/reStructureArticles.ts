@@ -8,40 +8,49 @@ const reStructureArticles = (articles: ArticleType[]) => {
     const { id } = article.sys;
     const items: FinalItems = [];
 
+    const getNodeText = (node: any): string => {
+      if (!node) return '';
+
+      if (node.nodeType === 'text') {
+        const isUnderlined = node.marks?.some((mark: any) => mark.type === 'underline');
+
+        if (isUnderlined) return '';
+
+        return node.value;
+      }
+
+      if (node.nodeType === 'hyperlink') {
+        const value = node.content.map((child: any) => getNodeText(child)).join('');
+
+        const href = node.data.uri;
+
+        return `<>${value}[${href}]</>`;
+      }
+
+      if (node.content) {
+        const separator =
+          node.nodeType === 'unordered-list' || node.nodeType === 'ordered-list' || node.nodeType === 'list-item'
+            ? ' '
+            : '';
+
+        return node.content.map((child: any) => getNodeText(child)).join(separator);
+      }
+
+      return '';
+    };
+
     article.fields.content.forEach((section: any) => {
       let sectionText = '';
 
       if (!section || !section.fields) return;
 
       section.fields.content.content.forEach((node: any) => {
-        if (node.nodeType === 'paragraph') {
-          node.content.forEach((textNode: any) => {
-            if (textNode.nodeType === 'text') {
-              const textNodeValue = textNode.value;
-              const isTextNodeValueLastSpace = textNodeValue.charAt(textNodeValue.length - 1) === ' ';
-              const isSectionTextValueLastSpace = sectionText.charAt(textNodeValue.length - 1) === ' ';
-
-              if (!isSectionTextValueLastSpace) {
-                sectionText += ' ';
-              }
-
-              sectionText += `${textNodeValue}${isTextNodeValueLastSpace ? '' : ' '}`;
-            } else if (textNode.nodeType === 'hyperlink') {
-              const href = textNode.data.uri;
-
-              const value = textNode.content
-                .map((linkNode: any) => {
-                  if (linkNode.nodeType !== 'text') return '';
-                  return linkNode.value;
-                })
-                .join('');
-              sectionText += `<>${value}[${href}]</>`;
-            }
-          });
-
-          sectionText = sectionText.trim().replace(/,\s*$/, '');
+        if (node.nodeType === 'paragraph' || node.nodeType === 'unordered-list' || node.nodeType === 'ordered-list') {
+          sectionText += `${getNodeText(node)} `;
         }
       });
+
+      sectionText = sectionText.trim().replace(/,\s*$/, '');
 
       items.push({
         entryTitle: section.fields.entryTitle,
