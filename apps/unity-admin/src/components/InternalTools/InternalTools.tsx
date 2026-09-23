@@ -65,7 +65,7 @@ const InternalTools = () => {
   };
 
   const lastAlgoliaDate = internalTools.lastAlgoliaUpdate ? formatDate(internalTools.lastAlgoliaUpdate) : '';
-  const lastMyWikiDate = internalTools.lastMyWikiUpdate ? formatDate(internalTools.lastMyWikiUpdate) : '';
+  // const lastMyWikiDate = internalTools.lastMyWikiUpdate ? formatDate(internalTools.lastMyWikiUpdate) : '';
   const lastLinkPlacementDate = internalTools.lastLinkPlacementUpdate
     ? formatDate(internalTools.lastLinkPlacementUpdate)
     : '';
@@ -92,7 +92,7 @@ const InternalTools = () => {
           </Button>
         </div>
 
-        <div>
+        {/* <div>
           <div className="mb-3">
             <h2 className="my-9 inline text-2xl font-bold">MyWiki</h2>
             <span className="inline text-xs italic"> - Last updated: {lastMyWikiDate} </span>
@@ -107,7 +107,7 @@ const InternalTools = () => {
           >
             Update
           </Button>
-        </div>
+        </div> */}
 
         <div>
           <div className="mb-3">

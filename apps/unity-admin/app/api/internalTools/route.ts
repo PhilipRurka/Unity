@@ -25,13 +25,13 @@ export const PUT = async (req: NextRequest) => {
   let builtlinkPlacement: TransformedToRichTextData[] = [];
 
   switch (option) {
-    case 'myWiki':
-      await inngest.send({
-        id: new Date().toISOString().slice(0, 16),
-        name: 'task.buildMyWikiVectorIndex',
-        data: { id: 'update-myWiki' },
-      });
-      break;
+    // case 'myWiki':
+    //   await inngest.send({
+    //     id: new Date().toISOString().slice(0, 16),
+    //     name: 'task.buildMyWikiVectorIndex',
+    //     data: { id: 'update-myWiki' },
+    //   });
+    //   break;
 
     case 'algolia':
       toolsToUpdate = await updateAlgolia();
