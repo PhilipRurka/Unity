@@ -12,7 +12,7 @@ export const Heading3 = ({ children }: MarkdownElementProps) => (
 );
 
 export const Heading4 = ({ children }: MarkdownElementProps) => (
-  <h4 className="mb-2 mt-8 text-xl lg:mt-12 lg:text-2xl">{children}</h4>
+  <h4 className="mb-2 mt-8 text-xl lg:mt-12 lg:text-2xl [&_b]:font-bold">{children}</h4>
 );
 
 export const Heading5 = ({ children }: MarkdownElementProps) => (
