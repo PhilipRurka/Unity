@@ -1,4 +1,4 @@
-import mongoose, { Schema, models } from 'mongoose';
+import mongoose, { Model, Schema, models } from 'mongoose';
 
 import type { InternalToolsDocument } from '@unity/types';
 
@@ -14,6 +14,7 @@ const InternalToolsSchema = new Schema<InternalToolsDocument>(
 );
 
 const InternalToolsModel =
-  models.internal_tools || mongoose.model<InternalToolsDocument>('internal_tools', InternalToolsSchema);
+  (models.internal_tools as Model<InternalToolsDocument>) ||
+  mongoose.model<InternalToolsDocument>('internal_tools', InternalToolsSchema);
 
 export default InternalToolsModel;

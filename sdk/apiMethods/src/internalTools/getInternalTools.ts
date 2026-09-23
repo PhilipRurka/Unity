@@ -12,22 +12,21 @@ type CatchError = {
 };
 
 const getUsers: GetUsersType = async () => {
-  let response: SuccessGetType<Document[]> | ErrorGetType;
+  let response: SuccessGetType<Document> | ErrorGetType;
 
   try {
     await connectToDatabase();
 
-    const audit = await InternalToolsModel.find(
-      {},
-      {
+    const audit = await InternalToolsModel.find({})
+      .select({
         _id: 0,
         lastAlgoliaUpdate: '$last_algolia_update',
         lastMyWikiUpdate: '$last_my_wiki_update',
         lastIncompleteUpdate: '$last_incomplete_update',
         lastLinkPlacementUpdate: '$last_link_placement_update',
         hierarchyLinks: '$hierarchy_links',
-      }
-    ).exec();
+      })
+      .exec();
 
     response = [{ result: audit[0] }, { status: 200 }];
   } catch (err) {
