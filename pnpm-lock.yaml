@@ -762,6 +762,12 @@ importers:
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
+      '@unity/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
+      '@unity/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
       prettier:
         specifier: ^3.9.7
         version: 3.9.7

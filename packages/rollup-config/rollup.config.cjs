@@ -1,14 +1,22 @@
+/** @format */
+
 const commonjs = require("@rollup/plugin-commonjs");
 const bundleSize = require("rollup-plugin-bundle-size");
 const cleaner = require("rollup-plugin-cleaner");
 const esbuild = require("rollup-plugin-esbuild").default;
 
-function sharedPlugins({ shouldAddCommonJs } = {}) {
-  const plugins = [
-    cleaner({
-      targets: ["./dist/"],
-    }),
-  ];
+const isWatch = process.argv.includes("--watch");
+
+function sharedPlugins({ shouldAddCommonJs, shouldClean } = {}) {
+  const plugins = [];
+
+  if (shouldClean && !isWatch) {
+    plugins.push(
+      cleaner({
+        targets: ["./dist/"],
+      }),
+    );
+  }
 
   if (shouldAddCommonJs) {
     plugins.push(commonjs());
@@ -21,7 +29,7 @@ function sharedPlugins({ shouldAddCommonJs } = {}) {
       include: /\.[jt]sx?$/,
       tsconfig: "@unity/tsconfig/nextjs.json",
     }),
-    bundleSize()
+    bundleSize(),
   );
 
   return plugins;
@@ -38,7 +46,10 @@ module.exports = ({ dependencies }) => [
       sourcemap: true,
     },
     cache: false, // Eventually remove this line
-    plugins: sharedPlugins({ shouldAddCommonJs: true }),
+    plugins: sharedPlugins({
+      shouldAddCommonJs: true,
+      shouldClean: true,
+    }),
   },
   {
     input: "src/index.ts",
